@@ -20,3 +20,7 @@ services:
     - com.centurylinklabs.watchtower.enable=true
     networks:
     - server
+networks:
+  server:
+    driver: bridge
+    name: server

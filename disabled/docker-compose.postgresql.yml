@@ -22,3 +22,7 @@ services:
     shm_size: 256M
     networks:
     - server
+networks:
+  server:
+    driver: bridge
+    name: server

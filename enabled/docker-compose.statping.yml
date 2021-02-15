@@ -13,6 +13,8 @@ services:
     - 8091:8080
     labels:
     - com.centurylinklabs.watchtower.enable=true
+    networks:
+    - server
 networks:
   server:
     driver: bridge

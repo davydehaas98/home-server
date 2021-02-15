@@ -16,3 +16,7 @@ services:
     - jenkins-server
     networks:
     - server
+networks:
+  server:
+    driver: bridge
+    name: server

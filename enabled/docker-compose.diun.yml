@@ -23,3 +23,7 @@ services:
     - diun.watch_repo=true
     networks:
     - server
+networks:
+  server:
+    driver: bridge
+    name: server

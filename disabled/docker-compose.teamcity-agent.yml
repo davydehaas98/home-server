@@ -15,3 +15,7 @@ services:
     - teamcity-server
     networks:
     - server
+networks:
+  server:
+    driver: bridge
+    name: server

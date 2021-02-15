@@ -17,3 +17,7 @@ services:
         #- postgresql
     networks:
     - server
+networks:
+  server:
+    driver: bridge
+    name: server

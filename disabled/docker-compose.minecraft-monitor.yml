@@ -17,3 +17,7 @@ services:
     - GATHER_SERVERS=mc.hypixel.net
     networks:
     - server
+networks:
+  server:
+    driver: bridge
+    name: server

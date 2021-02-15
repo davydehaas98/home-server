@@ -8,6 +8,8 @@ services:
     - TZ=${TZ}
     ports:
     - 6443:6443
+    networks:
+    - server
 networks:
   server:
     driver: bridge
