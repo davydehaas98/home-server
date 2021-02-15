@@ -1,13 +1,16 @@
 version: "3.8"
 services:
+  # sudo chown -R 472:472 /server/grafana
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     restart: unless-stopped
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
     - TZ=${TZ}
+    - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana/
+    - GF_SERVER_DOMAIN:=davydehaas.nl
+    - GF_SERVER_SERVE_FROM_SUB_PATH=FALSE
+
     volumes:
     - /server/grafana:/var/lib/grafana
     ports:
