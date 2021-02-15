@@ -1,6 +1,7 @@
 version: '3'
 services:
-# Minecraft server
+  # Minecraft server
+  # https://github.com/itzg/docker-minecraft-server/blob/master/README.md
   minecraft-server:
     image: itzg/minecraft-bedrock-server:latest
     container_name: minecraft-server
