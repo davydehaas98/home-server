@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # PostgreSQL database used by SonarQube
   sonarqube-postgresql:
-    image: postgres:latest
+    image: postgres:alpine
     container_name: sonarqube-postgresql
     restart: unless-stopped
     environment:
@@ -44,7 +44,7 @@ services:
     - /server/sonarqube/logs:/opt/sonarqube/logs
     - /server/sonarqube/temp:/opt/sonarqube/temp
     ports:
-    - 9091:9000
+    - 9001:9000
     # Embedded H2 database
     - 9092:9092
     labels:
