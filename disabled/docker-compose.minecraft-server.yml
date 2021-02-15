@@ -1,0 +1,22 @@
+version: '3'
+services:
+# Minecraft server
+  minecraft-server:
+    image: itzg/minecraft-server:latest
+    container_name: minecraft-server
+    restart: unless-stopped
+    environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
+    - EULA=TRUE
+    - VERSION=LATEST
+    - ENABLE_AUTOPAUSE=TRUE
+    volumes:
+    - /server/minecraft-server/data:/data
+    ports:
+    - 25565:25565
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    networks:
+    - server

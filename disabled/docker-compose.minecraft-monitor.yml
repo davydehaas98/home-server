@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  telegraf:
+    image: telegraf:1.13
+    container_name: telegraf
+    volumes:
+    - /server/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    networks:
+    - server
+  monitor:
+    image: itzg/mc-monitor
+    container_name: minecraft-monitor
+    command: gather-for-telegraf export-for-prometheus
+    environment:
+    - GATHER_INTERVAL=10s
+    - GATHER_TELEGRAF_ADDRESS=telegraf:8094
+    - GATHER_SERVERS=mc.hypixel.net
+    networks:
+    - server
