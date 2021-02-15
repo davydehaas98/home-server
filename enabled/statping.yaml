@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  statping:
+    container_name: statping
+    image: statping/statping:latest
+    restart: always
+    volumes:
+    - /statping/app:/app
+    environment:
+      DB_CONN: sqlite
+    ports:
+    - "8091:8080"
