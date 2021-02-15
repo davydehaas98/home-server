@@ -6,7 +6,9 @@ services:
     container_name: pihole
     restart: unless-stopped
     environment:
-    - TZ='Europe/Amsterdam'
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
     - WEBPASSWORD='pihole'
     volumes:
     - /server/etc/pihole:/etc/pihole
@@ -19,6 +21,8 @@ services:
     - 443:443/tcp
     labels:
     - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
     cap_add:
     - NET_ADMIN
     dns:

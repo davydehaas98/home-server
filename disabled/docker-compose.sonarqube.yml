@@ -24,6 +24,8 @@ services:
     - 9092:9092
     labels:
     - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
     stop_grace_period: 2m30s
     ulimits:
       nproc: 65535

@@ -6,6 +6,8 @@ services:
     container_name: jenkins-server
     restart: unless-stopped
     environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
     - TZ=${TZ}
     - JAVA_OPTS=-Xmx4096m # Set maximum heap size to 4096 MB
     - JENKINS_OPTS=--handlerCountMax=300
@@ -15,6 +17,10 @@ services:
     ports:
     - 9090:8080 # Web Interface
     - 50000:50000 # Remote Java (JIRA) API
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
     networks:
     - server
 networks:

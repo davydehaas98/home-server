@@ -7,6 +7,8 @@ services:
     restart: unless-stopped
     command: --log-opt max-size=200k
     environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
     - TZ=${TZ}
     volumes:
     - /server/terraria/world:/root/.local/share/Terraria/Worlds
