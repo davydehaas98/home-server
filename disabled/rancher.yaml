@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  rancher-server:
+    container_name: rancher
+    image: rancher/rancher:stable
+    restart: unless-stopped
+    ports:
+      - "6443:6443"
+    environment:
+      TZ: ${TZ}
