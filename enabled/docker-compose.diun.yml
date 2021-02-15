@@ -12,7 +12,9 @@ services:
     - DIUN_DB_PATH=diun.db
     - DIUN_WATCH_FIRSTCHECKNOTIF=false
     - DIUN_WATCH_WORKERS=10
-    - DIUN_WATCH_SCHEDULE=0 */6 * * *
+    # Scans every day at 3 AM
+    # seconds - minutes - hours - day of month - month - day of week
+    - DIUN_WATCH_SCHEDULE=0 0 3 * * *
     - DIUN_PROVIDERS_DOCKER=true
     - DIUN_PROVIDERS_DOCKER_WATCHSTOPPED=true
     - DIUN_NOTIF_SLACK_WEBHOOKURL=https://discord.com/api/webhooks/798632410349699165/9wYRGCWHO2o18NIFi20h9bG_h13YiES2jRDi-ymtrTYE7p7SeOQDv7DREgLwQkf15Rz7/slack
