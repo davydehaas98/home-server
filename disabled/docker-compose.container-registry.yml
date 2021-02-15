@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  # Docker container registry
+  container-registry:
+    image: registry:2
+    container_name: container-registry
+    restart: unless-stopped
+    environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
+    - REGISTRY_AUTH=htpasswd
+    - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+    - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+    - REGISTRY_HTTP_ADDR=0.0.0.0:5000
+    volumes:
+    - /server/container-registry:/var/lib/registry
+    - /server/container-registry/auth:/auth
+    ports:
+    - 5000:5000
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    networks:
+    - server
+networks:
+  server:
+    driver: bridge
+    name: server

@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  rancher-server:
+    image: rancher/rancher:stable
+    container_name: rancher
+    restart: unless-stopped
+    environment:
+    - TZ=${TZ}
+    ports:
+    - 6443:6443
+networks:
+  server:
+    driver: bridge
+    name: server
