@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  # Open source automation server
+  jenkins-server:
+    image: jenkins/jenkins:lts
+    container_name: jenkins-server
+    restart: unless-stopped
+    environment:
+    - TZ=${TZ}
+    - JAVA_OPTS=-Xmx4096m # Set maximum heap size to 4096 MB
+    - JENKINS_OPTS=--handlerCountMax=300
+    volumes:
+    - /server/jenkins:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+    - 9090:8080 # Web Interface
+    - 50000:50000 # Remote Java (JIRA) API
+    networks:
+    - server
+networks:
+  server:
+    driver: bridge
+    name: server

@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  # Jenkins JNLP Slave for executing jobs
+  jenkins-slave:
+    image: jenkins/jnlp-slave:latest
+    container_name: jenkins-slave
+    restart: unless-stopped
+    environment:
+    - TZ=${TZ}
+      # Set maximum heap size to 2048 mb
+    - JAVA_OPTS=-Xmx2048m
+    - JENKINS_AGENT_NAME=slave
+    - JENKINS_URL=http://jenkins-server:50000
+    - JENKINS_SECRET=<secrettoken>
+    depends_on:
+    - jenkins-server
+    networks:
+    - server

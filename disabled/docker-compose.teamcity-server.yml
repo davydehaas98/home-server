@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  # Automation server by JetBrains
+  teamcity-server:
+    image: jetbrains/teamcity-server:latest
+    container_name: teamcity-server
+    restart: unless-stopped
+    environment:
+    - TEAMCITY_SERVER_MEM_OPTS=-Xmx2048m # Set maximum heap size to 2048 mb
+    - TZ=${TZ}
+    volumes:
+    - /server/teamcity/data:/data/teamcity_server/datadir
+    - /server/teamcity/logs:/opt/teamcity/logs
+    ports:
+    - 8111:8111
+    #depends_on:
+        #- postgresql
+    networks:
+    - server

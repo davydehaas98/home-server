@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  # TeamCity build agent for executing jobs
+  teamcity-agent:
+    image: jetbrains/teamcity-agent:latest
+    container_name: teamcity-agent
+    restart: unless-stopped
+    environment:
+    - SERVER_URL=http://teamcity-server:8111
+    - TZ=${TZ}
+    volumes:
+    - /server/teamcity/agent:/data/teamcity_agent/conf
+    - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+    - teamcity-server
+    networks:
+    - server
