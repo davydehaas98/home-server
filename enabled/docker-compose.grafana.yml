@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana:alpine
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
+    volumes:
+    - /server/grafana:/var/lib/grafana
+    ports:
+    - 3000:3000
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
