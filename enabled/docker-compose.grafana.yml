@@ -7,8 +7,9 @@ services:
     restart: unless-stopped
     environment:
     - TZ=${TZ}
-    - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana/
     - GF_SERVER_DOMAIN:=davydehaas.nl
+    - GF_SERVER_PROTOCOL=http
+    - GF_SERVER_ROOT_URL=%(protocol)s://grafana.%(domain)s/
     - GF_SERVER_SERVE_FROM_SUB_PATH=FALSE
 
     volumes:
