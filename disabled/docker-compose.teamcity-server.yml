@@ -21,9 +21,3 @@ services:
     - diun.watch_repo=true
     #depends_on:
         #- postgresql
-    networks:
-    - server
-networks:
-  server:
-    driver: bridge
-    name: server

@@ -18,9 +18,3 @@ services:
     - diun.watch_repo=true
     depends_on:
     - jenkins-server
-    networks:
-    - server
-networks:
-  server:
-    driver: bridge
-    name: server

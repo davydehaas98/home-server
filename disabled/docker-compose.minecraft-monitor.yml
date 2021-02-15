@@ -6,8 +6,6 @@ services:
     restart: unless-stopped
     ports:
     - 8086:8086
-    networks:
-    - server
   telegraf:
     image: telegraf:alpine
     container_name: telegraf
@@ -18,8 +16,6 @@ services:
     - 8094:8094
     depends_on:
     - influxdb
-    networks:
-    - server
   monitor:
     image: itzg/mc-monitor:0.6.1
     container_name: minecraft-monitor
@@ -31,9 +27,3 @@ services:
     - GATHER_SERVERS=mc.hypixel.net
     depends_on:
     - telegraf
-    networks:
-    - server
-networks:
-  server:
-    driver: bridge
-    name: server

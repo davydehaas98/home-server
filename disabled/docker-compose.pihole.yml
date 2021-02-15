@@ -28,9 +28,3 @@ services:
     dns:
     - 127.0.0.1
     - 1.1.1.1
-    networks:
-    - server
-networks:
-  server:
-    driver: bridge
-    name: server

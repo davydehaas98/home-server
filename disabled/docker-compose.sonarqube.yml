@@ -32,9 +32,3 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-    networks:
-    - server
-networks:
-  server:
-    driver: bridge
-    name: server

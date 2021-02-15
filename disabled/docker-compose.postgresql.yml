@@ -24,9 +24,3 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
     shm_size: 256M
-    networks:
-    - server
-networks:
-  server:
-    driver: bridge
-    name: server

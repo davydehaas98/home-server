@@ -19,9 +19,3 @@ services:
     - diun.watch_repo=true
     depends_on:
     - teamcity-server
-    networks:
-    - server
-networks:
-  server:
-    driver: bridge
-    name: server
