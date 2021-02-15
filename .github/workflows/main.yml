@@ -39,9 +39,9 @@ jobs:
         script: |
           cd ${{ env.TARGET_DIRECTORY }}
           
-          echo 'TZ=${{ env.TZ }}' >> .env
           echo 'PGID=${{ env.PGID }}' >> .env
           echo 'PUID=${{ env.PUID }}' >> .env
+          echo 'TZ=${{ env.TZ }}' >> .env
 
           docker-compose $(find docker-compose.*.yml | sed -e 's/^/-f /') down --remove-orphans
           docker-compose $(find docker-compose.*.yml | sed -e 's/^/-f /') up -d
