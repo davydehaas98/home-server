@@ -1,0 +1,61 @@
+version: "3.8"
+services:
+  # PostgreSQL database used by SonarQube
+  sonarqube-postgresql:
+    image: postgres:latest
+    container_name: sonarqube-postgresql
+    restart: unless-stopped
+    environment:
+    - PUID=${PUID}
+    - PGID=${PGID}
+    - TZ=${TZ}
+    - POSTGRES_USER=sonarqube
+    - POSTGRES_PASSWORD=sonarqube
+    - POSTGRES_DB=sonarqube
+    volumes:
+    - /server/sonarqube-postgresql:/var/lib/postgresql
+    # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
+    - /server/sonarqube-postgresql/data:/var/lib/postgresql/data
+    #ports:
+    #- 5432:5432
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
+    shm_size: 256M
+  
+  # Open source code quality and security tool
+  sonarqube:
+    image: sonarqube:lts
+    container_name: sonarqube
+    restart: unless-stopped
+    environment:
+    - PUID=${PUID}
+    - PGID=${PGID}
+    - TZ=${TZ}
+    - sonar.jbdc.username=sonarqube
+    - sonar.jbdc.password=sonarqube
+    - sonar.jdbc.url=jdbc:postgresql://sonarqube-postgresql:5432/sonarqube
+    volumes:
+    - /server/sonarqube/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    - /server/sonarqube/config:/opt/sonarqube/conf
+    - /server/sonarqube/data:/opt/sonarqube/data
+    - /server/sonarqube/extensions:/opt/sonarqube/extensions
+    - /server/sonarqube/logs:/opt/sonarqube/logs
+    - /server/sonarqube/temp:/opt/sonarqube/temp
+    ports:
+    - 9091:9000
+    # Embedded H2 database
+    - 9092:9092
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
+    depends_on:
+    - sonarqube-postgresql
+    stop_grace_period: 2m30s
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
