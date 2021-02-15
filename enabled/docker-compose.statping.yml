@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  statping:
+    container_name: statping
+    image: statping/statping:latest
+    restart: always
+    environment:
+    - TZ=${TZ}
+    - DB_CONN=sqlite
+    volumes:
+    - /server/statping/app:/app
+    ports:
+    - 8091:8080
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+networks:
+  server:
+    driver: bridge
+    name: server
