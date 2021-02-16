@@ -20,7 +20,7 @@ services:
     - /server/sonarqube/logs:/opt/sonarqube/logs
     - /server/sonarqube/temp:/opt/sonarqube/temp
     ports:
-    - 9001:9000
+    - 9000:9000
     # Embedded H2 database
     - 9092:9092
     labels:
