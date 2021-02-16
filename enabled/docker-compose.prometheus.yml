@@ -23,6 +23,8 @@ services:
     image: prom/node-exporter:latest
     container_name: node-exporter
     restart: unless-stopped
+    ports:
+    - 9100:9100
     # volumes:
     #   - /proc:/host/proc:ro
     #   - /sys:/host/sys:ro
@@ -37,15 +39,13 @@ services:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     restart: unless-stopped
-    environment:
-    - TZ=${TZ}
     volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
     ports:
-    - 6380:8080
+    - 9101:8080
     # depends_on:
     # - cadvisor-redis
   
