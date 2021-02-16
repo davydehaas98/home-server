@@ -63,6 +63,6 @@ services:
     - --config.file=/etc/alertmanager/config.yml
     - --storage.path=/alertmanager
     volumes:
-    - ./alertmanager/:/etc/alertmanager/
+    - /server/alertmanager/:/etc/alertmanager/
     ports:
     - 9093:9093
