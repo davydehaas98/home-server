@@ -1,0 +1,12 @@
+global:
+  resolve_timeout: 1m
+  slack_api_url: 'https://discord.com/api/webhooks/811203574519824395/j_R4y_XocCvHPtYpR4NXFzRC5alrlPkTpNzzgtqEd7-g9vHA--_LD9OmmhbGNJb8i-fK/slack'
+
+route:
+  receiver: 'slack-notifications'
+
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#monitoring-instances'
+    send_resolved: true
