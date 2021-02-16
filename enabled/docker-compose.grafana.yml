@@ -10,8 +10,8 @@ services:
     - GF_USERS_ALLOW_SIGN_UP=false
     volumes:
     - /server/grafana:/var/lib/grafana
-    expose:
-    - 3000
+    ports:
+    - 3000:3000
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
