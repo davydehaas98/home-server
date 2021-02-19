@@ -31,4 +31,4 @@ scrape_configs:
   scrape_interval: 10s
   static_configs:
   - targets:
-    - prometheus:8080
+    - prometheus:9090

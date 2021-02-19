@@ -41,6 +41,10 @@ services:
       - /:/rootfs:ro
     ports:
     - 9100:9100
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
   # Container Advisor analyzes and exposes resource usage and performance data from running containers
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -53,6 +57,10 @@ services:
     - /var/lib/docker/:/var/lib/docker:ro
     expose:
     - 8080
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
   # The Alertmanager handles alerts sent by client applications such as the Prometheus server. 
   # It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. 
   # It also takes care of silencing and inhibition of alerts.
@@ -66,3 +74,7 @@ services:
     - /server/alertmanager/:/etc/alertmanager/
     ports:
     - 9093:9093
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
