@@ -8,6 +8,10 @@ services:
     - PGID=${PGID}
     - PUID=${PUID}
     - TZ=${TZ}
+    - POSTGRES_USER=nextcloud
+    - POSTGRES_PASSWORD=nextcloud
+    - POSTGRES_DB=nextcloud
+    - POSTGRES_HOST=nexcloud-postgresql
     volumes:
     - /server/nextcloud/config:/config
     - /server/nextcloud/data:/data
@@ -17,3 +21,26 @@ services:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
     - diun.watch_repo=true
+    depends_on:
+    - nextcloud-postgresql
+  
+  nextcloud-postgresql:
+    image: postgres:alpine
+    container_name: nextcloud-postgresql
+    restart: unless-stopped
+    environment:
+    - PUID=${PUID}
+    - PGID=${PGID}
+    - TZ=${TZ}
+    - POSTGRES_USER=nextcloud
+    - POSTGRES_PASSWORD=nextcloud
+    - POSTGRES_DB=nextcloud
+    volumes:
+    - /server/nextcloud-postgresql:/var/lib/postgresql
+    # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
+    - /server/nextcloud-postgresql/data:/var/lib/postgresql/data
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
+    shm_size: 256M
