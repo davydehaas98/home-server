@@ -28,7 +28,6 @@ services:
     image: postgres:alpine
     container_name: nextcloud-postgresql
     restart: unless-stopped
-    command: --user "${PUID}:${PGID}"
     environment:
     - PUID=${PUID}
     - PGID=${PGID}
