@@ -10,9 +10,9 @@ services:
     - TZ=${TZ}
     volumes:
     - /media-server/heimdall/config:/config
-    ports:
-    - 80:80
-    - 443:443
+    expose:
+    - 80
+    - 443
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true

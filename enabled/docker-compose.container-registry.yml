@@ -16,8 +16,8 @@ services:
     volumes:
     - /server/container-registry:/var/lib/registry
     - /server/container-registry/auth:/auth
-    ports:
-    - 5000:5000
+    expose:
+    - 5000
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true

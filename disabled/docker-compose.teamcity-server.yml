@@ -13,8 +13,8 @@ services:
     volumes:
     - /server/teamcity/data:/data/teamcity_server/datadir
     - /server/teamcity/logs:/opt/teamcity/logs
-    ports:
-    - 8111:8111
+    expose:
+    - 8111
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true

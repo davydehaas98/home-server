@@ -19,10 +19,9 @@ services:
     - /server/sonarqube/extensions:/opt/sonarqube/extensions
     - /server/sonarqube/logs:/opt/sonarqube/logs
     - /server/sonarqube/temp:/opt/sonarqube/temp
-    ports:
-    - 9000:9000
-    # Embedded H2 database
-    - 9092:9092
+    expose:
+    - 9000
+    - 9092 # Embedded H2 database
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true

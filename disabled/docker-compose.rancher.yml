@@ -8,8 +8,8 @@ services:
     - PUID=${PUID}
     - PGID=${PGID}
     - TZ=${TZ}
-    ports:
-    - 6443:6443
+    expose:
+    - 6443
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
