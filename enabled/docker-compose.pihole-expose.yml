@@ -6,9 +6,6 @@ services:
     container_name: pihole
     restart: unless-stopped
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
     - WEBPASSWORD=pihole
     - DNS1=1.1.1.1
     - DNS2=1.0.0.1

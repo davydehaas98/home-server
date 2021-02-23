@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
+    environment:
+    - WEBPASSWORD=pihole
+    - DNS1=1.1.1.1
+    - DNS2=1.0.0.1
+    volumes:
+    - /server/pihole:/etc/pihole
+    - /server/pihole/dnsmasq.d:/etc/dnsmasq.d
+    # - /server/pihole/pihole.log:/var/log/pihole.log
+    ports:
+    - 53:53/tcp
+    - 53:53/udp
+    # - 67:67/udp # act as DHCP server instead of a router
+    - 80:80/tcp
+    - 443:443/tcp
+    cap_add:
+    - NET_ADMIN
+    dns:
+    - 127.0.0.1
+    - 1.1.1.1
+    - 1.0.0.1
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
