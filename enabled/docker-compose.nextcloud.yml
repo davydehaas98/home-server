@@ -1,5 +1,6 @@
 version: "3.8"
 services:
+  # https://hub.docker.com/r/linuxserver/nextcloud/
   nextcloud:
     image: linuxserver/nextcloud:amd64-latest
     container_name: nextcloud
@@ -23,7 +24,6 @@ services:
     - diun.watch_repo=true
     depends_on:
     - nextcloud-postgresql
-  
   nextcloud-postgresql:
     image: postgres:alpine
     container_name: nextcloud-postgresql

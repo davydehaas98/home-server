@@ -9,7 +9,7 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     volumes:
-    - /media-server/heimdall/config:/config
+    - /server/heimdall/config:/config
     expose:
     - 80
     - 443

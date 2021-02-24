@@ -1,5 +1,6 @@
 version: "3.8"
 services:
+  # https://hub.docker.com/r/statping/statping
   statping:
     container_name: statping
     image: statping/statping:latest
