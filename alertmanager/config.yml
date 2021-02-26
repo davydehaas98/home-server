@@ -8,5 +8,4 @@ route:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - channel: '#monitoring-instances'
-    send_resolved: true
+  - send_resolved: true
