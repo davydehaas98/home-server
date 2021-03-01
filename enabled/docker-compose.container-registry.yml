@@ -14,7 +14,7 @@ services:
     - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
     - REGISTRY_HTTP_ADDR=0.0.0.0:5000
     volumes:
-    - /mnt/raid1/server/container-registry:/var/lib/registry
+    - /mnt/raid/server/container-registry:/var/lib/registry
     - /server/container-registry/auth:/auth
     expose:
     - 5000
