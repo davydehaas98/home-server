@@ -11,9 +11,9 @@ services:
     - loadgame=true
     - savename=game.sav
     - savepath=/home/openttd/.openttd/save
-    - DEBUG=1
+    - DEBUG=0
     volumes:
-    - /server/openttd-server:/home/openttd
+    - /server/openttd-server/.openttd:/home/openttd/.openttd
     ports:
     - 3979:3979/tcp
     - 3979:3979/udp
