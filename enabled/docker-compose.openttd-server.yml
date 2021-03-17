@@ -8,11 +8,12 @@ services:
     - PGID=${PGID}
     - PUID=${PUID}
     - TZ=${TZ}
-    # - loadgame=true
-    # - savegame=game.sav
+    - loadgame=false
+    - savegame=game.sav
     - savepath=/home/openttd/.openttd/save
     volumes:
     - /server/openttd-server:/home/openttd
+    - /server/openttd-server/config:/usr/games/openttd
     ports:
     - 3979:3979/tcp
     - 3979:3979/udp
