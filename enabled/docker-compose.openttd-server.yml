@@ -8,7 +8,7 @@ services:
     - PGID=${PGID}
     - PUID=${PUID}
     - TZ=${TZ}
-    - loadgame=false
+    - loadgame=last-autosave
     - savegame=game.sav
     - savepath=/home/openttd/.openttd/save
     volumes:
