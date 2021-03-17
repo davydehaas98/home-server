@@ -14,6 +14,7 @@ services:
     - DEBUG=0
     volumes:
     - /server/openttd-server/.openttd:/home/openttd/.openttd
+    - /server/openttd-server:/usr/games
     ports:
     - 3979:3979/tcp
     - 3979:3979/udp
