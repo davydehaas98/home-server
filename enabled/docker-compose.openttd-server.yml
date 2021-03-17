@@ -9,7 +9,7 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     - loadgame=true
-    - savegame=game.sav
+    - savename=game.sav
     - savepath=/home/openttd/.openttd/save
     - DEBUG=1
     volumes:
