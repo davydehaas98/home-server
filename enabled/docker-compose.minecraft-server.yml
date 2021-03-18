@@ -20,7 +20,8 @@ services:
     - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=normal
-    #- WHITELIST=user1,user2
+    - OPS=Capta1nCreeper
+    - WHITELIST=Capta1nCreeper,Timooo0,Lukam0s,DutchDog99,mcodenl
     - MAX_PLAYERS=50
     - MAX_WORLD_SIZE=10000
     - ALLOW_NETHER=TRUE
@@ -39,7 +40,7 @@ services:
     - VIEW_DISTANCE=10
     #- SEED=1785852800490497919
     - MODE=survival
-    - MOTD=Davy's Minecraft server, powered by Docker.
+    - MOTD=Davy's Minecraft server.
     - PVP=TRUE
     - LEVEL_TYPE=DEFAULT
     - ONLINE_MODE=TRUE
