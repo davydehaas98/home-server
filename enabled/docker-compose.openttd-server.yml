@@ -8,10 +8,10 @@ services:
     - PGID=${PGID}
     - PUID=${PUID}
     - TZ=${TZ}
-    - loadgame=true
-    - savename=game.sav
-    - savepath=/home/openttd/.openttd/save
-    - DEBUG=0
+    - LOADGAME=true
+    - SAVENAME=game.sav
+    - SAVEPATH=/home/openttd/.openttd/save
+    - DEBUG=1
     volumes:
     - /server/openttd-server/.openttd:/home/openttd/.openttd
     - /server/openttd-server:/usr/games
