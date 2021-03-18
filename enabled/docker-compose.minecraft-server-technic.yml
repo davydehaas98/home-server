@@ -49,7 +49,7 @@ services:
     volumes:
     - /server/minecraft-server-technic/data:/data
     ports:
-    - 25566:25566
+    - 25566:25565
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
