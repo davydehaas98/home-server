@@ -3,7 +3,7 @@ services:
   # Minecraft server
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\mods" root@davydehaas.nl:/server/minecraft-server/data/mods
   minecraft-server-technic:
-    image: itzg/minecraft-server:latest
+    image: itzg/minecraft-server:java8
     container_name: minecraft-server-technic
     restart: unless-stopped
     environment:
