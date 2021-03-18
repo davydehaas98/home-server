@@ -11,13 +11,12 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     - EULA=TRUE
-    - VERSION=LATEST
+    - VERSION=1.12.2
     - ENABLE_AUTOPAUSE=TRUE
     - INIT_MEMORY=2G
     - MAX_MEMORY=8G
     - MEMORY=8192M
     - TYPE=FORGE
-    - VERSION=1.12.2
     # - FORGEVERSION=14.23.5.2854
     - SERVER_NAME=technic
     - ICON=https://davydehaas.nl/assets/images/memoji.png
