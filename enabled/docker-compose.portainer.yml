@@ -7,8 +7,8 @@ services:
     container_name: portainer
     restart: unless-stopped
     command: -H unix:///var/run/docker.sock
-    cpus: 0.5
-    mem_limit: 4G
+    cpus: 1
+    mem_limit: 1G
     environment:
     - PGID=${PGID}
     - PUID=${PUID}

@@ -30,6 +30,8 @@ services:
     image: prom/node-exporter:latest
     container_name: node-exporter
     restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
     command:
     - --path.procfs=/host/proc
     - --path.sysfs=/host/sys
@@ -49,7 +51,7 @@ services:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     restart: unless-stopped
-    cpus: 0.5
+    cpus: 1
     mem_limit: 1G
     volumes:
     - /:/rootfs:ro
@@ -68,6 +70,8 @@ services:
   # alertmanager:
   #   image: prom/alertmanager:v0.21.0
   #   container_name: alertmanager
+  #   cpus: 1
+  #   mem_limit: 1G
   #   command:
   #   - --config.file=/etc/alertmanager/config.yml
   #   - --storage.path=/alertmanager

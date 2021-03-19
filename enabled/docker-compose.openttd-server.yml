@@ -4,6 +4,8 @@ services:
     image: davydehaas98/openttd-server:1.10.3
     container_name: openttd-server
     restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
     environment:
     - PGID=${PGID}
     - PUID=${PUID}

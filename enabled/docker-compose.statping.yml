@@ -5,6 +5,8 @@ services:
     container_name: statping
     image: statping/statping:latest
     restart: always
+    cpus: 1
+    mem_limit: 1G
     environment:
     - TZ=${TZ}
     - DB_CONN=sqlite

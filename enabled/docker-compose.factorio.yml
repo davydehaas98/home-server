@@ -5,6 +5,8 @@ services:
     image: factoriotools/factorio:stable
     container_name: factorio
     restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
     environment:
     - PUID=${PUID}
     - PGID=${PGID}
