@@ -5,6 +5,8 @@ services:
     image: itzg/minecraft-server:java8
     container_name: minecraft-server
     restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
     environment:
     - PGID=${PGID}
     - PUID=${PUID}
@@ -22,7 +24,7 @@ services:
     - DIFFICULTY=normal
     - OPS=Capta1nCreeper
     - WHITELIST=Capta1nCreeper,Timooo0,Lukam0s,DutchDog99,mcodenl,rekkmore
-    - MAX_PLAYERS=50
+    - MAX_PLAYERS=20
     - MAX_WORLD_SIZE=10000
     - ALLOW_NETHER=TRUE
     - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
@@ -36,11 +38,11 @@ services:
     - SPAWN_ANIMALS=TRUE
     - SPAWN_MONSTERS=TRUE
     - SPAWN_NPCS=TRUE
-    - SPAWN_PROTECTION=10
+    - SPAWN_PROTECTION=16
     - VIEW_DISTANCE=10
     #- SEED=1785852800490497919
     - MODE=survival
-    - MOTD=Davy's Minecraft server.
+    - MOTD=Davy's Vanilla Minecraft server.
     - PVP=TRUE
     - LEVEL_TYPE=DEFAULT
     - ONLINE_MODE=TRUE
