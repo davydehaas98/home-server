@@ -1,10 +1,11 @@
 version: "3.8"
 services:
   # Minecraft server
-  # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\mods" root@davydehaas.nl:/server/minecraft-server/data/mods
-  minecraft-server-technic:
+  # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\mods" root@davydehaas.nl:/server/minecraft-server/data
+  # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\config" root@davydehaas.nl:/server/minecraft-server/config
+  minecraft-server-arthalos:
     image: itzg/minecraft-server:java8
-    container_name: minecraft-server-technic
+    container_name: minecraft-server-arthalos
     restart: unless-stopped
     environment:
     - PGID=${PGID}
@@ -18,11 +19,12 @@ services:
     - MEMORY=8192M
     - TYPE=FORGE
     # - FORGEVERSION=14.23.5.2854
-    - SERVER_NAME=technic
+    - SERVER_NAME=arthalos
     - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=normal
-    #- WHITELIST=user1,user2
+    - OPS=Capta1nCreeper,Timooo0
+    - WHITELIST=Capta1nCreeper,Timooo0,Lukam0s,DutchDog99,mcodenl,rekkmore
     - MAX_PLAYERS=50
     - MAX_WORLD_SIZE=10000
     - ALLOW_NETHER=TRUE
@@ -41,7 +43,7 @@ services:
     - VIEW_DISTANCE=10
     #- SEED=1785852800490497919
     - MODE=survival
-    - MOTD=Davy's Minecraft Technic server, powered by Docker.
+    - MOTD=Davy's Minecraft Arthalos server.
     - PVP=TRUE
     - LEVEL_TYPE=DEFAULT
     - ONLINE_MODE=TRUE
