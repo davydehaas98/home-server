@@ -5,8 +5,8 @@ services:
     image: registry:2
     container_name: container-registry
     restart: unless-stopped
-    cpus: 4
-    mem_limit: 8G
+    cpus: 1
+    mem_limit: 1G
     environment:
     - PGID=${PGID}
     - PUID=${PUID}

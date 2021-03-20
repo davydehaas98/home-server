@@ -5,8 +5,8 @@ services:
     image: linuxserver/nextcloud:amd64-latest
     container_name: nextcloud
     restart: unless-stopped
-    cpus: 4
-    mem_limit: 8G
+    cpus: 1
+    mem_limit: 1G
     environment:
     - PGID=${PGID}
     - PUID=${PUID}
@@ -30,6 +30,8 @@ services:
     image: postgres:alpine
     container_name: nextcloud-postgresql
     restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
     environment:
     - PUID=${PUID}
     - PGID=${PGID}
