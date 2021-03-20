@@ -26,7 +26,7 @@ services:
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=normal
     - OPS=Capta1nCreeper,Timooo0
-    - WHITELIST=Capta1nCreeper,Timooo0,Lukam0s,DutchDog99,mcodenl,rekkmore,Markonius99
+    - WHITELIST=Capta1nCreeper,Timooo0,Lukam0s,DutchDog99,mcodenl,rekkmore,Mark0nius99
     - MAX_PLAYERS=20
     - MAX_WORLD_SIZE=10000
     - ALLOW_NETHER=TRUE
@@ -51,7 +51,7 @@ services:
     - ONLINE_MODE=TRUE
     - ALLOW_FLIGHT=FALSE
     volumes:
-    - /server/minecraft-server-technic/data:/data
+    - /server/minecraft-server-arthalos/data:/data
     ports:
     - 25566:25565
     labels:
