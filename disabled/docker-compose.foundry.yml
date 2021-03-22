@@ -7,9 +7,9 @@ services:
     restart: unless-stopped
     environment:
     - TZ=${TZ}
-    - FOUNDRY_USERNAME=<username>
-    - FOUNDRY_PASSWORD=<password>
-    - FOUNDRY_ADMIN_KEY=<key>
+    - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
+    - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
+    - FOUNDRY_ADMIN_KEY=${FOUNDRY_ADMIN_KEY}
     volumes:
     - /server/foundry:/data
     expose:
