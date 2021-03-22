@@ -1,13 +1,13 @@
 version: "3.8"
 services:
-  # Minecraft server
+  # https://github.com/itzg/docker-minecraft-server
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\mods" root@davydehaas.nl:/server/minecraft-server/data
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\config" root@davydehaas.nl:/server/minecraft-server/config
   minecraft-server-arthalos:
     image: itzg/minecraft-server:java8
     container_name: minecraft-server-arthalos
     restart: unless-stopped
-    cpus: 4
+    cpus: 6
     mem_limit: 8G
     environment:
     - PGID=${PGID}
