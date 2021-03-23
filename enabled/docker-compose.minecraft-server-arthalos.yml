@@ -7,7 +7,7 @@ services:
     image: itzg/minecraft-server:java8
     container_name: minecraft-server-arthalos
     restart: unless-stopped
-    cpus: 6
+    cpus: 4
     mem_limit: 8G
     environment:
     - PGID=${PGID}
@@ -16,6 +16,7 @@ services:
     - EULA=TRUE
     - VERSION=1.12.2
     - ENABLE_AUTOPAUSE=TRUE
+    - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
     - INIT_MEMORY=2G
     - MAX_MEMORY=8G
     - MEMORY=8192M
