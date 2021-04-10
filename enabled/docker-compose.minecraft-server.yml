@@ -56,3 +56,24 @@ services:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
     - diun.watch_repo=true
+  minecraft-server-backup:
+    image: itzg/mc-backup:latest
+    container_name: minecraft-server-backup
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+    - BACKUP_METHOD=tar
+    - BACKUP_INTERVAL=2h
+    - EXCLUDES=*.jar,cache,logs
+    - PRUNE_BACKUPS_DAYS=7
+    - PRUNE_RESTIC_RETENTION=--keep-within 7d
+    - INITIAL_DELAY=2m
+    # - RCON_HOST=minecraft-server-arthalos
+    volumes:
+    - /server/minecraft-server/data:/data:ro
+    - /server/minecraft-server-backup:/backups
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
