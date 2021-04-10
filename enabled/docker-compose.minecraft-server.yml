@@ -13,13 +13,16 @@ services:
     - TZ=${TZ}
     - EULA=TRUE
     - VERSION=LATEST
+    - ENABLE_RCON=TRUE
+    - RCON_PORT=25575
+    - RCON_PASSWORD=minecraft
     - ENABLE_AUTOPAUSE=TRUE
     - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
     - INIT_MEMORY=2G
     - MAX_MEMORY=8G
     - MEMORY=8192M
     - TYPE=FORGE
-    - SERVER_NAME=MyServer
+    - SERVER_NAME=vanilla
     - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=normal
@@ -49,6 +52,8 @@ services:
     - ALLOW_FLIGHT=FALSE
     volumes:
     - /server/minecraft-server/data:/data
+    expose:
+    - 25575
     ports:
     - 25565:25565
     labels:
@@ -62,13 +67,18 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
     - BACKUP_METHOD=tar
     - BACKUP_INTERVAL=2h
     - EXCLUDES=*.jar,cache,logs
     - PRUNE_BACKUPS_DAYS=7
     - PRUNE_RESTIC_RETENTION=--keep-within 7d
-    - INITIAL_DELAY=2m
-    # - RCON_HOST=minecraft-server
+    - INITIAL_DELAY=1m
+    - RCON_HOST=minecraft-server
+    - RCON_PORT=25575
+    - RCON_PASSWORD=minecraft
     volumes:
     - /server/minecraft-server/data:/data:ro
     - /server/minecraft-server-backup:/backups
