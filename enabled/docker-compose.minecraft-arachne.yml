@@ -1,8 +1,8 @@
 version: "3.8"
 services:
   # https://github.com/itzg/docker-minecraft-server
-  # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-arachne/data
-  # scp -r "C:\Users\Davy\Downloads\CustomModpack\config" root@davydehaas.nl:/server/minecraft-arachne/config
+  # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-arachne/data/mods
+  # scp -r "C:\Users\Davy\Downloads\CustomModpack\config" root@davydehaas.nl:/server/minecraft-arachne/data/config
   minecraft-arachne:
     image: itzg/minecraft-server:java8
     container_name: minecraft-arachne
@@ -30,7 +30,7 @@ services:
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=normal
     - OPS=Capta1nCreeper,Lukam0s,Timooo0
-    - WHITELIST=Capta1nCreeper,Timooo0,Lukam0s,DutchDog99,mcodenl,rekkmore,Mark0nius99
+    - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
     - MAX_PLAYERS=20
     - MAX_WORLD_SIZE=10000
     - ALLOW_NETHER=TRUE
@@ -74,7 +74,7 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     - BACKUP_METHOD=tar
-    - BACKUP_INTERVAL=2h
+    - BACKUP_INTERVAL=6h
     - EXCLUDES=*.jar,cache,logs
     - PRUNE_BACKUPS_DAYS=7
     - PRUNE_RESTIC_RETENTION=--keep-within 7d
