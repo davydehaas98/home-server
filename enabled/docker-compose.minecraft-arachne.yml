@@ -20,6 +20,7 @@ services:
     - RCON_PASSWORD=minecraft
     - ENABLE_AUTOPAUSE=TRUE
     - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
+    - MAX_TICK_TIME=-1 # default 60000
     - INIT_MEMORY=2G
     - MAX_MEMORY=8G
     - MEMORY=8192M
