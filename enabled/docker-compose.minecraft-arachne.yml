@@ -1,9 +1,11 @@
 version: "3.8"
 services:
   # https://github.com/itzg/docker-minecraft-server
-  minecraft-server-arachne:
+  # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-arachne/data
+  # scp -r "C:\Users\Davy\Downloads\CustomModpack\config" root@davydehaas.nl:/server/minecraft-arachne/config
+  minecraft-arachne:
     image: itzg/minecraft-server:java8
-    container_name: minecraft-server-arachne
+    container_name: minecraft-arachne
     restart: unless-stopped
     cpus: 4
     mem_limit: 8G
@@ -48,11 +50,11 @@ services:
     - MODE=survival
     - MOTD=Davy's Arachne Minecraft server.
     - PVP=TRUE
-    - LEVEL_TYPE=DEFAULT
+    - LEVEL_TYPE=BIOMESOP
     - ONLINE_MODE=TRUE
     - ALLOW_FLIGHT=FALSE
     volumes:
-    - /server/minecraft-server-arachne/data:/data
+    - /server/minecraft-arachne/data:/data
     expose:
     - 25575
     ports:
@@ -61,9 +63,9 @@ services:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
     - diun.watch_repo=true
-  minecraft-server-arachne-backup:
+  minecraft-arachne-backup:
     image: itzg/mc-backup:latest
-    container_name: minecraft-server-arachne-backup
+    container_name: minecraft-arachne-backup
     restart: unless-stopped
     cpus: 1
     mem_limit: 1G
@@ -77,12 +79,12 @@ services:
     - PRUNE_BACKUPS_DAYS=7
     - PRUNE_RESTIC_RETENTION=--keep-within 7d
     - INITIAL_DELAY=1m
-    - RCON_HOST=minecraft-server-arachne
+    - RCON_HOST=minecraft-arachne
     - RCON_PORT=25575
     - RCON_PASSWORD=minecraft
     volumes:
-    - /server/minecraft-server-arachne/data:/data:ro
-    - /server/minecraft-server-arachne-backup:/backups
+    - /server/minecraft-arachne/data:/data:ro
+    - /server/minecraft-arachne-backup:/backups
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true

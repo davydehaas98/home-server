@@ -1,10 +1,10 @@
 version: '3'
 services:
-  # Minecraft server
+  # Minecraft bedrock server
   # https://github.com/itzg/docker-minecraft-server/blob/master/README.md
-  minecraft-server:
+  minecraft-bedrock:
     image: itzg/minecraft-bedrock-server:latest
-    container_name: minecraft-server
+    container_name: minecraft-bedrock
     restart: unless-stopped
     environment:
     - PGID=${PGID}
@@ -15,7 +15,7 @@ services:
     - GAMEMODE=survival
     - DIFFICULTY=normal
     volumes:
-    - /server/minecraft-bedrock-server/data:/data
+    - /server/minecraft-bedrock/data:/data
     ports:
     - 19132:19132/udp
     labels:
