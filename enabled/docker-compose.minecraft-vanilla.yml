@@ -43,7 +43,7 @@ services:
     - SPAWN_MONSTERS=TRUE
     - SPAWN_NPCS=TRUE
     - SPAWN_PROTECTION=16
-    - VIEW_DISTANCE=10
+    - VIEW_DISTANCE=8
     #- SEED=1785852800490497919
     - MODE=survival
     - MOTD=Davy's Vanilla Minecraft server.

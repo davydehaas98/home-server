@@ -30,7 +30,7 @@ services:
     - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=normal
-    - OPS=Capta1nCreeper,Lukam0s,Timooo0
+    - OPS=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
     - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
     - MAX_PLAYERS=20
     - MAX_WORLD_SIZE=10000
@@ -46,7 +46,7 @@ services:
     - SPAWN_MONSTERS=TRUE
     - SPAWN_NPCS=TRUE
     - SPAWN_PROTECTION=16
-    - VIEW_DISTANCE=10
+    - VIEW_DISTANCE=8
     #- SEED=1785852800490497919
     - MODE=survival
     - MOTD=Davy's Arthalos Minecraft server.
