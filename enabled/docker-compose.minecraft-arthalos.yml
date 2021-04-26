@@ -53,7 +53,7 @@ services:
     - PVP=TRUE
     - LEVEL_TYPE=DEFAULT
     - ONLINE_MODE=TRUE
-    - ALLOW_FLIGHT=FALSE
+    - ALLOW_FLIGHT=TRUE
     volumes:
     - /server/minecraft-arthalos/data:/data
     expose:
