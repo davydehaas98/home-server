@@ -4,7 +4,7 @@ services:
   statping:
     container_name: statping
     image: statping/statping:latest
-    restart: always
+    restart: unless-stopped
     cpus: 1
     mem_limit: 1G
     environment:
