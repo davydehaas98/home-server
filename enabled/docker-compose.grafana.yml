@@ -8,6 +8,8 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
     - TZ=${TZ}
     - GF_USERS_ALLOW_SIGN_UP=false
     volumes:

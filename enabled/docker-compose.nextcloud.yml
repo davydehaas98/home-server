@@ -33,8 +33,8 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PUID=${PUID}
     - PGID=${PGID}
+    - PUID=${PUID}
     - TZ=${TZ}
     - POSTGRES_USER=nextcloud
     - POSTGRES_PASSWORD=nextcloud

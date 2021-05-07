@@ -2,12 +2,14 @@ version: "3.8"
 services:
   # https://github.com/lloesche/valheim-server-docker
   valheim:
-    container_name: valheim
     image: lloesche/valheim-server:latest
+    container_name: valheim
     restart: unless-stopped
     cpus: 4
     mem_limit: 8G
     environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
     - TZ=${TZ}
     - SERVER_NAME=Davy's Valheim server
     - WORLD_NAME=world-1

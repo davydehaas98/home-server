@@ -8,8 +8,8 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PUID=${PUID}
     - PGID=${PGID}
+    - PUID=${PUID}
     - TZ=${TZ}
     #- LOAD_LATEST_SAVE=false
     #- SAVE_NAME=<savename>

@@ -6,8 +6,8 @@ services:
     container_name: postgresql
     restart: unless-stopped
     environment:
-    - PUID=${PUID}
     - PGID=${PGID}
+    - PUID=${PUID}
     - TZ=${TZ}
     - POSTGRES_USER=admin
     - POSTGRES_PASSWORD=admin

@@ -1,0 +1,46 @@
+version: "3.8"
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
+    container_name: elasticsearch
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+    - TZ=${TZ}
+    - cluster.name=docker-cluster
+    - bootstrap.memeory_lock=true
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+    - /server/elasticsearch:/usr/share/elasticsearch/data
+    expose:
+    - 9200
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.12.0
+    container_name: kibana
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
+    - SERVER_NAME=kibana.davydehaas.nl
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+    - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    volumes:
+    - /server/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    expose:
+    - 5601
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
