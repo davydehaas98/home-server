@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  boinc:
+    image: ghcr.io/linuxserver/boinc
+    container_name: boinc
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
+    environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
+    - PASSWORD= #optional
+    volumes:
+    - /server/boinc:/config
+    expose:
+    - 8080
+    devices:
+    - /dev/dri:/dev/dri #optional
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true

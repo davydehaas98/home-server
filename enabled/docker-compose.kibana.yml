@@ -37,7 +37,7 @@ services:
     - ELASTICSEARCH_URL=http://elasticsearch:9200
     - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     volumes:
-    - /server/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    - /server/kibana/config:/usr/share/kibana/config
     expose:
     - 5601
     labels:
