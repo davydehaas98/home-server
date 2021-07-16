@@ -86,7 +86,7 @@ services:
     - RCON_PASSWORD=minecraft
     volumes:
     - /server/minecraft-arthalos/data:/data:ro
-    - /server/minecraft-arthalos-backup:/backups
+    - /mnt/server/minecraft-arthalos-backup:/backups
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
