@@ -22,7 +22,7 @@ services:
     - INIT_MEMORY=2G
     - MAX_MEMORY=8G
     - MEMORY=8192M
-    - TYPE=FORGE
+    #- TYPE=FORGE
     - SERVER_NAME=vanilla
     - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
