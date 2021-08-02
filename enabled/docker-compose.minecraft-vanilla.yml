@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # https://github.com/itzg/docker-minecraft-server
   minecraft-vanilla:
-    image: itzg/minecraft-server:java8
+    image: itzg/minecraft-server:java16
     container_name: minecraft-vanilla
     restart: unless-stopped
     cpus: 4
