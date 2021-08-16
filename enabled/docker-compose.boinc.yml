@@ -13,8 +13,8 @@ services:
     - PASSWORD= #optional
     volumes:
     - /mnt/raid/server/boinc:/config
-    expose:
-    - 8080
+    ports:
+    - 8080:8080
     devices:
     - /dev/dri:/dev/dri #optional
     labels:
