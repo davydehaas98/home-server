@@ -12,7 +12,7 @@ services:
     - TZ=${TZ}
     - PASSWORD= #optional
     volumes:
-    - /server/boinc:/config
+    - /mnt/raid/server/boinc:/config
     expose:
     - 8080
     devices:
