@@ -4,7 +4,7 @@ services:
   # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-arachne/data/mods
   # scp -r "C:\Users\Davy\Downloads\CustomModpack\config" root@davydehaas.nl:/server/minecraft-arachne/data/config
   minecraft-arachne:
-    image: itzg/minecraft-server:java16
+    image: itzg/minecraft-server:java8
     container_name: minecraft-arachne
     restart: unless-stopped
     cpus: 4
