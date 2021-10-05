@@ -1,9 +1,9 @@
 version: "3.8"
 services:
   # https://github.com/felddy/foundryvtt-docker
-  foundry:
+  foundry-cos:
     image: felddy/foundryvtt:release
-    container_name: foundry
+    container_name: foundry-cos
     restart: unless-stopped
     environment:
     - TZ=${TZ}
@@ -11,7 +11,7 @@ services:
     - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
     - FOUNDRY_ADMIN_KEY=${FOUNDRY_ADMIN_KEY}
     volumes:
-    - /server/foundry:/data
+    - /server/foundry-cos:/data
     expose:
     - 30000
     labels:
