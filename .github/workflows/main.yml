@@ -42,9 +42,9 @@ jobs:
           echo 'PGID=${{ env.PGID }}' >> .env
           echo 'PUID=${{ env.PUID }}' >> .env
           echo 'TZ=${{ env.TZ }}' >> .env
-          echo 'FOUNDRY_USERNAME=${{ env.FOUNDRY_USERNAME }}' >> .env
-          echo 'FOUNDRY_PASSWORD=${{ env.FOUNDRY_PASSWORD }}' >> .env
-          echo 'FOUNDRY_ADMIN_KEY=${{ env.FOUNDRY_ADMIN_KEY }}' >> .env
+          echo 'FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}' >> .env
+          echo 'FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}' >> .env
+          echo 'FOUNDRY_ADMIN_KEY=${{ secrets.FOUNDRY_ADMIN_KEY }}' >> .env
 
           docker-compose $(find docker-compose.*.yml | sed -e 's/^/-f /') up -d
           docker restart reverse-proxy
