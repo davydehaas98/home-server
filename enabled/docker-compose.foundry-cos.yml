@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # https://github.com/felddy/foundryvtt-docker
   foundry-cos:
-    image: felddy/foundryvtt:release
+    image: felddy/foundryvtt:0.8.9
     container_name: foundry-cos
     restart: unless-stopped
     environment:
