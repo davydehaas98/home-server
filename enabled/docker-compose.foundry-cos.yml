@@ -1,10 +1,13 @@
 version: "3.8"
 services:
   # https://github.com/felddy/foundryvtt-docker
+  # scp -r "C:\Users\Davy\Downloads\cos\world.json" root@davydehaas.nl:/server/foundry-cos/Data/worlds/cor-cos
   foundry-cos:
     image: felddy/foundryvtt:0.8.9
     container_name: foundry-cos
     restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
     environment:
     - TZ=${TZ}
     - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
@@ -12,6 +15,7 @@ services:
     - FOUNDRY_ADMIN_KEY=${FOUNDRY_ADMIN_KEY}
     volumes:
     - /server/foundry-cos:/data
+    - /server/foundry-cos/resources/app:/home/foundry/resources/app
     expose:
     - 30000
     labels:

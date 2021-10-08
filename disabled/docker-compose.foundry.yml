@@ -5,6 +5,8 @@ services:
     image: felddy/foundryvtt:release
     container_name: foundry
     restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
     environment:
     - TZ=${TZ}
     - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
