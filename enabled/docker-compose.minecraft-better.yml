@@ -25,7 +25,7 @@ services:
     - MAX_MEMORY=8G
     - MEMORY=8192M
     - TYPE=FORGE
-    # - FORGEVERSION=14.23.5.2854
+    - FORGEVERSION=38.0.17
     - SERVER_NAME=better
     - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
