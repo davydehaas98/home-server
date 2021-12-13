@@ -4,7 +4,7 @@ services:
   # scp -r "C:\Users\Davy\Downloads\Better Minecraft Server Pack [FORGE] 1.18\mods" root@davydehaas.nl:/server/minecraft-better/data/mods
   # scp -r "C:\Users\Davy\Downloads\Better Minecraft Server Pack [FORGE] 1.18\config" root@davydehaas.nl:/server/minecraft-better/data/config
   minecraft-better:
-    image: itzg/minecraft-server:java8
+    image: itzg/minecraft-server:java17
     container_name: minecraft-better
     restart: unless-stopped
     cpus: 4
