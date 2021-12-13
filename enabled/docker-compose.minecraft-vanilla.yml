@@ -12,7 +12,7 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     - EULA=TRUE
-    - VERSION=LATEST
+    - VERSION=1.17.1
     - ENABLE_RCON=TRUE
     - RCON_PORT=25575
     - RCON_PASSWORD=minecraft
