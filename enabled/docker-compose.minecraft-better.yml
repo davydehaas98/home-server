@@ -29,8 +29,9 @@ services:
     - SERVER_NAME=better
     - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
-    - DIFFICULTY=normal
-    - OPS=Capta1nCreeper,
+    - DIFFICULTY=easy
+    - OPS=Capta1nCreeper
+    - WHITELIST=DamneDoofus,xdZeta
     - MAX_PLAYERS=20
     - MAX_WORLD_SIZE=10000
     - ALLOW_NETHER=TRUE
