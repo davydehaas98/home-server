@@ -13,6 +13,7 @@ services:
     - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
     - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
     - FOUNDRY_ADMIN_KEY=${FOUNDRY_ADMIN_KEY}
+    - CONTAINER_CACHE=/server/foundry-cos/data/container_cache
     volumes:
     - /server/foundry-cos:/data
     - /server/foundry-cos/resources/app:/home/foundry/resources/app

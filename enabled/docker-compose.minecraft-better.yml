@@ -64,6 +64,7 @@ services:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
     - diun.watch_repo=true
+  # https://hub.docker.com/r/itzg/mc-backup
   minecraft-better-backup:
     image: itzg/mc-backup:latest
     container_name: minecraft-better-backup
@@ -78,6 +79,7 @@ services:
     - BACKUP_INTERVAL=12h
     - DEST_DIR=/backups
     - EXCLUDES=*.jar,cache,logs
+    - PAUSE_IF_NO_PLAYERS=true
     - PRUNE_BACKUPS_DAYS=4
     - PRUNE_RESTIC_RETENTION=--keep-within 7d
     - INITIAL_DELAY=2m
