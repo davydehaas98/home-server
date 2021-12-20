@@ -8,7 +8,7 @@ services:
     container_name: minecraft-better
     restart: unless-stopped
     cpus: 4
-    mem_limit: 8G
+    mem_limit: 16G
     environment:
     - PGID=${PGID}
     - PUID=${PUID}
@@ -22,8 +22,7 @@ services:
     - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
     - MAX_TICK_TIME=-1 # default 60000
     - INIT_MEMORY=2G
-    - MAX_MEMORY=8G
-    - MEMORY=8192M
+    - MAX_MEMORY=16G
     - TYPE=FORGE
     #- FORGEVERSION=38.0.17
     - SERVER_NAME=better
@@ -31,7 +30,7 @@ services:
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=easy
     - OPS=Capta1nCreeper
-    - WHITELIST=DamneDoofus,xdZeta
+    - WHITELIST=Capta1nCreeper,DamneDoofus,xdZeta,Submannie,Chazler,makreeltje_,stimixer,
     - MAX_PLAYERS=20
     - MAX_WORLD_SIZE=10000
     - ALLOW_NETHER=TRUE
@@ -49,7 +48,7 @@ services:
     - VIEW_DISTANCE=12
     #- SEED=1785852800490497919
     - MODE=survival
-    - MOTD=Davy's better Minecraft server.
+    - MOTD=Davy's Better Minecraft modded server.
     - PVP=TRUE
     - LEVEL_TYPE=DEFAULT
     - ONLINE_MODE=TRUE
