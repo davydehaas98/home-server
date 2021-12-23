@@ -1,8 +1,8 @@
 version: "3.8"
 services:
   # https://github.com/itzg/docker-minecraft-server
-  # scp -r "C:\Users\Davy\Downloads\Better Minecraft Server Pack [FORGE] 1.18\mods" root@davydehaas.nl:/server/minecraft-better/data/mods
-  # scp -r "C:\Users\Davy\Downloads\Better Minecraft Server Pack [FORGE] 1.18\config" root@davydehaas.nl:/server/minecraft-better/data/config
+  # scp -r ".\mods" root@davydehaas.nl:/server/minecraft-better/data/mods
+  # scp -r ".\config" root@davydehaas.nl:/server/minecraft-better/data/config
   minecraft-better:
     image: itzg/minecraft-server:java17
     container_name: minecraft-better
@@ -20,7 +20,7 @@ services:
     - RCON_PASSWORD=minecraft
     - ENABLE_AUTOPAUSE=TRUE
     - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
-    - MAX_TICK_TIME=-1 # default 60000
+    # - MAX_TICK_TIME=-1 # default 60000
     - INIT_MEMORY=2G
     - MAX_MEMORY=16G
     - TYPE=FORGE
@@ -32,7 +32,7 @@ services:
     - OPS=Capta1nCreeper
     - WHITELIST=Capta1nCreeper,DamneDoofus,xdZeta,Submannie,Chazler,makreeltje_,stimixer,
     - MAX_PLAYERS=20
-    - MAX_WORLD_SIZE=10000
+    - MAX_WORLD_SIZE=20000
     - ALLOW_NETHER=TRUE
     - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
     - ENABLE_COMMAND_BLOCK=TRUE
@@ -45,10 +45,10 @@ services:
     - SPAWN_MONSTERS=TRUE
     - SPAWN_NPCS=TRUE
     - SPAWN_PROTECTION=16
-    - VIEW_DISTANCE=12
+    - VIEW_DISTANCE=8
     #- SEED=1785852800490497919
     - MODE=survival
-    - MOTD=Davy's Better Minecraft modded server.
+    - MOTD=Davy's "Better" Minecraft server.
     - PVP=TRUE
     - LEVEL_TYPE=DEFAULT
     - ONLINE_MODE=TRUE
@@ -80,8 +80,8 @@ services:
     - EXCLUDES=*.jar,cache,logs
     - PAUSE_IF_NO_PLAYERS=true
     - PRUNE_BACKUPS_DAYS=4
-    - PRUNE_RESTIC_RETENTION=--keep-within 7d
-    - INITIAL_DELAY=2m
+    - INITIAL_DELAY=5m
+    - TAR_COMPRESS_METHOD=gzip
     - RCON_HOST=minecraft-better
     - RCON_PORT=25575
     - RCON_PASSWORD=minecraft
