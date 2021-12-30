@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        rm: true
     - name: SSH SCP | Copy container configurations
       uses: appleboy/scp-action@master
       with:
