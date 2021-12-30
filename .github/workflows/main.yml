@@ -50,4 +50,3 @@ jobs:
           echo 'FOUNDRY_ADMIN_KEY=${{ secrets.FOUNDRY_ADMIN_KEY }}' >> .env
 
           docker-compose $(find docker-compose.*.yml | sed -e 's/^/-f /') up -d --remove-orphans
-          docker restart reverse-proxy
