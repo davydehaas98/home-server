@@ -32,7 +32,6 @@ services:
     - traefik.http.routers.portainer.tls=true
     - traefik.http.routers.portainer.rule=Host(`portainer.davydehaas.nl`)
     - traefik.http.routers.portainer.middlewares=chain-no-auth@file
-    - traefik.http.routers.portainer.service=portainer
     - traefik.http.services.portainer.loadbalancer.server.port=9000
     networks:
     - reverse-proxy

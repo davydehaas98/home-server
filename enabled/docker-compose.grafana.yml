@@ -30,7 +30,6 @@ services:
     - traefik.http.routers.grafana.tls=true
     - traefik.http.routers.grafana.rule=Host(`grafana.davydehaas.nl`)
     - traefik.http.routers.grafana.middlewares=chain-no-auth@file
-    - traefik.http.routers.grafana.service=grafana
     - traefik.http.services.grafana.loadbalancer.server.port=3000
     networks:
     - reverse-proxy

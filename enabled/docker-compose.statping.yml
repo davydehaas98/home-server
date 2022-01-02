@@ -28,7 +28,6 @@ services:
     - traefik.http.routers.statping.tls=true
     - traefik.http.routers.statping.rule=Host(`statping.davydehaas.nl`,`status.davydehaas.nl`)
     - traefik.http.routers.statping.middlewares=chain-no-auth@file
-    - traefik.http.routers.statping.service=statping
     - traefik.http.services.statping.loadbalancer.server.port=8080
     networks:
     - reverse-proxy
