@@ -24,9 +24,9 @@ services:
     - diun.watch_repo=true
     - traefik.enable=true
     - traefik.http.routers.foundry-cos.entrypoints=https
-    - traefik.http.routers.foundry-cos.tls=false
-    - traefik.http.routers.foundry-cos.rule=Host(`foundry-cos.davydehaas.nl`)
-    # - traefik.http.routers.foundry-cos.middlewares=chain-no-auth@file
+    - traefik.http.routers.foundry-cos.rule=Host(`foundry-cos.$DOMAIN_NAME`)
+    - traefik.http.routers.foundry-cos.tls=true
+    - traefik.http.routers.foundry-cos.middlewares=chain-no-auth@file
     - traefik.http.services.foundry-cos.loadbalancer.server.port=300000
     networks:
     - reverse-proxy

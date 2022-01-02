@@ -10,6 +10,7 @@ env:
   PGID: 998
   PUID: 997
   TZ: "Europe/Amsterdam"
+  DOMAIN_NAME: "davydehaas.nl"
 
 jobs:
   deploy:
@@ -45,6 +46,8 @@ jobs:
           echo 'PGID=${{ env.PGID }}' >> .env
           echo 'PUID=${{ env.PUID }}' >> .env
           echo 'TZ=${{ env.TZ }}' >> .env
+          echo 'DOMAIN_NAME=${{ env.DOMAIN_NAME }}' >> .env
+
           echo 'FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}' >> .env
           echo 'FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}' >> .env
 

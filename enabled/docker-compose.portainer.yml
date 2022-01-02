@@ -19,7 +19,7 @@ services:
     expose:
     - 9000
     # healthcheck:
-    #   test: ["CMD-SHELL", "wget --quiet --tries=1 --spider https://portainer.davydehaas.nl/api/status || exit 1"]
+    #   test: ["CMD-SHELL", "wget --quiet --tries=1 --spider https://portainer.$DOMAIN_NAME/api/status || exit 1"]
     #   interval: 60s
     #   timeout: 10s
     #   retries: 2
@@ -29,8 +29,8 @@ services:
     - diun.watch_repo=true
     - traefik.enable=true
     - traefik.http.routers.portainer.entrypoints=https
+    - traefik.http.routers.portainer.rule=Host(`portainer.$DOMAIN_NAME`)
     - traefik.http.routers.portainer.tls=true
-    - traefik.http.routers.portainer.rule=Host(`portainer.davydehaas.nl`)
     - traefik.http.routers.portainer.middlewares=chain-no-auth@file
     - traefik.http.services.portainer.loadbalancer.server.port=9000
     networks:
