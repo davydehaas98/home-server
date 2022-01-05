@@ -68,7 +68,7 @@ services:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     restart: unless-stopped
-    cpus: 2
+    cpus: 1
     mem_limit: 1G
     volumes:
     - /:/rootfs:ro
