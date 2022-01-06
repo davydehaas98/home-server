@@ -54,7 +54,7 @@ services:
     - ONLINE_MODE=TRUE
     - ALLOW_FLIGHT=TRUE
     volumes:
-    - /server/minecraft-better/data:/data
+    - ${USER_DIR}/minecraft-better/data:/data
     expose:
     - 25575
     ports:
@@ -86,7 +86,7 @@ services:
     - RCON_PORT=25575
     - RCON_PASSWORD=minecraft
     volumes:
-    - /server/minecraft-better/data:/data:ro
+    - ${USER_DIR}/minecraft-better/data:/data:ro
     - /mnt/raid/server/minecraft-better-backup:/backups
     labels:
     - com.centurylinklabs.watchtower.enable=true

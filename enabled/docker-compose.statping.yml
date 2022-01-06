@@ -11,7 +11,7 @@ services:
     - TZ=${TZ}
     - DB_CONN=sqlite
     volumes:
-    - /server/statping/app:/app
+    - ${USER_DIR}/statping/app:/app
     expose:
     - 8080
     # healthcheck:

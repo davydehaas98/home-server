@@ -15,8 +15,8 @@ services:
     - SAVEPATH=/home/openttd/.openttd/save
     - DEBUG=1
     volumes:
-    - /server/openttd-server/.openttd:/home/openttd/.openttd
-    - /server/openttd-server:/usr/games
+    - ${USER_DIR}/openttd-server/.openttd:/home/openttd/.openttd
+    - ${USER_DIR}/openttd-server:/usr/games
     ports:
     - 3979:3979/tcp
     - 3979:3979/udp

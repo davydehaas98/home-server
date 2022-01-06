@@ -11,9 +11,9 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     volumes:
-    - /server/terraria/world:/root/.local/share/Terraria/Worlds
-    - /server/terraria/plugins:/plugins
-    - /server/terraria/logs:/tshock/logs:ro
+    - ${USER_DIR}/terraria/world:/root/.local/share/Terraria/Worlds
+    - ${USER_DIR}/terraria/plugins:/plugins
+    - ${USER_DIR}/terraria/logs:/tshock/logs:ro
     ports:
     - 7777:7777
     labels:

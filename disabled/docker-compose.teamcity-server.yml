@@ -11,8 +11,8 @@ services:
     - TZ=${TZ}
     - TEAMCITY_SERVER_MEM_OPTS=-Xmx2048m # Set maximum heap size to 2048 mb
     volumes:
-    - /server/teamcity/data:/data/teamcity_server/datadir
-    - /server/teamcity/logs:/opt/teamcity/logs
+    - ${USER_DIR}/teamcity/data:/data/teamcity_server/datadir
+    - ${USER_DIR}/teamcity/logs:/opt/teamcity/logs
     expose:
     - 8111
     labels:

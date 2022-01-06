@@ -11,7 +11,7 @@ services:
     - TZ=${TZ}
     - SERVER_URL=http://teamcity-server:8111
     volumes:
-    - /server/teamcity/agent:/data/teamcity_agent/conf
+    - ${USER_DIR}/teamcity/agent:/data/teamcity_agent/conf
     - /var/run/docker.sock:/var/run/docker.sock
     labels:
     - com.centurylinklabs.watchtower.enable=true

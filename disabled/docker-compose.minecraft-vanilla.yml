@@ -51,7 +51,7 @@ services:
     - ONLINE_MODE=TRUE
     - ALLOW_FLIGHT=FALSE
     volumes:
-    - /server/minecraft-vanilla/data:/data
+    - ${USER_DIR}/minecraft-vanilla/data:/data
     expose:
     - 25575
     ports:
@@ -83,7 +83,7 @@ services:
     - RCON_PORT=25575
     - RCON_PASSWORD=minecraft
     volumes:
-    - /server/minecraft-vanilla/data:/data:ro
+    - ${USER_DIR}/minecraft-vanilla/data:/data:ro
     - /mnt/raid/server/minecraft-vanilla-backup:/backups
     labels:
     - com.centurylinklabs.watchtower.enable=true

@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  # sudo chown -R 472:472 /server/grafana
+  # sudo chown -R 472:472 ${USER_DIR}/grafana
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -13,7 +13,7 @@ services:
     - TZ=${TZ}
     - GF_USERS_ALLOW_SIGN_UP=false
     volumes:
-    - /server/grafana:/var/lib/grafana
+    - ${USER_DIR}/grafana:/var/lib/grafana
     expose:
     - 3000
     # healthcheck:

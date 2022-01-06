@@ -19,7 +19,7 @@ services:
     - DIUN_PROVIDERS_DOCKER_WATCHSTOPPED=true
     - DIUN_NOTIF_SLACK_WEBHOOKURL=https://discord.com/api/webhooks/798632410349699165/9wYRGCWHO2o18NIFi20h9bG_h13YiES2jRDi-ymtrTYE7p7SeOQDv7DREgLwQkf15Rz7/slack
     volumes:
-    - /server/diun/data:/data
+    - ${USER_DIR}/diun/data:/data
     - /var/run/docker.sock:/var/run/docker.sock
     labels:
     - com.centurylinklabs.watchtower.enable=true

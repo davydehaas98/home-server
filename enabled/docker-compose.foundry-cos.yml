@@ -14,8 +14,8 @@ services:
     - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
     - CONTAINER_CACHE=/server/foundry-cos/data/container_cache
     volumes:
-    - /server/foundry-cos:/data
-    - /server/foundry-cos/resources/app:/home/foundry/resources/app
+    - ${USER_DIR}/foundry-cos:/data
+    - ${USER_DIR}/foundry-cos/resources/app:/home/foundry/resources/app
     expose:
     - 30000
     labels:

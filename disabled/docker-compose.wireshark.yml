@@ -9,7 +9,7 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     volumes:
-    - /server/wireshark/config:/config
+    - ${USER_DIR}/wireshark/config:/config
     ports:
     - 3000:3000
     labels:

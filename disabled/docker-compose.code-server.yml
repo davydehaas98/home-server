@@ -12,7 +12,7 @@ services:
     - TZ=${TZ}
     - PASSWORD= #optional
     volumes:
-    - /server/code-server/config:/config
+    - ${USER_DIR}/code-server/config:/config
     expose:
     - 8443
     labels:

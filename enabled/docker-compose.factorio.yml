@@ -14,7 +14,7 @@ services:
     #- LOAD_LATEST_SAVE=false
     #- SAVE_NAME=<savename>
     volumes:
-    - /server/factorio:/factorio
+    - ${USER_DIR}/factorio:/factorio
     ports:
     - 34197:34197/udp
     # - 27015:27015/tcp # RCON optional

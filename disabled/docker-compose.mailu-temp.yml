@@ -1,6 +1,5 @@
 version: "3.8"
 services:
-  # sudo chown -R 472:472 /server/grafana
   mailu:
     image: mailu/mailu:1.7
     container_name: mailu
@@ -11,7 +10,7 @@ services:
     - TZ=${TZ}
     - GF_USERS_ALLOW_SIGN_UP=false
     volumes:
-    - /server/mailu:/var/lib/grafana
+    - ${USER_DIR}/mailu:/var/lib/grafana
     expose:
     - 3000
     labels:

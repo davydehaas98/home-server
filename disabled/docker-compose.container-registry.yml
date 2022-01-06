@@ -17,7 +17,7 @@ services:
     - REGISTRY_HTTP_ADDR=0.0.0.0:5000
     volumes:
     - /mnt/raid/server/container-registry:/var/lib/registry
-    - /server/container-registry/auth:/auth
+    - ${USER_DIR}/container-registry/auth:/auth
     expose:
     - 5000
     labels:

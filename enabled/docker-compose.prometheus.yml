@@ -16,8 +16,8 @@ services:
     environment:
     - TZ=${TZ}
     volumes:
-    - /server/prometheus:/etc/prometheus
-    # - /server/prometheus/data:/prometheus
+    - ${USER_DIR}/prometheus:/etc/prometheus
+    # - ${USER_DIR}/prometheus/data:/prometheus
     expose:
     - 9090
     # healthcheck:

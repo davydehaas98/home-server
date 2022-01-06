@@ -13,7 +13,7 @@ services:
     - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
     - FOUNDRY_ADMIN_KEY=${FOUNDRY_ADMIN_KEY}
     volumes:
-    - /server/foundry:/data
+    - ${USER_DIR}/foundry:/data
     expose:
     - 30000
     labels:

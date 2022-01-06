@@ -15,7 +15,7 @@ services:
     - GAMEMODE=survival
     - DIFFICULTY=normal
     volumes:
-    - /server/minecraft-bedrock/data:/data
+    - ${USER_DIR}/minecraft-bedrock/data:/data
     ports:
     - 19132:19132/udp
     labels:

@@ -14,7 +14,7 @@ services:
     - PUID=${PUID}
     - TZ=${TZ}
     volumes:
-    - /server/portainer/data:/data
+    - ${USER_DIR}/portainer/data:/data
     - /var/run/docker.sock:/var/run/docker.sock
     expose:
     - 9000

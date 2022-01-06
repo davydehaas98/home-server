@@ -11,7 +11,7 @@ services:
     image: redis:alpine
     restart: always
     volumes:
-    - "/server/mailu/redis:/data"
+    - "${USER_DIR}/mailu/redis:/data"
     
   # Core services
   front:
@@ -31,8 +31,8 @@ services:
     - 143
     - 993
     volumes:
-    - "/server/mailu/certs:/certs"
-    - "/server/mailu/overrides/nginx:/overrides"
+    - "${USER_DIR}/mailu/certs:/certs"
+    - "${USER_DIR}/mailu/overrides/nginx:/overrides"
 
 
   admin:
@@ -40,8 +40,8 @@ services:
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/data:/data"
-    - "/server/mailu/dkim:/dkim"
+    - "${USER_DIR}/mailu/data:/data"
+    - "${USER_DIR}/mailu/dkim:/dkim"
     depends_on:
     - redis
 
@@ -50,8 +50,8 @@ services:
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/mail:/mail"
-    - "/server/mailu/overrides:/overrides"
+    - "${USER_DIR}/mailu/mail:/mail"
+    - "${USER_DIR}/mailu/overrides:/overrides"
     depends_on:
     - front
 
@@ -60,7 +60,7 @@ services:
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/overrides:/overrides"
+    - "${USER_DIR}/mailu/overrides:/overrides"
     depends_on:
     - front
 
@@ -69,9 +69,9 @@ services:
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/filter:/var/lib/rspamd"
-    - "/server/mailu/dkim:/dkim"
-    - "/server/mailu/overrides/rspamd:/etc/rspamd/override.d"
+    - "${USER_DIR}/mailu/filter:/var/lib/rspamd"
+    - "${USER_DIR}/mailu/dkim:/dkim"
+    - "${USER_DIR}/mailu/overrides/rspamd:/etc/rspamd/override.d"
     depends_on:
     - front
 
@@ -81,14 +81,14 @@ services:
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/filter:/data"
+    - "${USER_DIR}/mailu/filter:/data"
 
   webdav:
     image: ${DOCKER_ORG:-mailu}/${DOCKER_PREFIX:-}radicale:${MAILU_VERSION:-1.7}
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/dav:/data"
+    - "${USER_DIR}/mailu/dav:/data"
 
   fetchmail:
     image: ${DOCKER_ORG:-mailu}/${DOCKER_PREFIX:-}fetchmail:${MAILU_VERSION:-1.7}
@@ -101,7 +101,7 @@ services:
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/webmail:/data"
+    - "${USER_DIR}/mailu/webmail:/data"
     depends_on:
     - imap
 
@@ -110,8 +110,8 @@ services:
     restart: always
     env_file: mailu.env
     volumes:
-    - "/server/mailu/data/psql_db:/data"
-    - "/server/mailu/data/psql_backup:/backup"
+    - "${USER_DIR}/mailu/data/psql_db:/data"
+    - "${USER_DIR}/mailu/data/psql_backup:/backup"
 
 networks:
   default:

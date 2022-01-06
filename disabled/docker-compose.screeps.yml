@@ -14,7 +14,7 @@ services:
     - MONGO_HOST=mongo
     - REDIS_HOST=redis
     volumes:
-    - /server/screeps:/screeps
+    - ${USER_DIR}/screeps:/screeps
     ports:
     - 21025:21025/tcp
   mongo:
@@ -22,10 +22,10 @@ services:
     container_name: screeps-mongo
     restart: unless-stopped
     volumes:
-      - /server/screeps-mongo:/data/db
+    - ${USER_DIR}/screeps-mongo:/data/db
   redis:
     image: redis
     container_name: screeps-redis
     restart: unless-stopped
     volumes:
-    - /server/screeps-redis:/data
+    - ${USER_DIR}/screeps-redis:/data
