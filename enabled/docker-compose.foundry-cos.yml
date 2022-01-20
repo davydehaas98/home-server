@@ -23,7 +23,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
     - traefik.enable=true
-    - traefik.http.routers.foundry-cos.entrypoints=https
+    - traefik.http.routers.foundry-cos.entrypoints=websecure
     - traefik.http.routers.foundry-cos.rule=Host(`foundry-cos.$DOMAIN_NAME`)
     - traefik.http.routers.foundry-cos.tls=true
     - traefik.http.routers.foundry-cos.middlewares=chain-no-auth@file

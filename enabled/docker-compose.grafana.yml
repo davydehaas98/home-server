@@ -26,7 +26,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
     - traefik.enable=true
-    - traefik.http.routers.grafana.entrypoints=https
+    - traefik.http.routers.grafana.entrypoints=websecure
     - traefik.http.routers.grafana.rule=Host(`grafana.$DOMAIN_NAME`)
     - traefik.http.routers.grafana.tls=true
     - traefik.http.routers.grafana.middlewares=chain-no-auth@file

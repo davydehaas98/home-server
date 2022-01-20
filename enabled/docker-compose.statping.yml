@@ -24,7 +24,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
     - traefik.enable=true
-    - traefik.http.routers.statping.entrypoints=https
+    - traefik.http.routers.statping.entrypoints=websecure
     - traefik.http.routers.statping.rule=Host(`statping.$DOMAIN_NAME`,`status.$DOMAIN_NAME`)
     - traefik.http.routers.statping.tls=true
     - traefik.http.routers.statping.middlewares=chain-no-auth@file
