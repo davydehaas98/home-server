@@ -11,11 +11,11 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TARGET_DIR: /opt/compose/server
+  TARGET_DIR: /opt/compose/server/
   PGID: 1000
   PUID: 1000
   TZ: Europe/Amsterdam
-  USER_DIR: /opt/appdata/server
+  USER_DIR: /opt/appdata/server/
   DOMAIN_NAME: davydehaas.nl
 
 jobs:
@@ -23,10 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        rm: true
-    - name: SSH SCP | Copy container configurations
+    - name: SSH SCP | Copy docker-compose.yml
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
