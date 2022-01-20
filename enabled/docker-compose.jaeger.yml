@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - diun.enable=true
+      - diun.watch_repo=true
+      - traefik.enable=true
+      - traefik.http.routers.jaeger.entrypoints=websecure
+      - traefik.http.routers.jaeger.rule=Host(`jaeger.$DOMAIN_NAME`)
+      - traefik.http.routers.jaeger.middlewares=chain-no-auth@file
+      - traefik.http.services.jaeger.loadbalancer.server.port=16686
+    networks:
+    - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default
