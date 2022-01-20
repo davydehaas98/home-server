@@ -8,17 +8,17 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
-    #- LOAD_LATEST_SAVE=false
-    #- SAVE_NAME=<savename>
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      #- LOAD_LATEST_SAVE=false
+      #- SAVE_NAME=<savename>
     volumes:
-    - ${USER_DIR}/factorio:/factorio
+      - ${USER_DIR}/factorio:/factorio
     ports:
-    - 34197:34197/udp
-    # - 27015:27015/tcp # RCON optional
+      - 34197:34197/udp
+      # - 27015:27015/tcp # RCON optional
     labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
+      - com.centurylinklabs.watchtower.enable=true
+      - diun.enable=true
+      - diun.watch_repo=true

@@ -23,7 +23,7 @@ services:
       - traefik.http.routers.jaeger.middlewares=chain-no-auth@file
       - traefik.http.services.jaeger.loadbalancer.server.port=16686
     networks:
-    - reverse-proxy
+      - reverse-proxy
 networks:
   reverse-proxy:
     external: true
