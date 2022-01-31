@@ -32,7 +32,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.prometheus.entrypoints=websecure
       - traefik.http.routers.prometheus.rule=Host(`prometheus.$DOMAIN_NAME`)
-      - traefik.http.routers.prometheus.middlewares=chain-no-auth@file
+      - traefik.http.routers.prometheus.middlewares=chain-oauth@file
       - traefik.http.services.prometheus.loadbalancer.server.port=9090
     networks:
       - reverse-proxy
@@ -82,24 +82,24 @@ services:
   # The Alertmanager handles alerts sent by client applications such as the Prometheus server. 
   # It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. 
   # It also takes care of silencing and inhibition of alerts.
-  # alertmanager:
-  #   image: prom/alertmanager:v0.21.0
-  #   container_name: alertmanager
-  #   cpus: 1
-  #   mem_limit: 1G
-  #   command:
-  #   - --config.file=/etc/alertmanager/config.yml
-  #   - --storage.path=/alertmanager
-  #   volumes:
-  #   - /server/alertmanager/:/etc/alertmanager/
-  #   expose:
-  #   - 9093
-  #   labels:
-  #   - com.centurylinklabs.watchtower.enable=true
-  #   - diun.enable=true
-  #   - diun.watch_repo=true
-  #   networks:
-  #   - reverse-proxy
+  alertmanager:
+    image: prom/alertmanager:v0.21.0
+    container_name: alertmanager
+    cpus: 1
+    mem_limit: 1G
+    command:
+      - --config.file=/etc/alertmanager/config.yml
+      - --storage.path=/alertmanager
+    volumes:
+      - ${USER_DIR}/alertmanager/:/etc/alertmanager/
+    expose:
+      - 9093
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - diun.enable=true
+      - diun.watch_repo=true
+    networks:
+      - reverse-proxy
 
 networks:
   reverse-proxy:

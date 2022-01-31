@@ -8,24 +8,29 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
-    - POSTGRES_USER=nextcloud
-    - POSTGRES_PASSWORD=nextcloud
-    - POSTGRES_DB=nextcloud
-    - POSTGRES_HOST=nexcloud-postgresql
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_HOST=nexcloud-postgresql
     volumes:
-    - ${USER_DIR}/nextcloud/config:/config
-    - ${USER_DIR}/nextcloud/data:/data
+      - ${USER_DIR}/nextcloud/config:/config
+      - ${USER_DIR}/nextcloud/data:/data
     expose:
-    - 443
+      - 443
     labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
+      - com.centurylinklabs.watchtower.enable=true
+      - diun.enable=true
+      - diun.watch_repo=true
+      - traefik.enable=true
+      - traefik.http.routers.nextcloud.entrypoints=websecure
+      - traefik.http.routers.nextcloud.rule=Host(`nextcloud.$DOMAIN_NAME`,`cloud.$DOMAIN_NAME`)
+      - traefik.http.routers.nextcloud.middlewares=chain-no-auth@file
+      - traefik.http.services.nextcloud.loadbalancer.server.port=443
     depends_on:
-    - nextcloud-postgresql
+      - nextcloud-postgresql
   nextcloud-postgresql:
     image: postgres:alpine
     container_name: nextcloud-postgresql
@@ -33,12 +38,12 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
-    - POSTGRES_USER=nextcloud
-    - POSTGRES_PASSWORD=nextcloud
-    - POSTGRES_DB=nextcloud
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+      - POSTGRES_DB=nextcloud
     volumes:
     - /mnt/raid/server/nextcloud-postgresql:/var/lib/postgresql
     # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
