@@ -20,6 +20,9 @@ services:
       - ${USER_DIR}/nextcloud/data:/data
     expose:
       - 443
+    depends_on:
+      - nextcloud-postgresql
+      - nextcloud-redis
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - diun.enable=true
@@ -29,8 +32,8 @@ services:
       - traefik.http.routers.nextcloud.rule=Host(`nextcloud.$DOMAIN_NAME`,`cloud.$DOMAIN_NAME`)
       - traefik.http.routers.nextcloud.middlewares=chain-no-auth@file
       - traefik.http.services.nextcloud.loadbalancer.server.port=443
-    depends_on:
-      - nextcloud-postgresql
+    networks:
+      - reverse-proxy
   nextcloud-postgresql:
     image: postgres:alpine
     container_name: nextcloud-postgresql
@@ -50,8 +53,32 @@ services:
     - /mnt/raid/server/nextcloud-postgresql/data:/var/lib/postgresql/data
     expose:
     - 5432
+    shm_size: 256M
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
     - diun.watch_repo=true
-    shm_size: 256M
+    networks:
+      - reverse-proxy
+  nextcloud-redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - /mnt/raid/server/nextcloud-redis:/data
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default
