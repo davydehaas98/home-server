@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Docker update notifier
   diun:
-    image: crazymax/diun:latest
+    image: crazymax/diun:4.21.0
     container_name: diun
     restart: unless-stopped
     environment:
@@ -17,11 +17,10 @@ services:
     - DIUN_WATCH_SCHEDULE=0 0 3 * * *
     - DIUN_PROVIDERS_DOCKER=true
     - DIUN_PROVIDERS_DOCKER_WATCHSTOPPED=true
-    - DIUN_NOTIF_SLACK_WEBHOOKURL=https://discord.com/api/webhooks/798632410349699165/9wYRGCWHO2o18NIFi20h9bG_h13YiES2jRDi-ymtrTYE7p7SeOQDv7DREgLwQkf15Rz7/slack
+    - DIUN_NOTIF_SLACK_WEBHOOKURL=https://discord.com/api/webhooks/938433344469872660/Lu7yCvjaH4VFc_n1My3AYThYlsh_uuIyhVpW3aLoeMm_bup6tysMIvLr_dGkDDJzvyaW/slack
     volumes:
     - ${USER_DIR}/diun/data:/data
     - /var/run/docker.sock:/var/run/docker.sock
     labels:
-    - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
     - diun.watch_repo=true

@@ -3,7 +3,7 @@ services:
   # https://hub.docker.com/r/statping/statping
   statping:
     container_name: statping
-    image: statping/statping:latest
+    image: statping/statping:v0.90.74
     restart: unless-stopped
     cpus: 1
     mem_limit: 1G
@@ -20,7 +20,6 @@ services:
       #   timeout: 10s
       #   retries: 2
     labels:
-      - com.centurylinklabs.watchtower.enable=true
       - diun.enable=true
       - diun.watch_repo=true
       - traefik.enable=true

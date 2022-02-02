@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Systems monitoring and alertingtoolkit
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v2.33.0
     container_name: prometheus
     restart: unless-stopped
     cpus: 1
@@ -26,7 +26,6 @@ services:
       #   timeout: 10s
       #   retries: 2
     labels:
-      - com.centurylinklabs.watchtower.enable=true
       - diun.enable=true
       - diun.watch_repo=true
       - traefik.enable=true
@@ -38,7 +37,7 @@ services:
       - reverse-proxy
   # Prometheus Node Exporter exposes a wide variety of hardware- and kernel-related metrics.
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v1.3.1
     container_name: node-exporter
     restart: unless-stopped
     cpus: 1
@@ -54,14 +53,13 @@ services:
     expose:
     - 9100
     labels:
-      - com.centurylinklabs.watchtower.enable=true
       - diun.enable=true
       - diun.watch_repo=true
     networks:
       - reverse-proxy
   # Container Advisor analyzes and exposes resource usage and performance data from running containers
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor:v0.36.0
     container_name: cadvisor
     restart: unless-stopped
     cpus: 1
@@ -74,7 +72,6 @@ services:
     expose:
       - 8080
     labels:
-      - com.centurylinklabs.watchtower.enable=true
       - diun.enable=true
       - diun.watch_repo=true
     networks:
@@ -83,7 +80,7 @@ services:
   # It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. 
   # It also takes care of silencing and inhibition of alerts.
   alertmanager:
-    image: prom/alertmanager:v0.21.0
+    image: prom/alertmanager:v0.23.0
     container_name: alertmanager
     cpus: 1
     mem_limit: 1G
@@ -95,7 +92,6 @@ services:
     expose:
       - 9093
     labels:
-      - com.centurylinklabs.watchtower.enable=true
       - diun.enable=true
       - diun.watch_repo=true
     networks:

@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # https://hub.docker.com/r/linuxserver/nextcloud/
   nextcloud:
-    image: linuxserver/nextcloud:amd64-latest
+    image: linuxserver/nextcloud:23.0.0
     container_name: nextcloud
     restart: unless-stopped
     cpus: 1
@@ -24,7 +24,6 @@ services:
       - nextcloud-postgresql
       - nextcloud-redis
     labels:
-      - com.centurylinklabs.watchtower.enable=true
       - diun.enable=true
       - diun.watch_repo=true
       - traefik.enable=true
@@ -35,7 +34,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-postgresql:
-    image: postgres:alpine
+    image: postgres:14.1
     container_name: nextcloud-postgresql
     restart: unless-stopped
     cpus: 1
@@ -48,20 +47,19 @@ services:
       - POSTGRES_PASSWORD=nextcloud
       - POSTGRES_DB=nextcloud
     volumes:
-    - /mnt/raid/server/nextcloud-postgresql:/var/lib/postgresql
-    # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
-    - /mnt/raid/server/nextcloud-postgresql/data:/var/lib/postgresql/data
+      - /mnt/raid/server/nextcloud-postgresql:/var/lib/postgresql
+      # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
+      - /mnt/raid/server/nextcloud-postgresql/data:/var/lib/postgresql/data
     expose:
-    - 5432
+      - 5432
     shm_size: 256M
     labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
+      - diun.enable=true
+      - diun.watch_repo=true
     networks:
       - reverse-proxy
   nextcloud-redis:
-    image: redis:alpine
+    image: redis:6.2.6
     container_name: nextcloud-redis
     restart: unless-stopped
     cpus: 1
@@ -73,9 +71,8 @@ services:
     volumes:
       - /mnt/raid/server/nextcloud-redis:/data
     labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
+      - diun.enable=true
+      - diun.watch_repo=true
     networks:
       - reverse-proxy
 networks:
