@@ -20,7 +20,6 @@ services:
     - 30000
     labels:
     - diun.enable=true
-    - diun.watch_repo=true
     - traefik.enable=true
     - traefik.http.routers.foundry-cos.entrypoints=websecure
     - traefik.http.routers.foundry-cos.rule=Host(`foundry-cos.$DOMAIN_NAME`)

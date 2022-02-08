@@ -25,7 +25,6 @@ services:
       - nextcloud-redis
     labels:
       - diun.enable=true
-      - diun.watch_repo=true
       - traefik.enable=true
       - traefik.http.routers.nextcloud.entrypoints=websecure
       - traefik.http.routers.nextcloud.rule=Host(`nextcloud.$DOMAIN_NAME`,`cloud.$DOMAIN_NAME`)
@@ -55,7 +54,6 @@ services:
     shm_size: 256M
     labels:
       - diun.enable=true
-      - diun.watch_repo=true
     networks:
       - reverse-proxy
   nextcloud-redis:
@@ -72,7 +70,6 @@ services:
       - /mnt/raid/server/nextcloud-redis:/data
     labels:
       - diun.enable=true
-      - diun.watch_repo=true
     networks:
       - reverse-proxy
 networks:

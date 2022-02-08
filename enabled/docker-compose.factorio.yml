@@ -20,4 +20,3 @@ services:
       # - 27015:27015/tcp # RCON optional
     labels:
       - diun.enable=true
-      - diun.watch_repo=true

@@ -89,4 +89,3 @@ services:
       - /mnt/raid/server/minecraft-better-backup:/backups
     labels:
       - diun.enable=true
-      - diun.watch_repo=true

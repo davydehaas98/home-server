@@ -23,7 +23,6 @@ services:
       #   retries: 2
     labels:
       - diun.enable=true
-      - diun.watch_repo=true
       - traefik.enable=true
       - traefik.http.routers.grafana.entrypoints=websecure
       - traefik.http.routers.grafana.rule=Host(`grafana.$DOMAIN_NAME`)

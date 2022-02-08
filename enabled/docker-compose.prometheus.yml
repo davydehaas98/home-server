@@ -93,7 +93,6 @@ services:
       - 9093
     labels:
       - diun.enable=true
-      - diun.watch_repo=true
     networks:
       - reverse-proxy
   # alertmanager-discord:

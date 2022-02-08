@@ -21,7 +21,6 @@ services:
       #   retries: 2
     labels:
       - diun.enable=true
-      - diun.watch_repo=true
       - traefik.enable=true
       - traefik.http.routers.statping.entrypoints=websecure
       - traefik.http.routers.statping.rule=Host(`statping.$DOMAIN_NAME`,`status.$DOMAIN_NAME`)

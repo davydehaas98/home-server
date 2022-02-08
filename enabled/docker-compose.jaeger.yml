@@ -15,7 +15,6 @@ services:
       - "16686:16686"
     labels:
       - diun.enable=true
-      - diun.watch_repo=true
       - traefik.enable=true
       - traefik.http.routers.jaeger.entrypoints=websecure
       - traefik.http.routers.jaeger.rule=Host(`jaeger.$DOMAIN_NAME`)
