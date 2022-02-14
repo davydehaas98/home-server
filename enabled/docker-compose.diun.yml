@@ -12,9 +12,9 @@ services:
     - DIUN_DB_PATH=diun.db
     - DIUN_WATCH_FIRSTCHECKNOTIF=false
     - DIUN_WATCH_WORKERS=10
-    # Scans every day at 3 AM
+    # Scans every 6 hours
     # seconds - minutes - hours - day of month - month - day of week
-    - DIUN_WATCH_SCHEDULE=0 0 3 * * *
+    - DIUN_WATCH_SCHEDULE=0 0 */6 * * *
     - DIUN_PROVIDERS_DOCKER=true
     - DIUN_PROVIDERS_DOCKER_WATCHSTOPPED=true
     - DIUN_NOTIF_SLACK_WEBHOOKURL=https://discord.com/api/webhooks/938433344469872660/Lu7yCvjaH4VFc_n1My3AYThYlsh_uuIyhVpW3aLoeMm_bup6tysMIvLr_dGkDDJzvyaW/slack
@@ -23,3 +23,9 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
     labels:
     - diun.enable=true
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default
