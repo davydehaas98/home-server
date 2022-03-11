@@ -28,7 +28,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.nextcloud.entrypoints=websecure
       - traefik.http.routers.nextcloud.rule=Host(`nextcloud.$DOMAIN_NAME`,`cloud.$DOMAIN_NAME`)
-      - traefik.http.routers.nextcloud.middlewares=chain-no-auth@file
+      - traefik.http.routers.nextcloud.middlewares=chain-nextcloud@file
       - traefik.http.services.nextcloud.loadbalancer.server.port=443
     networks:
       - reverse-proxy
