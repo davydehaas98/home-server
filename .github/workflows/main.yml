@@ -57,4 +57,4 @@ jobs:
           echo 'FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}' >> .env
           echo 'FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}' >> .env
 
-          docker-compose $(find docker-compose.*.yml | sed -e 's/^/-f /') up -d --remove-orphans
+          docker compose $(find docker-compose.*.yml | sed -e 's/^/-f /') up -d --remove-orphans
