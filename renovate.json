@@ -6,7 +6,9 @@
     "main"
   ],
   "repositories": [
-    "davydehaas98/server"
+    "davydehaas98/server",
+    "davydehaas98/media-server",
+    "davydehaas98/reverse-proxy"
   ],
   "packageRules": [
     {
