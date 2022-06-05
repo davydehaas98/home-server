@@ -22,39 +22,39 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: SSH SCP | Copy docker-compose.yml
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        port: ${{ secrets.SSH_PORT }}
-        username: ${{ secrets.SSH_USERNAME }}
-        #password: ${{ secrets.SSH_PASSWORD }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: enabled/docker-compose.*.yml
-        target: ${{ env.TARGET_DIR }}
-        strip_components: 1 # strip /enabled
-        rm: true # remove target folder before uploading data
-    - name: SSH | Start containers
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        port: ${{ secrets.SSH_PORT }}
-        username: ${{ secrets.SSH_USERNAME }}
-        #password: ${{ secrets.SSH_PASSWORD }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        script: |
-          cd ${{ env.TARGET_DIR }}
-          
-          echo 'PGID=${{ env.PGID }}' >> .env
-          echo 'PUID=${{ env.PUID }}' >> .env
-          echo 'TZ=${{ env.TZ }}' >> .env
-          echo 'USER_DIR=${{ env.USER_DIR }}' >> .env
-          echo 'DOMAIN_NAME=${{ env.DOMAIN_NAME }}' >> .env
+      - uses: actions/checkout@v2
+      - name: SSH SCP | Copy docker-compose.yml
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          #password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: enabled/docker-compose.*.yml
+          target: ${{ env.TARGET_DIR }}
+          strip_components: 1 # strip /enabled
+          rm: true # remove target folder before uploading data
+      - name: SSH | Start containers
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          #password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            cd ${{ env.TARGET_DIR }}
+            
+            echo 'PGID=${{ env.PGID }}' >> .env
+            echo 'PUID=${{ env.PUID }}' >> .env
+            echo 'TZ=${{ env.TZ }}' >> .env
+            echo 'USER_DIR=${{ env.USER_DIR }}' >> .env
+            echo 'DOMAIN_NAME=${{ env.DOMAIN_NAME }}' >> .env
 
-          echo 'FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}' >> .env
-          echo 'FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}' >> .env
+            echo 'FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}' >> .env
+            echo 'FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}' >> .env
 
-          docker compose $(find docker-compose.*.yml | sed -e 's/^/-f /') up -d --remove-orphans
+            docker compose $(find docker-compose.*.yml | sed -e 's/^/-f /') up -d --remove-orphans

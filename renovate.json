@@ -5,11 +5,6 @@
   "baseBranches": [
     "main"
   ],
-  "repositories": [
-    "davydehaas98/home-server",
-    "davydehaas98/media-server",
-    "davydehaas98/reverse-proxy"
-  ],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
