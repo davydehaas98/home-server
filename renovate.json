@@ -1,5 +1,17 @@
 {
   "extends": [
     "config:base"
+  ],
+  "baseBranches": [
+    "main"
+  ],
+  "repositories": [
+    "davydehaas98/server"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
   ]
 }
