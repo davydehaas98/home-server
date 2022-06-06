@@ -17,7 +17,7 @@ services:
     depends_on:
     - influxdb
   minecraft-monitor:
-    image: itzg/mc-monitor:0.6.1
+    image: itzg/mc-monitor:0.10.6
     container_name: minecraft-monitor
     restart: unless-stopped
     command: gather-for-telegraf export-for-prometheus
