@@ -58,7 +58,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-redis:
-    image: redis:6.2.7
+    image: redis:7.0.0
     container_name: nextcloud-redis
     restart: unless-stopped
     cpus: 1
