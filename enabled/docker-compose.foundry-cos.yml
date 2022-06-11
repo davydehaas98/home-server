@@ -12,6 +12,8 @@ services:
     - TZ=${TZ}
     - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
     - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
+    - FOUNDRY_ADMIN_KEY=admin
+    - CONTAINER_PRESERVE_CONFIG=true
     - CONTAINER_CACHE=/server/foundry-cos/data/container_cache
     volumes:
     - ${USER_DIR}/foundry-cos:/data
