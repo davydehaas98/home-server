@@ -14,7 +14,7 @@ services:
     - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
     - FOUNDRY_ADMIN_KEY=admin
     - CONTAINER_PRESERVE_CONFIG=true
-    - CONTAINER_CACHE=/server/foundry-cos/data/container_cache
+    - CONTAINER_CACHE=${USER_DIR}/foundry-cos/data/container_cache
     volumes:
     - ${USER_DIR}/foundry-cos:/data
     - ${USER_DIR}/foundry-cos/resources/app:/home/foundry/resources/app
