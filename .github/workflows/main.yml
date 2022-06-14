@@ -11,11 +11,11 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TARGET_DIR: /opt/compose/server/
+  TARGET_DIR: /opt/compose/home-server/
   PGID: 1000
   PUID: 1000
   TZ: Etc/UTC
-  USER_DIR: /opt/appdata/server/
+  USER_DIR: /opt/appdata/home-server/
   DOMAIN_NAME: davydehaas.nl
 
 jobs:
