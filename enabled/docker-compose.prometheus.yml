@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Systems monitoring and alertingtoolkit
   prometheus:
-    image: prom/prometheus:v2.33.0
+    image: prom/prometheus:v2.36.1
     container_name: prometheus
     restart: unless-stopped
     cpus: 1
@@ -59,7 +59,7 @@ services:
       - reverse-proxy
   # Container Advisor analyzes and exposes resource usage and performance data from running containers
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.36.0
+    image: gcr.io/cadvisor/cadvisor:v0.44.0
     container_name: cadvisor
     restart: unless-stopped
     cpus: 1
@@ -80,7 +80,7 @@ services:
   # It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. 
   # It also takes care of silencing and inhibition of alerts.
   alertmanager:
-    image: prom/alertmanager:v0.23.0
+    image: prom/alertmanager:v0.24.0
     container_name: alertmanager
     cpus: 1
     mem_limit: 1G

@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # https://hub.docker.com/r/linuxserver/nextcloud/
   nextcloud:
-    image: linuxserver/nextcloud:23.0.0
+    image: linuxserver/nextcloud:24.0.1
     container_name: nextcloud
     restart: unless-stopped
     cpus: 1
@@ -34,7 +34,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-postgresql:
-    image: postgres:14.1
+    image: postgres:14.3
     container_name: nextcloud-postgresql
     restart: unless-stopped
     cpus: 1
@@ -58,7 +58,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-redis:
-    image: redis:6.2.6
+    image: redis:7.0.2
     container_name: nextcloud-redis
     restart: unless-stopped
     cpus: 1

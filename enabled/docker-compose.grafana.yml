@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # sudo chown -R 472:472 ${USER_DIR}/grafana
   grafana:
-    image: grafana/grafana:8.3.4
+    image: grafana/grafana:8.5.5
     container_name: grafana
     restart: unless-stopped
     cpus: 1
