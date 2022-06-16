@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  home-assistent:
+    image: home-assistant/home-assistant:2022.6.6
+    container_name: home-assistant
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - ${USER_DIR}/home-assistant/config:/config
+    expose:
+      - 8123
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.home-assistant.entrypoints=websecure
+      - traefik.http.routers.home-assistant.rule=Host(`home-assistant.$DOMAIN_NAME`)
+      - traefik.http.routers.home-assistant.middlewares=chain-authelia@file
+      - traefik.http.services.home-assistant.loadbalancer.server.port=9000
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default
