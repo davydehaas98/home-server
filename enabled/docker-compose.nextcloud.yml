@@ -34,7 +34,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-postgresql:
-    image: postgres:14.3
+    image: postgres:14.4
     container_name: nextcloud-postgresql
     restart: unless-stopped
     cpus: 1
