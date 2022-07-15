@@ -53,6 +53,7 @@ services:
       - LEVEL_TYPE=DEFAULT
       - ONLINE_MODE=TRUE
       - ALLOW_FLIGHT=TRUE
+      - GENERATOR_SETTINGS={"Topography-Preset":"Sky Factory 4"}
     volumes:
       - ${USER_DIR}/minecraft-skyfactory/data:/data
     expose:
