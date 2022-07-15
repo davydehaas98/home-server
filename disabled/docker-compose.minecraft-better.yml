@@ -1,8 +1,8 @@
 version: "3.8"
 services:
   # https://github.com/itzg/docker-minecraft-server
-  # scp -r ".\mods" root@davydehaas.nl:/server/minecraft-better/data/mods
-  # scp -r ".\config" root@davydehaas.nl:/server/minecraft-better/data/config
+  # scp -r ".\mods" davy@yggdrasil:/opt/appdata/home-server/minecraft-better/data/mods
+  # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-better/data/config
   minecraft-better:
     image: itzg/minecraft-server:java17
     container_name: minecraft-better
@@ -86,6 +86,6 @@ services:
       - RCON_PASSWORD=minecraft
     volumes:
       - ${USER_DIR}/minecraft-better/data:/data:ro
-      - /mnt/raid/server/minecraft-better-backup:/backups
+      - /mnt/raid/home-server/minecraft-better-backup:/backups
     labels:
       - diun.enable=true

@@ -1,0 +1,91 @@
+version: "3.9"
+services:
+  # https://github.com/itzg/docker-minecraft-server
+  # scp -r ".\mods" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/mods
+  # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/config
+  minecraft-skyfactory:
+    image: itzg/minecraft-server:java8
+    container_name: minecraft-skyfactory
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 16G
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - EULA=TRUE
+      - VERSION=1.12.2
+      - ENABLE_RCON=TRUE
+      - RCON_PORT=25575
+      - RCON_PASSWORD=minecraft
+      - ENABLE_AUTOPAUSE=TRUE
+      - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
+      - MAX_TICK_TIME=-1 # default 60000
+      - INIT_MEMORY=2G
+      - MAX_MEMORY=16G
+      - TYPE=FORGE
+      #- FORGEVERSION=38.0.17
+      - SERVER_NAME=skyfactory
+      - ICON=https://davydehaas.nl/assets/images/memoji.png
+      - OVERRIDE_ICON=TRUE
+      - DIFFICULTY=easy
+      - OPS=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
+      - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
+      - MAX_PLAYERS=20
+      - MAX_WORLD_SIZE=20000
+      - ALLOW_NETHER=TRUE
+      - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
+      - ENABLE_COMMAND_BLOCK=TRUE
+      - FORCE_GAMEMODE=FALSE
+      - GENERATE_STRUCTURES=TRUE
+      - HARDCORE=FALSE
+      - SNOOPER_ENABLED=FALSE
+      - MAX_BUILD_HEIGHT=256
+      - SPAWN_ANIMALS=TRUE
+      - SPAWN_MONSTERS=TRUE
+      - SPAWN_NPCS=TRUE
+      - SPAWN_PROTECTION=16
+      - VIEW_DISTANCE=8
+      #- SEED=1785852800490497919
+      - MODE=survival
+      - MOTD=Davy's "Skyfactory 4" Minecraft server.
+      - PVP=TRUE
+      - LEVEL_TYPE=DEFAULT
+      - ONLINE_MODE=TRUE
+      - ALLOW_FLIGHT=TRUE
+    volumes:
+      - ${USER_DIR}/minecraft-skyfactory/data:/data
+    expose:
+      - 25575
+    ports:
+      - 25568:25565
+    labels:
+      - diun.enable=true
+      - diun.watch_repo=true
+  # https://hub.docker.com/r/itzg/mc-backup
+  minecraft-skyfactory-backup:
+    image: itzg/mc-backup:latest
+    container_name: minecraft-skyfactory-backup
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - BACKUP_METHOD=tar
+      - BACKUP_INTERVAL=12h
+      - DEST_DIR=/backups
+      - EXCLUDES=*.jar,cache,logs
+      - PAUSE_IF_NO_PLAYERS=true
+      - PRUNE_BACKUPS_DAYS=4
+      - INITIAL_DELAY=5m
+      - TAR_COMPRESS_METHOD=gzip
+      - RCON_HOST=minecraft-skyfactory
+      - RCON_PORT=25575
+      - RCON_PASSWORD=minecraft
+    volumes:
+      - ${USER_DIR}/minecraft-skyfactory/data:/data:ro
+      - /mnt/raid/home-server/minecraft-skyfactory-backup:/backups
+    labels:
+      - diun.enable=true
