@@ -12,12 +12,10 @@ services:
       - DIUN_DB_PATH=diun.db
       - DIUN_WATCH_FIRSTCHECKNOTIF=false
       - DIUN_WATCH_WORKERS=10
-      # Scans every 6 hours
-      # seconds - minutes - hours - day of month - month - day of week
-      - DIUN_WATCH_SCHEDULE=0 0 */6 * * *
+      - DIUN_WATCH_SCHEDULE=0 0 0 * * * 
       - DIUN_PROVIDERS_DOCKER=true
-      - DIUN_PROVIDERS_DOCKER_WATCHSTOPPED=true
-      - DIUN_NOTIF_SLACK_WEBHOOKURL=https://discord.com/api/webhooks/996493521135620207/DQSbQ5P1E0YeBj5roMycOi7GfFjLLBRFEQpRWTyAxr64Z2LwrvSYWB5TauNQw-hYZZY5/slack
+      - DIUN_PROVIDERS_DOCKER_WATCHSTOPPED=false
+      - DIUN_NOTIF_SLACK_WEBHOOKURL=https://discord.com/api/webhooks/996493521135620207/DQSbQ5P1E0YeBj5roMycOi7GfFjLLBRFEQpRWTyAxr64Z2LwrvSYWB5TauNQw-hYZZY5
     volumes:
       - ${USER_DIR}/diun/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
