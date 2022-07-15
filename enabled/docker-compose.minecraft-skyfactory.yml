@@ -26,7 +26,7 @@ services:
       - TYPE=FORGE
       #- FORGEVERSION=38.0.17
       - SERVER_NAME=skyfactory
-      - ICON=https://davydehaas.nl/assets/images/memoji.png
+      # - ICON=https://davydehaas.nl/assets/images/memoji.png
       - OVERRIDE_ICON=TRUE
       - DIFFICULTY=easy
       - OPS=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
