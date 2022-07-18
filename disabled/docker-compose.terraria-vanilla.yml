@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Vanilla Terraria server without Tshock
   terraria-vanilla:
-    image: ryshe/terraria:vanilla-latest
+    image: ryshe/terraria:vanilla-1.4.3.6-4
     container_name: terraria-vanilla
     restart: unless-stopped
     command: --log-opt max-size=200k

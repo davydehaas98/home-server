@@ -1,13 +1,13 @@
 version: "3.8"
 services:
   influxdb:
-    image: influxdb:alpine
+    image: influxdb:1.8.10
     container_name: influxdb
     restart: unless-stopped
     ports:
     - 8086:8086
   telegraf:
-    image: telegraf:alpine
+    image: telegraf:1.23.2
     container_name: telegraf
     restart: unless-stopped
     volumes:

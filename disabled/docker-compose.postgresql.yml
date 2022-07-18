@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # PostgreSQL database used by SonarQube
   postgresql:
-    image: postgres:latest
+    image: postgres:14.4
     container_name: postgresql
     restart: unless-stopped
     environment:

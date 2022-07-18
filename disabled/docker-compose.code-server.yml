@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   code-server:
-    image: ghcr.io/linuxserver/code-server:latest
+    image: linuxserver/code-server:latest
     container_name: code-server
     restart: unless-stopped
     cpus: 4

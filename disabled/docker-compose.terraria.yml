@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Terraria server with Tshock
   terraria:
-    image: ryshe/terraria:latest
+    image: ryshe/terraria:tshock-1.4.3.6-4.5.17-3
     container_name: terraria
     restart: unless-stopped
     command: --log-opt max-size=200k

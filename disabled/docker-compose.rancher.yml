@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   rancher-server:
-    image: rancher/rancher:stable
+    image: rancher/rancher:2.6.6
     container_name: rancher
     restart: unless-stopped
     environment:

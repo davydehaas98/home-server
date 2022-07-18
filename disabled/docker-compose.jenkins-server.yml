@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Open source automation server
   jenkins-server:
-    image: jenkins/jenkins:lts
+    image: jenkins/jenkins:2.346.2-lts-jdk11
     container_name: jenkins-server
     restart: unless-stopped
     environment:

@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # https://github.com/felddy/foundryvtt-docker
   foundry:
-    image: felddy/foundryvtt:release
+    image: felddy/foundryvtt:9.269.0
     container_name: foundry
     restart: unless-stopped
     cpus: 1

@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # Jenkins Agent for executing jobs
   jenkins-agent:
-    image: jenkins/agent:latest-jdk11
+    image: jenkins/agent:2.346.2-lts-jdk11
     container_name: jenkins-slave
     restart: unless-stopped
     environment:
@@ -20,7 +20,7 @@ services:
     - jenkins-server
   # Jenkins JNLP Agent Maven for executing jobs
   jenkins-agent-maven:
-    image: jenkins/jnlp-agent-maven:latest
+    image: jenkins/jnlp-agent-maven:jdk11
     container_name: jenkins-slave
     restart: unless-stopped
     environment:

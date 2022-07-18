@@ -2,7 +2,7 @@ version: "3.8"
 services:
   # TeamCity build agent for executing jobs
   teamcity-agent:
-    image: jetbrains/teamcity-agent:latest
+    image: jetbrains/teamcity-agent:2022.04.2
     container_name: teamcity-agent
     restart: unless-stopped
     environment:
