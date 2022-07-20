@@ -24,7 +24,7 @@ services:
       - INIT_MEMORY=2G
       - MAX_MEMORY=16G
       - TYPE=FORGE
-      #- FORGEVERSION=38.0.17
+      - FORGEVERSION=14.23.5.2860
       - SERVER_NAME=skyfactory
       # - ICON=https://davydehaas.nl/assets/images/memoji.png
       - OVERRIDE_ICON=TRUE
