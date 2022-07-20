@@ -23,8 +23,9 @@ services:
       - MAX_TICK_TIME=-1 # default 60000
       - INIT_MEMORY=2G
       - MAX_MEMORY=16G
-      - TYPE=FORGE
+      - TYPE=CURSEFORGE
       - FORGEVERSION=14.23.5.2860
+      - CF_SERVER_MOD=SkyFactory-4_Server_4_2_4.zip
       - SERVER_NAME=skyfactory
       # - ICON=https://davydehaas.nl/assets/images/memoji.png
       - OVERRIDE_ICON=TRUE
