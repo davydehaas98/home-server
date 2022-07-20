@@ -2,7 +2,8 @@ version: "3.9"
 services:
   # https://github.com/itzg/docker-minecraft-server
   # scp -r ".\mods" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/mods
-  # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/config
+  # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/config  
+  # scp -r ".\SkyFactory-4_Server_4_2_4.zip" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data
   minecraft-skyfactory:
     image: itzg/minecraft-server:java8
     container_name: minecraft-skyfactory
@@ -26,6 +27,7 @@ services:
       - TYPE=CURSEFORGE
       - FORGEVERSION=14.23.5.2860
       - CF_SERVER_MOD=SkyFactory-4_Server_4_2_4.zip
+      - CF_BASE_DIR=/data
       - SERVER_NAME=skyfactory
       # - ICON=https://davydehaas.nl/assets/images/memoji.png
       - OVERRIDE_ICON=TRUE
