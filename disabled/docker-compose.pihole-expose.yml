@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 services:
   # https://github.com/pi-hole/docker-pi-hole/
   # https://docs.pi-hole.net/

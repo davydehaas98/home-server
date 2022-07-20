@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 services:
   # https://github.com/itzg/docker-minecraft-server
   # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-arachne/data/mods

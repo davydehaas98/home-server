@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 services:
   jaeger:
     image: jaegertracing/all-in-one:1.36.0
