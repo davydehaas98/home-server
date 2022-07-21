@@ -65,6 +65,7 @@ services:
       - 25568:25565/tcp
     labels:
       - diun.enable=true
+      - traefik.enable=true
       - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.$DOMAIN_NAME`)
       - traefik.tcp.services.minecraft-skyfactory.loadbalancer.server.port=25568
   # https://hub.docker.com/r/itzg/mc-backup
