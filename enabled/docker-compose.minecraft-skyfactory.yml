@@ -33,7 +33,7 @@ services:
       - OVERRIDE_ICON=TRUE
       - DIFFICULTY=easy
       - OPS=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
-      - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
+      - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,mcodenl
       - MAX_PLAYERS=20
       - MAX_WORLD_SIZE=20000
       - ALLOW_NETHER=TRUE
@@ -65,8 +65,8 @@ services:
       - 25568:25565
     labels:
       - diun.enable=true
-      - "traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`example.com`)"
-      - "traefik.tcp.services.minecraft-skyfactory.loadbalancer.server.port=25568"
+      - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.$DOMAIN_NAME`)
+      - traefik.tcp.services.minecraft-skyfactory.loadbalancer.server.port=25568
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-skyfactory-backup:
     image: itzg/mc-backup:latest
