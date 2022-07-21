@@ -62,7 +62,7 @@ services:
     expose:
       - 25575
     ports:
-      - 25568:25565
+      - 25568:25565/tcp
     labels:
       - diun.enable=true
       - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.$DOMAIN_NAME`)
