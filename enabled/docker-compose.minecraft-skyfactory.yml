@@ -8,34 +8,43 @@ services:
     image: itzg/minecraft-server:java8
     container_name: minecraft-skyfactory
     restart: unless-stopped
-    cpus: 4
-    mem_limit: 16G
+    # cpus: 4
+    # mem_limit: 16G
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-      - EULA=TRUE
-      - VERSION=1.12.2
-      - ENABLE_RCON=TRUE
-      - RCON_PORT=25575
-      - RCON_PASSWORD=minecraft
-      - ENABLE_AUTOPAUSE=TRUE
-      - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
-      - MAX_TICK_TIME=-1 # default 60000
+
+      # JVM Setup Values
       - INIT_MEMORY=2G
       - MAX_MEMORY=16G
+      - JVM_OPTS="-Dio.netty.leakDetection.level=advanced"
+      - JVM_XX_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M"
+      
+      # Modpack setup
+      - EULA=TRUE
+      - VERSION=1.12.2
       - TYPE=CURSEFORGE
       - FORGEVERSION=14.23.5.2860
       - CF_SERVER_MOD=SkyFactory-4_Server_4_2_4.zip
       - CF_BASE_DIR=/data
+
+      # Server settings
+      - ENABLE_AUTOPAUSE=TRUE
+      - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
+      - MAX_TICK_TIME=-1 # default 60000
       - SERVER_NAME=skyfactory
-      # - ICON=https://davydehaas.nl/assets/images/memoji.png
-      - OVERRIDE_ICON=TRUE
-      - DIFFICULTY=easy
+      - SERVER_PORT=25565
+      - MOTD=Davy's "Skyfactory 4" Minecraft server.
       - OPS=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
       - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
-      - MAX_PLAYERS=20
-      - MAX_WORLD_SIZE=20000
+      - OVERRIDE_ICON=TRUE
+      # - ICON=https://davydehaas.nl/assets/images/memoji.png
+
+      # Gamemode settings
+      - DIFFICULTY=easy
+      - MODE=survival
+      - PVP=TRUE
       - ALLOW_NETHER=TRUE
       - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
       - ENABLE_COMMAND_BLOCK=TRUE
@@ -43,6 +52,12 @@ services:
       - GENERATE_STRUCTURES=TRUE
       - HARDCORE=FALSE
       - SNOOPER_ENABLED=FALSE
+      - ONLINE_MODE=TRUE
+      - ALLOW_FLIGHT=TRUE
+
+      # World generation settings
+      - MAX_PLAYERS=20
+      - MAX_WORLD_SIZE=20000
       - MAX_BUILD_HEIGHT=256
       - SPAWN_ANIMALS=TRUE
       - SPAWN_MONSTERS=TRUE
@@ -50,13 +65,13 @@ services:
       - SPAWN_PROTECTION=16
       - VIEW_DISTANCE=8
       #- SEED=1785852800490497919
-      - MODE=survival
-      - MOTD=Davy's "Skyfactory 4" Minecraft server.
-      - PVP=TRUE
       - LEVEL_TYPE=DEFAULT
-      - ONLINE_MODE=TRUE
-      - ALLOW_FLIGHT=TRUE
       - GENERATOR_SETTINGS={"Topography-Preset":"Sky Factory 4"}
+      
+      # RCON
+      - ENABLE_RCON=TRUE
+      - RCON_PORT=25575
+      - RCON_PASSWORD=minecraft
     volumes:
       - ${USER_DIR}/minecraft-skyfactory/data:/data
     expose:
@@ -65,8 +80,8 @@ services:
       - 25568:25565
     labels:
       - diun.enable=true
-      - "traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`example.com`)"
-      - "traefik.tcp.services.minecraft-skyfactory.loadbalancer.server.port=25568"
+      - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.$DOMAIN_NAME`)
+      - traefik.tcp.services.minecraft-skyfactory.loadbalancer.server.port=25568
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-skyfactory-backup:
     image: itzg/mc-backup:latest
