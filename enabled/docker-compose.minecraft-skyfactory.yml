@@ -37,7 +37,7 @@ services:
       - SERVER_PORT=25565
       - MOTD=Davy's "Skyfactory 4" Minecraft server.
       - OPS=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
-      - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
+      - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,mcodenl
       - OVERRIDE_ICON=TRUE
       # - ICON=https://davydehaas.nl/assets/images/memoji.png
 
@@ -77,10 +77,12 @@ services:
     expose:
       - 25575
     ports:
-      - 25568:25565
+      - 25568:25565/tcp
     labels:
       - diun.enable=true
-      - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.$DOMAIN_NAME`)
+      - traefik.enable=true
+#       - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.$DOMAIN_NAME`)
+      - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`*`)
       - traefik.tcp.services.minecraft-skyfactory.loadbalancer.server.port=25568
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-skyfactory-backup:
