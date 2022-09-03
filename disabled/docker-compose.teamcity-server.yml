@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # Automation server by JetBrains
   teamcity-server:
-    image: jetbrains/teamcity-server:2022.04.2
+    image: jetbrains/teamcity-server:2022.04.3
     container_name: teamcity-server
     restart: unless-stopped
     environment:
