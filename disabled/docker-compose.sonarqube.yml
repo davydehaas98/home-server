@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # Open source code quality and security tool
   sonarqube:
-    image: sonarqube:9.5.0-community
+    image: sonarqube:9.6.1-community
     container_name: sonarqube
     restart: unless-stopped
     environment:
@@ -37,7 +37,7 @@ services:
 
   # PostgreSQL database used by SonarQube
   sonarqube-postgresql:
-    image: postgres:14.4
+    image: postgres:14.5
     container_name: sonarqube-postgresql
     restart: unless-stopped
     environment:
