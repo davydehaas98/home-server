@@ -20,7 +20,7 @@ services:
       - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.home-assistant.entrypoints=websecure
-      - traefik.http.routers.home-assistant.rule=Host(`home-assistant.$DOMAIN_NAME`,`hass.$DOMAIN_NAME`)
+      - traefik.http.routers.home-assistant.rule=Host(`home-assistant.${DOMAIN_NAME}`,`hass.${DOMAIN_NAME}`)
       - traefik.http.routers.home-assistant.middlewares=chain-authelia@file
       - traefik.http.services.home-assistant.loadbalancer.server.port=8123
     networks:
