@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  duplicati:
+    image: linuxserver/duplicati:latest
+    container_name: duplicati
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+    - PGID=${PGID}
+    - PUID=${PUID}
+    - TZ=${TZ}
+    volumes:
+    - ${USER_DIR}/duplicati/config:/config
+    - ${USER_DIR}/duplicati/backups:/backups
+    - ${USER_DIR}:/source
+    expose:
+    - 8200
+    labels:
+    - diun.enable=true
+    - traefik.enable=true
+    - traefik.http.routers.duplicati.entrypoints=websecure
+    - traefik.http.routers.duplicati.rule=Host(`duplicati.${DOMAIN_NAME}`)
+    - traefik.http.routers.duplicati.middlewares=chain-authelia@file
+    - traefik.http.services.duplicati.loadbalancer.server.port=8200
+    networks:
+    - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default
