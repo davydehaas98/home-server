@@ -37,7 +37,7 @@ services:
 
   # PostgreSQL database used by SonarQube
   sonarqube-postgresql:
-    image: postgres:14.5
+    image: postgres:15.0
     container_name: sonarqube-postgresql
     restart: unless-stopped
     environment:
