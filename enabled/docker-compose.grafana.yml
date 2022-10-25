@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # sudo chown -R 472:472 ${USER_DIR}/grafana
   grafana:
-    image: grafana/grafana:9.2.0
+    image: grafana/grafana:9.2.2
     container_name: grafana
     restart: unless-stopped
     cpus: 1
