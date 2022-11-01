@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   rancher-server:
-    image: rancher/rancher:v2.6.8
+    image: rancher/rancher:v2.6.9
     container_name: rancher
     restart: unless-stopped
     environment:
