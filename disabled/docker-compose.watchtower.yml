@@ -3,7 +3,7 @@ services:
   # Automates Docker image updates
   # where `com.centurylinklabs.watchtower.enable: "true"` is added to the container
   watchtower:
-    image: containrrr/watchtower:1.4.0
+    image: containrrr/watchtower:1.5.1
     container_name: watchtower
     restart: unless-stopped
     cpus: 1
