@@ -37,7 +37,7 @@ services:
     - reverse-proxy
   # Prometheus Node Exporter exposes a wide variety of hardware- and kernel-related metrics.
   node-exporter:
-    image: prom/node-exporter:v1.4.0
+    image: prom/node-exporter:v1.4.1
     container_name: node-exporter
     restart: unless-stopped
     cpus: 1
