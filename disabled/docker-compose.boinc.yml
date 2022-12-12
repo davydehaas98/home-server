@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   boinc:
-    image: linuxserver/boinc:7.20.2
+    image: ghcr.io/linuxserver/boinc:7.20.5
     container_name: boinc
     restart: unless-stopped
     cpus: 4

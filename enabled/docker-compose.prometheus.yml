@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # Systems monitoring and alertingtoolkit
   prometheus:
-    image: prom/prometheus:v2.38.0
+    image: prom/prometheus:v2.40.6
     container_name: prometheus
     restart: unless-stopped
     cpus: 1
@@ -37,7 +37,7 @@ services:
     - reverse-proxy
   # Prometheus Node Exporter exposes a wide variety of hardware- and kernel-related metrics.
   node-exporter:
-    image: prom/node-exporter:v1.3.1
+    image: prom/node-exporter:v1.5.0
     container_name: node-exporter
     restart: unless-stopped
     cpus: 1
@@ -59,7 +59,7 @@ services:
     - reverse-proxy
   # Container Advisor analyzes and exposes resource usage and performance data from running containers
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.45.0
+    image: gcr.io/cadvisor/cadvisor:v0.46.0
     container_name: cadvisor
     restart: unless-stopped
     cpus: 1
