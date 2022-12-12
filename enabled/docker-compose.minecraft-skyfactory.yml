@@ -108,6 +108,6 @@ services:
       - RCON_PASSWORD=minecraft
     volumes:
       - ${USER_DIR}/minecraft-skyfactory/data:/data:ro
-      - /mnt/raid/home-server/minecraft-skyfactory-backup:/backups
+      - ${STORAGE_DIR}/minecraft-skyfactory-backup:/backups
     labels:
       - diun.enable=true

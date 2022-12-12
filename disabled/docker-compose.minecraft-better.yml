@@ -86,6 +86,6 @@ services:
       - RCON_PASSWORD=minecraft
     volumes:
       - ${USER_DIR}/minecraft-better/data:/data:ro
-      - /mnt/raid/home-server/minecraft-better-backup:/backups
+      - ${STORAGE_DIR}/minecraft-better-backup:/backups
     labels:
       - diun.enable=true

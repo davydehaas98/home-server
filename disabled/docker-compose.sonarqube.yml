@@ -48,9 +48,9 @@ services:
     - POSTGRES_PASSWORD=sonarqube
     - POSTGRES_DB=sonarqube
     volumes:
-    - /server/sonarqube-postgresql:/var/lib/postgresql
+    - ${STORAGE_DIR}/sonarqube-postgresql:/var/lib/postgresql
     # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
-    - /server/sonarqube-postgresql/data:/var/lib/postgresql/data
+    - ${STORAGE_DIR}/sonarqube-postgresql/data:/var/lib/postgresql/data
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true

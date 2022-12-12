@@ -12,7 +12,7 @@ services:
     - TZ=${TZ}
     - PASSWORD= #optional
     volumes:
-    - /mnt/raid/server/boinc:/config
+    - ${STORAGE_DIR}/boinc:/config
     ports:
     - 8080:8080
     devices:

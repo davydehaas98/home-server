@@ -11,10 +11,11 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TARGET_DIR: /opt/compose/home-server/
   PGID: 1000
   PUID: 1000
   TZ: Etc/UTC
+  STORAGE_DIR: /mnt/raid/home-server/
+  TARGET_DIR: /opt/compose/home-server/
   USER_DIR: /opt/appdata/home-server/
   DOMAIN_NAME: davydehaas.nl
 
@@ -51,6 +52,7 @@ jobs:
             echo 'PGID=${{ env.PGID }}' >> .env
             echo 'PUID=${{ env.PUID }}' >> .env
             echo 'TZ=${{ env.TZ }}' >> .env
+            echo 'STORAGE_DIR=${{ env.STORAGE_DIR }}' >> .env
             echo 'USER_DIR=${{ env.USER_DIR }}' >> .env
             echo 'DOMAIN_NAME=${{ env.DOMAIN_NAME }}' >> .env
 
