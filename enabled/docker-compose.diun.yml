@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # Docker update notifier
   diun:
-    image: crazymax/diun:4.22.0
+    image: crazymax/diun:4.24.0
     container_name: diun
     restart: unless-stopped
     environment:
