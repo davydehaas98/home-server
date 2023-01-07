@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
   pihole:
-    image: pihole/pihole:2022.11.2
+    image: pihole/pihole:2022.12.1
     container_name: pihole
     restart: unless-stopped
     environment:
