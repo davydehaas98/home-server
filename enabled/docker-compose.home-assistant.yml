@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   home-assistent:
-    image: homeassistant/home-assistant:2022.12.8
+    image: homeassistant/home-assistant:2023.1.1
     container_name: home-assistant
     restart: unless-stopped
     cpus: 1
