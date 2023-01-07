@@ -24,7 +24,7 @@ services:
     volumes:
     - ${USER_DIR}/screeps-mongo:/data/db
   redis:
-    image: redis:7.0.6
+    image: redis:7.0.7
     container_name: screeps-redis
     restart: unless-stopped
     volumes:
