@@ -59,7 +59,7 @@ services:
     - reverse-proxy
   # Container Advisor analyzes and exposes resource usage and performance data from running containers
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.46.0
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
     container_name: cadvisor
     restart: unless-stopped
     cpus: 1
