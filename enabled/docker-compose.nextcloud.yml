@@ -8,31 +8,31 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
-    - POSTGRES_USER=nextcloud
-    - POSTGRES_PASSWORD=nextcloud
-    - POSTGRES_DB=nextcloud
-    - POSTGRES_HOST=nexcloud-postgresql
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_HOST=nexcloud-postgresql
     volumes:
-    - ${USER_DIR}/nextcloud/config:/config
-    - ${USER_DIR}/nextcloud/data:/data
+      - ${USER_DIR}/nextcloud/config:/config
+      - ${USER_DIR}/nextcloud/data:/data
     expose:
-    - 80
-    - 443
+      - 80
+      - 443
     depends_on:
-    - nextcloud-postgresql
-    - nextcloud-redis
+      - nextcloud-postgresql
+      - nextcloud-redis
     labels:
-    - diun.enable=true
-    - traefik.enable=true
-    - traefik.http.routers.nextcloud.entrypoints=websecure
-    - traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DOMAIN_NAME}`,`cloud.${DOMAIN_NAME}`)
-    - traefik.http.routers.nextcloud.middlewares=chain-nextcloud@file
-    - traefik.http.services.nextcloud.loadbalancer.server.port=80
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.nextcloud.entrypoints=websecure
+      - traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DOMAIN_NAME}`,`cloud.${DOMAIN_NAME}`)
+      - traefik.http.routers.nextcloud.middlewares=chain-nextcloud@file
+      - traefik.http.services.nextcloud.loadbalancer.server.port=80
     networks:
-    - reverse-proxy
+      - reverse-proxy
   nextcloud-postgresql:
     image: postgres:15.1
     container_name: nextcloud-postgresql
@@ -40,23 +40,23 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
-    - POSTGRES_USER=nextcloud
-    - POSTGRES_PASSWORD=nextcloud
-    - POSTGRES_DB=nextcloud
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+      - POSTGRES_DB=nextcloud
     volumes:
-    - ${STORAGE_DIR}/nextcloud-postgresql:/var/lib/postgresql
-    # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
-    - /mnt/raid/server/nextcloud-postgresql/data:/var/lib/postgresql/data
+      - ${STORAGE_DIR}/nextcloud-postgresql:/var/lib/postgresql
+      # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
+      - /mnt/raid/server/nextcloud-postgresql/data:/var/lib/postgresql/data
     expose:
-    - 5432
+      - 5432
     shm_size: 256M
     labels:
-    - diun.enable=true
+      - diun.enable=true
     networks:
-    - reverse-proxy
+      - reverse-proxy
   nextcloud-redis:
     image: redis:7.0.8
     container_name: nextcloud-redis
@@ -64,15 +64,15 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
     volumes:
-    - /mnt/raid/server/nextcloud-redis:/data
+      - /mnt/raid/server/nextcloud-redis:/data
     labels:
-    - diun.enable=true
+      - diun.enable=true
     networks:
-    - reverse-proxy
+      - reverse-proxy
 networks:
   reverse-proxy:
     external: true

@@ -1,11 +1,18 @@
 global:
   resolve_timeout: 1m
-  slack_api_url: 'https://discord.com/api/webhooks/811203574519824395/j_R4y_XocCvHPtYpR4NXFzRC5alrlPkTpNzzgtqEd7-g9vHA--_LD9OmmhbGNJb8i-fK/slack'
+
+# The directory from which notification templates are read.
+templates:
+  - '/etc/alertmanager/template/*.tmpl'
 
 route:
-  receiver: 'slack-notifications'
+  group_by: ['alertname']
+  group_wait: 20s
+  group_interval: 5m
+  repeat_interval: 3h
+  receiver: discord_webhook
 
 receivers:
-- name: 'slack-notifications'
-  slack_configs:
-  - send_resolved: true
+  - name: 'discord_webhook'
+    discord_config:
+      - webhook_url: ${WEBHOOK_PROMETHEUS}

@@ -7,21 +7,21 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - PGID=${PGID}
-    - PUID=${PUID}
-    - TZ=${TZ}
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
     ports:
-    - 6831:6831/udp
-    - 16686:16686
+      - 6831:6831/udp
+      - 16686:16686
     labels:
-    - diun.enable=true
-    - traefik.enable=true
-    - traefik.http.routers.jaeger.entrypoints=websecure
-    - traefik.http.routers.jaeger.rule=Host(`jaeger.${DOMAIN_NAME}`)
-    - traefik.http.routers.jaeger.middlewares=chain-authelia@file
-    - traefik.http.services.jaeger.loadbalancer.server.port=16686
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.jaeger.entrypoints=websecure
+      - traefik.http.routers.jaeger.rule=Host(`jaeger.${DOMAIN_NAME}`)
+      - traefik.http.routers.jaeger.middlewares=chain-authelia@file
+      - traefik.http.services.jaeger.loadbalancer.server.port=16686
     networks:
-    - reverse-proxy
+      - reverse-proxy
 networks:
   reverse-proxy:
     external: true

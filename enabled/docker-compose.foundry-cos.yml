@@ -9,26 +9,26 @@ services:
     cpus: 1
     mem_limit: 1G
     environment:
-    - TZ=${TZ}
-    - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
-    - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
-    - FOUNDRY_ADMIN_KEY=admin
-    - CONTAINER_PRESERVE_CONFIG=true
-    - CONTAINER_CACHE=${USER_DIR}/foundry-cos/data/container_cache
+      - TZ=${TZ}
+      - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}
+      - FOUNDRY_PASSWORD=${FOUNDRY_PASSWORD}
+      - FOUNDRY_ADMIN_KEY=admin
+      - CONTAINER_PRESERVE_CONFIG=true
+      - CONTAINER_CACHE=${USER_DIR}/foundry-cos/data/container_cache
     volumes:
-    - ${USER_DIR}/foundry-cos:/data
-    - ${USER_DIR}/foundry-cos/resources/app:/home/foundry/resources/app
+      - ${USER_DIR}/foundry-cos:/data
+      - ${USER_DIR}/foundry-cos/resources/app:/home/foundry/resources/app
     expose:
-    - 30000
+      - 30000
     labels:
-    - diun.enable=true
-    - traefik.enable=true
-    - traefik.http.routers.foundry-cos.entrypoints=websecure
-    - traefik.http.routers.foundry-cos.rule=Host(`foundry-cos.${DOMAIN_NAME}`)
-    - traefik.http.routers.foundry-cos.middlewares=chain-no-auth@file
-    - traefik.http.services.foundry-cos.loadbalancer.server.port=30000
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.foundry-cos.entrypoints=websecure
+      - traefik.http.routers.foundry-cos.rule=Host(`foundry-cos.${DOMAIN_NAME}`)
+      - traefik.http.routers.foundry-cos.middlewares=chain-no-auth@file
+      - traefik.http.services.foundry-cos.loadbalancer.server.port=30000
     networks:
-    - reverse-proxy
+      - reverse-proxy
 networks:
   reverse-proxy:
     external: true
