@@ -95,18 +95,6 @@ services:
       - diun.enable=true
     networks:
       - reverse-proxy
-   alertmanager-discord:
-     image: benjojo/alertmanager-discord:latest
-     container_name: alertmanager-discord
-     environment:
-       - DISCORD_WEBHOOK=${WEBHOOK_PROMETHEUS}
-     expose:
-       - 9094
-     labels:
-       - diun.enable=true
-       - diun.watch_repo=true
-     networks:
-       - reverse-proxy
 networks:
   reverse-proxy:
     external: true
