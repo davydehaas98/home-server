@@ -99,7 +99,7 @@ services:
      image: benjojo/alertmanager-discord:latest
      container_name: alertmanager-discord
      environment:
-       - DISCORD_WEBHOOK=${WEBHOOK_ALERTMANAGER}
+       - DISCORD_WEBHOOK=${WEBHOOK_PROMETHEUS}
      expose:
        - 9094
      labels:
