@@ -1,7 +1,9 @@
 {
+  "baseBranches": [
+    "main"
+  ],
   "extends": [
-    "config:base",
-    ":rebaseStalePrs"
+    "config:base"
   ],
   "packageRules": [
     {
@@ -9,13 +11,11 @@
       "automerge": true,
       "automergeSchedule": "0 6 * * *"
     }
-  ]
-  "baseBranches": [
-    "main"
   ],
-  "prConcurrentLimit": 20
+  "dependencyDashboard": true
+  "prConcurrentLimit": 20,
+  "rebaseWhen": "behind-base-branch",
   "separateMinorPatch": true,
   "separateMajorMinor": true,
   "separateMultipleMajor": true,
-  "dependencyDashboard": true
 }
