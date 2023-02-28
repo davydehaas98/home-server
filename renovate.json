@@ -12,7 +12,7 @@
       "automergeSchedule": "0 6 * * *"
     }
   ],
-  "dependencyDashboard": true
+  "dependencyDashboard": true,
   "prConcurrentLimit": 20,
   "rebaseWhen": "behind-base-branch",
   "separateMinorPatch": true,
