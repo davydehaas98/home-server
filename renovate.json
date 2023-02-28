@@ -3,13 +3,15 @@
     "main"
   ],
   "extends": [
-    "config:base"
+    "config:base",
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "matchUpdateTypes": [ 
+        "patch", "pin", "digest",
+      ],
       "automerge": true,
-      "automergeSchedule": "0 6 * * *"
+      "automergeSchedule": "0 6 * * *",
     }
   ],
   "dependencyDashboard": true,
