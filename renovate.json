@@ -3,10 +3,19 @@
     "config:base",
     ":rebaseStalePrs"
   ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "automergeSchedule": "0 6 * * *"
+    }
+  ]
   "baseBranches": [
     "main"
   ],
+  "prConcurrentLimit": 20
   "separateMinorPatch": true,
   "separateMajorMinor": true,
-  "separateMultipleMajor": true
+  "separateMultipleMajor": true,
+  "dependencyDashboard": true
 }
