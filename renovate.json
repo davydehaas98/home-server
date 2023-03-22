@@ -1,24 +1,5 @@
 {
   "extends": [
-    "config:base",
-  ],
-  "baseBranches": [
-    "main",
-  ],
-  "timezone": "Europe/Amsterdam",
-  "schedule": "0 6 * * *",
-  "packageRules": [
-    {
-      "matchUpdateTypes": [ 
-        "patch", "pin", "digest",
-      ],
-      "automerge": true,
-    }
-  ],
-  "dependencyDashboard": true,
-  "prConcurrentLimit": 20,
-  "rebaseWhen": "behind-base-branch",
-  "separateMinorPatch": true,
-  "separateMajorMinor": true,
-  "separateMultipleMajor": true,
+    "github>davydehaas98/renovate-config",
+  ]
 }
