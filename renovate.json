@@ -5,13 +5,14 @@
   "baseBranches": [
     "main",
   ],
+  "timezone": "Europe/Amsterdam",
+  "schedule": "0 6 * * *",
   "packageRules": [
     {
       "matchUpdateTypes": [ 
         "patch", "pin", "digest",
       ],
       "automerge": true,
-      "automergeSchedule": "0 6 * * *",
     }
   ],
   "dependencyDashboard": true,
