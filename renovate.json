@@ -1,5 +1,5 @@
 {
   "extends": [
-    "github>davydehaas98/renovate-config",
+    "github>davydehaas98/renovate-config"
   ]
 }
