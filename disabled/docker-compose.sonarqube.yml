@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # Open source code quality and security tool
   sonarqube:
-    image: sonarqube:9.9.0-community
+    image: sonarqube:10.0.0-community
     container_name: sonarqube
     restart: unless-stopped
     environment:
