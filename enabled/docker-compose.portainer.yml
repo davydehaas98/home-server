@@ -3,7 +3,7 @@ services:
   # Web UI for Docker containers
   # Useful for managing all the containers on the server
   portainer:
-    image: portainer/portainer-ce:2.18.4
+    image: portainer/portainer-ce:2.19.1
     container_name: portainer
     restart: unless-stopped
     command: -H unix:///var/run/docker.sock
