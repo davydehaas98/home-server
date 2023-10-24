@@ -6,7 +6,7 @@ services:
     container_name: nextcloud
     restart: unless-stopped
     cpus: 0.1
-    mem_limit: 1G
+    mem_limit: 1024m
     environment:
       - PGID=${PGID}
       - PUID=${PUID}

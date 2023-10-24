@@ -5,8 +5,8 @@ services:
     image: prom/prometheus:v2.47.2
     container_name: prometheus
     restart: unless-stopped
-    cpus: 4
-    mem_limit: 8G
+    cpus: 8
+    mem_limit: 8192m
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
