@@ -8,8 +8,8 @@ services:
     image: itzg/minecraft-server:java8
     container_name: minecraft-skyfactory
     restart: unless-stopped
-    # cpus: 4
-    # mem_limit: 16G
+    cpus: 2
+    mem_limit: 24G
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
