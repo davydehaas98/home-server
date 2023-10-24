@@ -5,8 +5,8 @@ services:
     image: grafana/grafana:10.1.5
     container_name: grafana
     restart: unless-stopped
-    cpus: 1
-    mem_limit: 1G
+    cpus: 0.5
+    mem_limit: 512m
     environment:
       - PGID=${PGID}
       - PUID=${PUID}

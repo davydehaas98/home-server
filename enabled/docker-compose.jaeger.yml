@@ -4,8 +4,8 @@ services:
     image: jaegertracing/all-in-one:1.50.0
     container_name: jaeger
     restart: unless-stopped
-    cpus: 1
-    mem_limit: 1G
+    cpus: 0.1
+    mem_limit: 128m
     environment:
       - PGID=${PGID}
       - PUID=${PUID}

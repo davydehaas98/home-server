@@ -4,7 +4,7 @@ services:
     image: homeassistant/home-assistant:2023.10.3
     container_name: home-assistant
     restart: unless-stopped
-    cpus: 1
+    cpus: 0.1
     mem_limit: 1G
     environment:
       - PGID=${PGID}

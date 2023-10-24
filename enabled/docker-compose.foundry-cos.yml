@@ -7,7 +7,7 @@ services:
     container_name: foundry-cos
     restart: unless-stopped
     cpus: 1
-    mem_limit: 1G
+    mem_limit: 512m
     environment:
       - TZ=${TZ}
       - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}

@@ -5,7 +5,7 @@ services:
     image: linuxserver/nextcloud:27.1.2
     container_name: nextcloud
     restart: unless-stopped
-    cpus: 1
+    cpus: 0.1
     mem_limit: 1G
     environment:
       - PGID=${PGID}
@@ -61,8 +61,8 @@ services:
     image: redis:7.2.1
     container_name: nextcloud-redis
     restart: unless-stopped
-    cpus: 1
-    mem_limit: 1G
+    cpus: 0.1
+    mem_limit: 128m
     environment:
       - PGID=${PGID}
       - PUID=${PUID}

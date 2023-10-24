@@ -4,8 +4,8 @@ services:
     image: linuxserver/duplicati:latest
     container_name: duplicati
     restart: unless-stopped
-    cpus: 1
-    mem_limit: 1G
+    cpus: 0.1
+    mem_limit: 128m
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
