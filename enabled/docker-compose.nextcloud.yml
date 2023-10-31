@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # https://hub.docker.com/r/linuxserver/nextcloud/
   nextcloud:
-    image: linuxserver/nextcloud:27.1.2
+    image: linuxserver/nextcloud:27.1.3
     container_name: nextcloud
     restart: unless-stopped
     cpus: 0.1
