@@ -5,8 +5,8 @@ services:
     image: prom/prometheus:v2.48.1
     container_name: prometheus
     restart: unless-stopped
-    cpus: 8
-    mem_limit: 8192m
+    # cpus: 4
+    # mem_limit: 8192m
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -83,7 +83,7 @@ services:
     image: prom/alertmanager:v0.26.0
     container_name: alertmanager
     cpus: 1
-    mem_limit: 1G
+    mem_limit: 1024m
     command:
       - --config.file=/etc/alertmanager/config.yml
       - --storage.path=/alertmanager
