@@ -5,8 +5,8 @@ services:
     image: prom/prometheus:v2.48.1
     container_name: prometheus
     restart: unless-stopped
-    # cpus: 4
-    # mem_limit: 8192m
+    cpus: 4
+    mem_limit: 8192m
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -63,7 +63,7 @@ services:
     container_name: cadvisor
     restart: unless-stopped
     cpus: 1
-    mem_limit: 256m
+    mem_limit: 512m
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
