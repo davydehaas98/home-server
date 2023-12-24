@@ -6,7 +6,7 @@ services:
     container_name: diun
     restart: unless-stopped
     cpus: 1
-    mem_limit: 64m
+    mem_limit: 128m
     environment:
       - TZ=${TZ}
       - LOG_LEVEL=error

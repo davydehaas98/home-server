@@ -20,3 +20,9 @@ services:
       #- 27015:27015/tcp # RCON optional
     labels:
     - diun.enable=true
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default
