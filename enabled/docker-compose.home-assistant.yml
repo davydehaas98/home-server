@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   home-assistent:
-    image: homeassistant/home-assistant:2024.1.6
+    image: homeassistant/home-assistant:2024.2.5@sha256:02304f6c5cdb817185e3a6f6db50aad97cf7206027c2a45fbf72da2d00588f4c
     container_name: home-assistant
     restart: unless-stopped
     cpus: 0.1
