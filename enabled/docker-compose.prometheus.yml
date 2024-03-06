@@ -80,7 +80,7 @@ services:
   # It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. 
   # It also takes care of silencing and inhibition of alerts.
   alertmanager:
-    image: prom/alertmanager:v0.26.0
+    image: prom/alertmanager:v0.27.0@sha256:e13b6ed5cb929eeaee733479dce55e10eb3bc2e9c4586c705a4e8da41e5eacf5
     container_name: alertmanager
     cpus: 1
     mem_limit: 1024m
