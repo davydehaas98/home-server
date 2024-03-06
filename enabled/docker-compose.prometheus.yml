@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # Systems monitoring and alertingtoolkit
   prometheus:
-    image: prom/prometheus:v2.49.1
+    image: prom/prometheus:v2.50.1@sha256:bc1794e85c9e00293351b967efa267ce6af1c824ac875a9d0c7ac84700a8b53e
     container_name: prometheus
     restart: unless-stopped
     cpus: 4
