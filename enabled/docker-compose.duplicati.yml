@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   duplicati:
-    image: linuxserver/duplicati:latest@sha256:349e7b38f18e6309247c132922f2c3491a91edc1ef2d92e47b1dc9037763739c
+    image: linuxserver/duplicati:latest@sha256:d41473d82cbfb138dd3f6c59c5aee49c28b9607a9d0d6ae70a5a85459b085ef1
     container_name: duplicati
     restart: unless-stopped
     cpus: 0.1
