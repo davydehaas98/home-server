@@ -4,7 +4,7 @@ services:
   # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-ftb/data/mods
   # scp -r "C:\Users\Davy\Downloads\CustomModpack\config" root@davydehaas.nl:/server/minecraft-ftb/data/config
   minecraft-ftb:
-    image: itzg/minecraft-server:java8
+    image: itzg/minecraft-server:java8@sha256:9f340fc769d37cf1b3eb8fe99732cc6aab19906f85de170ec76253e1c2d5ad5e
     container_name: minecraft-ftb
     restart: unless-stopped
     cpus: 4
@@ -65,7 +65,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
   minecraft-ftb-backup:
-    image: itzg/mc-backup:latest
+    image: itzg/mc-backup:latest@sha256:46f84d595f0e6f964d900b5ededfe6be6031b4aedffe374b9a752a89a28f41af
     container_name: minecraft-ftb-backup
     restart: unless-stopped
     cpus: 1
