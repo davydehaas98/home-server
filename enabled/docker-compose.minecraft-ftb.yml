@@ -59,7 +59,7 @@ services:
     expose:
     - 25575
     ports:
-    - 25570:25565
+    - 25565:25565
     labels:
     - com.centurylinklabs.watchtower.enable=true
     - diun.enable=true
