@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   openttd-server:
     image: davydehaas98/openttd-server:1.10.3

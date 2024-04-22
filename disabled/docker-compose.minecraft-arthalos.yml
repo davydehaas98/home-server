@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # https://github.com/itzg/docker-minecraft-server
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\mods" root@davydehaas.nl:/server/minecraft-arthalos/data/mods

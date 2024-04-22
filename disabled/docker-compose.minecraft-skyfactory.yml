@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # https://github.com/itzg/docker-minecraft-server
   # scp -r ".\mods" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/mods

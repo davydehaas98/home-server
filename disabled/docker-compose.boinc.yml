@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   boinc:
     image: ghcr.io/linuxserver/boinc:7.20.5

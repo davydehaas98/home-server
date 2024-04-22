@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # sudo chown -R 472:472 ${USER_DIR}/grafana
   grafana:

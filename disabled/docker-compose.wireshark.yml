@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   wireshark:
     image: linuxserver/wireshark:latest

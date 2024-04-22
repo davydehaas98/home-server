@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # Open source automation server
   jenkins-server:

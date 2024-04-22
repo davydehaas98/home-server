@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   fah:
     image: ghcr.io/linuxserver/foldingathome:latest

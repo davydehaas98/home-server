@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   code-server:
     image: linuxserver/code-server:latest

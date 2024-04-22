@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # https://github.com/felddy/foundryvtt-docker
   foundry:

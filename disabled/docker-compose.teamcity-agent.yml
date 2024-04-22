@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # TeamCity build agent for executing jobs
   teamcity-agent:

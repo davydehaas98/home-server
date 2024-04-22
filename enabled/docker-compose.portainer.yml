@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # Web UI for Docker containers
   # Useful for managing all the containers on the server

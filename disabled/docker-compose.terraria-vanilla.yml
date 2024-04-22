@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   # Vanilla Terraria server without Tshock
   terraria-vanilla:
