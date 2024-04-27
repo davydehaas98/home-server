@@ -29,8 +29,8 @@ services:
     # - ICON=https://davydehaas.nl/assets/images/memoji.png
     - OVERRIDE_ICON=TRUE
     - DIFFICULTY=normal
-    - OPS=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99,SaltyPeper
-    - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
+    - OPS=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
+    - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99,SaltyPeper
     - MAX_PLAYERS=20
     - MAX_WORLD_SIZE=20000
     - ALLOW_NETHER=TRUE
