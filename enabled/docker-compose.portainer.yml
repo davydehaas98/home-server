@@ -2,7 +2,7 @@ services:
   # Web UI for Docker containers
   # Useful for managing all the containers on the server
   portainer:
-    image: portainer/portainer-ce:2.20.1@sha256:052939c971eb602a56665a6c6e2538dddb3ecdc6f0d0a5f324a4967a74d9c72c
+    image: portainer/portainer-ce:2.20.2@sha256:b41dfa26eb984ec68473f8314b05429358bd2b7aabdfe23b02f730be9e2f84b0
     container_name: portainer
     restart: unless-stopped
     command: -H unix:///var/run/docker.sock
