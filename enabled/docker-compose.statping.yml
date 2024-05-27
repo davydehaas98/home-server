@@ -22,7 +22,7 @@ services:
       - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.statping.entrypoints=websecure
-      - traefik.http.routers.statping.rule=Host(`statping.${DOMAIN_NAME}`,`status.${DOMAIN_NAME}`)
+      - traefik.http.routers.statping.rule=Host(`statping.${DOMAIN_NAME}`) || Host(`status.${DOMAIN_NAME}`)
       - traefik.http.routers.statping.middlewares=chain-authelia@file
       - traefik.http.services.statping.loadbalancer.server.port=8080
     networks:
