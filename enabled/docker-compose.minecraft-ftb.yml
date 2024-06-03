@@ -64,7 +64,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
   minecraft-ftb-backup:
-    image: itzg/mc-backup:latest@sha256:46f84d595f0e6f964d900b5ededfe6be6031b4aedffe374b9a752a89a28f41af
+    image: itzg/mc-backup:latest@sha256:ddad0a7db61dd793bb20db099735a2b1888aa9d9463337e1c7fcbe28cf1161cb
     container_name: minecraft-ftb-backup
     restart: unless-stopped
     cpus: 1
