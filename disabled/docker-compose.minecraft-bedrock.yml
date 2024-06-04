@@ -1,4 +1,3 @@
-version: '3'
 services:
   # Minecraft bedrock server
   # https://github.com/itzg/docker-minecraft-server/blob/master/README.md
