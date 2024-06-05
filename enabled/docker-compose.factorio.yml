@@ -1,7 +1,7 @@
 services:
   # https://hub.docker.com/r/factoriotools/factorio
   factorio:
-    image: factoriotools/factorio:1.1.107@sha256:06d3f1aa682c36d7075c41d0ddad02f8b2336fd44092682851519e464b329fce
+    image: factoriotools/factorio:1.1.107@sha256:f9f55817d9914426a1f2eab89295fcd9fdd4fc25d6ad5611f31affe728a2e6fb
     container_name: factorio
     restart: unless-stopped
     cpus: 1
