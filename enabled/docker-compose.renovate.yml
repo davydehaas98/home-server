@@ -3,8 +3,8 @@ services:
     image: renovate/renovate:37.431.5@sha256:cb06990175403e5dfb74c8906164a99b3f6b2df2f8d3fdc5ff6c78b432613319
     container_name: renovate
     restart: unless-stopped
-    cpus: 0.1
-    mem_limit: 128m
+    #cpus: 0.1
+    #mem_limit: 128m
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
