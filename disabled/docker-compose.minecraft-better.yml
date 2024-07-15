@@ -3,7 +3,7 @@ services:
   # scp -r ".\mods" davy@yggdrasil:/opt/appdata/home-server/minecraft-better/data/mods
   # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-better/data/config
   minecraft-better:
-    image: itzg/minecraft-server:java17
+    image: itzg/minecraft-server:java17@sha256:86ce95a0a5f6137d7321efec62dd8cce4b2c94dc1ee523831d11eddb6c8f855a
     container_name: minecraft-better
     restart: unless-stopped
     cpus: 4
@@ -63,7 +63,7 @@ services:
       - diun.watch_repo=true
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-better-backup:
-    image: itzg/mc-backup:latest
+    image: itzg/mc-backup:latest@sha256:be71e3ee878c2a104830f33d59db66fad65c93a55089f761b4bd5bb11a84ff99
     container_name: minecraft-better-backup
     restart: unless-stopped
     cpus: 1

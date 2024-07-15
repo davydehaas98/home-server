@@ -1,7 +1,7 @@
 services:
   # Docker container registry
   container-registry:
-    image: registry:2.8.1
+    image: registry:2.8.1@sha256:dbaa3e69f563fc146f3337eb9de422f74f6765bf0203c891ddfbd74a6f9b56eb
     container_name: container-registry
     restart: unless-stopped
     cpus: 1

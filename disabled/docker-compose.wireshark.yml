@@ -1,6 +1,6 @@
 services:
   wireshark:
-    image: linuxserver/wireshark:latest
+    image: linuxserver/wireshark:latest@sha256:367075c2040e57f68e4319cdc32906b9c379971c5559e0ed28e1a67a76c11b76
     container_name: wireshark
     restart: unless-stopped
     environment:

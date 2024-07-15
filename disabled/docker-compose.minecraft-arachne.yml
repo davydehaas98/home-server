@@ -3,7 +3,7 @@ services:
   # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-arachne/data/mods
   # scp -r "C:\Users\Davy\Downloads\CustomModpack\config" root@davydehaas.nl:/server/minecraft-arachne/data/config
   minecraft-arachne:
-    image: itzg/minecraft-server:java8
+    image: itzg/minecraft-server:java8@sha256:676122cbf0cfb6da9b9afbcc7508faaf2733300bd88c3296767ee05a3c01be0f
     container_name: minecraft-arachne
     restart: unless-stopped
     cpus: 4
@@ -64,7 +64,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
   minecraft-arachne-backup:
-    image: itzg/mc-backup:latest
+    image: itzg/mc-backup:latest@sha256:be71e3ee878c2a104830f33d59db66fad65c93a55089f761b4bd5bb11a84ff99
     container_name: minecraft-arachne-backup
     restart: unless-stopped
     cpus: 1

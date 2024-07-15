@@ -3,7 +3,7 @@ services:
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\mods" root@davydehaas.nl:/server/minecraft-arthalos/data/mods
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\config" root@davydehaas.nl:/server/minecraft-arthalos/data/config
   minecraft-arthalos:
-    image: itzg/minecraft-server:java8
+    image: itzg/minecraft-server:java8@sha256:676122cbf0cfb6da9b9afbcc7508faaf2733300bd88c3296767ee05a3c01be0f
     container_name: minecraft-arthalos
     restart: unless-stopped
     cpus: 4
@@ -63,7 +63,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
   minecraft-arthalos-backup:
-    image: itzg/mc-backup:latest
+    image: itzg/mc-backup:latest@sha256:be71e3ee878c2a104830f33d59db66fad65c93a55089f761b4bd5bb11a84ff99
     container_name: minecraft-arthalos-backup
     restart: unless-stopped
     cpus: 1
