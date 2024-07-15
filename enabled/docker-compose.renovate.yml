@@ -10,6 +10,7 @@ services:
       - PUID=${PUID}
       - TZ=${TZ}
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
+      - RENOVATE_EXECUTION_TIMEOUT=60
       - RENOVATE_AUTODISCOVER=false
       - RENOVATE_REPOSITORIES=davydehaas98/home-server
       - RENOVATE_PLATFORM=github
