@@ -1,7 +1,7 @@
 services:
   # Automation server by JetBrains
   teamcity-server:
-    image: jetbrains/teamcity-server:2022.10.3@sha256:6374f1ca9427ca5eec7d1766c72b68c051cdef210299d651c0454f2af406b6a5
+    image: jetbrains/teamcity-server:2024.03.3@sha256:5bbe27bbc0ccd9402ddd3f7be2dd5980cc33d102ee667f9e1cca4d60443a06ec
     container_name: teamcity-server
     restart: unless-stopped
     environment:
