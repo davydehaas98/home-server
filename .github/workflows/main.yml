@@ -55,6 +55,8 @@ jobs:
             echo 'FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}' >> .env
             echo 'FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}' >> .env
 
+            echo 'RENOVATE_TOKEN=${{ secrets.RENOVATE_TOKEN }}' >> .env
+
             echo 'WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}' >> .env
             echo 'WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}' >> .env
 
