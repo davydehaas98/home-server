@@ -11,7 +11,8 @@ services:
       - TZ=${TZ}
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
       - RENOVATE_AUTODISCOVER=false
-      - RENOVATE_REPOSITORIES=home-server
+      - RENOVATE_REPOSITORIES=davydehaas98/home-server
+      - RENOVATE_PLATFORM=github
       - LOG_LEVEL=DEBUG
     volumes:
       - ${USERDIR}/renovate/config.js:/usr/src/app/config.js
