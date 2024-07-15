@@ -12,6 +12,7 @@ services:
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
       - RENOVATE_EXECUTION_TIMEOUT=60
       - RENOVATE_AUTODISCOVER=false
+      - RENOVATE_GIT_AUTHOR=@renovate-bot
       - RENOVATE_REPOSITORIES=davydehaas98/home-server
       - RENOVATE_PLATFORM=github
       - LOG_LEVEL=DEBUG
