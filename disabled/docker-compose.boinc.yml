@@ -1,6 +1,6 @@
 services:
   boinc:
-    image: ghcr.io/linuxserver/boinc:7.20.5@sha256:96e45dc9c9aa37a468a3a2a7414a3dd486fccc57b43ae685024c92410ab9222b
+    image: ghcr.io/linuxserver/boinc:7.24.1@sha256:c4e91c6b652a1655c42d1efa1bf5865037276a299027a81fdc64cb5a1bcf7bb4
     container_name: boinc
     restart: unless-stopped
     cpus: 4
