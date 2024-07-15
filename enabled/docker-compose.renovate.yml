@@ -9,7 +9,7 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-      - GITHUB_COM_TOKEN=${RENOVATE_TOKEN}
+      - RENOVATE_TOKEN=${RENOVATE_TOKEN}
       - LOG_LEVEL=DEBUG
     volumes:
       - ${USERDIR}/renovate/config.js:/usr/src/app/config.js
