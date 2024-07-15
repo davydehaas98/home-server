@@ -9,8 +9,6 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-    volumes:
-      - ${USER_DIR}/renovate/config.json:/usr/src/app/config.json
     labels:
       - diun.enable=true
     networks:
