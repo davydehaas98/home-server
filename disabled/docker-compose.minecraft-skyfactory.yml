@@ -4,7 +4,7 @@ services:
   # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/config  
   # scp -r ".\SkyFactory-4_Server_4_2_4.zip" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data
   minecraft-skyfactory:
-    image: itzg/minecraft-server:java8
+    image: itzg/minecraft-server:java8@sha256:676122cbf0cfb6da9b9afbcc7508faaf2733300bd88c3296767ee05a3c01be0f
     container_name: minecraft-skyfactory
     restart: unless-stopped
     cpus: 2
@@ -85,7 +85,7 @@ services:
       - traefik.tcp.services.minecraft-skyfactory.loadbalancer.server.port=25568
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-skyfactory-backup:
-    image: itzg/mc-backup:latest
+    image: itzg/mc-backup:latest@sha256:be71e3ee878c2a104830f33d59db66fad65c93a55089f761b4bd5bb11a84ff99
     container_name: minecraft-skyfactory-backup
     restart: unless-stopped
     cpus: 0.1
