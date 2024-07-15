@@ -1,0 +1,21 @@
+services:
+  renovate:
+    image: renovate/renovate:35.14.4
+    container_name: renovate
+    restart: unless-stopped
+    cpus: 0.1
+    mem_limit: 128m
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    volumes:
+      - ${USER_DIR}/renovate/config.json:/usr/src/app/config.json
+    labels:
+      - diun.enable=true
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default
