@@ -9,6 +9,7 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
+      - GITHUB_COM_TOKEN=${RENOVATE_TOKEN}
     labels:
       - diun.enable=true
     networks:
