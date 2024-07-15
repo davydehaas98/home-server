@@ -1,7 +1,7 @@
 services:
   # TeamCity build agent for executing jobs
   teamcity-agent:
-    image: jetbrains/teamcity-agent:2022.10.3@sha256:0a619f1899628ac984962d5073e053828f71b36e5166daa10e2fc8c0902b8f18
+    image: jetbrains/teamcity-agent:2023.11.5@sha256:9ce1cb137f370ac7cadd0571f43b79ee1cbb476f289ffafb773b4a477e0ca58f
     container_name: teamcity-agent
     restart: unless-stopped
     environment:
