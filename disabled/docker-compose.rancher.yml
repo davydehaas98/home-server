@@ -1,6 +1,6 @@
 services:
   rancher-server:
-    image: rancher/rancher:v2.7.1@sha256:188ac186125ca1d4bef1e741568ec381eed1af4e9a876c7b15eabcc98325f2b0
+    image: rancher/rancher:v2.8.5@sha256:4c2eae327f2e41effdddd0d71a4840094ecd9bcbe1c74876e59d184be85779c9
     container_name: rancher
     restart: unless-stopped
     environment:
