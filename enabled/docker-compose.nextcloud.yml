@@ -1,7 +1,7 @@
 services:
   # https://hub.docker.com/r/linuxserver/nextcloud/
   nextcloud:
-    image: linuxserver/nextcloud:29.0.2@sha256:0939b4dbe2125036fcdb49ba0c5a380a36610cdbdd05683258801c72581d13a7
+    image: linuxserver/nextcloud:29.0.3@sha256:5ec67c96a93d037c65b29e3560545bd5ed634f47847c8d1652c8259f370ea325
     container_name: nextcloud
     restart: unless-stopped
     cpus: 0.1
