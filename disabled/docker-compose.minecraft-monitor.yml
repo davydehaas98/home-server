@@ -6,7 +6,7 @@ services:
     ports:
     - 8086:8086
   telegraf:
-    image: telegraf:1.26.1@sha256:8dc394b087fab312dccb94817be8718ffc8870f91f268a0444363287304bdb29
+    image: telegraf:1.26.3@sha256:17b23ec44097c8703b2f80aaae2dc49ae4eb25709cda892362b4f5b03c05cef3
     container_name: telegraf
     restart: unless-stopped
     volumes:
