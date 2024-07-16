@@ -1,7 +1,7 @@
 services:
   # Open source automation server
   jenkins-server:
-    image: jenkins/jenkins:2.387.2-lts-jdk11@sha256:aacbb5797dd210cc048038d9d3e5ab5795ea018fad843ffc1888c547911819ce
+    image: jenkins/jenkins:2.387.3-lts-jdk11@sha256:2f47c4f27526dcf8c76b269ff1b98d78df47d7c5370ea133fe371f156abf0f59
     container_name: jenkins-server
     restart: unless-stopped
     environment:
