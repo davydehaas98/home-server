@@ -1,6 +1,6 @@
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0@sha256:9fe38a4dc00ce101630e70a966aad1a195b56bceb779748e6c399ceeb45cffab
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1@sha256:bfd17b9ba48b247c7c93f10ed18350d289ebf4a06bc10b928357a1bb8f923e08
     container_name: elasticsearch
     restart: unless-stopped
     cpus: 1
