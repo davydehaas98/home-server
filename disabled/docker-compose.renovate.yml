@@ -9,7 +9,7 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
-      - RENOVATE_AUTODISCOVER=true
+      - RENOVATE_AUTODISCOVER=false
       - RENOVATE_AUTODISCOVER_FILTER=davydehaas98/*
       - RENOVATE_EXECUTION_TIMEOUT=1800
       - RENOVATE_PLATFORM=github
