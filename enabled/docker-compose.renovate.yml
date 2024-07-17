@@ -11,8 +11,7 @@ services:
       - TZ=${TZ}
       - RENOVATE_AUTODISCOVER=true
       - RENOVATE_AUTODISCOVER_FILTER=davydehaas98/*
-      - RENOVATE_EXECUTION_TIMEOUT=300
-      # - RENOVATE_GIT_AUTHOR=Renovate Bot <bot@renovateapp.com>
+      - RENOVATE_EXECUTION_TIMEOUT=1800
       - RENOVATE_PLATFORM=github
       # - RENOVATE_REPOSITORIES=davydehaas98/home-server,davydehaas98/media-server
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
