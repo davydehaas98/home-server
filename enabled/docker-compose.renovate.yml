@@ -3,14 +3,14 @@ services:
     image: renovate/renovate:37.431.5@sha256:cb06990175403e5dfb74c8906164a99b3f6b2df2f8d3fdc5ff6c78b432613319
     container_name: renovate
     restart: unless-stopped
-    #cpus: 0.1
-    #mem_limit: 128m
+    cpus: 1
+    mem_limit: 4096m
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
-      - RENOVATE_EXECUTION_TIMEOUT=60
+      - RENOVATE_EXECUTION_TIMEOUT=300
       - RENOVATE_AUTODISCOVER=false
       - RENOVATE_GIT_AUTHOR=Renovate Bot <bot@renovateapp.com>
       - RENOVATE_PLATFORM=github
