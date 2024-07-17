@@ -1,6 +1,6 @@
 services:
   duplicati:
-    image: linuxserver/duplicati:2.0.8
+    image: linuxserver/duplicati:2.0.8@sha256:e1e362dfb1691c0a49de89ed0cddf36c1188ad7f8a6328c23761cf5ef89ba7af
     container_name: duplicati
     restart: unless-stopped
     cpus: 0.1
