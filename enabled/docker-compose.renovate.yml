@@ -15,7 +15,7 @@ services:
       - RENOVATE_PLATFORM=github
       # - RENOVATE_REPOSITORIES=davydehaas98/home-server,davydehaas98/media-server
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
-      - RENOVATE_USERNAME=Renovate bot
+      - RENOVATE_USERNAME=renovate-bot-davydehaas98
       # - RENOVATE_GIT_AUTHOR=
       - LOG_LEVEL=DEBUG
     volumes:
