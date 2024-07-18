@@ -1,7 +1,7 @@
 services:
   # https://github.com/itzg/docker-minecraft-server
   minecraft-vanilla:
-    image: itzg/minecraft-server:java17@sha256:86ce95a0a5f6137d7321efec62dd8cce4b2c94dc1ee523831d11eddb6c8f855a
+    image: itzg/minecraft-server:java17@sha256:ee663eee66176d54fa72c18948bf051b2a078b9e6583921ca2b8f903b665020e
     container_name: minecraft-vanilla
     restart: unless-stopped
     cpus: 4
