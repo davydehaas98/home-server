@@ -1,7 +1,7 @@
 services:
   # Open source code quality and security tool
   sonarqube:
-    image: sonarqube:10.6.0-community@sha256:fa01590709908b59e390d16752bea791575d14d584ba5634872a8c3b1996df93
+    image: sonarqube:10.6.0-community@sha256:4ff9768976e37a459c83601bbe12fef5361b4558bb35a048cb470205a8d75000
     container_name: sonarqube
     restart: unless-stopped
     environment:
