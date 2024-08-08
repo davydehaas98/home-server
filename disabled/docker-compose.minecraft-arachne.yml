@@ -64,7 +64,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
   minecraft-arachne-backup:
-    image: itzg/mc-backup:latest@sha256:3b446e8bd756070a0db952c55a7d4de03de63befaf1fc4fcd7aa7246f9bcca3f
+    image: itzg/mc-backup:latest@sha256:86604dd0833b3074acfe179234c087991c95df42d6b412bd3551c9f4236b8d85
     container_name: minecraft-arachne-backup
     restart: unless-stopped
     cpus: 1
