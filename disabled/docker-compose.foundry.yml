@@ -1,7 +1,7 @@
 services:
   # https://github.com/felddy/foundryvtt-docker
   foundry:
-    image: felddy/foundryvtt:10.303.0@sha256:4cfcde3782a858751193bfb1ccd9c5e320ec18e16bb3758660a7f0f96b1481cb
+    image: felddy/foundryvtt:11.315.1@sha256:6a79a9fe9110d7447e7b36f534402884a2c88783dc59b7d25943a3c47145ab03
     container_name: foundry
     restart: unless-stopped
     cpus: 1
