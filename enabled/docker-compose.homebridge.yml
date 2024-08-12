@@ -1,6 +1,6 @@
 services:
   homebridge:
-    image: homebridge/homebridge:2024-06-20
+    image: homebridge/homebridge:2024-06-20@sha256:ee88edf71e1e65011922c189aeb6e249dce640558db4e54c41821b2e86c73c11
     container_name: homebridge
     restart: unless-stopped
     cpus: 0.1
