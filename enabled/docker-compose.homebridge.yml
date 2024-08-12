@@ -1,7 +1,7 @@
 services:
   homebridge:
     image: homebridge/homebridge:2024-06-20
-    container_name: home-kit
+    container_name: homebridge
     restart: unless-stopped
     cpus: 0.1
     mem_limit: 1024m
