@@ -13,6 +13,7 @@ services:
       - ${USER_DIR}/home-assistant/config:/config
     expose:
       - 8123
+      - 443
     ports:
       - "8123:8123"
     labels:
@@ -22,6 +23,8 @@ services:
       - traefik.http.routers.home-assistant.rule=Host(`home-assistant.${DOMAIN_NAME}`) || Host(`hass.${DOMAIN_NAME}`)
       - traefik.http.routers.home-assistant.middlewares=chain-no-auth@file
       - traefik.http.services.home-assistant.loadbalancer.server.port=8123
+    privileged: true
+    network_mode: host
     networks:
       - reverse-proxy
 networks:
