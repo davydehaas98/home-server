@@ -1,6 +1,6 @@
 services:
   homebridge:
-    image: homebridge/homebridge:2024.1.1
+    image: homebridge/homebridge:2024-06-20
     container_name: home-kit
     restart: unless-stopped
     cpus: 0.1
