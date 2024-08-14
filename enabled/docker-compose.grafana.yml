@@ -1,7 +1,7 @@
 services:
   # sudo chown -R 472:472 ${USER_DIR}/grafana
   grafana:
-    image: grafana/grafana:10.4.6@sha256:ffef0672f94b4a9141e3979011bbf3357e54df77492381faecc016cbfe170e00
+    image: grafana/grafana:10.4.7@sha256:578309639f1343b02883d7d4fc2b7f3783747a9f53e7b3ec34224e92eedb55ad
     container_name: grafana
     restart: unless-stopped
     cpus: 0.5
