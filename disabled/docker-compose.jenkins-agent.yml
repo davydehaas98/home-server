@@ -1,7 +1,7 @@
 services:
   # Jenkins Agent for executing jobs
   jenkins-agent:
-    image: jenkins/agent:2.346.2-lts-jdk11
+    image: jenkins/agent:2.346.2-lts-jdk21
     container_name: jenkins-slave
     restart: unless-stopped
     environment:
