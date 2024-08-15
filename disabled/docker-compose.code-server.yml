@@ -1,6 +1,6 @@
 services:
   code-server:
-    image: linuxserver/code-server:latest@sha256:ce5fc2b0c5956e3fac4bda7647707b2f979757f1baed62ad27af9782d4acc8ce
+    image: linuxserver/code-server:latest@sha256:5cdea3284e9263e1dc6abf374e4057c32840c4d5e02af2ca515499f7c1cc75bb
     container_name: code-server
     restart: unless-stopped
     cpus: 4
