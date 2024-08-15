@@ -3,7 +3,7 @@ services:
   # scp -r ".\mods" davy@yggdrasil:/opt/appdata/home-server/minecraft-better/data/mods
   # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-better/data/config
   minecraft-better:
-    image: itzg/minecraft-server:java17@sha256:436da9fed8f98e8a6915f3425e012e593b869d15f77560bd64bd45cf58a8f23c
+    image: itzg/minecraft-server:2024.6.0-java17
     container_name: minecraft-better
     restart: unless-stopped
     cpus: 4
