@@ -33,7 +33,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-postgresql:
-    image: postgres:16.3@sha256:d0f363f8366fbc3f52d172c6e76bc27151c3d643b870e1062b4e8bfe65baf609
+    image: postgres:16.4@sha256:c62fdb7fd6f519ef425c54760894c74e8d0cb04fbf4f7d3d79aafd86bae24edd
     container_name: nextcloud-postgresql
     restart: unless-stopped
     cpus: 1
