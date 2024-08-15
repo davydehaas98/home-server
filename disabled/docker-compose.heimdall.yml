@@ -1,6 +1,6 @@
 services:
   heimdall:
-    image: linuxserver/heimdall:latest@sha256:ab4ddf34aff777093941a9b5e6ac9af27a9c83969dae3364981a1cddfb75cc41
+    image: linuxserver/heimdall:2.6.1
     container_name: heimdall
     restart: unless-stopped
     environment:
