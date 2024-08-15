@@ -3,7 +3,7 @@ services:
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\mods" root@davydehaas.nl:/server/minecraft-arthalos/data/mods
   # scp -r "C:\Users\Davy\Downloads\arthalos-eternal-realm-v1.2.8_server\config" root@davydehaas.nl:/server/minecraft-arthalos/data/config
   minecraft-arthalos:
-    image: itzg/minecraft-server:2024.6.0-java8
+    image: itzg/minecraft-server:2024.7.2-java8@sha256:3830cbcc9cc4d1f28e572768effac7aa0557e65b26c859bf7db4fc22b0fe627a
     container_name: minecraft-arthalos
     restart: unless-stopped
     cpus: 4
