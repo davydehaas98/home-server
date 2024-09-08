@@ -4,7 +4,7 @@ services:
   # scp -r ".\config" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data/config  
   # scp -r ".\SkyFactory-4_Server_4_2_4.zip" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data
   minecraft-skyfactory:
-    image: itzg/minecraft-server:2024.7.2-java8@sha256:3830cbcc9cc4d1f28e572768effac7aa0557e65b26c859bf7db4fc22b0fe627a
+    image: itzg/minecraft-server:2024.9.0-java8@sha256:86337430ebc0b2c35770989505d54c82ab03ceea34d691be53b21d76998f214a
     container_name: minecraft-skyfactory
     restart: unless-stopped
     cpus: 2
