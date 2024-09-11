@@ -13,8 +13,8 @@ services:
       - "7777:7777/udp"
       - "7777:7777/tcp"
     environment:
-      - PGID=${PGID)
-      - PUID=${PUID)
+      - PGID=${PGID}
+      - PUID=${PUID}
       - TZ=${TZ}
       - MAXPLAYERS=4
       - ROOTLESS=false
