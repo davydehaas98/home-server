@@ -27,9 +27,3 @@ services:
       start_period: 120s
     labels:
       - diun.enable=true
-    deploy:
-      resources:
-        limits:
-          memory: 6G
-        reservations:
-          memory: 4G
