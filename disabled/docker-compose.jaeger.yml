@@ -1,6 +1,6 @@
 services:
   jaeger:
-    image: jaegertracing/all-in-one:1.60.0@sha256:4fd2d70fa347d6a47e79fcb06b1c177e6079f92cba88b083153d56263082135e
+    image: jaegertracing/all-in-one:1.61.0@sha256:85f1eb56e8ac24e53c031c6bcf7cdf6bff1dc4885b69e54605b932022054b612
     container_name: jaeger
     restart: unless-stopped
     cpus: 0.1
