@@ -1,0 +1,93 @@
+services:
+  # https://github.com/itzg/docker-minecraft-server
+  # scp -r "C:\Users\Davy\Downloads\CustomModpack\mods" root@davydehaas.nl:/server/minecraft-ftb/data/mods
+  # scp -r "C:\Users\Davy\Downloads\CustomModpack\config" root@davydehaas.nl:/server/minecraft-ftb/data/config
+  minecraft-ftb:
+    image: itzg/minecraft-server:2024.9.0-java8@sha256:86337430ebc0b2c35770989505d54c82ab03ceea34d691be53b21d76998f214a
+    container_name: minecraft-ftb
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    - EULA=TRUE
+    - VERSION=1.12.2
+    - ENABLE_RCON=TRUE
+    - RCON_PORT=25575
+    - RCON_PASSWORD=minecraft
+    - ENABLE_AUTOPAUSE=TRUE
+    - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
+    # - MAX_TICK_TIME=-1 # default 60000
+    - INIT_MEMORY=2G
+    - MAX_MEMORY=8G
+    - MEMORY=8192M
+    - TYPE=FORGE
+    # - FORGEVERSION=14.23.5.2854
+    - SERVER_NAME=ftb
+    # - ICON=https://davydehaas.nl/assets/images/memoji.png
+    - OVERRIDE_ICON=TRUE
+    - DIFFICULTY=normal
+    - OPS=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99
+    - WHITELIST=Capta1nCreeper,Lukam0s,Timooo0,DutchDog99,mcodenl,rekkmore,Mark0nius99,SaltyPeper
+    - MAX_PLAYERS=20
+    - MAX_WORLD_SIZE=20000
+    - ALLOW_NETHER=TRUE
+    - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
+    - ENABLE_COMMAND_BLOCK=TRUE
+    - FORCE_GAMEMODE=FALSE
+    - GENERATE_STRUCTURES=TRUE
+    - HARDCORE=FALSE
+    - SNOOPER_ENABLED=FALSE
+    - MAX_BUILD_HEIGHT=256
+    - SPAWN_ANIMALS=TRUE
+    - SPAWN_MONSTERS=TRUE
+    - SPAWN_NPCS=TRUE
+    - SPAWN_PROTECTION=16
+    - VIEW_DISTANCE=8
+    #- SEED=1785852800490497919
+    - MODE=survival
+    - MOTD=Davy's FTB Minecraft server.
+    - PVP=TRUE
+    - LEVEL_TYPE=BIOMESOP
+    - ONLINE_MODE=TRUE
+    - ALLOW_FLIGHT=TRUE
+    volumes:
+    - ${USER_DIR}/minecraft-ftb/data:/data
+    expose:
+    - 25575
+    ports:
+    - 25565:25565
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
+  minecraft-ftb-backup:
+    image: itzg/mc-backup:latest@sha256:86604dd0833b3074acfe179234c087991c95df42d6b412bd3551c9f4236b8d85
+    container_name: minecraft-ftb-backup
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    - BACKUP_METHOD=tar
+    - BACKUP_INTERVAL=12h
+    - DEST_DIR=/backups
+    - EXCLUDES=*.jar,cache,logs
+    - PAUSE_IF_NO_PLAYERS=true
+    - PRUNE_BACKUPS_DAYS=4
+    - INITIAL_DELAY=2m
+    - TAR_COMPRESS_METHOD=gzip
+    - RCON_HOST=minecraft-ftb
+    - RCON_PORT=25575
+    - RCON_PASSWORD=minecraft
+    volumes:
+    - ${USER_DIR}/minecraft-ftb/data:/data:ro
+    - ${STORAGE_DIR}/minecraft-ftb-backup:/backups
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true

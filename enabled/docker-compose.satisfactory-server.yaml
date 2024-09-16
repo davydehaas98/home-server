@@ -1,0 +1,29 @@
+services:
+  satisfactory-server:
+    image: wolveix/satisfactory-server:v1.8.5@sha256:8a968aa693716ca88da8680409c54f2f3daff71a76fb2ac2c990a782673a81e8
+    container_name: satisfactory-server
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 16G
+    volumes:
+      - ${USER_DIR}/satisfactory-server:/config
+    expose:
+      - 7777
+    ports:
+      - "7777:7777/udp"
+      - "7777:7777/tcp"
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+      - MAXPLAYERS=4
+      - ROOTLESS=false
+      - STEAMBETA=false
+    healthcheck:
+      test: bash /healthcheck.sh
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    labels:
+      - diun.enable=true

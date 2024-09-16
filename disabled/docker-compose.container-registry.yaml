@@ -1,0 +1,24 @@
+services:
+  # Docker container registry
+  container-registry:
+    image: registry:2.8.3@sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90
+    container_name: container-registry
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    - REGISTRY_AUTH=htpasswd
+    - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+    - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+    - REGISTRY_HTTP_ADDR=0.0.0.0:5000
+    volumes:
+    - ${STORAGE_DIR}/container-registry:/var/lib/registry
+    - ${USER_DIR}/container-registry/auth:/auth
+    expose:
+    - 5000
+    labels:
+    - diun.enable=true
+    - diun.watch_repo=true

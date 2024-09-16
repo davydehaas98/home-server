@@ -1,0 +1,40 @@
+services:
+  homebridge:
+    image: homebridge/homebridge:2024-06-20@sha256:ee88edf71e1e65011922c189aeb6e249dce640558db4e54c41821b2e86c73c11
+    container_name: homebridge
+    restart: unless-stopped
+    cpus: 0.1
+    mem_limit: 1024m
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    volumes:
+      - ${USER_DIR}/homebridge:/homebridge
+    expose:
+      - 8581
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '1'
+    healthcheck:
+      test: curl --fail localhost:8581 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 300s
+      timeout: 2s
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.homebridge.entrypoints=websecure
+      - traefik.http.routers.homebridge.rule=Host(`homebridge.${DOMAIN_NAME}`)
+      - traefik.http.routers.homebridge.middlewares=chain-no-auth@file
+      - traefik.http.services.homebridge.loadbalancer.server.port=8581
+    privileged: true
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
+    name: reverse-proxy_default

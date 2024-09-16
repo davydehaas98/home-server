@@ -1,0 +1,22 @@
+services:
+  fah:
+    image: lscr.io/linuxserver/foldingathome:8.3.18@sha256:7297d24f8421c40074d7d9b083a7f1b4624773b0b07ca656abce6cf04c17a04a
+    container_name: fah
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    volumes:
+    - ${USER_DIR}/fah:/config
+    expose:
+    - 7396
+    - 36330 #optional
+    devices:
+    - /dev/dri:/dev/dri #optional
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true

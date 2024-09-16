@@ -1,0 +1,90 @@
+services:
+  # https://github.com/itzg/docker-minecraft-server
+  minecraft-vanilla:
+    image: itzg/minecraft-server:2024.9.0-java17@sha256:5b8e4eaf16b3604463f808e687c1ab7516a398de8e97bd97ec24a54f331b3b13
+    container_name: minecraft-vanilla
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    - EULA=TRUE
+    - VERSION=1.18.1
+    - ENABLE_RCON=TRUE
+    - RCON_PORT=25575
+    - RCON_PASSWORD=minecraft
+    - ENABLE_AUTOPAUSE=TRUE
+    - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
+    # - MAX_TICK_TIME=-1 # default 60000
+    - INIT_MEMORY=2G
+    - MAX_MEMORY=8G
+    #- TYPE=FORGE
+    - SERVER_NAME=vanilla
+    - ICON=https://davydehaas.nl/assets/images/memoji.png
+    - OVERRIDE_ICON=TRUE
+    - DIFFICULTY=normal
+    - OPS=Capta1nCreeper
+    - WHITELIST=Capta1nCreeper,Draakjeiscool
+    - MAX_PLAYERS=20
+    - MAX_WORLD_SIZE=20000
+    - ALLOW_NETHER=TRUE
+    - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
+    - ENABLE_COMMAND_BLOCK=TRUE
+    - FORCE_GAMEMODE=FALSE
+    - GENERATE_STRUCTURES=TRUE
+    - HARDCORE=FALSE
+    - SNOOPER_ENABLED=FALSE
+    - MAX_BUILD_HEIGHT=256
+    - SPAWN_ANIMALS=TRUE
+    - SPAWN_MONSTERS=TRUE
+    - SPAWN_NPCS=TRUE
+    - SPAWN_PROTECTION=16
+    - VIEW_DISTANCE=8
+    #- SEED=1785852800490497919
+    - MODE=survival
+    - MOTD=Davy's Vanilla Minecraft server.
+    - PVP=TRUE
+    - LEVEL_TYPE=DEFAULT
+    - ONLINE_MODE=TRUE
+    - ALLOW_FLIGHT=FALSE
+    volumes:
+    - ${USER_DIR}/minecraft-vanilla/data:/data
+    expose:
+    - 25575
+    ports:
+    - 25565:25565
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true
+  # https://hub.docker.com/r/itzg/mc-backup
+  minecraft-vanilla-backup:
+    image: itzg/mc-backup:latest@sha256:86604dd0833b3074acfe179234c087991c95df42d6b412bd3551c9f4236b8d85
+    container_name: minecraft-vanilla-backup
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    - BACKUP_METHOD=tar
+    - BACKUP_INTERVAL=12h
+    - DEST_DIR=/backups
+    - EXCLUDES=*.jar,cache,logs
+    - PAUSE_IF_NO_PLAYERS=true
+    - PRUNE_BACKUPS_DAYS=4
+    - INITIAL_DELAY=5m
+    - TAR_COMPRESS_METHOD=gzip
+    - RCON_HOST=minecraft-vanilla
+    - RCON_PORT=25575
+    - RCON_PASSWORD=minecraft
+    volumes:
+    - ${USER_DIR}/minecraft-vanilla/data:/data:ro
+    - ${STORAGE_DIR}/minecraft-vanilla-backup:/backups
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true

@@ -1,0 +1,15 @@
+services:
+  rancher-server:
+    image: rancher/rancher:v2.9.1@sha256:c726b83e77eb26c4401e0636e7c55df3e96748c3efab46e97d5ab1dc31790438
+    container_name: rancher
+    restart: unless-stopped
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    expose:
+    - 6443
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true

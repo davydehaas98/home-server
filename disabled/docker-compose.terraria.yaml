@@ -1,0 +1,21 @@
+services:
+  # Terraria server with Tshock
+  terraria:
+    image: ryshe/terraria:tshock-1.4.3.6-4.5.17-3@sha256:69ca5315c5b0c6f6d8803865d8008aa2bf4e55cdfce4bc7912e6e583b5ba5925
+    container_name: terraria
+    restart: unless-stopped
+    command: --log-opt max-size=200k
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    volumes:
+    - ${USER_DIR}/terraria/world:/root/.local/share/Terraria/Worlds
+    - ${USER_DIR}/terraria/plugins:/plugins
+    - ${USER_DIR}/terraria/logs:/tshock/logs:ro
+    ports:
+    - 7777:7777
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true

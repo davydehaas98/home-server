@@ -1,0 +1,34 @@
+services:
+  # https://github.com/lloesche/valheim-server-docker
+  valheim:
+    image: lloesche/valheim-server:latest@sha256:b97da1038714e5156cf28d042422a1c5af41e03189572025e615bde61395c678
+    container_name: valheim
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    - SERVER_NAME=Davy's Valheim server
+    - WORLD_NAME=world-1
+    - SERVER_PASS=password
+    - SERVER_PUBLIC=false
+    - ADMINLIST_IDS=12345 12345
+    - VALHEIM_PLUS=false
+    - BEPINEX=false
+    - STATUS_HTTP=true
+    - SUPERVISOR_HTTP=true
+    - SUPERVISOR_HTTP_USER=admin
+    - SUPERVISOR_HTTP_PASS=password
+    volumes:
+    - ${USER_DIR}/valheim/config:/config
+    - ${USER_DIR}/valheim/data:/opt/valheim # The data of the server, downloaded from Steam.
+    expose:
+    - 2456
+    - 2457
+    - 9001
+    labels:
+    - com.centurylinklabs.watchtower.enable=true
+    - diun.enable=true
+    - diun.watch_repo=true

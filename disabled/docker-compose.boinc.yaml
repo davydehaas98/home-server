@@ -1,0 +1,21 @@
+services:
+  boinc:
+    image: lscr.io/linuxserver/boinc:8.0.4@sha256:ba2f8808564a764d37b5f8ab7fac04d1f4c8db31a41ce515c25456f608cd364e
+    container_name: boinc
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 8G
+    environment:
+    - PGID=${GID}
+    - PUID=${UID}
+    - TZ=${TZ}
+    - PASSWORD= #optional
+    volumes:
+    - ${STORAGE_DIR}/boinc:/config
+    ports:
+    - 8080:8080
+    devices:
+    - /dev/dri:/dev/dri #optional
+    labels:
+    - diun.enable=true
+    - diun.watch_repo=true
