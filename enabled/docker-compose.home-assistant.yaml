@@ -7,8 +7,6 @@ services:
     mem_limit: 1024m
     user: ${GID}:${UID}
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
     volumes:
       - ${USER_DIR}/home-assistant/config:/config

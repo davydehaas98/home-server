@@ -3,9 +3,8 @@ services:
     image: rancher/rancher:v2.9.1@sha256:c726b83e77eb26c4401e0636e7c55df3e96748c3efab46e97d5ab1dc31790438
     container_name: rancher
     restart: unless-stopped
+    user: ${UID}:${GID}
     environment:
-    - PGID=${GID}
-    - PUID=${UID}
     - TZ=${TZ}
     expose:
     - 6443

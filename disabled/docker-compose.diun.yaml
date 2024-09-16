@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 128m
+    user: ${UID}:${GID}
     environment:
       - TZ=${TZ}
       - LOG_LEVEL=error

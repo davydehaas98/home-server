@@ -4,10 +4,9 @@ services:
     image: ryshe/terraria:vanilla-1.4.3.6-4@sha256:d1b93d029d97f4ca5091a3f246274511d3cd68e24f430dcbbfbc316fc172ef68
     container_name: terraria-vanilla
     restart: unless-stopped
+    user: ${UID}:${GID}
     command: --log-opt max-size=200k
     environment:
-    - PGID=${GID}
-    - PUID=${UID}
     - TZ=${TZ}
     volumes:
     - ${USER_DIR}/terraria-vanilla/world:/root/.local/share/Terraria/Worlds

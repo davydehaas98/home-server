@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 1G
+    user: ${UID}:${GID}
     environment:
     - TZ=${TZ}
     - cluster.name=es-docker-cluster
@@ -31,9 +32,8 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 1G
+    user: ${UID}:${GID}
     environment:
-    - PGID=${GID}
-    - PUID=${UID}
     - TZ=${TZ}
     - SERVER_NAME=kibana.davydehaas.nl
     - ELASTICSEARCH_URL=http://elasticsearch:9200

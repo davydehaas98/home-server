@@ -4,9 +4,8 @@ services:
     image: sonarqube:10.6.0-community@sha256:4ff9768976e37a459c83601bbe12fef5361b4558bb35a048cb470205a8d75000
     container_name: sonarqube
     restart: unless-stopped
+    user: ${UID}:${GID}
     environment:
-    - PGID=${GID}
-    - PUID=${UID}
     - TZ=${TZ}
     - sonar.jbdc.username=sonarqube
     - sonar.jbdc.password=sonarqube
@@ -39,9 +38,8 @@ services:
     image: postgres:16.4@sha256:c62fdb7fd6f519ef425c54760894c74e8d0cb04fbf4f7d3d79aafd86bae24edd
     container_name: sonarqube-postgresql
     restart: unless-stopped
+    user: ${UID}:${GID}
     environment:
-    - PUID=${UID}
-    - PGID=${GID}
     - TZ=${TZ}
     - POSTGRES_USER=sonarqube
     - POSTGRES_PASSWORD=sonarqube

@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     cpus: 0.1
     mem_limit: 128m
+    user: ${UID}:${GID}
     environment:
       - PGID=${GID}
       - PUID=${UID}

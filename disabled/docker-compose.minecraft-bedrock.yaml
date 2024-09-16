@@ -5,9 +5,8 @@ services:
     image: itzg/minecraft-bedrock-server:2024.5.0@sha256:95d9bdd59ffbf48ed72e73f63ae561cdce04e3a90a2980d1ce548c523bc0f907
     container_name: minecraft-bedrock
     restart: unless-stopped
+    user: ${UID}:${GID}
     environment:
-    - PGID=${GID}
-    - PUID=${UID}
     - TZ=${TZ}
     - EULA=TRUE
     - VERSION=PREVIOUS # Useful when the mobile app is gradually being upgraded across devices

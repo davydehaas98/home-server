@@ -3,6 +3,7 @@ services:
     image: lscr.io/linuxserver/heimdall:2.6.1@sha256:a174994bed22c0627df697f45d9c75d4af4b2007242ef1543f704ae9af237c13
     container_name: heimdall
     restart: unless-stopped
+    user: ${UID}:${GID}
     environment:
     - PGID=${GID}
     - PUID=${UID}

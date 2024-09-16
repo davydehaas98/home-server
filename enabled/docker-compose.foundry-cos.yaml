@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 512m
+    user: ${UID}:${GID}
     environment:
       - TZ=${TZ}
       - FOUNDRY_USERNAME=${FOUNDRY_USERNAME}

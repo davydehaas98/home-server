@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     cpus: 0.1
     mem_limit: 1024m
+    user: ${UID}:${GID}
     environment:
       - PGID=${GID}
       - PUID=${UID}
@@ -37,9 +38,8 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 1G
+    user: ${UID}:${GID}
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
       - POSTGRES_USER=nextcloud
       - POSTGRES_PASSWORD=nextcloud
@@ -61,9 +61,8 @@ services:
     restart: unless-stopped
     cpus: 0.1
     mem_limit: 128m
+    user: ${UID}:${GID}
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
     volumes:
       - ${STORAGE_DIR}/nextcloud-redis:/data

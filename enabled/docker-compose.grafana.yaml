@@ -8,8 +8,6 @@ services:
     mem_limit: 512m
     user: ${GID}:${UID}
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
       - GF_USERS_ALLOW_SIGN_UP=false
     volumes:

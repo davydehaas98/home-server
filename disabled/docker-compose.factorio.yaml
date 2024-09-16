@@ -6,9 +6,8 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 1024m
+    user: ${UID}:${GID}
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
       #- LOAD_LATEST_SAVE=false
       #- SAVE_NAME=<savename>

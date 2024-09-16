@@ -8,9 +8,8 @@ services:
     command: -H unix:///var/run/docker.sock
     cpus: 0.1
     mem_limit: 128m
+    user: ${UID}:${GID}
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
     volumes:
       - ${USER_DIR}/portainer/data:/data

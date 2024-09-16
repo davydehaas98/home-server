@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     cpus: 4
     mem_limit: 16G
+    user: ${UID}:${GID}
     volumes:
       - ${USER_DIR}/satisfactory-server:/config
     expose:
@@ -13,8 +14,6 @@ services:
       - "7777:7777/udp"
       - "7777:7777/tcp"
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
       - MAXPLAYERS=4
       - ROOTLESS=false

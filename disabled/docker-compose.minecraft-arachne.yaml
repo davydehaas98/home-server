@@ -8,9 +8,8 @@ services:
     restart: unless-stopped
     cpus: 4
     mem_limit: 8G
+    user: ${UID}:${GID}
     environment:
-    - PGID=${GID}
-    - PUID=${UID}
     - TZ=${TZ}
     - EULA=TRUE
     - VERSION=1.12.2
@@ -69,9 +68,8 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 1G
+    user: ${UID}:${GID}
     environment:
-    - PGID=${GID}
-    - PUID=${UID}
     - TZ=${TZ}
     - BACKUP_METHOD=tar
     - BACKUP_INTERVAL=12h

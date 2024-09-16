@@ -5,9 +5,8 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 4096m
+    user: ${UID}:${GID}
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
       - TZ=${TZ}
       - RENOVATE_AUTODISCOVER=false
       - RENOVATE_AUTODISCOVER_FILTER=davydehaas98/*
