@@ -7,12 +7,12 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: false
 env:
-  GID: 1000
-  UID: 1000
+  GID: 1400
+  UID: 1400
   TZ: Etc/UTC
   STORAGE_DIR: /mnt/raid/home-server/
   TARGET_DIR: /opt/compose/home-server/
-  USER_DIR: /opt/appdata/home-server/
+  USER_DIR: /home/homelab/home-server/
   DOMAIN_NAME: davydehaas.nl
 jobs:
   deploy:
@@ -26,9 +26,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
-          #password: ${{ secrets.SSH_PASSWORD }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           source: enabled/docker-compose.*.yaml
           target: ${{ env.TARGET_DIR }}
           # strip /enabled
@@ -40,9 +38,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
-          #password: ${{ secrets.SSH_PASSWORD }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd ${{ env.TARGET_DIR }}
             
