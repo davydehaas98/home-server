@@ -60,7 +60,7 @@ services:
     - diun.watch_repo=true
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-vanilla-backup:
-    image: itzg/mc-backup:latest@sha256:86604dd0833b3074acfe179234c087991c95df42d6b412bd3551c9f4236b8d85
+    image: itzg/mc-backup:latest@sha256:793b0420bb4b80a54330ce648d60e9d0e71ba771f46e78329b9ccee82d051274
     container_name: minecraft-vanilla-backup
     restart: unless-stopped
     cpus: 1
