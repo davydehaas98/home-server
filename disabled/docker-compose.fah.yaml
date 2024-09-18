@@ -1,6 +1,6 @@
 services:
   fah:
-    image: lscr.io/linuxserver/foldingathome:8.3.18@sha256:7297d24f8421c40074d7d9b083a7f1b4624773b0b07ca656abce6cf04c17a04a
+    image: lscr.io/linuxserver/foldingathome:8.3.18@sha256:b142b05e56325e509e17947b4e270e0948ab55aea88ad53cf43bc82b9398227d
     container_name: fah
     restart: unless-stopped
     cpus: 4
