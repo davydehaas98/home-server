@@ -8,12 +8,12 @@ services:
     command: -H unix:///var/run/docker.sock
     cpus: 0.1
     mem_limit: 128m
-    user: ${UID}:${GID}
+    # user: ${UID}:${GID}
     environment:
       - TZ=${TZ}
     volumes:
       - ${USER_DIR}/portainer/data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     expose:
       - 9000
     # healthcheck:
