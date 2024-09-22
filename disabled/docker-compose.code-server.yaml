@@ -1,6 +1,6 @@
 services:
   code-server:
-    image: lscr.io/linuxserver/code-server:4.92.2@sha256:c42df5441d92b7f318c67a9b8f17194c064946faa77efed82e08a9fd29024bc1
+    image: lscr.io/linuxserver/code-server:4.92.2@sha256:ed78de482bd0903c69cfd8db8ae5702cb7da748f45aabefc94a20a3ba40d32fc
     container_name: code-server
     restart: unless-stopped
     cpus: 4
