@@ -1,6 +1,6 @@
 services:
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud:29.0.7@sha256:fb99b6df06eee4879c570dd1870ff7851bb52ecc6a022e53df3398a017634304
+    image: lscr.io/linuxserver/nextcloud:30.0.0@sha256:257d1792292c53467e2ac9333f477a7c62cc8d54769d10fc5c12c181f012f4c0
     container_name: nextcloud
     restart: unless-stopped
     cpus: 0.1
