@@ -2,7 +2,7 @@ services:
   # Minecraft bedrock server
   # https://github.com/itzg/docker-minecraft-server/blob/master/README.md
   minecraft-bedrock:
-    image: itzg/minecraft-bedrock-server:2024.5.0@sha256:95d9bdd59ffbf48ed72e73f63ae561cdce04e3a90a2980d1ce548c523bc0f907
+    image: itzg/minecraft-bedrock-server:2024.9.0@sha256:af43b05cbc7ca0859f73c3d77c9ca36c627b23daae00b15d59d3dae2d890f48c
     container_name: minecraft-bedrock
     restart: unless-stopped
     user: ${UID}:${GID}
