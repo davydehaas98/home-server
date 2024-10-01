@@ -3,7 +3,8 @@ services:
     image: homebridge/homebridge:2024-06-20@sha256:ee88edf71e1e65011922c189aeb6e249dce640558db4e54c41821b2e86c73c11
     container_name: homebridge
     restart: unless-stopped
-    cpus: 0.1
+    network_mode: host
+    cpus: 1
     mem_limit: 1024m
     user: ${UID}:${GID}
     environment:
@@ -30,7 +31,6 @@ services:
       - traefik.http.routers.homebridge.rule=Host(`homebridge.${DOMAIN_NAME}`)
       - traefik.http.routers.homebridge.middlewares=chain-no-auth@file
       - traefik.http.services.homebridge.loadbalancer.server.port=8581
-    privileged: true
     networks:
       - reverse-proxy
 networks:
