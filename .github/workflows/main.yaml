@@ -31,7 +31,7 @@ jobs:
           scp -o StrictHostKeyChecking=no -r ./enabled/docker-compose.*.yaml homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
       - name: SSH | Start containers
         run: |
-          ssh homelab@${{ secrets.SSH_HOST }} << EOF
+          ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << EOF
             cd ${{ env.TARGET_DIR }}
             
             echo 'UID=${{ env.UID }}' >> .env
