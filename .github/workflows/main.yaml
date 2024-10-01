@@ -26,17 +26,12 @@ jobs:
             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
             chmod 600 ~/.ssh/id_ed25519
             ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-      - name: SSH SCP | Copy files
+      - name: SCP | Copy files
         run: |
           scp -o StrictHostKeyChecking=no -r ./enabled/docker-compose.*.yaml homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
       - name: SSH | Start containers
-        uses: appleboy/ssh-action@029f5b4aeeeb58fdfe1410a5d17f967dacf36262 # v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
+        run: |
+          ssh homelab@${{ secrets.SSH_HOST }} "
             cd ${{ env.TARGET_DIR }}
             
             echo 'UID=${{ env.UID }}' >> .env
@@ -55,3 +50,4 @@ jobs:
             echo 'WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}' >> .env
 
             docker compose $(find docker-compose.*.yaml | sed -e 's/^/-f /') up -d --remove-orphans
+          "
