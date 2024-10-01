@@ -49,5 +49,5 @@ jobs:
             echo 'WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}' >> .env
             echo 'WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}' >> .env
 
-            for i in ./; do docker compose $i up -d; done --remove-orphans
+            for i in ./; do docker compose $i up -d --remove-orphans; done
           EOF
