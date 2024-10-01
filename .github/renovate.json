@@ -4,5 +4,8 @@
   ],
   "baseBranches": [
     "main"
+  ],
+  "ignorePaths": [
+    "disabled/**"
   ]
 }
