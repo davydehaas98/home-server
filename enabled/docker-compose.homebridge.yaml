@@ -6,7 +6,7 @@ services:
     network_mode: host
     cpus: 1
     mem_limit: 1024m
-    user: ${UID}:${GID}
+    # user: ${UID}:${GID}
     environment:
       - TZ=${TZ}
     volumes:
