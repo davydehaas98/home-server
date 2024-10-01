@@ -7,8 +7,8 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: false
 env:
-  GID: 1400
   UID: 1400
+  GID: 1400
   TZ: Etc/UTC
   STORAGE_DIR: /mnt/raid/home-server/
   TARGET_DIR: /home/homelab/compose/home-server/
@@ -42,8 +42,8 @@ jobs:
           script: |
             cd ${{ env.TARGET_DIR }}
             
-            echo 'GID=${{ env.GID }}' >> .env
             echo 'UID=${{ env.UID }}' >> .env
+            echo 'GID=${{ env.GID }}' >> .env
             echo 'TZ=${{ env.TZ }}' >> .env
             echo 'STORAGE_DIR=${{ env.STORAGE_DIR }}' >> .env
             echo 'USER_DIR=${{ env.USER_DIR }}' >> .env
