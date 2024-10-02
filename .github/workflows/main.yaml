@@ -50,6 +50,6 @@ jobs:
             echo 'WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}' >> .env
             for filename in ${{ env.TARGET_DIR }}/docker-compose.*.yaml; 
             do
-              docker compose -f $filename up;
+              "docker compose -f $filename up";
             done
           EOF
