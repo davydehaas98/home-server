@@ -1,6 +1,6 @@
 services:
   satisfactory-server:
-    image: wolveix/satisfactory-server:v1.8.5@sha256:8a968aa693716ca88da8680409c54f2f3daff71a76fb2ac2c990a782673a81e8
+    image: wolveix/satisfactory-server:v1.8.7@sha256:4b80789402dcf649cb8c0472dde366bc52290556d53a1fcf1fdf1358e8d4563c
     container_name: satisfactory-server
     restart: unless-stopped
     cpus: 4
