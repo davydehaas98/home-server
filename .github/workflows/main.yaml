@@ -51,9 +51,8 @@ jobs:
             
             for filename in docker-compose.*.yaml; 
             do
-              echo \$filename
-              args="\$args -f \$filename"
-              echo \$args
+              args="$args -f $filename"
             done
+              echo \$args
             docker compose -p home-server \$args up -d;
           EOF
