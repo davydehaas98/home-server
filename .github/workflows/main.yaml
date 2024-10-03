@@ -28,7 +28,7 @@ jobs:
             ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
       - name: SCP | Copy files
         run: |
-          scp -o StrictHostKeyChecking=no -r ./enabled/docker-compose.*.yaml homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
+          scp -r ./enabled/docker-compose.*.yaml ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
       - name: SSH | Start containers
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash <<EOF
@@ -49,10 +49,10 @@ jobs:
             echo 'WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}' >> .env
             echo 'WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}' >> .env
             
-            for filename in docker-compose.*.yaml; 
+            for filename in docker-compose.*.yaml;
             do
               args="\$args -f \$filename"
             done
-              echo \$args
+            
             docker compose -p home-server \$args up -d;
           EOF
