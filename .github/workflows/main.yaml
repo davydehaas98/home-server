@@ -49,7 +49,7 @@ jobs:
             echo 'WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}' >> .env
             echo 'WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}' >> .env
             
-            for filename in ${{ env.TARGET_DIR }}/docker-compose.*.yaml; 
+            for filename in docker-compose.*.yaml; 
             do
               echo \$filename
               flags = \$flags -f \$filename
