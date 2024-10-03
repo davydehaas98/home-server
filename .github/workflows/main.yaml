@@ -51,6 +51,9 @@ jobs:
             
             for filename in ${{ env.TARGET_DIR }}/docker-compose.*.yaml; 
             do
-              docker compose -p home-server -f \$filename up -d;
+              echo $filename
+              flags = $flags -f $filename
+              echo $flags
             done
+            docker compose -p home-server $flags up -d;
           EOF
