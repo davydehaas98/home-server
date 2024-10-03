@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     cpus: 4
     mem_limit: 16G
-    # user: ${UID}:${GID}
+    user: ${UID}:${GID}
     volumes:
       - ${USER_DIR}/satisfactory-server:/config
     expose:
@@ -16,7 +16,7 @@ services:
     environment:
       - TZ=${TZ}
       - MAXPLAYERS=4
-      - ROOTLESS=false
+      - ROOTLESS=true
       - STEAMBETA=false
     healthcheck:
       test: bash /healthcheck.sh
