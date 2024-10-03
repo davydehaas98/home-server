@@ -51,6 +51,6 @@ jobs:
             
             for filename in ${{ env.TARGET_DIR }}/docker-compose.*.yaml; 
             do
-              docker compose -f \$filename up -d;
+              docker compose -f \$filename up -d -p home-server;
             done
           EOF
