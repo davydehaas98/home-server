@@ -53,6 +53,5 @@ jobs:
             do
               args="\$args -f \$filename"
             done
-            
-            docker compose -p home-server \$args up -d;
+            docker compose -p home-server \$args up -d --remove-orphans;
           EOF
