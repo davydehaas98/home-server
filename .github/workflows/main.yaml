@@ -47,10 +47,4 @@ jobs:
               WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}
               WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}
             EOF
-            
-            for filename in docker-compose.*.yaml;
-            do
-              args="\$args -f \$filename"
-            done
-            docker compose \$args up -d --remove-orphans;
           ENDSSH
