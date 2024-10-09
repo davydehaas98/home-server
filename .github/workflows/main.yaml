@@ -34,7 +34,7 @@ jobs:
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash <<- ENDSSH
             cd ${{ env.TARGET_DIR }}
             
-            cat <<- EOF > .env 
+            cat <<-EOF > .env 
               UID=${{ env.UID }}
               GID=${{ env.GID }}
               TZ=${{ env.TZ }}
