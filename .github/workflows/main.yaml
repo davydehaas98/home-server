@@ -30,7 +30,7 @@ jobs:
         run: |
           scp -r ./enabled/docker-compose.*.yaml ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
       - name: SSH | Start containers
-        run: |
+        run: |-
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash <<- ENDSSH
             cd ${{ env.TARGET_DIR }}
             
