@@ -34,7 +34,7 @@ jobs:
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash <<EOF
             cd ${{ env.TARGET_DIR }}
             
-            cat > .env <<EOL
+            cat > .env <<EOF
             UID=${{ env.UID }}
             GID=${{ env.GID }}
             TZ=${{ env.TZ }}
@@ -46,7 +46,7 @@ jobs:
             RENOVATE_TOKEN=${{ secrets.RENOVATE_TOKEN }}
             WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}
             WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}
-            EOL
+            EOF
             
             for filename in docker-compose.*.yaml;
             do
