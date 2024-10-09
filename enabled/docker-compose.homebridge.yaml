@@ -1,6 +1,6 @@
 services:
   homebridge:
-    image: ghcr.io/homebridge/homebridge:2024-10-09
+    image: ghcr.io/homebridge/homebridge:2024-10-09@sha256:2e85d0d073a316eb6b344e3a82dbddb391bc5016c97fb4deb0bef6d77ed12107
     container_name: homebridge
     restart: unless-stopped
     network_mode: host
