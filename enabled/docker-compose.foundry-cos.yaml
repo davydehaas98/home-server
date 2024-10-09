@@ -20,6 +20,13 @@ services:
       - ${USER_DIR}/foundry-cos/resources/app:/home/foundry/resources/app
     expose:
       - 30000
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://foundry-cos:30000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
     labels:
       - diun.enable=true
       - traefik.enable=true

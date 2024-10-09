@@ -15,6 +15,13 @@ services:
       - 443
     ports:
       - "8123:8123"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://home-assistant:8123"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
     labels:
       - diun.enable=true
       - traefik.enable=true

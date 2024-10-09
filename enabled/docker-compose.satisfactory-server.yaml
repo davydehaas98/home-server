@@ -6,6 +6,11 @@ services:
     cpus: 4
     mem_limit: 16G
     user: ${UID}:${GID}
+    environment:
+      - TZ=${TZ}
+      - MAXPLAYERS=4
+      - ROOTLESS=true
+      - STEAMBETA=false
     volumes:
       - ${USER_DIR}/satisfactory-server:/config
     expose:
@@ -13,16 +18,12 @@ services:
     ports:
       - "7777:7777/udp"
       - "7777:7777/tcp"
-    environment:
-      - TZ=${TZ}
-      - MAXPLAYERS=4
-      - ROOTLESS=true
-      - STEAMBETA=false
     healthcheck:
-      test: bash /healthcheck.sh
+      test: ["CMD", "/healthcheck.sh"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 120s
+      start_interval: 5s
     labels:
       - diun.enable=true

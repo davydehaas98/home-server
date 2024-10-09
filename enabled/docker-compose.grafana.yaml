@@ -14,11 +14,13 @@ services:
       - ${USER_DIR}/grafana:/var/lib/grafana
     expose:
       - 3000
-      # healthcheck:
-      #   test: ["CMD-SHELL", "wget --quiet --tries=1 --spider https://grafana.${DOMAIN_NAME}/api/health || exit 1"]
-      #   interval: 60s
-      #   timeout: 10s
-      #   retries: 2
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://grafana:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
     labels:
       - diun.enable=true
       - traefik.enable=true
