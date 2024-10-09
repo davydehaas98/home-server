@@ -33,6 +33,7 @@ jobs:
         run: |-
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
           cd ${{ env.TARGET_DIR }}
+          
           cat <<- EOF > .env
             UID=${{ env.UID }}
             GID=${{ env.GID }}
@@ -46,4 +47,11 @@ jobs:
             WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}
             WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}
           EOF
+          
+          for filename in docker-compose.*.yaml;
+          do
+            args="\$args -f \$filename"
+          done
+          docker compose \$args up -d --remove-orphans;
+          
           ENDSSH
