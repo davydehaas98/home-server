@@ -34,20 +34,19 @@ jobs:
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash <<EOF
             cd ${{ env.TARGET_DIR }}
             
-            echo 'UID=${{ env.UID }}' >> .env
-            echo 'GID=${{ env.GID }}' >> .env
-            echo 'TZ=${{ env.TZ }}' >> .env
-            echo 'STORAGE_DIR=${{ env.STORAGE_DIR }}' >> .env
-            echo 'USER_DIR=${{ env.USER_DIR }}' >> .env
-            echo 'DOMAIN_NAME=${{ env.DOMAIN_NAME }}' >> .env
-
-            echo 'FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}' >> .env
-            echo 'FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}' >> .env
-
-            echo 'RENOVATE_TOKEN=${{ secrets.RENOVATE_TOKEN }}' >> .env
-
-            echo 'WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}' >> .env
-            echo 'WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}' >> .env
+            cat > .env <<EOL
+            UID=${{ env.UID }}
+            GID=${{ env.GID }}
+            TZ=${{ env.TZ }}
+            STORAGE_DIR=${{ env.STORAGE_DIR }}
+            USER_DIR=${{ env.USER_DIR }}
+            DOMAIN_NAME=${{ env.DOMAIN_NAME }}
+            FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}
+            FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}
+            RENOVATE_TOKEN=${{ secrets.RENOVATE_TOKEN }}
+            WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}
+            WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}
+            EOL
             
             for filename in docker-compose.*.yaml;
             do
