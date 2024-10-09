@@ -34,17 +34,17 @@ jobs:
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash <<- ENDSSH
             cd ${{ env.TARGET_DIR }}
             
-            cat <<-EOF > .env 
-              UID=${{ env.UID }}
-              GID=${{ env.GID }}
-              TZ=${{ env.TZ }}
-              STORAGE_DIR=${{ env.STORAGE_DIR }}
-              USER_DIR=${{ env.USER_DIR }}
-              DOMAIN_NAME=${{ env.DOMAIN_NAME }}
-              FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}
-              FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}
-              RENOVATE_TOKEN=${{ secrets.RENOVATE_TOKEN }}
-              WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}
-              WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}
+            cat > .env <<-EOF
+            UID=${{ env.UID }}
+            GID=${{ env.GID }}
+            TZ=${{ env.TZ }}
+            STORAGE_DIR=${{ env.STORAGE_DIR }}
+            USER_DIR=${{ env.USER_DIR }}
+            DOMAIN_NAME=${{ env.DOMAIN_NAME }}
+            FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}
+            FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}
+            RENOVATE_TOKEN=${{ secrets.RENOVATE_TOKEN }}
+            WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}
+            WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}
             EOF
           ENDSSH
