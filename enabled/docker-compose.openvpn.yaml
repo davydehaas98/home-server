@@ -8,9 +8,10 @@ services:
     user: ${GID}:${UID}
     cap_add:
       - NET_ADMIN
+    expose:
+      - 443
+      - 943
     ports:
-      - 943:943
-      - 443:443
       - 1194:1194/udp
     volumes:
       - ${USER_DIR}/openvpn:/openvpn
