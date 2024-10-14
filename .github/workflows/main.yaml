@@ -43,7 +43,6 @@ jobs:
           DOMAIN_NAME=${{ env.DOMAIN_NAME }}
           FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}
           FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}
-          RENOVATE_TOKEN=${{ secrets.RENOVATE_TOKEN }}
           WEBHOOK_DIUN=${{ secrets.WEBHOOK_DIUN }}
           WEBHOOK_PROMETHEUS=${{ secrets.WEBHOOK_PROMETHEUS }}
           EOF
