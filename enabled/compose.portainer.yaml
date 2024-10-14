@@ -34,3 +34,4 @@ services:
 networks:
   reverse-proxy:
     external: true
+    name: reverse-proxy
