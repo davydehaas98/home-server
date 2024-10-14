@@ -10,7 +10,6 @@ env:
   UID: 1400
   GID: 1400
   TZ: Etc/UTC
-  STORAGE_DIR: /mnt/raid/home-server
   TARGET_DIR: /home/homelab/compose/home-server
   USER_DIR: /home/homelab/home-server
   DOMAIN_NAME: davydehaas.nl
@@ -38,7 +37,6 @@ jobs:
           UID=${{ env.UID }}
           GID=${{ env.GID }}
           TZ=${{ env.TZ }}
-          STORAGE_DIR=${{ env.STORAGE_DIR }}
           USER_DIR=${{ env.USER_DIR }}
           DOMAIN_NAME=${{ env.DOMAIN_NAME }}
           FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}
