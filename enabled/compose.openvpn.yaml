@@ -1,6 +1,6 @@
 services:
   openvpn:
-    image: openvpn/openvpn-as:2.12.3-76774795-Ubuntu22
+    image: openvpn/openvpn-as:latest
     container_name: openvpn
     restart: unless-stopped
     cpus: 0.5
