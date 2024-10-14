@@ -27,3 +27,8 @@ services:
       start_interval: 5s
     labels:
       - diun.enable=true
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
