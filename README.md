@@ -1,2 +1,2 @@
 # home-server
-Home-server configuration using docker-compose files.
+My home server configuration using compose files.

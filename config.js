@@ -1,5 +1,5 @@
 module.exports = {
-  platform: 'github'
+  platform: 'github',
   repositories: [
     {
       repository: 'home-server'
