@@ -10,6 +10,8 @@ services:
       - NET_ADMIN
     environment:
       - TZ=${TZ}
+      - PUID=${UID}
+      - PGID=${PID}
     volumes:
       - ${USER_DIR}/wireguard/config:/config
     ports:
