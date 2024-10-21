@@ -11,7 +11,7 @@ services:
     environment:
       - TZ=${TZ}
       - PUID=${UID}
-      - PGID=${PID}
+      - PGID=${GID}
     volumes:
       - ${USER_DIR}/wireguard/config:/config
     ports:
