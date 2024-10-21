@@ -1,0 +1,23 @@
+services:
+  wireguard:
+    image: lscr.io/linuxserver/wireguard:1.0.20210914-r4-ls54
+    container_name: wireguard
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 512
+    user: ${GID}:${UID}
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${USER_DIR}/wireguard/config:/config
+    ports:
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    networks:
+      - reverse-proxy
+networks:
+  reverse-proxy:
+    external: true
