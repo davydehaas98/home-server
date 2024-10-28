@@ -21,7 +21,7 @@ services:
       - traefik.http.routers.openvpn.entrypoints=websecure
       - traefik.http.routers.openvpn.rule=Host(`openvpn.${DOMAIN_NAME}`)
       - traefik.http.routers.openvpn.middlewares=chain-authelia@file
-      - traefik.http.services.openvpn.loadbalancer.server.port=3000
+      - traefik.http.services.openvpn.loadbalancer.server.port=943
     networks:
       - reverse-proxy
 networks:
