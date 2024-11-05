@@ -1,3 +1,7 @@
+networks:
+  reverse-proxy:
+    external: true
+
 services:
   # Systems monitoring and alertingtoolkit
   prometheus:
@@ -98,7 +102,3 @@ services:
       - diun.enable=true
     networks:
       - reverse-proxy
-networks:
-  reverse-proxy:
-    external: true
-    name: reverse-proxy_default
