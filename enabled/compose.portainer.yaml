@@ -2,7 +2,7 @@ services:
   # Web UI for Docker containers
   # Useful for managing all the containers on the server
   portainer:
-    image: portainer/portainer-ce:2.23.0-alpine@sha256:97342cf8a821d64d59880bdede8f45ea9c869fea702dd56128a67d552dc632ab
+    image: portainer/portainer-ce:2.24.0-alpine@sha256:2297a780b44d4b219faa5380a849faad039c5388812b575e664d487c3f472a4a
     container_name: portainer
     restart: unless-stopped
     cpus: 0.1
