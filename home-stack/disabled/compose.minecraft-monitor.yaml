@@ -7,7 +7,7 @@ services:
     ports:
     - 8086:8086
   telegraf:
-    image: telegraf:1.32.0@sha256:e78339949933539597493f4035d7e42c2b0e4779ec4964fc5be5be04b2b583e0
+    image: telegraf:1.32.0@sha256:b415e563e59e725ebaaf564413583c3339cf98be03f49b68d26ccfcaaad26713
     container_name: telegraf
     restart: unless-stopped
     user: ${UID}:${GID}
