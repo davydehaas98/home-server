@@ -1,6 +1,6 @@
 services:
   renovate:
-    image: renovate/renovate:38.18.17@sha256:5479cad9e40702b579333206d71f17360ebeb1ab0a8909c8a877b22eb04059d8
+    image: renovate/renovate:38.142.7@sha256:8327ee1726142dcc504d349d84c0e7f41656867e598ea7669bb7cf23786610a2
     container_name: renovate
     restart: unless-stopped
     cpus: 1
