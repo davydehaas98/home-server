@@ -27,7 +27,7 @@ services:
     - diun.enable=true
     - diun.watch_repo=true
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.15.1@sha256:cc95727d74ddf69ee9aa278e60b676249350c7ae50b3707b194a6202aac767ad
+    image: docker.elastic.co/kibana/kibana:8.16.0@sha256:a1d0a0b439970d74b0a7678dbaaf245d3617865c4e4ec87f1da7673f9658a626
     container_name: kibana
     restart: unless-stopped
     cpus: 1
