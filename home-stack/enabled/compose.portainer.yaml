@@ -4,7 +4,7 @@ networks:
 
 services:
   portainer:
-    image: portainer/portainer-ce:2.24.0-alpine
+    image: portainer/portainer-ce:2.23.0-alpine
     container_name: portainer
     cpus: 0.1
     mem_limit: 128m
