@@ -3,7 +3,6 @@ networks:
     external: true
 
 services:
-  # Systems monitoring and alertingtoolkit
   prometheus:
     image: prom/prometheus:v3.0.0@sha256:3b9b2a15d376334da8c286d995777d3b9315aa666d2311170ada6059a517b74f
     container_name: prometheus
@@ -39,7 +38,6 @@ services:
       - traefik.http.services.prometheus.loadbalancer.server.port=9090
     networks:
       - reverse-proxy
-  # Prometheus Node Exporter exposes a wide variety of hardware- and kernel-related metrics.
   node-exporter:
     image: prom/node-exporter:v1.8.2@sha256:4032c6d5bfd752342c3e631c2f1de93ba6b86c41db6b167b9a35372c139e7706
     container_name: node-exporter
@@ -62,43 +60,40 @@ services:
       - diun.watch_repo=true
     networks:
       - reverse-proxy
-  # Container Advisor analyzes and exposes resource usage and performance data from running containers
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.51.0@sha256:771a65c7877817cd9bb4c2d9eecb9fd1ac56f370287617658c51a35061efa71a
     container_name: cadvisor
-    restart: unless-stopped
     cpus: 1
     mem_limit: 512m
     user: ${UID}:${GID}
+    restart: unless-stopped
+    expose:
+      - 8080
+    networks:
+      - reverse-proxy
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    expose:
-      - 8080
     labels:
       - diun.enable=true
       - diun.watch_repo=true
-    networks:
-      - reverse-proxy
-  # The Alertmanager handles alerts sent by client applications such as the Prometheus server. 
-  # It takes care of deduplicating, grouping, and routing them to the correct receiver integration such as email, PagerDuty, or OpsGenie. 
-  # It also takes care of silencing and inhibition of alerts.
   alertmanager:
     image: prom/alertmanager:v0.27.0@sha256:e13b6ed5cb929eeaee733479dce55e10eb3bc2e9c4586c705a4e8da41e5eacf5
     container_name: alertmanager
     cpus: 1
     mem_limit: 1024m
+    restart: unless-stopped
     user: ${UID}:${GID}
     command:
       - --config.file=/etc/alertmanager/config.yaml
       - --storage.path=/alertmanager
-    volumes:
-      - ${USER_DIR}/alertmanager/:/etc/alertmanager/
     expose:
       - 9093
-    labels:
-      - diun.enable=true
     networks:
       - reverse-proxy
+    volumes:
+      - ${USER_DIR}/alertmanager/:/etc/alertmanager/
+    labels:
+      - diun.enable=true

@@ -1,19 +1,20 @@
+networks:
+  reverse-proxy:
+    external: true
+
 services:
   # sudo chown -R 472:472 ${USER_DIR}/grafana
   grafana:
     image: grafana/grafana:11.3.0@sha256:a0f881232a6fb71a0554a47d0fe2203b6888fe77f4cefb7ea62bed7eb54e13c3
     container_name: grafana
-    restart: unless-stopped
     cpus: 0.5
     mem_limit: 512m
-    user: ${GID}:${UID}
-    environment:
-      - TZ=${TZ}
-      - GF_USERS_ALLOW_SIGN_UP=false
-    volumes:
-      - ${USER_DIR}/grafana:/var/lib/grafana
+    restart: unless-stopped
+    # user: ${GID}:${UID}
     expose:
       - 3000
+    networks:
+      - reverse-proxy
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://grafana:3000"]
       interval: 30s
@@ -21,6 +22,11 @@ services:
       retries: 3
       start_period: 10s
       start_interval: 5s
+    volumes:
+      - ${USER_DIR}/grafana:/var/lib/grafana
+    environment:
+      - TZ=${TZ}
+      - GF_USERS_ALLOW_SIGN_UP=false
     labels:
       - diun.enable=true
       - traefik.enable=true
@@ -28,8 +34,3 @@ services:
       - traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN_NAME}`)
       - traefik.http.routers.grafana.middlewares=chain-authelia@file
       - traefik.http.services.grafana.loadbalancer.server.port=3000
-    networks:
-      - reverse-proxy
-networks:
-  reverse-proxy:
-    external: true

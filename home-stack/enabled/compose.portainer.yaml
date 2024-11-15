@@ -1,20 +1,19 @@
+networks:
+  reverse-proxy:
+    external: true
+
 services:
-  # Web UI for Docker containers
-  # Useful for managing all the containers on the server
   portainer:
-    image: portainer/portainer-ce:2.24.0-alpine@sha256:34dfc8c500ff79a667e0607240842ef45bf37ca246f345c78d44202e3c939720
+    image: portainer/portainer-ce:2.24.0-alpine
     container_name: portainer
-    restart: unless-stopped
     cpus: 0.1
     mem_limit: 128m
+    restart: unless-stopped
     # user: ${UID}:${GID}
-    environment:
-      - TZ=${TZ}
-    volumes:
-      - ${USER_DIR}/portainer/data:/data
-      - /var/run/docker.sock:/var/run/docker.sock:ro
     expose:
       - 9000
+    networks:
+      - reverse-proxy
     healthcheck:
       test: ["CMD", "wget", "--spider", "portainer:9000"]
       interval: 30s
@@ -22,6 +21,11 @@ services:
       retries: 3
       start_period: 10s
       start_interval: 5s
+    volumes:
+      - ${USER_DIR}/portainer/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - TZ=${TZ}
     labels:
       - diun.enable=true
       - traefik.enable=true
@@ -29,8 +33,3 @@ services:
       - traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN_NAME}`)
       - traefik.http.routers.portainer.middlewares=chain-no-auth@file
       - traefik.http.services.portainer.loadbalancer.server.port=9000
-    networks:
-      - reverse-proxy
-networks:
-  reverse-proxy:
-    external: true

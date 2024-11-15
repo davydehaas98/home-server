@@ -3,7 +3,6 @@ networks:
     external: true
 
 services:
-  # Movie collection manager
   radarr:
     image: lscr.io/linuxserver/radarr:5.14.0@sha256:3329fbf778701cf53703b342b3a84da31caafec970ef9310be5723dd057666dc
     container_name: radarr

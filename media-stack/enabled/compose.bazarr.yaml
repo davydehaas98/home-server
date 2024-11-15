@@ -3,7 +3,6 @@ networks:
     external: true
 
 services:
-  # Subtitle collection manager
   bazarr:
     image: lscr.io/linuxserver/bazarr:1.4.5@sha256:7391c8c31a190aa676ca3596b54c243e731411cb8bdfef50f94f3e5c559520b8
     container_name: bazarr

@@ -1,24 +1,20 @@
+networks:
+  reverse-proxy:
+    external: true
+
 services:
   homebridge:
     image: ghcr.io/homebridge/homebridge:2024-10-09@sha256:2e85d0d073a316eb6b344e3a82dbddb391bc5016c97fb4deb0bef6d77ed12107
     container_name: homebridge
     restart: unless-stopped
-    network_mode: host
     cpus: 1
     mem_limit: 1024m
     # user: ${UID}:${GID}
-    environment:
-      - TZ=${TZ}
-      - ENABLE_AVAHI=1
-    volumes:
-      - ${USER_DIR}/homebridge:/homebridge
     expose:
       - 8581
-    logging:
-      driver: json-file
-      options:
-        max-size: 10m
-        max-file: 1
+    network_mode: host
+    networks:
+      - reverse-proxy
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://homebridge:8581"]
       interval: 30s
@@ -26,6 +22,16 @@ services:
       retries: 3
       start_period: 10s
       start_interval: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: 1
+    volumes:
+      - ${USER_DIR}/homebridge:/homebridge
+    environment:
+      - TZ=${TZ}
+      - ENABLE_AVAHI=1
     labels:
       - diun.enable=true
       - traefik.enable=true
@@ -33,9 +39,3 @@ services:
       - traefik.http.routers.homebridge.rule=Host(`homebridge.${DOMAIN_NAME}`)
       - traefik.http.routers.homebridge.middlewares=chain-no-auth@file
       - traefik.http.services.homebridge.loadbalancer.server.port=8581
-#     networks:
-#       - reverse-proxy
-# networks:
-#   reverse-proxy:
-#     external: true
-#     name: reverse-proxy_default

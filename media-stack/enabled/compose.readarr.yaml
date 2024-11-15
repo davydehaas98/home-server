@@ -3,7 +3,6 @@ networks:
     external: true
 
 services:
-  # Book collection manager
   readarr:
     image: lscr.io/linuxserver/readarr:0.4.3-develop@sha256:8cc3a892935076c45c829755ae9858b52d4cf5c648d046bb0a537d36dbb07cec
     container_name: readarr

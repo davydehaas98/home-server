@@ -3,7 +3,6 @@ networks:
     external: true
 
 services:
-  # Media stream service
   jellyfin:
     image: jellyfin/jellyfin:10.10.1@sha256:12b7aa2c8086e5566badc35370fab41b8cc8774dc3a80b07a1d6eb14f282b816
     container_name: jellyfin
