@@ -5,7 +5,7 @@ networks:
 services:
   # Monitor service for Plex
   tautulli:
-    image: lscr.io/linuxserver/tautulli:2.14.6@sha256:2d23cb2eef35f3c53007fd598d73c7c55e12ff7a9e60e3169f9e24b071d86c4b
+    image: lscr.io/linuxserver/tautulli:2021.12.16@sha256:9ba07aaddb8e2e7a6283eb8231dfd900f2d7dda38d70ec60fe7f5000a2dc0906
     container_name: tautulli
     cpus: 4
     mem_limit: 2048m
