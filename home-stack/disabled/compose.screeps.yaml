@@ -22,7 +22,7 @@ services:
     volumes:
     - ${USER_DIR}/screeps-mongo:/data/db
   redis:
-    image: redis:7.4.0@sha256:eadf354977d428e347d93046bb1a5569d701e8deb68f090215534a99dbcb23b9
+    image: redis:7.4.1@sha256:af0be38eb8e43191bae9b03fe5c928803930b6f93e2dde3a7ad1165c04b1ce22
     container_name: screeps-redis
     restart: unless-stopped
     volumes:
