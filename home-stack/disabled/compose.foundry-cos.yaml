@@ -2,7 +2,7 @@ services:
   # https://github.com/felddy/foundryvtt-docker
   # scp -r "C:\Users\Davy\Downloads\cos\world.json" root@davydehaas.nl:/server/foundry-cos/Data/worlds/cor-cos
   foundry-cos:
-    image: felddy/foundryvtt:10.303.0@sha256:4cfcde3782a858751193bfb1ccd9c5e320ec18e16bb3758660a7f0f96b1481cb
+    image: felddy/foundryvtt:13.332.0@sha256:3eeab8bbda9ce357f3e53293948b4e100d915a8d594481a6dbfaa4fc2ddb9e3d
     container_name: foundry-cos
     restart: unless-stopped
     cpus: 1
