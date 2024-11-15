@@ -16,7 +16,7 @@ services:
     ports:
     - 21025:21025/tcp
   mongo:
-    image: mongo:7.0.14@sha256:244afb1488edfc42aaa8ffa6153393bbc075d63516ab0305daa2eaa35241eb52
+    image: mongo:8.0.3@sha256:05aeeb4cb12639aa6244eaecbfff6745a40ac564af58e6e9f4ea1b178a1daf2b
     container_name: screeps-mongo
     restart: unless-stopped
     volumes:
