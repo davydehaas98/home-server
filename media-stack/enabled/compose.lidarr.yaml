@@ -1,0 +1,40 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  # Music collection manager
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:2.7.1@sha256:5c1f7a05944a1ceea242481801bbc5f908a4cc66e95ae0153b5a59f2d6224b17
+    container_name: lidarr
+    cpus: 0.1
+    mem_limit: 256m
+    restart: unless-stopped
+    expose:
+      - 8686
+    networks:
+      - reverse-proxy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://lidarr:8686/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    volumes:
+      - ${USER_DIR}/lidarr/config:/config
+      - /mnt/raid/media/downloads/completed:/downloads/completed
+      - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
+      - /mnt/raid/media/music:/music
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.lidarr.entrypoints=websecure
+      - traefik.http.routers.lidarr.tls=true
+      - traefik.http.routers.lidarr.rule=Host(`lidarr.${DOMAIN_NAME}`) || Host(`music.${DOMAIN_NAME}`)
+      - traefik.http.routers.lidarr.middlewares=chain-authelia@file
+      - traefik.http.services.lidarr.loadbalancer.server.port=8686

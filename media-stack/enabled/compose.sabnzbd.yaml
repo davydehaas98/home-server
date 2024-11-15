@@ -1,0 +1,41 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:4.3.3@sha256:d9eda6d9bd651886631f01f3ebb1ff33f9f5d04f0fd95be8fb22bc1a779a3d84
+    container_name: sabnzbd
+    cpus: 4
+    mem_limit: 4096m
+    restart: unless-stopped
+    expose:
+      # HTTP
+      - 8080
+      # HTTPS
+      - 9090
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://sabnzbd:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    volumes:
+      - ${USER_DIR}/sabnzbd:/config
+      - /mnt/raid/media/downloads/completed:/downloads/completed
+      - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.sabnzbd.entrypoints=websecure
+      - traefik.http.routers.sabnzbd.tls=true
+      - traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.${DOMAIN_NAME}`) || Host(`usenet.${DOMAIN_NAME}`)
+      - traefik.http.routers.sabnzbd.middlewares=chain-authelia@file
+      - traefik.http.services.sabnzbd.loadbalancer.server.port=8080
+    networks:
+      - reverse-proxy

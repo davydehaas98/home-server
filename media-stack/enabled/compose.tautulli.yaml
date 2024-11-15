@@ -1,0 +1,40 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  # Monitor service for Plex
+  tautulli:
+    image: lscr.io/linuxserver/tautulli:2.14.6@sha256:4836ba19262074a552681eecd4d071f94f895de0f1fa8eccdf1227f39124db03
+    container_name: tautulli
+    cpus: 4
+    mem_limit: 2048m
+    restart: unless-stopped
+    expose:
+      - 8181
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://tautulli:8181/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    volumes:
+      - ${USER_DIR}/plex/config:/plex/config:ro
+      - ${USER_DIR}/tautulli/config:/config
+      - ${USER_DIR}/tautulli/logs:/logs
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.tautulli.entrypoints=websecure
+      - traefik.http.routers.tautulli.tls=true
+      - traefik.http.routers.tautulli.rule=Host(`tautulli.${DOMAIN_NAME}`)
+      - traefik.http.routers.tautulli.middlewares=chain-no-auth@file
+      - traefik.http.services.tautulli.loadbalancer.server.port=8181
+    networks:
+      - reverse-proxy
+    

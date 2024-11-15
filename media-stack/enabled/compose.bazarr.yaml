@@ -1,0 +1,39 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  # Subtitle collection manager
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:1.4.5@sha256:7391c8c31a190aa676ca3596b54c243e731411cb8bdfef50f94f3e5c559520b8
+    container_name: bazarr
+    cpus: 0.1
+    mem_limit: 512m
+    restart: unless-stopped
+    expose:
+      - 6767
+    networks:
+      - reverse-proxy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://bazarr:6767/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    volumes:
+      - ${USER_DIR}/bazarr/config:/config
+      - /mnt/raid/media/movies:/movies
+      - /mnt/raid/media/series:/series
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.bazarr.entrypoints=websecure
+      - traefik.http.routers.bazarr.tls=true
+      - traefik.http.routers.bazarr.rule=Host(`bazarr.${DOMAIN_NAME}`) || Host(`subtitles.${DOMAIN_NAME}`)
+      - traefik.http.routers.bazarr.middlewares=chain-authelia@file
+      - traefik.http.services.bazarr.loadbalancer.server.port=6767

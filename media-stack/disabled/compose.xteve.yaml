@@ -1,0 +1,35 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  # M3U Proxy for Plex DVR and Emby Live TV
+  # https://github.com/xteve-project/xTeVe
+  # https://iptv-4k.co/shop/
+  # https://uw8k.cc/
+  xteve:
+    image: alturismo/xteve:latest
+    container_name: xteve
+    cpus: 1
+    mem_limit: 4096m
+    user: ${UID}:${GID}
+    restart: unless-stopped
+    ports:
+      - 34400:34400
+      - 1900:1900
+    networks:
+      - reverse-proxy
+    volumes:
+      - ${USER_DIR}/xteve/config:/config:rw
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.xteve.entrypoints=websecure
+      - traefik.http.routers.xteve.tls=true
+      - traefik.http.routers.xteve.rule=Host(`xteve.${DOMAIN_NAME}`,`dvr.${DOMAIN_NAME}`)
+      - traefik.http.routers.xteve.middlewares=chain-authelia@file
+      - traefik.http.services.xteve.loadbalancer.server.port=34400

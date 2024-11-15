@@ -1,0 +1,39 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  # Proxy Server for Sonarr and Radarr search queries
+  jackett:
+    image: lscr.io/linuxserver/jackett:0.20.3870
+    container_name: jackett
+    cpus: 1
+    mem_limit: 1G
+    restart: unless-stopped
+    expose:
+      - 9117
+    networks:
+      - reverse-proxy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://jackett:7878"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    volumes:
+      - ${USER_DIR}/jackett/config:/config/Jackett
+      - /mnt/raid/media/downloads/completed:/downloads/completed
+      - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.jackett.entrypoints=websecure
+      - traefik.http.routers.jackett.tls=true
+      - traefik.http.routers.jackett.rule=Host(`jackett.${DOMAIN_NAME}`)
+      - traefik.http.routers.jackett.middlewares=chain-no-auth@file
+      - traefik.http.services.jackett.loadbalancer.server.port=9117

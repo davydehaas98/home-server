@@ -1,0 +1,40 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  # TV series collection manager
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:4.0.10@sha256:c0281bd62b9a75f088fa4a09e5f8776431921883766633cb5e5fbd5a74761155
+    container_name: sonarr
+    cpus: 1
+    mem_limit: 4096m
+    restart: unless-stopped
+    expose:
+      - 8989
+    networks:
+      - reverse-proxy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://sonarr:8989/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    volumes:
+      - ${USER_DIR}/sonarr/config:/config
+      - /mnt/raid/media/downloads/completed:/downloads/completed
+      - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
+      - /mnt/raid/media/series:/series
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.sonarr.entrypoints=websecure
+      - traefik.http.routers.sonarr.tls=true
+      - traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN_NAME}`) || Host(`series.${DOMAIN_NAME}`)
+      - traefik.http.routers.sonarr.middlewares=chain-no-auth@file
+      - traefik.http.services.sonarr.loadbalancer.server.port=8989
