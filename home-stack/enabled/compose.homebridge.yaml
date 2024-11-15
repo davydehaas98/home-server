@@ -13,8 +13,8 @@ services:
     expose:
       - 8581
     network_mode: host
-    networks:
-      - reverse-proxy
+    # networks:
+    #   - reverse-proxy
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://homebridge:8581"]
       interval: 30s
