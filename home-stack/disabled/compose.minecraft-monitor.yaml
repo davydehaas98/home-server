@@ -1,6 +1,6 @@
 services:
   influxdb:
-    image: influxdb:2.7.10@sha256:b59864431e6f10a40aeb1040d4e11114c86ec8ec900926ee4d88cee8b89d20e7
+    image: influxdb:2.7.10@sha256:b4cd4b71bc8528c5cb6b9dede79091a234f9f565a3177b8fc4c2cc835bf5c142
     container_name: influxdb
     restart: unless-stopped
     user: ${UID}:${GID}
