@@ -1,6 +1,6 @@
 services:
   duplicati:
-    image: lscr.io/linuxserver/duplicati:2.0.8@sha256:de862009fc9a8c0e123d308decf3660b32c55d2f967de68527e521112600c9ff
+    image: lscr.io/linuxserver/duplicati:2.0.8@sha256:a7a5dec720bba8ea870ec8d4911d567db6be7d8d5186263578880d70be9567f5
     container_name: duplicati
     restart: unless-stopped
     cpus: 0.1
