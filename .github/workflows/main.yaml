@@ -1,10 +1,10 @@
-name: Main
+name: Deploy home-stack
 on:
   push:
     branches: 
       - main
-    # paths:
-    #   - 'homestack/**'
+    paths:
+      - 'home-stack/**'
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: false
