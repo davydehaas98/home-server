@@ -1,6 +1,6 @@
 services:
   home-assistent:
-    image: homeassistant/home-assistant:2024.11.1
+    image: homeassistant/home-assistant:2024.11.1@sha256:c01d6c54679a1934a2bd62a8e3289cd1439b45b82dc5b2dba01793368c500908
     container_name: home-assistant
     restart: unless-stopped
     cpus: 0.1
