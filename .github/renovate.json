@@ -6,6 +6,6 @@
     "main"
   ],
   "ignorePaths": [
-    "disabled/**"
+    "**/disabled/**"
   ]
 }
