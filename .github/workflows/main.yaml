@@ -3,6 +3,8 @@ on:
   push:
     branches: 
       - main
+    paths:
+      homestack/**
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: false
@@ -10,7 +12,7 @@ env:
   UID: 1400
   GID: 1400
   TZ: Etc/UTC
-  TARGET_DIR: /home/homelab/compose/home-server
+  TARGET_DIR: /home/homelab/compose/home-stack
   USER_DIR: /home/homelab/home-server
   DOMAIN_NAME: davydehaas.nl
 jobs:
@@ -27,7 +29,7 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
       - name: Copy 'compose.*.yaml' files
         run: |
-          rsync --delete --recursive ./enabled/ homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
+          rsync --delete --recursive ./home-stack/enabled/ homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
       - name: Start containers
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
