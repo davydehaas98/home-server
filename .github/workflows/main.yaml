@@ -3,8 +3,8 @@ on:
   push:
     branches: 
       - main
-    paths:
-      - 'homestack/**'
+    # paths:
+    #   - 'homestack/**'
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: false
