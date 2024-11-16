@@ -4,7 +4,7 @@ networks:
 
 services:
   transmission-openvpn:
-    image: haugene/transmission-openvpn:5.3@sha256:a128b49e29379895c5815e8bea3c1b5eb42ccbef4ab9e5109a72b97d8fd7c0b0
+    image: haugene/transmission-openvpn:5.3.1
     container_name: transmission-openvpn
     cpus: 6
     mem_limit: 4096m
@@ -29,7 +29,7 @@ services:
         max-size: 10m
     healthcheck:
       disable: true
-      test: ["CMD", "curl", "--fail", "http://transmission:9091"]
+      test: ["CMD", "curl", "--fail", "http://transmission-openvpn:9091"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -41,6 +41,8 @@ services:
       - /mnt/raid/media/downloads/completed:/downloads/completed
       - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
     environment:
+      - PUID=${UID}
+      - PGID=${GID}
       - CREATE_TUN_DEVICE=true
       - DROP_DEFAULT_ROUTE=true
       - HEALTH_CHECK_HOST=github.com
@@ -53,8 +55,11 @@ services:
       # NordVPN specific settings
       - OPENVPN_PROVIDER=NORDVPN
       - NORDVPN_COUNTRY=CH
-      - NORDVPN_CATEGORY=P2P
+      - NORDVPN_CATEGORY=legacy_p2p
       - NORDVPN_PROTOCOL=tcp
+      - TRANSMISSION_RPC_USERNAME=${TORRENT_USERNAME}
+      - TRANSMISSION_RPC_PASSWORD=${TORRENT_PASSWORD}
+      - TRANSMISSION_RPC_AUTHENTICATION_REQUIRED=true
       #- TRANSMISSION_DOWNLOAD_QUEUE_SIZE=10
       - TRANSMISSION_ENCRYPTION=2 # Require encrypted connections
       - TRANSMISSION_SPEED_LIMIT_UP=0
