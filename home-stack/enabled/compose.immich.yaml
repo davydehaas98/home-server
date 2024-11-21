@@ -28,6 +28,8 @@ services:
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
     #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
+    networks:
+      - reverse-proxy
     volumes:
       - ${USER_DIR}/immich/machine-learning/model-cache:/cache
     env_file:
@@ -39,6 +41,8 @@ services:
   immich-redis:
     container_name: immich-redis
     image: docker.io/redis:6.2-alpine@sha256:eaba718fecd1196d88533de7ba49bf903ad33664a92debb24660a922ecd9cac8
+    networks:
+      - reverse-proxy
     healthcheck:
       test: redis-cli ping || exit 1
     restart: unless-stopped
@@ -46,6 +50,8 @@ services:
   immich-postgres:
     container_name: immich-postgres
     image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    networks:
+      - reverse-proxy
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: username
