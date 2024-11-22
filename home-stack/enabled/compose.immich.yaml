@@ -16,6 +16,8 @@ services:
     depends_on:
       - immich-redis
       - immich-postgres
+    environment:
+      REDIS_HOSTNAME=immich-redis
     volumes:
       - ${USER_DIR}/immich/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -32,7 +34,8 @@ services:
   immich-machine-learning:
     container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
-    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    image: ghcr.io/immich-app/immich-machine-learning:v1.121.0
+    restart: unless-stopped
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
     #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
@@ -40,24 +43,24 @@ services:
       - reverse-proxy
     volumes:
       - ${USER_DIR}/immich/machine-learning/model-cache:/cache
-    env_file:
-      - .env
-    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
     healthcheck:
       disable: false
 
   immich-redis:
     container_name: immich-redis
     image: docker.io/redis:6.2.4-alpine
+    restart: unless-stopped
     networks:
       - reverse-proxy
     healthcheck:
       test: redis-cli ping || exit 1
-    restart: unless-stopped
 
   immich-postgres:
     container_name: immich-postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
+    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.4.0
+    restart: unless-stopped
     networks:
       - reverse-proxy
     environment:
@@ -89,4 +92,3 @@ services:
         '-c',
         'wal_compression=on',
       ]
-    restart: unless-stopped
