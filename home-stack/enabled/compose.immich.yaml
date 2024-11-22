@@ -54,6 +54,8 @@ services:
     restart: unless-stopped
     networks:
       - reverse-proxy
+    environment:
+      REDIS_HOSTNAME=immich-redis
     healthcheck:
       test: redis-cli ping || exit 1
 

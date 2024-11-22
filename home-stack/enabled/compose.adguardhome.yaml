@@ -1,0 +1,26 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  adguardhome:
+    image: adguard/adguardhome:v0.107.54
+    container_name: adguardhome
+    restart: unless-stopped
+    expose:
+      - 80
+      - 3000
+    ports:
+      - 53:53/tcp # plain dns over tcp
+      - 53:53/udp # plain dns over udp
+    volumes:
+      - ${USER_DIR}/adguardhome/conf:/opt/adguardhome/conf # app configuration
+      - ${USER_DIR}/adguardhome/work:/opt/adguardhome/work # app working directory
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.adguardhome.entrypoints=websecure
+      - traefik.http.routers.adguardhome.tls=true
+      - traefik.http.routers.adguardhome.rule=Host(`adguardhome.${DOMAIN_NAME}`)
+      - traefik.http.routers.adguardhome.middlewares=chain-no-auth@file
+      - traefik.http.services.adguardhome.loadbalancer.server.port=3000
