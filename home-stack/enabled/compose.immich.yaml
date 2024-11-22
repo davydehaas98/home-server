@@ -49,7 +49,7 @@ services:
 
   immich-redis:
     container_name: immich-redis
-    image: docker.io/redis:6.2.4-alpine
+    image: docker.io/redis:6.2.16-alpine@sha256:eaba718fecd1196d88533de7ba49bf903ad33664a92debb24660a922ecd9cac8
     restart: unless-stopped
     networks:
       - reverse-proxy
