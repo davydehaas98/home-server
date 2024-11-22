@@ -14,9 +14,10 @@ services:
     networks:
       - reverse-proxy
     depends_on:
-      - immich-redis
       - immich-postgres
+      - immich-redis
     environment:
+      - DB_HOSTNAME=immich-postgres
       - REDIS_HOSTNAME=immich-redis
     volumes:
       - ${USER_DIR}/immich/upload:/usr/src/app/upload
@@ -65,7 +66,7 @@ services:
     networks:
       - reverse-proxy
     environment:
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: immich
       POSTGRES_INITDB_ARGS: '--data-checksums'
