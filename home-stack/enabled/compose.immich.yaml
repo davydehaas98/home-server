@@ -17,7 +17,7 @@ services:
       - immich-redis
       - immich-postgres
     environment:
-      REDIS_HOSTNAME=immich-redis
+      - REDIS_HOSTNAME=immich-redis
     volumes:
       - ${USER_DIR}/immich/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -55,7 +55,7 @@ services:
     networks:
       - reverse-proxy
     environment:
-      REDIS_HOSTNAME=immich-redis
+      - REDIS_HOSTNAME=immich-redis
     healthcheck:
       test: redis-cli ping || exit 1
 
