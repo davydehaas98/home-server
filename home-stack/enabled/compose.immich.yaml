@@ -33,7 +33,7 @@ services:
   immich-machine-learning:
     container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
-    image: ghcr.io/immich-app/immich-machine-learning:v1.121.0
+    image: ghcr.io/immich-app/immich-machine-learning:v1.121.0@sha256:1b8494bb9fe2194f2dc72c4d6b0104e16718f50e8772d54ade57909770816ad1
     restart: unless-stopped
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
@@ -60,7 +60,7 @@ services:
 
   immich-postgres:
     container_name: immich-postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.4.0
+    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.4.0@sha256:9f723eeab4b0e344f6db8f66efbe6f801894394371994c603f6153766afe0f50
     restart: unless-stopped
     networks:
       - reverse-proxy
