@@ -61,7 +61,7 @@ services:
 
   immich-postgres:
     container_name: immich-postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.4.0
+    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.4.0
     restart: unless-stopped
     networks:
       - reverse-proxy
