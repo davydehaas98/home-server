@@ -29,7 +29,6 @@ services:
       - traefik.http.routers.immich.rule=Host(`immich.${DOMAIN_NAME}`)
       - traefik.http.routers.immich.middlewares=chain-no-auth@file
       - traefik.http.services.immich.loadbalancer.server.port=2283
-
   
   immich-machine-learning:
     container_name: immich-machine-learning

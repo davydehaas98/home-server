@@ -7,7 +7,7 @@ services:
     image: lscr.io/linuxserver/lidarr:2.7.1@sha256:5c1f7a05944a1ceea242481801bbc5f908a4cc66e95ae0153b5a59f2d6224b17
     container_name: lidarr
     cpus: 0.1
-    mem_limit: 256m
+    mem_limit: 512m
     restart: unless-stopped
     expose:
       - 8686

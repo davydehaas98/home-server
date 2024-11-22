@@ -7,7 +7,7 @@ services:
     image: homeassistant/home-assistant:2024.11.2@sha256:2ddb0ceb186218e6daf423ac26be2e5a6ce1cd430c6064fe82d1d3d70b95cf38
     container_name: home-assistant
     cpus: 0.1
-    mem_limit: 1024m
+    mem_limit: 2048m
     restart: unless-stopped
     user: ${GID}:${UID}
     privileged: true
