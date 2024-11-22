@@ -16,6 +16,7 @@ services:
     # networks:
     #   - reverse-proxy
     healthcheck:
+      disable: true
       test: ["CMD", "curl", "--fail", "http://homebridge:8581"]
       interval: 30s
       timeout: 10s
