@@ -8,11 +8,12 @@ services:
     container_name: adguardhome
     restart: unless-stopped
     expose:
+      - 53
       - 80
       - 3000
-    ports:
-      - 53:53/tcp # plain dns over tcp
-      - 53:53/udp # plain dns over udp
+    # ports:
+    #   - 53:53/tcp # plain dns over tcp
+    #   - 53:53/udp # plain dns over udp
     volumes:
       - ${USER_DIR}/adguardhome/conf:/opt/adguardhome/conf # app configuration
       - ${USER_DIR}/adguardhome/work:/opt/adguardhome/work # app working directory
