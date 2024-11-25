@@ -4,7 +4,7 @@ networks:
 
 services:
   readarr:
-    image: lscr.io/linuxserver/readarr:0.4.3-develop@sha256:8cc3a892935076c45c829755ae9858b52d4cf5c648d046bb0a537d36dbb07cec
+    image: lscr.io/linuxserver/readarr:0.4.4-develop@sha256:0db344553dfa103d6a55acc3533185df9fede1e2ef579700c8cb7cc1745cad38
     container_name: readarr
     cpus: 1
     mem_limit: 4096m
