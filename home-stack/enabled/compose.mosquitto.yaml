@@ -9,6 +9,7 @@ services:
     cpus: 0.5
     mem_limit: 512m
     restart: unless-stopped
+    user: ${GID}:${UID}
     expose:
       - 1883
       - 9001
@@ -16,7 +17,10 @@ services:
       - reverse-proxy
     # command: 'mosquitto -c /mosquitto-no-auth.conf'
     volumes:
-      - ${USER_DIR}/mosquitto/config:/mosquitto
+      - ${USER_DIR}/mosquitto/certs:/mosquitto/config/certs
+      - ${USER_DIR}/mosquitto/config:/mosquitto/config
+      - ${USER_DIR}/mosquitto/data:/mosquitto/data
+      - ${USER_DIR}/mosquitto/log:/mosquitto/log
     labels:
       - diun.enable=true
       - traefik.enable=true
