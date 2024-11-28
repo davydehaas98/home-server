@@ -1,0 +1,30 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  zigbee2mqtt:
+    image: ghcr.io/koenkk/zigbee2mqtt:1.40.0
+    container_name: zigbee2mqtt
+    cpus: 0.5
+    mem_limit: 512m
+    restart: unless-stopped
+    expose:
+      - 8080
+    networks:
+      - reverse-proxy
+    volumes:
+      - ${USER_DIR}/zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    environment:
+      - TZ=${TZ}
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.zigbee.entrypoints=websecure
+      - traefik.http.routers.zigbee.rule=Host(`zigbee.${DOMAIN_NAME}`)
+      - traefik.http.routers.zigbee.middlewares=chain-no-auth@file
+      - traefik.http.services.zigbee.loadbalancer.server.port=8080
+

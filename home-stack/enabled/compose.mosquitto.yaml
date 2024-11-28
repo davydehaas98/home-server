@@ -1,0 +1,26 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.0
+    container_name: mosquitto
+    cpus: 0.5
+    mem_limit: 512m
+    restart: unless-stopped
+    expose:
+      - 1883
+      - 9001
+    networks:
+      - reverse-proxy
+    command: 'mosquitto -c /mosquitto-no-auth.conf'
+    volumes:
+      - ${USER_DIR}/mosquitto/config:/mosquitto
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.mosquitto.entrypoints=websecure
+      - traefik.http.routers.mosquitto.rule=Host(`mosquitto.${DOMAIN_NAME}`)
+      - traefik.http.routers.mosquitto.middlewares=chain-no-auth@file
+      - traefik.http.services.mosquitto.loadbalancer.server.port=9001
