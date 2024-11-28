@@ -27,3 +27,12 @@ My home server configuration using compose files.
 | cadvisor | Container Advisor analyzes and exposes resource usage and performance data from running containers. |
 | node-exporter | Exports hardware and kernel metrics. |
 | alertmanager | Alert manager for Prometheus. |
+
+# Environment Variables
+```
+UID=1400
+GID=1400
+TZ=Etc/UTC
+USER_DIR=/home/homelab/home-server
+DOMAIN_NAME=davydehaas.nl
+```

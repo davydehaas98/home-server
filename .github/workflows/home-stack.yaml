@@ -9,9 +9,6 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: false
 env:
-  UID: 1400
-  GID: 1400
-  TZ: Etc/UTC
   TARGET_DIR: /home/homelab/compose/home-stack
   USER_DIR: /home/homelab/home-server
   DOMAIN_NAME: davydehaas.nl
@@ -21,29 +18,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
       - name: Copy 'compose.*.yaml' files
         run: |
-          rsync --delete --recursive ./home-stack/enabled/ homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
+          rsync --archive --verbose --delete --exclude '*.env' \
+            --recursive ./home-stack/enabled/ \
+            homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
+
       - name: Start containers
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
           cd ${{ env.TARGET_DIR }}
-          
-          cat << EOF > .env
-          UID=${{ env.UID }}
-          GID=${{ env.GID }}
-          TZ=${{ env.TZ }}
-          USER_DIR=${{ env.USER_DIR }}
-          DOMAIN_NAME=${{ env.DOMAIN_NAME }}
-          FOUNDRY_USERNAME=${{ secrets.FOUNDRY_USERNAME }}
-          FOUNDRY_PASSWORD=${{ secrets.FOUNDRY_PASSWORD }}
-          EOF
           
           for filename in compose.*.yaml; do
             args="\$args -f \$filename";
