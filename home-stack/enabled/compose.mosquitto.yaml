@@ -23,8 +23,3 @@ services:
       - ${USER_DIR}/mosquitto/log:/mosquitto/log
     labels:
       - diun.enable=true
-      - traefik.enable=true
-      - traefik.http.routers.mosquitto.entrypoints=websecure
-      - traefik.http.routers.mosquitto.rule=Host(`mosquitto.${DOMAIN_NAME}`)
-      - traefik.http.routers.mosquitto.middlewares=chain-no-auth@file
-      - traefik.http.services.mosquitto.loadbalancer.server.port=9001
