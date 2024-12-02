@@ -4,7 +4,7 @@ networks:
 
 services:
   mosquitto:
-    image: eclipse-mosquitto:2.0.0
+    image: eclipse-mosquitto:2.0.0@sha256:95872201247df1c105a86fb427867c94a6b004429ee4e25f6f53d53ad3d60cb0
     container_name: mosquitto
     cpus: 0.5
     mem_limit: 512m
