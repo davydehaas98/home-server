@@ -4,7 +4,7 @@ networks:
 
 services:
   zigbee2mqtt:
-    image: ghcr.io/koenkk/zigbee2mqtt:1.40.0@sha256:619566d36e377413a1a6263c19ea21cc1b034da37162aadfe41b10a9e9c9c6ee
+    image: ghcr.io/koenkk/zigbee2mqtt:1.40.2@sha256:40dca7e6ee816c84d6220daeb92cf20a52cf35446ec1d3ef0c2965a87cd397cc
     container_name: zigbee2mqtt
     cpus: 0.5
     mem_limit: 512m
