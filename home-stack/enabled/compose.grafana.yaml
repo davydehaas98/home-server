@@ -25,7 +25,7 @@ services:
     volumes:
       - ${USER_DIR}/grafana:/var/lib/grafana
     environment:
-      - TZ=${TZ:?error}
+      - TZ=${TZZ:?error}
       - GF_USERS_ALLOW_SIGN_UP=false
     labels:
       - diun.enable=true
