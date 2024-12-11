@@ -4,7 +4,7 @@ networks:
 
 services:
   mosquitto:
-    image: eclipse-mosquitto:2.0.20@sha256:8b396cec28cd5e8e1a3aba1d9abdbddd42c454c80f703e77c1bec56e152fa54e
+    image: docker.io/eclipse-mosquitto:2.0.20@sha256:8b396cec28cd5e8e1a3aba1d9abdbddd42c454c80f703e77c1bec56e152fa54e
     container_name: mosquitto
     cpus: 0.5
     mem_limit: 512m

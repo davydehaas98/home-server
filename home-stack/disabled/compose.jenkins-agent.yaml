@@ -1,7 +1,7 @@
 services:
   # Jenkins Agent for executing jobs
   jenkins-agent:
-    image: jenkins/agent:2.346.2-lts-jdk21
+    image: docker.io/jenkins/agent:2.346.2-lts-jdk21
     container_name: jenkins-slave
     restart: unless-stopped
     user: ${UID}:${GID}
@@ -20,7 +20,7 @@ services:
     - jenkins-server
   # Jenkins JNLP Agent Maven for executing jobs
   jenkins-agent-maven:
-    image: jenkins/jnlp-agent-maven:jdk11@sha256:3dedfb0d89844dbc3af01d8e7dc826b3de2f8b63c34ae2759b49cfc3a1dcd784
+    image: docker.io/jenkins/jnlp-agent-maven:jdk11@sha256:3dedfb0d89844dbc3af01d8e7dc826b3de2f8b63c34ae2759b49cfc3a1dcd784
     container_name: jenkins-slave
     restart: unless-stopped
     user: ${UID}:${GID}

@@ -1,6 +1,6 @@
 services:
   rancher-server:
-    image: rancher/rancher:v2.9.1@sha256:c726b83e77eb26c4401e0636e7c55df3e96748c3efab46e97d5ab1dc31790438
+    image: docker.io/rancher/rancher:v2.9.1@sha256:c726b83e77eb26c4401e0636e7c55df3e96748c3efab46e97d5ab1dc31790438
     container_name: rancher
     restart: unless-stopped
     user: ${UID}:${GID}

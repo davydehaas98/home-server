@@ -1,7 +1,7 @@
 services:
   # Open source code quality and security tool
   sonarqube:
-    image: sonarqube:10.6.0-community@sha256:72e9feec71242af83faf65f95a40d5e3bb2822a6c3b2cda8568790f3d31aecde
+    image: docker.io/sonarqube:10.6.0-community@sha256:72e9feec71242af83faf65f95a40d5e3bb2822a6c3b2cda8568790f3d31aecde
     container_name: sonarqube
     restart: unless-stopped
     user: ${UID}:${GID}
@@ -35,7 +35,7 @@ services:
 
   # PostgreSQL database used by SonarQube
   sonarqube-postgresql:
-    image: postgres:16.4@sha256:026d0ab72b34310b68160ab9299aa1add5544e4dc3243456b94f83cb1c119c2c
+    image: docker.io/postgres:16.4@sha256:026d0ab72b34310b68160ab9299aa1add5544e4dc3243456b94f83cb1c119c2c
     container_name: sonarqube-postgresql
     restart: unless-stopped
     user: ${UID}:${GID}

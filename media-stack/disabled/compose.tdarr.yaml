@@ -4,7 +4,7 @@ networks:
 
 services:
   tdarr:
-    image: haveagitgat/tdarr:2.17.01
+    image: docker.io/haveagitgat/tdarr:2.17.01
     container_name: tdarr
     cpus: 0.1
     mem_limit: 2048m
@@ -39,7 +39,7 @@ services:
       - traefik.http.routers.tdarr.middlewares=chain-authelia@file
       - traefik.http.services.tdarr.loadbalancer.server.port=8265
   tdarr-node:
-    image: haveagitgat/tdarr_node:2.17.01
+    image: docker.io/haveagitgat/tdarr_node:2.17.01
     container_name: tdarr-node
     cpus: 6
     mem_limit: 8192m

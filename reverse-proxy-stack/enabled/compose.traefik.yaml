@@ -5,7 +5,7 @@ networks:
 
 services:
   traefik:
-    image: traefik:v3.2.2@sha256:990bbdb0a9174b0d441317a63188e41c63795380db42b36ed920543e27ce04c9
+    image: docker.io/traefik:v3.2.2@sha256:990bbdb0a9174b0d441317a63188e41c63795380db42b36ed920543e27ce04c9
     container_name: traefik
     restart: unless-stopped
     cpus: 2

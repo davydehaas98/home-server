@@ -1,6 +1,6 @@
 services:
   openttd-server:
-    image: davydehaas98/openttd-server:1.10.3@sha256:e20b18bc6a22b80ab154943748be0ffb5af1f89f5a705bbf907d16dfa58acb29
+    image: ghcr.io/davydehaas98/openttd-server:1.10.3@sha256:e20b18bc6a22b80ab154943748be0ffb5af1f89f5a705bbf907d16dfa58acb29
     container_name: openttd-server
     restart: unless-stopped
     cpus: 1

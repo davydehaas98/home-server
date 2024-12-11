@@ -4,7 +4,7 @@ networks:
     
 services:
   home-assistent:
-    image: homeassistant/home-assistant:2024.12.2@sha256:b38999b991695f6595549155bca2c5c74729041b06c25b0407102d733cc86f66
+    image: docker.io/homeassistant/home-assistant:2024.12.2@sha256:b38999b991695f6595549155bca2c5c74729041b06c25b0407102d733cc86f66
     container_name: home-assistant
     cpus: 0.1
     mem_limit: 2048m

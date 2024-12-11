@@ -1,7 +1,7 @@
 services:
   # Terraria server with Tshock
   terraria:
-    image: ryshe/terraria:tshock-1.4.3.6-4.5.17-3@sha256:69ca5315c5b0c6f6d8803865d8008aa2bf4e55cdfce4bc7912e6e583b5ba5925
+    image: docker.io/ryshe/terraria:tshock-1.4.3.6-4.5.17-3@sha256:69ca5315c5b0c6f6d8803865d8008aa2bf4e55cdfce4bc7912e6e583b5ba5925
     container_name: terraria
     restart: unless-stopped
     user: ${UID}:${GID}
