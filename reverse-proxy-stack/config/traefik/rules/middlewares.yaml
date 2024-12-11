@@ -1,0 +1,80 @@
+http:
+  middlewares:
+    # --- AUTHENTICATION --- 
+    basic-auth:
+      basicAuth:
+        realm: Traefik2 Basic Auth
+        usersFile: /shared/.htpasswd
+    authelia:
+      forwardAuth:
+        address: http://authelia:9091/api/verify?rd=https://authelia.davydehaas.nl/
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+          - Remote-Email
+    oauth:
+      forwardAuth:
+        address: http://oauth:4181
+        trustForwardHeader: true
+        authResponseHeaders:
+          - X-Forwarded-User
+    # --- SETTINGS ---
+    buffering:
+      buffering:
+        retryExpression: "IsNetworkError() && Attempts() < 2"
+        maxRequestBodyBytes: 2000000
+        memRequestBodyBytes: 2000000
+        maxResponseBodyBytes: 2000000
+        memResponseBodyBytes: 2000000
+    circuit-breaker:
+      circuitBreaker:
+        expression: "LatencyAtQuantileMS(50.0) > 100"
+    compress:
+      compress:
+        minResponseBodyBytes: 1024
+        excludedContentTypes:
+          - text/event-stream
+    rate-limit:
+      rateLimit:
+        average: 250
+        period: 1m
+        burst: 100
+    retry:
+      retry:
+        attempts: 4
+        initialInterval: 100ms
+    # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#
+    nextcloud:
+      redirectRegex:
+        permanent: true
+        regex: "https://(.*)/.well-known/(card|cal)dav"
+        replacement: "https://${1}/remote.php/dav/"
+    # --- SECURITY ---
+    secure-headers:
+      headers:
+        accessControlAllowOriginList: 
+          - https://davydehaas.nl
+          - https://*.davydehaas.nl
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+        customResponseHeaders:
+          Access-Control-Allow-Credentials: true
+          Access-Control-Allow-Headers: Origin, Authorization, Content-Type
+          Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS
+          Access-Control-Max-Age: 600
+          Cache-Control: no-cache, max-age=0
+          Content-Security-Policy: upgrade-insecure-requests
+          Cross-Origin-Embedder-Policy: unsafe-none
+          Cross-Origin-Opener-Policy: unsafe-none
+          Cross-Origin-Resource-Policy: same-site
+          Permissions-Policy: camera=(), geolocation=(), microphone=(), payment=(), usb=(), vr=()
+          Referrer-Policy: strict-origin-when-cross-origin
+          Strict-Transport-Security: max-age=31536000; includeSubDomains; preload;
+          Vary: ORIGIN
+          X-Content-Type-Options: nosniff
+          X-Frame-Options: SAMEORIGIN
+          X-Robots-Tag: none
+          X-XSS-Protection: 1; mode=block
+        forceSTSHeader: true

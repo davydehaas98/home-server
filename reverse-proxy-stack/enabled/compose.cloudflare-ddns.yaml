@@ -1,0 +1,19 @@
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest@sha256:19bd73d8aea9641dc329ec18ae693b2b9c33ff7cdc007f368266ce584446f995
+    container_name: cloudflare-ddns
+    cpus: 0.1
+    mem_limit: 128m
+    # user: ${UID}:${GID}
+    restart: unless-stopped
+    networks:
+      - reverse-proxy
+    environment:
+      - API_KEY=${CLOUDFLARE_API_TOKEN:?error}
+      - ZONE=${DOMAIN_NAME:?error}
+      - PROXIED=false
+      - RRTYPE=A
+      - DELETE_ON_STOP=false
+      - DNS_SERVER=1.1.1.1
+    labels:
+      - diun.enable=true

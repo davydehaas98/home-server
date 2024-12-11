@@ -1,0 +1,53 @@
+networks:
+  reverse-proxy:
+    driver: bridge
+    name: reverse-proxy
+
+services:
+  traefik:
+    image: traefik:v3.2.2@sha256:990bbdb0a9174b0d441317a63188e41c63795380db42b36ed920543e27ce04c9
+    container_name: traefik
+    restart: unless-stopped
+    cpus: 2
+    mem_limit: 4096m
+    # user: ${UID}:${GID}
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+      - 3179:3179/tcp
+      - 3179:3179/udp
+    networks:
+      - reverse-proxy
+    volumes:
+      - ${USER_DIR}/traefik/letsencrypt:/letsencrypt
+      - ${USER_DIR}/traefik:/etc/traefik:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command:
+      - --certificatesResolver.dns-resolver-cloudflare.acme.email=${CLOUDFLARE_EMAIL}
+      - --providers.docker.defaultrule=Host(`{{ index .Labels "com.docker.compose.service" }}.${DOMAIN_NAME}`)
+    environment:
+      - TZ=${TZ}
+      - CF_API_EMAIL=${CLOUDFLARE_EMAIL:?error}
+      - CF_API_KEY=${CLOUDFLARE_API_KEY:?error}
+    healthcheck:
+      disable: true
+      test: ["CMD", "curl", "--fail", "http://traefik:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.traefik.entrypoints=websecure
+      - traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN_NAME}`)
+      - traefik.http.routers.traefik.middlewares=chain-authelia@file
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.tls=true
+      - traefik.http.routers.traefik.tls.domains[0].main=${DOMAIN_NAME}
+      - traefik.http.routers.traefik.tls.domains[0].sans=*.${DOMAIN_NAME}
+      - traefik.http.services.traefik.loadbalancer.server.port=8080

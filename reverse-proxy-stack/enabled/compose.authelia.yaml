@@ -1,0 +1,33 @@
+services:
+  authelia:
+    image: ghcr.io/authelia/authelia:4.38.17@sha256:bd0b56ab682ecdf994cc66bbbf75e3ab437a3e4aea4c707eeea0c2fca6cf945e
+    container_name: authelia
+    cpus: 4
+    mem_limit: 8192m
+    user: ${UID}:${GID}
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    expose:
+      - 9091
+    networks:
+      - reverse-proxy
+    volumes:
+      - ${USER_DIR}/authelia:/config
+    environment:
+      - TZ=${TZ}
+    healthcheck:
+      disable: true
+      test: ["CMD", "curl", "--fail", "http://authelia:9091/api/state"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    labels:
+      - diun.enable=true
+      - traefik.enable=true
+      - traefik.http.routers.authelia.entrypoints=websecure
+      - traefik.http.routers.authelia.rule=Host(`authelia.${DOMAIN_NAME}`)
+      - traefik.http.routers.authelia.middlewares=chain-no-auth@file
+      - traefik.http.services.authelia.loadbalancer.server.port=9091

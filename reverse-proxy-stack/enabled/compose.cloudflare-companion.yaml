@@ -1,0 +1,29 @@
+services:
+  cloudflare-companion:
+    image: ghcr.io/tiredofit/docker-traefik-cloudflare-companion:7.3.3@sha256:20bfbde87b5a06a8935f05f7ae384e10c6694c2e25595065e488a25571a803b3
+    container_name: cloudflare-companion
+    cpus: 0.1
+    mem_limit: 128m
+    restart: unless-stopped
+    # user: ${UID}:${GID}
+    networks:
+      - reverse-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - TZ=${TZ}
+      - TRAEFIK_VERSION=2
+      - CF_EMAIL=${CLOUDFLARE_EMAIL:?error} # Same as traefik
+      - CF_TOKEN=${CLOUDFLARE_API_KEY:?error} # Same as traefik
+      - DEFAULT_TTL=300
+      - TARGET_DOMAIN=${DOMAIN_NAME}
+      - DOMAIN1=${DOMAIN_NAME}
+      - DOMAIN1_ZONE_ID=${CLOUDFLARE_ZONE_ID:?error}
+      - DOMAIN1_PROXIED=true
+    labels:
+      - diun.enable=true
+      # Add hosts specified in rules here to force cloudflare-companion to create the CNAMEs
+      # Since cloudflare-companion creates CNAMEs based on host rules, this a workaround for non-docker/external apps
+    #   - traefik.http.routers.cloudflare-companion.rule=Host(`pihole.${DOMAIN_NAME}`) || Host(`hassio.${DOMAIN_NAME}`)
+    # networks:
+    #   - reverse-proxy

@@ -1,5 +1,17 @@
 # home-server
-My home server configuration using compose files.
+My home server configuration set up using compose files.
+
+## home-stack
+| Name | Description |
+| --- | --- |
+| Grafana | Analytics and monitoring service. |
+| Home Assistant | Home automation service. |
+| Homebridge | Emulates the iOS HomeKit API. |
+| Portainer | Web UI for Docker containers. Useful for managing all the containers on the server. |
+| Prometheus | Systems monitoring and alertingtoolkit. |
+| cadvisor | Container Advisor analyzes and exposes resource usage and performance data from running containers. |
+| node-exporter | Exports hardware and kernel metrics. |
+| alertmanager | Alert manager for Prometheus. |
 
 ## media-stack
 | Name | Description |
@@ -16,17 +28,13 @@ My home server configuration using compose files.
 | Tautulli | Monitor server for Plex. |
 | Transmission OpenVPN | Torrent client with VPN. |
 
-## home-stack
+## reverse-proxy-stack
 | Name | Description |
 | --- | --- |
-| Grafana | Analytics and monitoring service. |
-| Home Assistant | Home automation service. |
-| Homebridge | Emulates the iOS HomeKit API. |
-| Portainer | Web UI for Docker containers. Useful for managing all the containers on the server. |
-| Prometheus | Systems monitoring and alertingtoolkit. |
-| cadvisor | Container Advisor analyzes and exposes resource usage and performance data from running containers. |
-| node-exporter | Exports hardware and kernel metrics. |
-| alertmanager | Alert manager for Prometheus. |
+| Authelia | IAM SSO companion for reverse proxy. |
+| Cloudflare Companion | CNAME DNS updater. |
+| Cloudflare DDNS | Dynamic DNS updater. |
+| Traefik | Reverse proxy for HTTP requests. |
 
 # Environment Variables
 ```

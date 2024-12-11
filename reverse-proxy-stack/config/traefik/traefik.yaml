@@ -1,0 +1,95 @@
+# https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-static-configuration
+api:
+  insecure: false
+  dashboard: true
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false
+hub:
+  tls:
+    insecure: true
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    network: reverse-proxy_default
+    watch: true
+  file:
+    # Load dynamic configuration from one or more .toml or .yml files in a directory.
+    directory: /etc/traefik/rules
+    # Only works on top level files in the rules folder
+    watch: true
+metrics:
+  prometheus:
+    addRoutersLabels: true
+    addEntryPointsLabels: true
+    addServicesLabels: true
+    buckets:
+      - 0.1
+      - 0.3
+      - 1.2
+      - 5.0
+accessLog:
+  filePath: /access.log
+  addInternals: true
+  bufferingSize: 100
+  filters:
+    statusCodes:
+      - "200"
+      - "300-302"
+    retryAttempts: true
+    minDuration: "10ms"
+log:
+  filePath: /traefik.log
+  level: DEBUG
+serversTransport:
+  insecureSkipVerify: true
+certificatesResolvers:
+  dns-resolver-cloudflare:
+    acme:
+      keyType: EC384
+      storage: /letsencrypt/acme.json
+      # LetsEncrypt Staging Server
+      # Uncomment both lines below to test
+      # caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      # storage: /letsencrypt/acme.staging.json
+      dnsChallenge:
+        provider: cloudflare
+entryPoints:
+  traefik:
+    address: :8080
+  tcp:
+   address: :3179/tcp
+  udp:
+   address: :3179/udp
+   udp:
+      timeout: 10s
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: :443
+    http:
+      tls:
+        certResolver: dns-resolver-cloudflare
+    # Allow these IPs to set the X-Forwarded-* headers - Cloudflare IPs: https://www.cloudflare.com/ips/
+    forwardedHeaders:
+      trustedIPs:
+        - 173.245.48.0/20
+        - 103.21.244.0/22
+        - 103.22.200.0/22
+        - 103.31.4.0/22
+        - 141.101.64.0/18
+        - 108.162.192.0/18
+        - 190.93.240.0/20
+        - 188.114.96.0/20
+        - 197.234.240.0/22
+        - 198.41.128.0/17
+        - 162.158.0.0/15
+        - 104.16.0.0/12
+        - 172.64.0.0/13
+        - 131.0.72.0/22

@@ -1,15 +1,15 @@
-name: Deploy media-stack
+name: Deploy reverse-proxy-stack
 on:
   push:
     branches: 
       - main
     paths:
-      - 'media-stack/**'
+      - 'reverse-proxy-stack/**'
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: false
 env:
-  TARGET_DIR: /home/homelab/compose/media-stack
+  TARGET_DIR: /home/homelab/compose/reverse-proxy-stack
 jobs:
   deploy:
     runs-on: ubuntu-24.04
@@ -27,7 +27,7 @@ jobs:
       - name: Copy 'compose.*.yaml' files
         run: |
           rsync --archive --verbose --delete --exclude '*.env' \
-            --recursive ./media-stack/enabled/ \
+            --recursive ./reverse-proxy-stack/enabled/ \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
 
       - name: Start containers
@@ -38,6 +38,6 @@ jobs:
           for filename in compose.*.yaml; do
             args="\$args -f \$filename";
           done;
-          
+
           docker compose \$args up -d --remove-orphans
           ENDSSH

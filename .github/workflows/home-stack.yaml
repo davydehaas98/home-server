@@ -10,8 +10,6 @@ concurrency:
   cancel-in-progress: false
 env:
   TARGET_DIR: /home/homelab/compose/home-stack
-  USER_DIR: /home/homelab/home-server
-  DOMAIN_NAME: davydehaas.nl
 jobs:
   deploy:
     runs-on: ubuntu-24.04
