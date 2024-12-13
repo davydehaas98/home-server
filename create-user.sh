@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export USER=homelab
 export GROUP=homelab
 
