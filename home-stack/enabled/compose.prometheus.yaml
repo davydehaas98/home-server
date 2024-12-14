@@ -76,6 +76,7 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+      - /etc/machine-id:/etc/machine-id:ro
     labels:
       - diun.enable=true
       - diun.watch_repo=true
