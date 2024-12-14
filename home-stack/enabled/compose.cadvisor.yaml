@@ -1,0 +1,25 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.51.0@sha256:771a65c7877817cd9bb4c2d9eecb9fd1ac56f370287617658c51a35061efa71a
+    container_name: cadvisor
+    cpus: 1
+    mem_limit: 512m
+    user: ${UID}:${GID}
+    restart: unless-stopped
+    expose:
+      - 8080
+    networks:
+      - reverse-proxy
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /etc/machine-id:/etc/machine-id:ro
+    labels:
+      - diun.enable=true
+      - diun.watch_repo=true

@@ -1,0 +1,23 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  alertmanager:
+    image: docker.io/prom/alertmanager:v0.27.0@sha256:e13b6ed5cb929eeaee733479dce55e10eb3bc2e9c4586c705a4e8da41e5eacf5
+    container_name: alertmanager
+    cpus: 1
+    mem_limit: 1024m
+    restart: unless-stopped
+    user: ${UID}:${GID}
+    command:
+      - --config.file=/etc/alertmanager/config.yaml
+      - --storage.path=/alertmanager
+    expose:
+      - 9093
+    networks:
+      - reverse-proxy
+    volumes:
+      - ${USER_DIR}/alertmanager/:/etc/alertmanager/
+    labels:
+      - diun.enable=true

@@ -1,0 +1,27 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  node-exporter:
+    image: docker.io/prom/node-exporter:v1.8.2@sha256:4032c6d5bfd752342c3e631c2f1de93ba6b86c41db6b167b9a35372c139e7706
+    container_name: node-exporter
+    restart: unless-stopped
+    cpus: 0.1
+    mem_limit: 128m
+    user: ${UID}:${GID}
+    command:
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    expose:
+      - 9100
+    labels:
+      - diun.enable=true
+      - diun.watch_repo=true
+    networks:
+      - reverse-proxy

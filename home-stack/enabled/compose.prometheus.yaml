@@ -23,6 +23,8 @@ services:
     # - ${USER_DIR}/prometheus/data:/prometheus
     expose:
       - 9090
+    networks:
+      - reverse-proxy
     # healthcheck:
     #   test: ["CMD-SHELL", "wget --quiet --tries=1 --spider https://prometheus.${DOMAIN_NAME}/-/healthy || exit 1"]
     #   interval: 60s
@@ -36,65 +38,3 @@ services:
       - traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN_NAME}`)
       - traefik.http.routers.prometheus.middlewares=chain-authelia@file
       - traefik.http.services.prometheus.loadbalancer.server.port=9090
-    networks:
-      - reverse-proxy
-  node-exporter:
-    image: docker.io/prom/node-exporter:v1.8.2@sha256:4032c6d5bfd752342c3e631c2f1de93ba6b86c41db6b167b9a35372c139e7706
-    container_name: node-exporter
-    restart: unless-stopped
-    cpus: 0.1
-    mem_limit: 128m
-    user: ${UID}:${GID}
-    command:
-      - --path.procfs=/host/proc
-      - --path.sysfs=/host/sys
-      - --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    expose:
-      - 9100
-    labels:
-      - diun.enable=true
-      - diun.watch_repo=true
-    networks:
-      - reverse-proxy
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.51.0@sha256:771a65c7877817cd9bb4c2d9eecb9fd1ac56f370287617658c51a35061efa71a
-    container_name: cadvisor
-    cpus: 1
-    mem_limit: 512m
-    user: ${UID}:${GID}
-    restart: unless-stopped
-    expose:
-      - 8080
-    networks:
-      - reverse-proxy
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /etc/machine-id:/etc/machine-id:ro
-    labels:
-      - diun.enable=true
-      - diun.watch_repo=true
-  alertmanager:
-    image: docker.io/prom/alertmanager:v0.27.0@sha256:e13b6ed5cb929eeaee733479dce55e10eb3bc2e9c4586c705a4e8da41e5eacf5
-    container_name: alertmanager
-    cpus: 1
-    mem_limit: 1024m
-    restart: unless-stopped
-    user: ${UID}:${GID}
-    command:
-      - --config.file=/etc/alertmanager/config.yaml
-      - --storage.path=/alertmanager
-    expose:
-      - 9093
-    networks:
-      - reverse-proxy
-    volumes:
-      - ${USER_DIR}/alertmanager/:/etc/alertmanager/
-    labels:
-      - diun.enable=true
