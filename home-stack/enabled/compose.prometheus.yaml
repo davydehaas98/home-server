@@ -26,7 +26,7 @@ services:
     networks:
       - reverse-proxy
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://prometheus:9090"]
+      test: ["CMD", "wget", "--spider", "prometheus:9090"]
       interval: 60s
       timeout: 10s
       retries: 2
