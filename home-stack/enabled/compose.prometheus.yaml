@@ -27,10 +27,11 @@ services:
       - reverse-proxy
     healthcheck:
       test: ["CMD", "wget", "--spider", "prometheus:9090"]
-      interval: 60s
+      interval: 10s
       timeout: 10s
-      retries: 2
-      start_period: 40s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
     labels:
       - traefik.enable=true
       - traefik.http.routers.prometheus.entrypoints=websecure
