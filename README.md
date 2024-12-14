@@ -4,14 +4,14 @@ My home server configuration set up using compose files.
 ## home-stack
 | Name | Description |
 | --- | --- |
+| cAdvisor | Analyzes and exposes resource usage and performance data from running containers. |
 | Grafana | Analytics and monitoring service. |
 | Home Assistant | Home automation service. |
 | Homebridge | Emulates the iOS HomeKit API. |
 | Portainer | Web UI for Docker containers. Useful for managing all the containers on the server. |
 | Prometheus | Systems monitoring and alertingtoolkit. |
-| cadvisor | Container Advisor analyzes and exposes resource usage and performance data from running containers. |
-| node-exporter | Exports hardware and kernel metrics. |
-| alertmanager | Alert manager for Prometheus. |
+| Prometheus Alertmanager | Alert manager for Prometheus. |
+| Prometheus Node exporter | Exports hardware and OS metrics. |
 
 ## media-stack
 | Name | Description |
