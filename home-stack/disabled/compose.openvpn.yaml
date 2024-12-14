@@ -16,7 +16,6 @@ services:
     volumes:
       - ${USER_DIR}/openvpn:/openvpn
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.openvpn.entrypoints=websecure
       - traefik.http.routers.openvpn.rule=Host(`openvpn.${DOMAIN_NAME}`)

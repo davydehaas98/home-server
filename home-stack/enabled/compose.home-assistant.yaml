@@ -30,7 +30,6 @@ services:
     environment:
       - TZ=${TZ}
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.home-assistant.entrypoints=websecure
       - traefik.http.routers.home-assistant.rule=Host(`home-assistant.${DOMAIN_NAME}`) || Host(`hass.${DOMAIN_NAME}`)

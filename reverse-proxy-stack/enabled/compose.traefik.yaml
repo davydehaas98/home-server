@@ -41,7 +41,6 @@ services:
       start_period: 10s
       start_interval: 5s
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.traefik.entrypoints=websecure
       - traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN_NAME}`)

@@ -28,7 +28,6 @@ services:
       start_period: 10s
       start_interval: 5s
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.foundry-cos.entrypoints=websecure
       - traefik.http.routers.foundry-cos.rule=Host(`foundry-cos.${DOMAIN_NAME}`)

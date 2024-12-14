@@ -1,3 +1,7 @@
+networks:
+  reverse-proxy:
+    external: true
+
 services:
   satisfactory-server:
     image: docker.io/wolveix/satisfactory-server:v1.9.1@sha256:199be1064b185862571ebf21c7176867d61e636f73f835be354f090a59bb08d8
@@ -25,10 +29,5 @@ services:
       retries: 3
       start_period: 120s
       start_interval: 5s
-    labels:
-      - diun.enable=true
     networks:
       - reverse-proxy
-networks:
-  reverse-proxy:
-    external: true

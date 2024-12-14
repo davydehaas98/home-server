@@ -21,7 +21,6 @@ services:
     environment:
       - TZ=${TZ}
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.zigbee.entrypoints=websecure
       - traefik.http.routers.zigbee.rule=Host(`zigbee.${DOMAIN_NAME}`)

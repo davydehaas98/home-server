@@ -22,10 +22,7 @@ services:
     - ${USER_DIR}/elasticsearch:/usr/share/elasticsearch/data
     expose:
     - 9200
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
+
   kibana:
     image: docker.elastic.co/kibana/kibana:8.15.1@sha256:cc95727d74ddf69ee9aa278e60b676249350c7ae50b3707b194a6202aac767ad
     container_name: kibana
@@ -42,7 +39,3 @@ services:
     - ${USER_DIR}/kibana/config:/usr/share/kibana/config
     expose:
     - 5601
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true

@@ -58,10 +58,7 @@ services:
     - 25575
     ports:
     - 25565:25565
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
+
   minecraft-ftb-backup:
     image: ghcr.io/itzg/mc-backup:latest@sha256:793b0420bb4b80a54330ce648d60e9d0e71ba771f46e78329b9ccee82d051274
     container_name: minecraft-ftb-backup
@@ -85,7 +82,3 @@ services:
     volumes:
     - ${USER_DIR}/minecraft-ftb/data:/data:ro
     - ${STORAGE_DIR}/minecraft-ftb-backup:/backups
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true

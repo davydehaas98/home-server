@@ -62,7 +62,6 @@ services:
       # https://www.plex.tv/claim/
       # - PLEX_CLAIM=<claim>
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.plex.entrypoints=websecure
       - traefik.http.routers.plex.tls=true

@@ -77,7 +77,6 @@ services:
     ports:
       - 25568:25565/tcp
     labels:
-      - diun.enable=true
       - traefik.enable=true
 #       - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.${DOMAIN_NAME}`)
       - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`*`)
@@ -106,5 +105,3 @@ services:
     volumes:
       - ${USER_DIR}/minecraft-skyfactory/data:/data:ro
       - ${STORAGE_DIR}/minecraft-skyfactory-backup:/backups
-    labels:
-      - diun.enable=true

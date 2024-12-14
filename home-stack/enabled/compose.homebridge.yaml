@@ -34,7 +34,6 @@ services:
       - TZ=${TZ}
       - ENABLE_AVAHI=1
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.homebridge.entrypoints=websecure
       - traefik.http.routers.homebridge.rule=Host(`homebridge.${DOMAIN_NAME}`)

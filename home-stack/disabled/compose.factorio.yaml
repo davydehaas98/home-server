@@ -16,8 +16,6 @@ services:
     ports:
       - 34197:34197/udp
       #- 27015:27015/tcp # RCON optional
-    labels:
-    - diun.enable=true
     networks:
       - reverse-proxy
 networks:

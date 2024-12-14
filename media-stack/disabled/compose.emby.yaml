@@ -37,5 +37,3 @@ services:
       - PGID=${GID}
       - PUID=${UID}
       - TZ=${TZ}
-    labels:
-      - diun.enable=true

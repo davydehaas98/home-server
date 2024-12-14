@@ -20,8 +20,5 @@ services:
       - /:/rootfs:ro
     expose:
       - 9100
-    labels:
-      - diun.enable=true
-      - diun.watch_repo=true
     networks:
       - reverse-proxy

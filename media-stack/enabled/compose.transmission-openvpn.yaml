@@ -81,7 +81,6 @@ services:
       - TRANSMISSION_WEB_UI=flood-for-transmission
       - WEBPROXY_ENABLED=false
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.transmission-openvpn.entrypoints=websecure
       - traefik.http.routers.transmission-openvpn.tls=true

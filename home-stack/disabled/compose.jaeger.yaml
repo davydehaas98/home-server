@@ -12,7 +12,6 @@ services:
       - 6831:6831/udp
       - 16686:16686
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.jaeger.entrypoints=websecure
       - traefik.http.routers.jaeger.rule=Host(`jaeger.${DOMAIN_NAME}`)

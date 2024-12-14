@@ -12,10 +12,6 @@ services:
     - JENKINS_AGENT_NAME=slave
     - JENKINS_URL=http://jenkins-server:50000
     - JENKINS_SECRET=${JENKINS_SECRET}
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
     depends_on:
     - jenkins-server
   # Jenkins JNLP Agent Maven for executing jobs
@@ -31,9 +27,5 @@ services:
     - JENKINS_AGENT_NAME=slave
     - JENKINS_URL=http://jenkins-server:50000
     - JENKINS_SECRET=${JENKINS_SECRET}
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
     depends_on:
     - jenkins-server

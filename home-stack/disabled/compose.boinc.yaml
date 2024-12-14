@@ -10,13 +10,16 @@ services:
     - PGID=${GID}
     - PUID=${UID}
     - TZ=${TZ}
-    - PASSWORD= #optional
+    - PASSWORD= # optional
     volumes:
     - ${STORAGE_DIR}/boinc:/config
     ports:
     - 8080:8080
     devices:
-    - /dev/dri:/dev/dri #optional
+    - /dev/dri:/dev/dri # optional
     labels:
-    - diun.enable=true
-    - diun.watch_repo=true
+      - traefik.enable=true
+      - traefik.http.routers.boinc.entrypoints=websecure
+      - traefik.http.routers.boinc.rule=Host(`boinc.${DOMAIN_NAME}`)
+      - traefik.http.routers.boinc.middlewares=chain-no-auth@file
+      - traefik.http.services.boinc.loadbalancer.server.port=8080

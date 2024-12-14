@@ -35,7 +35,6 @@ services:
       - TZ=${TZ}
       - DOCKER_MODS=lscr.io/linuxserver/mods:jellyfin-opencl-intel
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.jellyfin.entrypoints=websecure
       - traefik.http.routers.jellyfin.tls=true

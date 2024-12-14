@@ -20,7 +20,6 @@ services:
       - ${USER_DIR}/adguardhome/conf:/opt/adguardhome/conf # app configuration
       - ${USER_DIR}/adguardhome/work:/opt/adguardhome/work # app working directory
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.adguardhome.entrypoints=websecure
       - traefik.http.routers.adguardhome.tls=true

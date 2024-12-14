@@ -17,7 +17,6 @@ services:
     expose:
       - 8200
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.duplicati.entrypoints=websecure
       - traefik.http.routers.duplicati.rule=Host(`duplicati.${DOMAIN_NAME}`)

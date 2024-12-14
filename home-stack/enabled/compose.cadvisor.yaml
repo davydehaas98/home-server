@@ -10,16 +10,22 @@ services:
     mem_limit: 512m
     user: ${UID}:${GID}
     restart: unless-stopped
+    devices:
+      - /dev/kmsg
     expose:
       - 8080
     networks:
       - reverse-proxy
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:rw
+      - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
       - /etc/machine-id:/etc/machine-id:ro
     labels:
-      - diun.enable=true
-      - diun.watch_repo=true
+      - traefik.enable=true
+      - traefik.http.routers.cadvisor.entrypoints=websecure
+      - traefik.http.routers.cadvisor.rule=Host(`cadvisor.${DOMAIN_NAME}`)
+      - traefik.http.routers.cadvisor.middlewares=chain-no-auth@file
+      - traefik.http.services.cadvisor.loadbalancer.server.port=8080

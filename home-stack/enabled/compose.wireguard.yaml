@@ -1,3 +1,7 @@
+networks:
+  reverse-proxy:
+    external: true
+
 services:
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest@sha256:66c2f4fad2c66bba30ef3c043d9be6bbb70c17d2fd885b6824cab90c47e23672
@@ -20,6 +24,3 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     networks:
       - reverse-proxy
-networks:
-  reverse-proxy:
-    external: true

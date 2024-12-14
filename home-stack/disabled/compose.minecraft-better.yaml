@@ -57,9 +57,7 @@ services:
       - 25575
     ports:
       - 25566:25565
-    labels:
-      - diun.enable=true
-      - diun.watch_repo=true
+
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-better-backup:
     image: ghcr.io/itzg/mc-backup:latest@sha256:793b0420bb4b80a54330ce648d60e9d0e71ba771f46e78329b9ccee82d051274
@@ -84,5 +82,3 @@ services:
     volumes:
       - ${USER_DIR}/minecraft-better/data:/data:ro
       - ${STORAGE_DIR}/minecraft-better-backup:/backups
-    labels:
-      - diun.enable=true

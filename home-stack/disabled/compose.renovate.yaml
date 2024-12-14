@@ -19,8 +19,6 @@ services:
       - LOG_LEVEL=DEBUG
     volumes:
       - ${USERDIR}/renovate/config.js:/usr/src/app/config.js
-    labels:
-      - diun.enable=true
     networks:
       - reverse-proxy
 networks:

@@ -27,7 +27,6 @@ services:
       - PUID=${UID}
       - TZ=${TZ}
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.tautulli.entrypoints=websecure
       - traefik.http.routers.tautulli.tls=true

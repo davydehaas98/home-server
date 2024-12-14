@@ -23,7 +23,6 @@ services:
       - ${USER_DIR}/immich/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.immich.entrypoints=websecure
       - traefik.http.routers.immich.tls=true

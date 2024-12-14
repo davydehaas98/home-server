@@ -31,8 +31,6 @@ services:
     #   timeout: 10s
     #   retries: 2
     labels:
-      - diun.enable=true
-      - diun.watch_repo=true
       - traefik.enable=true
       - traefik.http.routers.prometheus.entrypoints=websecure
       - traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN_NAME}`)

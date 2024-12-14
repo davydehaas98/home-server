@@ -30,7 +30,6 @@ services:
       - PUID=${UID}
       - TZ=${TZ}
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.radarr.entrypoints=websecure
       - traefik.http.routers.radarr.tls=true

@@ -27,7 +27,6 @@ services:
     environment:
       - TZ=${TZ}
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.portainer.entrypoints=websecure
       - traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN_NAME}`)

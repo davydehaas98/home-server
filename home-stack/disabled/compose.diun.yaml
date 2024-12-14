@@ -21,8 +21,6 @@ services:
     volumes:
       - ${USER_DIR}/diun/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
-    labels:
-      - diun.enable=true
     networks:
       - reverse-proxy
 networks:

@@ -17,8 +17,4 @@ services:
     - ${STORAGE_DIR}postgresql/data:/var/lib/postgresql/data
     expose:
     - 5432
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
     shm_size: 256M

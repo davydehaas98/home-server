@@ -26,7 +26,6 @@ services:
       - PUID=${UID}
       - TZ=${TZ}
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.xteve.entrypoints=websecure
       - traefik.http.routers.xteve.tls=true

@@ -12,10 +12,6 @@ services:
     - ${USER_DIR}/fah:/config
     expose:
     - 7396
-    - 36330 #optional
+    - 36330 # optional
     devices:
-    - /dev/dri:/dev/dri #optional
-    labels:
-    - com.centurylinklabs.watchtower.enable=true
-    - diun.enable=true
-    - diun.watch_repo=true
+    - /dev/dri:/dev/dri # optional

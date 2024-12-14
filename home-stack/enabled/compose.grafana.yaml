@@ -28,7 +28,6 @@ services:
       - TZ=${TZ:?error}
       - GF_USERS_ALLOW_SIGN_UP=false
     labels:
-      - diun.enable=true
       - traefik.enable=true
       - traefik.http.routers.grafana.entrypoints=websecure
       - traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN_NAME}`)

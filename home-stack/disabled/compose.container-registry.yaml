@@ -20,6 +20,3 @@ services:
     - ${USER_DIR}/container-registry/auth:/auth
     expose:
     - 5000
-    labels:
-    - diun.enable=true
-    - diun.watch_repo=true
