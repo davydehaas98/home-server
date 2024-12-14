@@ -29,8 +29,8 @@ scrape_configs:
     static_configs:
       - targets:
           - prometheus:9090
-  - job_name: reverse-proxy
+  - job_name: traefik
     scrape_interval: 10s
     static_configs:
       - targets: 
-          - reverse-proxy:8080
+          - traefik:8080
