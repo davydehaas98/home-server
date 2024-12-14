@@ -15,10 +15,10 @@ services:
       - 1.1.1.1
       - 1.0.0.1
     expose:
-    # Web UI
+      # Web UI
       - 9091
     ports:
-    # Torrent Ports
+      # Torrent Ports
       - 51413:51413
       - 51413:51413/udp
     networks:
