@@ -1,12 +1,12 @@
 name: Deploy home-stack
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
-      - 'home-stack/**'
+      - "home-stack/**"
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 env:
   TARGET_DIR: /home/homelab/compose/home-stack
@@ -34,7 +34,7 @@ jobs:
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
           cd ${{ env.TARGET_DIR }}
-          
+
           for filename in compose.*.yaml; do
             args="\$args -f \$filename";
           done;
