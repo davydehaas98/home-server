@@ -79,9 +79,9 @@ services:
           Chksum="$$(psql --dbname='${DB_DATABASE_NAME}' --username='${DB_USERNAME}' --tuples-only --no-align \
           --command='SELECT COALESCE(SUM(checksum_failures), 0) FROM pg_stat_database')"; \
           echo "checksum failure count is $$Chksum"; [ "$$Chksum" = '0' ] || exit 1
-      interval: 5m
+      interval: 1m
       start_interval: 30s
-      start_period: 5m
+      start_period: 30s
     command:
       [
         'postgres',
