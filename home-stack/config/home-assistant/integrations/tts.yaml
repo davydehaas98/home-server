@@ -1,0 +1,6 @@
+---
+# https://www.home-assistant.io/integrations/tts/
+tts:
+  # https://www.home-assistant.io/integrations/picotts/
+  - platform: picotts
+    language: "en-US"
