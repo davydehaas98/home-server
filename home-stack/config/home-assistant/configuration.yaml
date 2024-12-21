@@ -2,6 +2,10 @@ homeassistant:
   # Load packages
   packages: !include_dir_named integrations
   name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  radius: 50
   unit_system: metric
   temperature_unit: C
   currency: EUR
