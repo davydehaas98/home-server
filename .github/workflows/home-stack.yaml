@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: false
 env:
   TARGET_DIR: /home/homelab/compose/home-stack
+
 jobs:
   deploy:
     runs-on: ubuntu-24.04

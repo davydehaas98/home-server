@@ -5,11 +5,14 @@ on:
       - main
     paths:
       - 'reverse-proxy-stack/**'
+  workflow_dispatch:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 env:
   TARGET_DIR: /home/homelab/compose/reverse-proxy-stack
+
 jobs:
   deploy:
     runs-on: ubuntu-24.04
