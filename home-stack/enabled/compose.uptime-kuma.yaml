@@ -9,7 +9,7 @@ services:
     cpus: 1
     mem_limit: 512m
     restart: unless-stopped
-    user: {UID:GID}
+    user: ${UID}:${GID}
     expose:
       - 3001
     networks:
