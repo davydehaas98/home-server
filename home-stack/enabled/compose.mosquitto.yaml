@@ -9,7 +9,6 @@ services:
     cpus: 0.5
     mem_limit: 512m
     restart: unless-stopped
-    user: ${GID}:${UID}
     expose:
       - 1883
       - 9001

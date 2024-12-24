@@ -26,4 +26,3 @@ services:
       - traefik.http.routers.zigbee.rule=Host(`zigbee.${DOMAIN_NAME}`)
       - traefik.http.routers.zigbee.middlewares=chain-no-auth@file
       - traefik.http.services.zigbee.loadbalancer.server.port=8080
-
