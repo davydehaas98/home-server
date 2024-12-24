@@ -1,3 +1,7 @@
+networks:
+  reverse-proxy:
+    external: true
+
 services:
   cloudflare-ddns:
     image: docker.io/oznu/cloudflare-ddns:latest@sha256:19bd73d8aea9641dc329ec18ae693b2b9c33ff7cdc007f368266ce584446f995
