@@ -1,6 +1,14 @@
 # home-server
 My home server configuration set up using compose files.
 
+## Hardware setup
+- **CPU:** Intel i5 10600K (6 cores, AMD64)
+- **RAM:** 2x 16GB DDR4 @ 3.200MT/s
+- **Storage:** 3x Seagate IronWolf 4TB HDD
+- **OS:** Ubuntu Server 24.10
+
+# Stacks
+
 ## home-stack
 | Name | Description |
 | --- | --- |
