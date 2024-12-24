@@ -2,10 +2,17 @@
 My home server configuration set up using compose files.
 
 ## Hardware setup
-- **CPU:** Intel i5 10600K (6 cores, AMD64)
-- **RAM:** 2x 16GB DDR4 @ 3.200MT/s
-- **Storage:** 3x Seagate IronWolf 4TB HDD
-- **OS:** Ubuntu Server 24.10
+| Component | Name |
+| --- | --- |
+| CPU | Intel i5 10600K (6 cores, AMD64) |
+| CPU Cooler | be quiet! Dark Rock Slim |
+| RAM | 2x 16GB DDR4 @ 3.200MT/s |
+| Motherboard | ASRock Z490M-ITX/ac |
+| Storage | Samsung 970 Evo Plus 500 GB SSD |
+| Storage | 3x Seagate IronWolf 4TB HDD |
+| PSU | Corsair RM750x |
+| Case | Fractal Design Node 304 Black |
+| OS | Ubuntu Server 24.10 |
 
 # Stacks
 
