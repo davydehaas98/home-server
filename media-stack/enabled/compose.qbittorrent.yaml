@@ -19,9 +19,10 @@ services:
       - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete
     expose:
       - 8080
-    ports:
-      - 6881:6881
-      - 6881:6881/udp
+      - 6881
+    # ports:
+    #   - 6881:6881
+    #   - 6881:6881/udp
     restart: unless-stopped
     labels:
       - traefik.enable=true
