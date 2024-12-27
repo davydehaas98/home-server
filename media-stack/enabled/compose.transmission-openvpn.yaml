@@ -38,8 +38,8 @@ services:
     volumes:
       - ${USER_DIR}/transmission/config:/config
       - /mnt/raid/media-server/transmission/data:/data
-      - /mnt/raid/downloads/complete:/downloads/complete
-      - /mnt/raid/downloads/incomplete:/downloads/incomplete
+      - /mnt/raid/downloads/torrents/complete:/downloads/complete
+      - /mnt/raid/downloads/torrents/incomplete:/downloads/incomplete
     environment:
       - PUID=${UID}
       - PGID=${GID}
