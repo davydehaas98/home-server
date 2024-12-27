@@ -14,9 +14,9 @@ services:
       - 8888:8888/tcp # HTTP proxy
       - 8388:8388/tcp # Shadowsocks
       - 8388:8388/udp # Shadowsocks
-    # expose:
-    #   - 8080
-    #   - 8081
+    expose:
+      - 8080 # sabnzbd
+      - 8081 # qbittorrent
     networks:
       - reverse-proxy
     healthcheck:
