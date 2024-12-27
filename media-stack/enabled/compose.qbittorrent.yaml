@@ -17,9 +17,9 @@ services:
       - ~/home-server/qbittorrent:/config
       - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete
       - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete
-    expose:
-      - 8080
-      - 6881
+    # expose:
+    #   - 8080
+    #   - 6881
     # ports:
     #   - 6881:6881
     #   - 6881:6881/udp
