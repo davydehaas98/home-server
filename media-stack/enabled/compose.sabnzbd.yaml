@@ -14,6 +14,9 @@ services:
       - 8080
       # HTTPS
       - 9090
+    network_mode: service:gluetun
+    # networks:
+    #   - reverse-proxy
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://sabnzbd:8080"]
       interval: 30s
@@ -36,5 +39,3 @@ services:
       - traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.${DOMAIN_NAME}`) || Host(`usenet.${DOMAIN_NAME}`)
       - traefik.http.routers.sabnzbd.middlewares=chain-authelia@file
       - traefik.http.services.sabnzbd.loadbalancer.server.port=8080
-    networks:
-      - reverse-proxy
