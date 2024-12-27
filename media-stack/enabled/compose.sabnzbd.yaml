@@ -22,9 +22,9 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/sabnzbd:/config
-      - /mnt/raid/media/downloads/completed:/downloads/completed
-      - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
+      - ~/home-server/sabnzbd:/config
+      - /mnt/raid/downloads/usenet/complete:/downloads/complete
+      - /mnt/raid/downloads/usenet/incomplete:/downloads/incomplete
     environment:
       - PGID=${GID}
       - PUID=${UID}

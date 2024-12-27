@@ -15,7 +15,7 @@ services:
       - 8123
       - 443
     ports:
-      - "8123:8123"
+      - "8123:8123
     networks:
       - reverse-proxy
     healthcheck:
