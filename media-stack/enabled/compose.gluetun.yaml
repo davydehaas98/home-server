@@ -21,7 +21,8 @@ services:
     environment:
       - TZ=${TZ}
       # See https://github.com/qdm12/gluetun-wiki/tree/main/setup#setup
-      - VPN_SERVICE_PROVIDER=ivpn
+      - VPN_SERVICE_PROVIDER=nordvpn
+      - SERVER_COUNTRIES=CH
       - VPN_TYPE=openvpn
       - OPENVPN_USER=${VPN_USERNAME}
       - OPENVPN_PASSWORD=${VPN_PASSWORD}
