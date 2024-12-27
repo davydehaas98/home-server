@@ -16,6 +16,12 @@ services:
       - 8388:8388/udp # Shadowsocks
     networks:
       - reverse-proxy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 2m
     volumes:
       - ~/home-server/gluetun:/gluetun
     environment:

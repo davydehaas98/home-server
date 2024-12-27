@@ -1,0 +1,31 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:5.0.3
+    container_name: qbittorrent
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - ~/home-server/qbittorrent:/config
+      - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete
+      - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete
+    expose:
+      - 8080
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.qbittorrent.entrypoints=websecure
+      - traefik.http.routers.qbittorrent.tls=true
+      - traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.${DOMAIN_NAME}`)
+      - traefik.http.routers.qbittorrent.middlewares=chain-authelia@file
+      - traefik.http.services.qbittorrent.loadbalancer.server.port=8080
