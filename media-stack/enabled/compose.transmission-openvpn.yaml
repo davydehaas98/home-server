@@ -38,8 +38,8 @@ services:
     volumes:
       - ${USER_DIR}/transmission/config:/config
       - /mnt/raid/media-server/transmission/data:/data
-      - /mnt/raid/downloads/torrents/complete:/downloads/complete
-      - /mnt/raid/downloads/torrents/incomplete:/downloads/incomplete
+      - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete
+      - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete
     environment:
       - PUID=${UID}
       - PGID=${GID}
@@ -70,8 +70,8 @@ services:
       - TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=true
       - TRANSMISSION_RATIO_LIMIT=0
       - TRANSMISSION_RATIO_LIMIT_ENABLED=true
-      - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
-      - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
+      - TRANSMISSION_DOWNLOAD_DIR=/downloads/torrents/complete
+      - TRANSMISSION_INCOMPLETE_DIR=/downloads/torrents/incomplete
       - TRANSMISSION_INCOMPLETE_DIR_ENABLED=true
       - TRANSMISSION_RENAME_PARTIAL_FILES=true
       - TRANSMISSION_TRASH_ORIGINAL_TORRENT_FILES=true
