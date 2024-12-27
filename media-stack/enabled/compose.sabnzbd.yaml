@@ -9,11 +9,11 @@ services:
     cpus: 4
     mem_limit: 4096m
     restart: unless-stopped
-    expose:
-      # HTTP
-      - 8080
-      # HTTPS
-      - 9090
+    # expose:
+    #   # HTTP
+    #   - 8080
+    #   # HTTPS
+    #   - 9090
     network_mode: service:gluetun
     # networks:
     #   - reverse-proxy
