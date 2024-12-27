@@ -38,8 +38,8 @@ services:
     volumes:
       - ${USER_DIR}/transmission/config:/config
       - /mnt/raid/media-server/transmission/data:/data
-      - /mnt/raid/media/downloads/completed:/downloads/completed
-      - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
+      - /mnt/raid/downloads/complete:/downloads/complete
+      - /mnt/raid/downloads/incomplete:/downloads/incomplete
     environment:
       - PUID=${UID}
       - PGID=${GID}
@@ -70,7 +70,7 @@ services:
       - TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=true
       - TRANSMISSION_RATIO_LIMIT=0
       - TRANSMISSION_RATIO_LIMIT_ENABLED=true
-      - TRANSMISSION_DOWNLOAD_DIR=/downloads/completed
+      - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
       - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
       - TRANSMISSION_INCOMPLETE_DIR_ENABLED=true
       - TRANSMISSION_RENAME_PARTIAL_FILES=true

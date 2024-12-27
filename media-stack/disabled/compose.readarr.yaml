@@ -22,8 +22,7 @@ services:
       start_interval: 5s
     volumes:
       - ${USER_DIR}/readarr/config:/config
-      - /mnt/raid/media/downloads/completed:/downloads/completed
-      - /mnt/raid/media/downloads/incomplete:/downloads/incomplete
+      - /mnt/raid/downloads:/downloads
       - /mnt/raid/media/books:/books
     environment:
       - PGID=${GID}
