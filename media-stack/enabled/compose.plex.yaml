@@ -38,13 +38,7 @@ services:
       start_period: 10s
       start_interval: 5s
     devices:
-      # Intel/AMD GPU
       - /dev/dri:/dev/dri
-      #- /dev/dvb:/dev/dvb
-      #- /dev/vchiq:/dev/vchiq # Raspberry Pi OpenMAX
-      #- /dev/video10:/dev/video10 # Raspberry Pi V4L2
-      #- /dev/video11:/dev/video11 # Raspberry Pi V4L2
-      #- /dev/video12:/dev/video12 # Raspberry Pi V4L2
     volumes:
       - ${USER_DIR}/plex/config:/config
       - ${USER_DIR}/plex/data:/data
