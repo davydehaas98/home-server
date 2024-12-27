@@ -19,13 +19,6 @@ services:
       - 8081 # qbittorrent
     networks:
       - reverse-proxy
-    healthcheck:
-      disable: true
-      test: ["CMD", "curl", "-f", "http://gluetun"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 2m
     volumes:
       - ~/home-server/gluetun:/gluetun
     environment:
