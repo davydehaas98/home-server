@@ -14,8 +14,9 @@ services:
       - 8888:8888/tcp # HTTP proxy
       - 8388:8388/tcp # Shadowsocks
       - 8388:8388/udp # Shadowsocks
-    expose:
-      - 8080
+    # expose:
+    #   - 8080
+    #   - 8081
     networks:
       - reverse-proxy
     healthcheck:
@@ -38,11 +39,3 @@ services:
       # - WIREGUARD_ADDRESSES=10.64.222.21/32
       # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/servers.md#update-the-vpn-servers-list
       - UPDATER_PERIOD=24h
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.docker.network=traefik-proxy"
-	  
-    #   - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.davydehaas.nl`)"
-    #   - traefik.http.routers.qbittorrent.entrypoints=websecure"
-    #   - traefik.http.routers.qbittorrent.tls.certresolver=letsencrypt"
-    #   - traefik.http.services.qbittorrent.loadbalancer.server.port=9091"
