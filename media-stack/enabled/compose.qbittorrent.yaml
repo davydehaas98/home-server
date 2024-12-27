@@ -30,4 +30,4 @@ services:
       - traefik.http.routers.qbittorrent.tls=true
       - traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.${DOMAIN_NAME}`)
       - traefik.http.routers.qbittorrent.middlewares=chain-authelia@file
-      - traefik.http.services.qbittorrent.loadbalancer.server.port=8080
+      - traefik.http.services.qbittorrent.loadbalancer.server.port=8081
