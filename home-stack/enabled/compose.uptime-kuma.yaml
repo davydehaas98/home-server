@@ -15,7 +15,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/uptime-kuma:/app/data
+      - ~/home-server/uptime-kuma:/app/data
     labels:
       - traefik.enable=true
       - traefik.http.routers.uptime-kuma.entrypoints=websecure

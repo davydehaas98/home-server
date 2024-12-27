@@ -22,7 +22,6 @@ services:
       start_interval: 5s
     volumes:
       - ${USER_DIR}/prowlarr/config:/config
-      - /mnt/raid/downloads:/downloads
     environment:
       - PGID=${GID}
       - PUID=${UID}
