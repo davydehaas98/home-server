@@ -29,6 +29,9 @@ metrics:
       - 0.3
       - 1.2
       - 5.0
+tracing:
+  addInternals: true
+  sampleRate: 0.2
 accessLog:
   filePath: /access.log
   addInternals: true
