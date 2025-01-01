@@ -29,7 +29,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.prowlarr.entrypoints=websecure
-      - traefik.http.routers.prowlarr.tls=true
       - traefik.http.routers.prowlarr.rule=Host(`prowlarr.${DOMAIN_NAME}`)
       - traefik.http.routers.prowlarr.middlewares=chain-authelia@file
       - traefik.http.services.prowlarr.loadbalancer.server.port=9696

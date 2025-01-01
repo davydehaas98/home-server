@@ -20,7 +20,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/gluetun:/gluetun
+      - ${USER_DIR}/home-server/gluetun:/gluetun
     environment:
       - TZ=${TZ}
       # See https://github.com/qdm12/gluetun-wiki/tree/main/setup#setup
