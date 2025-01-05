@@ -4,7 +4,7 @@ networks:
 
 services:
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:5.0.3@sha256:3ba628a43848ccdbd84fc81826a012a42b85645b8380b662c5f2dd3bcb1cc83d
+    image: lscr.io/linuxserver/qbittorrent:5.0.3@sha256:ac0b4632429c647c71ba022c7e6ea3ae3496f6d1350dadc2f0e3c1d6d60f7845
     container_name: qbittorrent
     network_mode: service:gluetun
     environment:
