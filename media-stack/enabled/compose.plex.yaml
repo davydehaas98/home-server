@@ -40,9 +40,9 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - ~/home-server/plex/config:/config
-      - ~/home-server/plex/data:/data
-      - ~/home-server/plex/transcode:/transcode
+      - ~/media-server/plex/config:/config
+      - ~/media-server/plex/data:/data
+      - ~/media-server/plex/transcode:/transcode
       - /mnt/raid/media/movies:/movies:ro
       - /mnt/raid/media/music:/music:ro
       - /mnt/raid/media/series:/series:ro
