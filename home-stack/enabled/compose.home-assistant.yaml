@@ -9,13 +9,11 @@ services:
     cpus: 0.1
     mem_limit: 2048m
     restart: unless-stopped
-    user: ${GID}:${UID}
+    # user: ${GID}:${UID}
     privileged: true
     expose:
       - 8123
-      - 443
-    # ports:
-    #   - 8123:8123
+      - 443=
     networks:
       - reverse-proxy
     healthcheck:
@@ -26,7 +24,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/home-server/home-assistant/config:/config
+      - ~/home-server/home-assistant/config:/config
     environment:
       - TZ=${TZ}
     labels:
