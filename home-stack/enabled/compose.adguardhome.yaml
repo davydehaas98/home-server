@@ -22,6 +22,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.adguardhome.entrypoints=websecure
-      - traefik.http.routers.adguardhome.rule=Host(`adguardhome.${DOMAIN_NAME}`)
+      - traefik.http.routers.adguardhome.rule=Host(`adguard.${DOMAIN_NAME}`) | Host(`adguardhome.${DOMAIN_NAME}`)
       - traefik.http.routers.adguardhome.middlewares=chain-no-auth@file
       - traefik.http.services.adguardhome.loadbalancer.server.port=3000
