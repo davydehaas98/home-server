@@ -40,5 +40,7 @@ jobs:
             args="\$args -f \$filename";
           done;
 
+          echo \$args
+
           docker compose \$args up -d --remove-orphans
           ENDSSH
