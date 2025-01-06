@@ -14,7 +14,7 @@ services:
       - WEBUI_PORT=8081
       - TORRENTING_PORT=6881
     volumes:
-      - ${USER_DIR}/home-server/qbittorrent:/config
+      - ~/home-server/home-server/qbittorrent:/config
       - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete
       - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete
     # expose:

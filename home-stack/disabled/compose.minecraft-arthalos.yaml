@@ -52,7 +52,7 @@ services:
     - ONLINE_MODE=TRUE
     - ALLOW_FLIGHT=TRUE
     volumes:
-    - ${USER_DIR}/minecraft-arthalos/data:/data
+    - ~/home-server/minecraft-arthalos/data:/data
     expose:
     - 25575
     ports:
@@ -78,5 +78,5 @@ services:
     - RCON_PORT=25575
     - RCON_PASSWORD=minecraft
     volumes:
-    - ${USER_DIR}/minecraft-arthalos/data:/data:ro
+    - ~/home-server/minecraft-arthalos/data:/data:ro
     - ${STORAGE_DIR}/minecraft-arthalos-backup:/backups

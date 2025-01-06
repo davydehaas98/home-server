@@ -17,6 +17,6 @@ services:
     - REGISTRY_HTTP_ADDR=0.0.0.0:5000
     volumes:
     - ${STORAGE_DIR}/container-registry:/var/lib/registry
-    - ${USER_DIR}/container-registry/auth:/auth
+    - ~/home-server/container-registry/auth:/auth
     expose:
     - 5000

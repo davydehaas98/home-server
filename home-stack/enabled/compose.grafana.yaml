@@ -3,7 +3,7 @@ networks:
     external: true
 
 services:
-  # sudo chown -R 472:472 ${USER_DIR}/grafana
+  # sudo chown -R 472:472 ~/home-server/grafana
   grafana:
     image: docker.io/grafana/grafana:11.4.0@sha256:d8ea37798ccc41061a62ab080f2676dda6bf7815558499f901bdb0f533a456fb
     container_name: grafana
@@ -23,7 +23,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/grafana:/var/lib/grafana
+      - ~/home-server/grafana:/var/lib/grafana
     environment:
       - TZ=${TZ:?error}
       - GF_USERS_ALLOW_SIGN_UP=false

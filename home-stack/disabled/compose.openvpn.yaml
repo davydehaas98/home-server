@@ -14,7 +14,7 @@ services:
     ports:
       - 1194:1194/udp
     volumes:
-      - ${USER_DIR}/openvpn:/openvpn
+      - ~/home-server/openvpn:/openvpn
     labels:
       - traefik.enable=true
       - traefik.http.routers.openvpn.entrypoints=websecure

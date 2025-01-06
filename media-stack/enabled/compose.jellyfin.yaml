@@ -25,8 +25,8 @@ services:
       # Intel/AMD GPU
       - /dev/dri:/dev/dri
     volumes:
-      - ${USER_DIR}/jellyfin/config:/config
-      - ${USER_DIR}/jellyfin/cache:/cache
+      - ~/home-server/jellyfin/config:/config
+      - ~/home-server/jellyfin/cache:/cache
       - /mnt/raid/media/movies:/movies:ro
       - /mnt/raid/media/music:/music:ro
       - /mnt/raid/media/series:/series:ro

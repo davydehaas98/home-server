@@ -15,8 +15,8 @@ services:
       - POSTGRES_DB=nextcloud
       - POSTGRES_HOST=nexcloud-postgresql
     volumes:
-      - ${USER_DIR}/nextcloud/config:/config
-      - ${USER_DIR}/nextcloud/data:/data
+      - ~/home-server/nextcloud/config:/config
+      - ~/home-server/nextcloud/data:/data
     expose:
       - 80
       - 443

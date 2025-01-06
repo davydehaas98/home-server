@@ -9,7 +9,7 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ${USER_DIR}/fah:/config
+      - ~/home-server/fah:/config
     expose:
       - 7396
       - 36330 # optional

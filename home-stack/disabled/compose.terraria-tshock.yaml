@@ -9,8 +9,8 @@ services:
     environment:
     - TZ=${TZ}
     volumes:
-    - ${USER_DIR}/terraria/world:/root/.local/share/Terraria/Worlds
-    - ${USER_DIR}/terraria/plugins:/plugins
-    - ${USER_DIR}/terraria/logs:/tshock/logs:ro
+    - ~/home-server/terraria/world:/root/.local/share/Terraria/Worlds
+    - ~/home-server/terraria/plugins:/plugins
+    - ~/home-server/terraria/logs:/tshock/logs:ro
     ports:
     - 7777:7777

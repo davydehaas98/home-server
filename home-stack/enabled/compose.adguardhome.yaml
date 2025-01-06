@@ -17,11 +17,11 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/adguardhome/conf:/opt/adguardhome/conf # app configuration
-      - ${USER_DIR}/adguardhome/work:/opt/adguardhome/work # app working directory
+      - ~/home-server/adguardhome/conf:/opt/adguardhome/conf # app configuration
+      - ~/home-server/adguardhome/work:/opt/adguardhome/work # app working directory
     labels:
       - traefik.enable=true
       - traefik.http.routers.adguardhome.entrypoints=websecure
-      - traefik.http.routers.adguardhome.rule=Host(`adguard.${DOMAIN_NAME}`) | Host(`adguardhome.${DOMAIN_NAME}`)
+      - traefik.http.routers.adguardhome.rule=Host(`adguard.${DOMAIN_NAME}`) || Host(`adguardhome.${DOMAIN_NAME}`)
       - traefik.http.routers.adguardhome.middlewares=chain-no-auth@file
       - traefik.http.services.adguardhome.loadbalancer.server.port=3000

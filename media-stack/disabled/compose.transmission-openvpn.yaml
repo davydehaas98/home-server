@@ -36,7 +36,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/transmission/config:/config
+      - ~/home-server/transmission/config:/config
       - /mnt/raid/media-server/transmission/data:/data
       - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete
       - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete

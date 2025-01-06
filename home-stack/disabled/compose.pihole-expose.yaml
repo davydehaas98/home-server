@@ -13,9 +13,9 @@ services:
     - DNS1=1.1.1.1
     - DNS2=1.0.0.1
     volumes:
-    - ${USER_DIR}/pihole:/etc/pihole
-    - ${USER_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d
-    # - ${USER_DIR}/pihole/pihole.log:/var/log/pihole.log
+    - ~/home-server/pihole:/etc/pihole
+    - ~/home-server/pihole/dnsmasq.d:/etc/dnsmasq.d
+    # - ~/home-server/pihole/pihole.log:/var/log/pihole.log
     expose:
     - 53/tcp
     - 53/udp

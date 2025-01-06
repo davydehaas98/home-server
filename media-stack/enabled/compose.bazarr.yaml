@@ -21,7 +21,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/bazarr/config:/config
+      - ~/home-server/bazarr/config:/config
       - /mnt/raid/media/movies:/movies
       - /mnt/raid/media/series:/series
     environment:

@@ -21,8 +21,8 @@ services:
     - SUPERVISOR_HTTP_USER=admin
     - SUPERVISOR_HTTP_PASS=password
     volumes:
-    - ${USER_DIR}/valheim/config:/config
-    - ${USER_DIR}/valheim/data:/opt/valheim # The data of the server, downloaded from Steam.
+    - ~/home-server/valheim/config:/config
+    - ~/home-server/valheim/data:/opt/valheim # The data of the server, downloaded from Steam.
     expose:
     - 2456
     - 2457

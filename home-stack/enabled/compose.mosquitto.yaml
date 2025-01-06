@@ -16,7 +16,7 @@ services:
       - reverse-proxy
     # command: 'mosquitto -c /mosquitto-no-auth.conf'
     volumes:
-      - ${USER_DIR}/mosquitto/certs:/mosquitto/config/certs
-      - ${USER_DIR}/mosquitto/config:/mosquitto/config
-      - ${USER_DIR}/mosquitto/data:/mosquitto/data
-      - ${USER_DIR}/mosquitto/log:/mosquitto/log
+      - ~/home-server/mosquitto/certs:/mosquitto/config/certs
+      - ~/home-server/mosquitto/config:/mosquitto/config
+      - ~/home-server/mosquitto/data:/mosquitto/data
+      - ~/home-server/mosquitto/log:/mosquitto/log

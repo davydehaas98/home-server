@@ -27,8 +27,8 @@ services:
       #- /dev/video11:/dev/video11
       #- /dev/video12:/dev/video12
     volumes:
-      - ${USER_DIR}/emby/config:/config
-      - ${USER_DIR}/emby/transcode:/transcode
+      - ~/home-server/emby/config:/config
+      - ~/home-server/emby/transcode:/transcode
       - /mnt/raid/media/movies:/movies:ro
       - /mnt/raid/media/music:/music:ro
       - /mnt/raid/media/series:/series:ro

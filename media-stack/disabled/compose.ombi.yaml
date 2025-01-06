@@ -15,7 +15,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/ombi/config:/config
+      - ~/home-server/ombi/config:/config
     environment:
       - PGID=${GID}
       - PUID=${UID}

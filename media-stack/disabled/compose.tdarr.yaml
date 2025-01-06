@@ -19,10 +19,10 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/tdarr/config:/app/configs
-      - ${USER_DIR}/tdarr/logs:/app/logs
-      - ${USER_DIR}/tdarr/server:/app/server
-      - ${USER_DIR}/tdarr/transcode_cache:/temp
+      - ~/home-server/tdarr/config:/app/configs
+      - ~/home-server/tdarr/logs:/app/logs
+      - ~/home-server/tdarr/server:/app/server
+      - ~/home-server/tdarr/transcode_cache:/temp
       - /mnt/raid/media/movies:/movies
       - /mnt/raid/media/series:/series
     environment:
@@ -47,9 +47,9 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - ${USER_DIR}/tdarr/config:/app/configs
-      - ${USER_DIR}/tdarr/logs:/app/logs
-      - ${USER_DIR}/tdarr/transcode_cache:/temp
+      - ~/home-server/tdarr/config:/app/configs
+      - ~/home-server/tdarr/logs:/app/logs
+      - ~/home-server/tdarr/transcode_cache:/temp
       - /mnt/raid/media/movies:/movies
       - /mnt/raid/media/series:/series
     environment:

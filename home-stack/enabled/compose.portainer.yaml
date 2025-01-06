@@ -22,7 +22,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/portainer/data:/data
+      - ~/home-server/portainer/data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - TZ=${TZ}

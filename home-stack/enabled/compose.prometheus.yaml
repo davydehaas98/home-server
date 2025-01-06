@@ -19,8 +19,8 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ${USER_DIR}/prometheus:/etc/prometheus
-    # - ${USER_DIR}/prometheus/data:/prometheus
+      - ~/home-server/prometheus:/etc/prometheus
+    # - ~/home-server/prometheus/data:/prometheus
     expose:
       - 9090
     networks:

@@ -19,9 +19,9 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/plex/config:/plex/config:ro
-      - ${USER_DIR}/tautulli/config:/config
-      - ${USER_DIR}/tautulli/logs:/logs
+      - ~/home-server/plex/config:/plex/config:ro
+      - ~/home-server/tautulli/config:/config
+      - ~/home-server/tautulli/logs:/logs
     environment:
       - PGID=${GID}
       - PUID=${UID}

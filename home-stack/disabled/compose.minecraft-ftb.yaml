@@ -53,7 +53,7 @@ services:
     - ONLINE_MODE=TRUE
     - ALLOW_FLIGHT=TRUE
     volumes:
-    - ${USER_DIR}/minecraft-ftb/data:/data
+    - ~/home-server/minecraft-ftb/data:/data
     expose:
     - 25575
     ports:
@@ -80,5 +80,5 @@ services:
     - RCON_PORT=25575
     - RCON_PASSWORD=minecraft
     volumes:
-    - ${USER_DIR}/minecraft-ftb/data:/data:ro
+    - ~/home-server/minecraft-ftb/data:/data:ro
     - ${STORAGE_DIR}/minecraft-ftb-backup:/backups

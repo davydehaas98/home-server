@@ -20,7 +20,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/xteve/config:/config:rw
+      - ~/home-server/xteve/config:/config:rw
     environment:
       - PGID=${GID}
       - PUID=${UID}

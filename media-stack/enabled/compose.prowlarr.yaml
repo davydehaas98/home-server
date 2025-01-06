@@ -21,7 +21,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/prowlarr/config:/config
+      - ~/home-server/prowlarr/config:/config
     environment:
       - PGID=${GID}
       - PUID=${UID}

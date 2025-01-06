@@ -22,8 +22,8 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/traefik/letsencrypt:/letsencrypt
-      - ${USER_DIR}/traefik:/etc/traefik:ro
+      - ~/home-server/traefik/letsencrypt:/letsencrypt
+      - ~/home-server/traefik:/etc/traefik:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     command:
       - --certificatesResolver.dns-resolver-cloudflare.acme.email=${CLOUDFLARE_EMAIL}

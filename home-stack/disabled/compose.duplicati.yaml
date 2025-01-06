@@ -11,9 +11,9 @@ services:
       - PUID=${UID}
       - TZ=${TZ}
     volumes:
-      - ${USER_DIR}/duplicati/config:/config
-      - ${USER_DIR}/duplicati/backups:/backups
-      - ${USER_DIR}:/source
+      - ~/home-server/duplicati/config:/config
+      - ~/home-server/duplicati/backups:/backups
+      - ~/home-server:/source
     expose:
       - 8200
     labels:

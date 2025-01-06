@@ -22,5 +22,5 @@ services:
       - TZ=${TZ}
       - DELUGE_LOGLEVEL=error
     volumes:
-      - ${USER_DIR}/deluge/config:/config
+      - ~/home-server/deluge/config:/config
       - /mnt/raid/media/downloads:/root/Downloads

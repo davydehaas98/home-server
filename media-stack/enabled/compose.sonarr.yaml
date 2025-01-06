@@ -21,7 +21,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/sonarr/config:/config
+      - ~/home-server/sonarr/config:/config
       - /mnt/raid/downloads:/downloads
       - /mnt/raid/media/series:/series
     environment:

@@ -12,7 +12,7 @@ services:
     - MONGO_HOST=mongo
     - REDIS_HOST=redis
     volumes:
-    - ${USER_DIR}/screeps-launcher:/screeps
+    - ~/home-server/screeps-launcher:/screeps
     ports:
     - 21025:21025/tcp
   
@@ -21,11 +21,11 @@ services:
     container_name: screeps-mongo
     restart: unless-stopped
     volumes:
-    - ${USER_DIR}/screeps-mongo:/data/db
+    - ~/home-server/screeps-mongo:/data/db
   
   redis:
     image: docker.io/redis:7.4.0@sha256:eadf354977d428e347d93046bb1a5569d701e8deb68f090215534a99dbcb23b9
     container_name: screeps-redis
     restart: unless-stopped
     volumes:
-    - ${USER_DIR}/screeps-redis:/data
+    - ~/home-server/screeps-redis:/data

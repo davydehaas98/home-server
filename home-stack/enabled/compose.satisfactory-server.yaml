@@ -16,7 +16,7 @@ services:
       - ROOTLESS=true
       - STEAMBETA=false
     volumes:
-      - ${USER_DIR}/satisfactory-server:/config
+      - ~/home-server/satisfactory-server:/config
     expose:
       - 7777
     ports:

@@ -11,12 +11,12 @@ services:
     - sonar.jbdc.password=sonarqube
     - sonar.jdbc.url=jdbc:postgresql://sonarqube-postgresql:5432/sonarqube
     volumes:
-    - ${USER_DIR}/sonarqube/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
-    - ${USER_DIR}/sonarqube/config:/opt/sonarqube/conf
-    - ${USER_DIR}/sonarqube/data:/opt/sonarqube/data
-    - ${USER_DIR}/sonarqube/extensions:/opt/sonarqube/extensions
-    - ${USER_DIR}/sonarqube/logs:/opt/sonarqube/logs
-    - ${USER_DIR}/sonarqube/temp:/opt/sonarqube/temp
+    - ~/home-server/sonarqube/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    - ~/home-server/sonarqube/config:/opt/sonarqube/conf
+    - ~/home-server/sonarqube/data:/opt/sonarqube/data
+    - ~/home-server/sonarqube/extensions:/opt/sonarqube/extensions
+    - ~/home-server/sonarqube/logs:/opt/sonarqube/logs
+    - ~/home-server/sonarqube/temp:/opt/sonarqube/temp
     expose:
     - 9000
     - 9092 # Embedded H2 database

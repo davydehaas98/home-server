@@ -9,6 +9,6 @@ services:
     environment:
     - TZ=${TZ}
     volumes:
-    - ${USER_DIR}/terraria-vanilla/world:/root/.local/share/Terraria/Worlds
+    - ~/home-server/terraria-vanilla/world:/root/.local/share/Terraria/Worlds
     ports:
     - 7777:7777

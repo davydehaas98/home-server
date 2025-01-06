@@ -19,7 +19,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-    - ${USER_DIR}/elasticsearch:/usr/share/elasticsearch/data
+    - ~/home-server/elasticsearch:/usr/share/elasticsearch/data
     expose:
     - 9200
 
@@ -36,6 +36,6 @@ services:
     - ELASTICSEARCH_URL=http://elasticsearch:9200
     - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     volumes:
-    - ${USER_DIR}/kibana/config:/usr/share/kibana/config
+    - ~/home-server/kibana/config:/usr/share/kibana/config
     expose:
     - 5601

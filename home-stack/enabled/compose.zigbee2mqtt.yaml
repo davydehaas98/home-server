@@ -14,7 +14,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/zigbee2mqtt/data:/app/data
+      - ~/home-server/zigbee2mqtt/data:/app/data
       - /run/udev:/run/udev:ro
     # devices:
     #   - /dev/ttyUSB0:/dev/ttyUSB0

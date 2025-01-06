@@ -15,7 +15,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/overseerr/config:/config
+      - ~/home-server/overseerr/config:/config
     environment:
       - PGID=${GID}
       - PUID=${UID}

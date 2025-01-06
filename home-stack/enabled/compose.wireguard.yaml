@@ -17,7 +17,7 @@ services:
       - PUID=${UID}
       - PGID=${GID}
     volumes:
-      - ${USER_DIR}/wireguard/config:/config
+      - ~/home-server/wireguard/config:/config
     ports:
       - 51820:51820/udp
     sysctls:

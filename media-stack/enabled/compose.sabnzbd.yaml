@@ -26,7 +26,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/sabnzbd:/config
+      - ~/home-server/sabnzbd:/config
       - /mnt/raid/downloads/usenet/complete:/downloads/usenet/complete
       - /mnt/raid/downloads/usenet/incomplete:/downloads/usenet/incomplete
     environment:

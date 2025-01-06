@@ -21,7 +21,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ${USER_DIR}/readarr/config:/config
+      - ~/home-server/readarr/config:/config
       - /mnt/raid/downloads:/downloads
       - /mnt/raid/media/books:/books
     environment:

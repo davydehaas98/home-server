@@ -17,7 +17,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ${USER_DIR}/authelia:/config
+      - ~/home-server/authelia:/config
     environment:
       - TZ=${TZ}
     healthcheck:
