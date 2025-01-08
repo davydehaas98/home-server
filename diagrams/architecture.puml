@@ -1,0 +1,63 @@
+@startuml media-stack
+skinparam componentStyle rectangle
+skinparam linetype polyline
+title Media Stack
+
+package "Media managers" as MM {
+    component Bazarr #LightBlue {
+        port 8989
+    }
+    component Lidarr #LightBlue {
+        port 8686
+    }
+    component Prowlarr #LightBlue {
+        port 9696
+    }
+    component Radarr #LightBlue {
+        port 7878
+    }
+    component Sonarr #LightBlue {
+        port 9797
+    }
+}
+
+package "Media downloaders" as MD {
+    [Transmission] #Orange
+    [QBitTorrent] #Orange
+    [Sabnzbd] #Orange
+}
+
+package "Media streamers" as MS {
+    [Jellyfin] #LightGreen
+    [Plex] #LightGreen
+}
+
+folder media {
+    folder series
+    folder movies
+    folder music
+}
+
+folder downloads {
+    folder torrents
+    folder usenet
+}
+
+Lidarr <--d--> Prowlarr
+Radarr --d-- Prowlarr
+Radarr <--d-- Bazarr
+Sonarr --d-- Prowlarr
+Sonarr <--d-- Bazarr
+
+MM -d-> MD
+
+MD -u-> downloads
+downloads -u-> MM
+
+Radarr -d-> movies
+Sonarr -d-> series
+Lidarr -d-> music
+
+media --> MS
+
+@enduml
