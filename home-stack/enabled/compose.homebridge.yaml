@@ -29,7 +29,7 @@ services:
         max-size: 10m
         max-file: 1
     volumes:
-      - ~/home-server/home-server/homebridge:/homebridge
+      - ~/home-server/homebridge:/homebridge
     environment:
       - TZ=${TZ}
       - ENABLE_AVAHI=1
