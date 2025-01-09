@@ -32,7 +32,7 @@ services:
   immich-machine-learning:
     container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
-    image: ghcr.io/immich-app/immich-machine-learning:v1.124.0@sha256:ca74b8c58e745dda0fa4a3321bfa517dd85fb5b055760bd13dcbbe9dc526c788
+    image: ghcr.io/immich-app/immich-machine-learning:v1.124.2@sha256:a134652b47278edfdac3187d61558e78679be39c810536193a41e9e0d894c5f4
     restart: unless-stopped
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
