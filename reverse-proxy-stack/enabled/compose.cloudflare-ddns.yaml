@@ -1,21 +1,17 @@
-networks:
-  reverse-proxy:
-    external: true
-
 services:
   cloudflare-ddns:
-    image: docker.io/oznu/cloudflare-ddns:latest@sha256:19bd73d8aea9641dc329ec18ae693b2b9c33ff7cdc007f368266ce584446f995
+    image: docker.io/favonia/cloudflare-ddns:1.15.1
     container_name: cloudflare-ddns
     cpus: 0.1
     mem_limit: 128m
-    # user: ${UID}:${GID}
+    user: ${UID}:${GID}
+    read_only: true
+    security_opt: [no-new-privileges:true]
     restart: unless-stopped
-    networks:
-      - reverse-proxy
+    network_mode: host
     environment:
-      - API_KEY=${CLOUDFLARE_API_TOKEN:?error}
-      - ZONE=${DOMAIN_NAME:?error}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:?error}
+      - DOMAINS=${DOMAIN_NAME:?error}
       - PROXIED=false
-      - RRTYPE=A
+      # - RRTYPE=A
       - DELETE_ON_STOP=false
-      - DNS_SERVER=1.1.1.1
