@@ -4,7 +4,7 @@ networks:
 
 services:
   alertmanager:
-    image: docker.io/prom/alertmanager:v0.27.0@sha256:e13b6ed5cb929eeaee733479dce55e10eb3bc2e9c4586c705a4e8da41e5eacf5
+    image: docker.io/prom/alertmanager:v0.28.0@sha256:d5155cfac40a6d9250ffc97c19db2c5e190c7bc57c6b67125c94903358f8c7d8
     container_name: alertmanager
     cpus: 1
     mem_limit: 1024m
