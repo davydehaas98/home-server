@@ -9,14 +9,14 @@ services:
     cpus: 0.5
     mem_limit: 512m
     restart: unless-stopped
-    expose:
-      - 1883
-      - 9001
+    ports:
+      # MQTT default listener
+      - 1883:1883
+      # MQTT for websockets
+      - 9001:9001
     networks:
       - reverse-proxy
-    # command: 'mosquitto -c /mosquitto-no-auth.conf'
     volumes:
-      - ~/home-server/mosquitto/certs:/mosquitto/config/certs
       - ~/home-server/mosquitto/config:/mosquitto/config
       - ~/home-server/mosquitto/data:/mosquitto/data
       - ~/home-server/mosquitto/log:/mosquitto/log
