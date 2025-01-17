@@ -1,0 +1,21 @@
+networks:
+  reverse-proxy:
+    external: true
+services:
+  personal-website:
+    image: ghcr.io/davydehaas98/personal-website:106-1
+    container_name: personal-website
+    cpus: 0.1
+    mem_limit: 512m
+    restart: unless-stopped
+    expose:
+      - 80
+    networks:
+      - reverse-proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.personal-website.entrypoints=websecure
+      - traefik.http.routers.personal-website.rule=Host(`${DOMAIN_NAME}`) || Host(`www.${DOMAIN_NAME}`)
+      - traefik.http.routers.personal-website.middlewares=chain-no-auth@file
+      - traefik.http.services.personal-website.loadbalancer.server.port=80
+  
