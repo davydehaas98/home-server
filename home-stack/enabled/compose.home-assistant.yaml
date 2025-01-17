@@ -13,7 +13,7 @@ services:
     privileged: true
     expose:
       - 8123
-      - 443=
+      - 443
     networks:
       - reverse-proxy
     healthcheck:
