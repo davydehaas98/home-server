@@ -3,7 +3,7 @@ networks:
     external: true
 services:
   personal-website:
-    image: ghcr.io/davydehaas98/personal-website:107-1@sha256:314a1650d59ee3926d9afc2010694a22fcd5bda8e7ec571b233eb7899e1533f9
+    image: ghcr.io/davydehaas98/personal-website:108-1@sha256:617b455540aeb2f1c058c6381067624d836eaf30468263bc0b0e85239d4920bd
     container_name: personal-website
     cpus: 0.1
     mem_limit: 512m
