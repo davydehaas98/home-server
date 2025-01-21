@@ -1,3 +1,0 @@
-mqtt:
-  sensor: !include_dir_list ../mqtt_sensors
-  switch: !include_dir_list ../mqtt_switches
