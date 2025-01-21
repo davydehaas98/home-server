@@ -1,0 +1,31 @@
+mqtt:
+  sensor:
+    - name: "Watermeter total usage"
+      state_topic: watermeter/reading/current_value
+      state_class: total_increasing
+      device_class: water
+      unit_of_measurement: "L"
+      icon: mdi:water
+    - name: "Watermeter usage per minute"
+      state_topic: watermeter/reading/water_used_last_minute
+      state_class: measurement
+      device_class: water
+      unit_of_measurement: "L"
+      icon: mdi:water
+    # Status
+    - name: "Watermeter running firmware version"
+      state_topic: watermeter/smart_gateways/running_firmware_version
+    - name: "Watermeter available firmware version"
+      state_topic: watermeter/smart_gateways/available_firmware_version
+    - name: "Watermeter update firmware version"
+      state_topic: watermeter/smart_gateways/update_available
+    - name: "Watermeter MAC Address"
+      state_topic: watermeter/smamrt_gateways/mac_address
+    - name: "Watermeter wifi signal strength (RSSI)"
+      state_topic: watermeter/smart_gateways/wifi_rssi
+    - name: "Watermeter startup time"
+      state_topic: watermeter/smart_gateways/startup_time
+      device_class: timestamp
+      icon: mdi:clock-start
+    - name: "Watermeter IP address"
+      state_topic: watermeter/smart_gateways/ip_address
