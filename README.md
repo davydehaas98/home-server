@@ -23,6 +23,7 @@ My home server configuration set up using compose files.
 | Grafana | Analytics and monitoring service. |
 | Home Assistant | Home automation service. |
 | Homebridge | Emulates the iOS HomeKit API. |
+| Mosquitto | Message Queuing Telemetry Transport (MQTT) broker |
 | Portainer | Web UI for Docker containers. Useful for managing all the containers on the server. |
 | Prometheus | Systems monitoring and alertingtoolkit. |
 | Prometheus Alertmanager | Alert manager for Prometheus. |
