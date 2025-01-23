@@ -4,7 +4,7 @@ networks:
 
 services:
   wireguard:
-    image: lscr.io/linuxserver/wireguard:1.0.20210914@sha256:3be1e46ee3361ad2f3dade3fe356e0bb44af1aafa4bf69b738e85fb42103551b
+    image: lscr.io/linuxserver/wireguard:1.0.20210914@sha256:9873f207b72cde45cf117e32a63ce80fff0c12bd1d59f0a0d27b33826faa97e6
     container_name: wireguard
     restart: unless-stopped
     cpus: 1
