@@ -4,7 +4,7 @@ networks:
 
 services:
   satisfactory-server:
-    image: docker.io/wolveix/satisfactory-server:v1.9.1@sha256:199be1064b185862571ebf21c7176867d61e636f73f835be354f090a59bb08d8
+    image: docker.io/wolveix/satisfactory-server:v1.9.2@sha256:2cb3a21ca1ec577dad3b7edf0e5351dbe52157d8e4f6b3263ad9c6b9f4952c9c
     container_name: satisfactory-server
     restart: unless-stopped
     cpus: 4
