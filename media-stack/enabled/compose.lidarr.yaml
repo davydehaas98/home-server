@@ -4,7 +4,7 @@ networks:
 
 services:
   lidarr:
-    image: lscr.io/linuxserver/lidarr:2.8.2@sha256:108ecf0fcbd8f77b6e8a513be6f3446feb47666dd1b45ea360569e9aac0960e4
+    image: lscr.io/linuxserver/lidarr:2.9.6@sha256:1a52f7aedd7f7587f2d4cd03ff50f8f18f68f09ae3de9c1d9c4638e3d53ce702
     container_name: lidarr
     cpus: 0.1
     mem_limit: 512m
