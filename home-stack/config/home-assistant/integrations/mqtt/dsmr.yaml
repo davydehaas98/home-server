@@ -1,5 +1,7 @@
 mqtt:
   sensor:
+    - name: "DSRM "
+
     # Status
     - name: "DSMR running firmware version"
       state_topic: dsmr/smart_gateways/running_firmware_version
@@ -7,10 +9,11 @@ mqtt:
       state_topic: dsmr/smart_gateways/available_firmware_version
     - name: "DSMR update firmware version"
       state_topic: dsmr/smart_gateways/update_available
-    - name: "DSMR MAC Address"
+    - name: "DSMR MAC address"
       state_topic: dsmr/smamrt_gateways/mac_address
-    - name: "DSMR wifi signal strength (RSSI)"
+    - name: "DSMR Wi-Fi signal strength (RSSI)"
       state_topic: dsmr/smart_gateways/wifi_rssi
+      unit_of_measurement: "dBm"
     - name: "DSMR startup time"
       state_topic: dsmr/smart_gateways/startup_time
       device_class: timestamp
