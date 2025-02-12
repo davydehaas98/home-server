@@ -1,0 +1,100 @@
+services:
+  # https://github.com/itzg/docker-minecraft-server
+  # scp -r "./mods" root@davydehaas.nl:/server/minecraft-atm9sky/data/mods
+  # scp -r "./config" root@davydehaas.nl:/server/minecraft-atm9sky/data/config
+  # scp -r ".\SkyFactory-4_Server_4_2_4.zip" davy@yggdrasil:/opt/appdata/home-server/minecraft-skyfactory/data
+  minecraft-atm9sky:
+    image: ghcr.io/itzg/minecraft-server:2025.2.0-java17
+    container_name: minecraft-atm9sky
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 16G
+    user: ${UID}:${GID}
+    volumes:
+      - ~/home-server/minecraft-atm9sky/data:/data
+    expose:
+      - 25565
+    ports:
+      - 25565:25565
+    environment:  
+      - TZ=${TZ}
+
+      # JVM Setup Values
+      - INIT_MEMORY=2G
+      - MAX_MEMORY=16G
+      
+      # Modpack setup
+      - EULA=TRUE
+      - VERSION=1.20.1
+      - TYPE=CURSEFORGE
+      - FORGEVERSION=47.3.0
+      - CF_SERVER_MOD=SkyFactory-4_Server_4_2_4.zip
+      - CF_BASE_DIR=/data
+
+      # Server settings
+      - ENABLE_AUTOPAUSE=TRUE
+      - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
+      - MAX_TICK_TIME=-1 # default 60000
+      - SERVER_NAME=skyfactory
+      - SERVER_PORT=25565
+      - MOTD=Davy's "Skyfactory 4" Minecraft server.
+      - OPS=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
+      - WHITELIST=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
+      - OVERRIDE_ICON=TRUE
+      # - ICON=https://davydehaas.nl/assets/images/memoji.png
+
+      # Gamemode settings
+      - DIFFICULTY=normal
+      - MODE=survival
+      - PVP=TRUE
+      - ALLOW_NETHER=TRUE
+      - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
+      - ENABLE_COMMAND_BLOCK=TRUE
+      - FORCE_GAMEMODE=FALSE
+      - GENERATE_STRUCTURES=TRUE
+      - HARDCORE=FALSE
+      - SNOOPER_ENABLED=FALSE
+      - ONLINE_MODE=TRUE
+      - ALLOW_FLIGHT=TRUE
+
+      # World generation settings
+      - MAX_PLAYERS=20
+      - MAX_WORLD_SIZE=20000
+      - MAX_BUILD_HEIGHT=256
+      - SPAWN_ANIMALS=TRUE
+      - SPAWN_MONSTERS=TRUE
+      - SPAWN_NPCS=TRUE
+      - SPAWN_PROTECTION=16
+      - VIEW_DISTANCE=8
+      #- SEED=1785852800490497919
+      - LEVEL_TYPE=DEFAULT
+      - GENERATOR_SETTINGS={"Topography-Preset":"Sky Factory 4"}
+      
+      # RCON
+      - ENABLE_RCON=TRUE
+      - RCON_PORT=25575
+      - RCON_PASSWORD=minecraft
+  
+  minecraft-atm9sky-backup:
+    image: ghcr.io/itzg/mc-backup:latest@sha256:793b0420bb4b80a54330ce648d60e9d0e71ba771f46e78329b9ccee82d051274
+    container_name: minecraft-atm9sky-backup
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1G
+    user: ${UID}:${GID}
+    volumes:
+      - ~/home-server/minecraft-atm9sky/data:/data:ro
+      - ${STORAGE_DIR}/minecraft-atm9sky-backup:/backups
+    environment:
+      - TZ=${TZ}
+      - BACKUP_METHOD=tar
+      - BACKUP_INTERVAL=12h
+      - DEST_DIR=/backups
+      - EXCLUDES=*.jar,cache,logs
+      - PAUSE_IF_NO_PLAYERS=true
+      - PRUNE_BACKUPS_DAYS=4
+      - INITIAL_DELAY=2m
+      - TAR_COMPRESS_METHOD=gzip
+      - RCON_HOST=minecraft-atm9sky
+      - RCON_PORT=25575
+      - RCON_PASSWORD=minecraft
