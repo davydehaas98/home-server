@@ -76,7 +76,7 @@ services:
       - RCON_PASSWORD=minecraft
   
   minecraft-atm9sky-backup:
-    image: ghcr.io/itzg/mc-backup:latest@sha256:793b0420bb4b80a54330ce648d60e9d0e71ba771f46e78329b9ccee82d051274
+    image: docker.io/itzg/mc-backup:latest
     container_name: minecraft-atm9sky-backup
     restart: unless-stopped
     cpus: 1
