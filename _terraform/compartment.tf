@@ -1,9 +1,13 @@
 resource "oci_identity_compartment" "tf-compartment" {
-    compartment_id = var.tenancy_ocid
+    compartment_id = var.tenancy
     description = "Compartment for Terraform resources."
-    name = "test-compartment"
+    name = "tf-compartment"
 }
 
-output "compartments" {
-  value = data.oci_identity_compartments.compartments1.compartments
+data "oci_identity_compartments" "name" {
+  name = oci_identity_compartment.tf-compartment.name
+}
+
+data "oci_identity_compartments" "id" {
+  compartment_id = oci_identity_compartment.tf-compartment.id
 }
