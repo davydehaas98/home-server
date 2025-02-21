@@ -4,7 +4,7 @@ networks:
 # HACS: https://hacs.xyz/docs/use/download/download/#to-download-hacs-container
 services:
   home-assistent:
-    image: docker.io/homeassistant/home-assistant:2025.2.4@sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf
+    image: docker.io/homeassistant/home-assistant:2025.2.5@sha256:a81e875974c909957da5407a85d42409581a1f3c1ae202642519430389baf1ad
     container_name: home-assistant
     cpus: 0.1
     mem_limit: 2048m
