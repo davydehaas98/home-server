@@ -2,6 +2,6 @@
 
 .vscode/
 .terraform*
-*.tfstate*
+terraform.tfstate*
 terraform.tfvars
 *.auto.tfvars
