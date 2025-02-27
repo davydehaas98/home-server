@@ -4,7 +4,7 @@ networks:
 
 services:
   portainer:
-    image: portainer/portainer-ce:2.27.0-alpine@sha256:059469e63ee278ae739c82960528c5b61ff918c7b06da53089c24d39612afe3a
+    image: portainer/portainer-ce:2.27.1-alpine@sha256:1465f22798cfb5d0a014847ce2c1b750d56588b2dcbb7eb4e03671ad46dd1c71
     container_name: portainer
     cpus: 0.1
     mem_limit: 128m
