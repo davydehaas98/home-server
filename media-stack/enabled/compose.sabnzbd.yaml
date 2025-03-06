@@ -4,7 +4,7 @@ networks:
 
 services:
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:4.4.1@sha256:854dcbcc7802e863092b25e9caf155015d01b6afe2b4cee070a5127bd623c638
+    image: lscr.io/linuxserver/sabnzbd:4.4.1@sha256:c74f6a81b2730f9a16742ce8cb18553324473f6bb31d2a5258a25f0e00c2f217
     container_name: sabnzbd
     cpus: 4
     mem_limit: 4096m
