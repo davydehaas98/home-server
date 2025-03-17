@@ -1,0 +1,33 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  # xTeve M3U Proxy for Plex DVR and Emby Live TV
+  # https://iptv-4k.co/shop/
+  # https://uw8k.cc/
+  threadfin:
+    image: docker.io/fyb3roptik/threadfin:1.2.31
+    container_name: threadfin
+    cpus: 1
+    mem_limit: 4096m
+    user: ${UID}:${GID}
+    restart: unless-stopped
+    expose:
+      - 34400
+      - 1900
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/threadfin/config:/home/threadfin/conf
+      - ~/home-server/threadfin/config:/tmp/threadfin:rw
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=${TZ}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.threadfin.entrypoints=websecure
+      - traefik.http.routers.threadfin.rule=Host(`threadfin.${DOMAIN_NAME}`) || Host(`dvr.${DOMAIN_NAME}`) || Host(`xteve.${DOMAIN_NAME}`)
+      - traefik.http.routers.threadfin.middlewares=chain-authelia@file
+      - traefik.http.services.threadfin.loadbalancer.server.port=34400
