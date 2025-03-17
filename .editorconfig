@@ -1,19 +1,43 @@
 root = true
 
+# All Files
 [*]
 charset = utf-8
+indent_size = 4
+indent_style = space
+trim_trailing_whitespace = true
 end_of_line = lf
-
-# Continuation indent size isn't officially supported yet
+insert_final_newline = true
 # noinspection EditorConfigKeyCorrectness
 continuation_indent_size = 8
 ij_continuation_indent_size = 8
-indent_size = 4
-indent_style = space
-insert_final_newline = true
 
-[*.{js,json,yml,yaml}]
+# JSON Files
+[*.{json,json5,webmanifest}]
+indent_size = 2
+insert_final_newline = ignore
+
+# YAML Files
+[*.{yml,yaml}]
 indent_size = 2
 
-[*.md]
+# Markdown Files
+[*.{md,mdx}]
+indent_size = 4
 trim_trailing_whitespace = false
+
+# Web Files
+[*.{htm,html,js,jsm,ts,tsx,cjs,cts,ctsx,mjs,mts,mtsx,css,sass,scss,less,pcss,svg,vue}]
+indent_size = 2
+
+# Batch Files
+[*.{cmd,bat}]
+end_of_line = crlf
+
+# Bash Files
+[*.sh]
+end_of_line = lf
+
+# Makefiles
+[Makefile]
+indent_style = tab
