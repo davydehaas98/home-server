@@ -10,6 +10,8 @@ services:
     cpus: 4
     mem_limit: 16G
     user: ${UID}:${GID}
+    tty: true
+    stdin_open: true
     expose:
       - 25565
     ports:
@@ -68,7 +70,6 @@ services:
       - VIEW_DISTANCE=8
       #- SEED=1785852800490497919
       - LEVEL_TYPE=DEFAULT
-      - GENERATOR_SETTINGS={"Topography-Preset":"Sky Factory 4"}
 
       # RCON
       - ENABLE_RCON=TRUE
