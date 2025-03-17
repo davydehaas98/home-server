@@ -1,0 +1,15 @@
+name: Terraform
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "_terraform/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate
+        run: |
+          terraform validate
