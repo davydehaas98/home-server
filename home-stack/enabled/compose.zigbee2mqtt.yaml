@@ -6,18 +6,18 @@ services:
   zigbee2mqtt:
     image: ghcr.io/koenkk/zigbee2mqtt:2.1.3@sha256:80f82f8fed251acb706a002c51fffab166b25bb18b1aff15f37f85cf3d73c171
     container_name: zigbee2mqtt
+    restart: unless-stopped
     cpus: 0.5
     mem_limit: 512m
-    restart: unless-stopped
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
     expose:
       - 8080
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/zigbee2mqtt/data:/app/data
+      - ~/home-server/zigbee2mqtt/data:/app/data:rw
       - /run/udev:/run/udev:ro
-    # devices:
-    #   - /dev/ttyUSB0:/dev/ttyUSB0
     environment:
       - TZ=${TZ}
     labels:

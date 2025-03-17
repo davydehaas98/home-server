@@ -6,9 +6,9 @@ services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:1.5.1@sha256:0b3e1b888615cbd32cf879963d041abcf863d15160a9ace2928039a7b00590ef
     container_name: bazarr
+    restart: unless-stopped
     cpus: 1
     mem_limit: 4096m
-    restart: unless-stopped
     expose:
       - 6767
     networks:
@@ -21,9 +21,9 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/bazarr:/config
-      - /mnt/raid/media/movies:/movies
-      - /mnt/raid/media/series:/series
+      - ~/home-server/bazarr:/config:rw
+      - /mnt/raid/media/movies:/movies:rw
+      - /mnt/raid/media/series:/series:rw
     environment:
       - PGID=${GID}
       - PUID=${UID}

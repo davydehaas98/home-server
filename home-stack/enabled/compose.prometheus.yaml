@@ -10,6 +10,10 @@ services:
     cpus: 4
     mem_limit: 8192m
     # user: ${UID}:${GID}
+    expose:
+      - 9090
+    networks:
+      - reverse-proxy
     command:
       - --config.file=/etc/prometheus/prometheus.yaml
       - --storage.tsdb.path=/prometheus
@@ -19,12 +23,8 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ~/home-server/prometheus:/etc/prometheus
+      - ~/home-server/prometheus:/etc/prometheus:rw
     # - ~/home-server/prometheus/data:/prometheus
-    expose:
-      - 9090
-    networks:
-      - reverse-proxy
     healthcheck:
       test: ["CMD", "wget", "--spider", "localhost:9090"]
       interval: 10s

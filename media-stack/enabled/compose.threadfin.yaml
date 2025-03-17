@@ -9,17 +9,17 @@ services:
   threadfin:
     image: docker.io/fyb3roptik/threadfin:1.2.31
     container_name: threadfin
+    restart: unless-stopped
     cpus: 1
     mem_limit: 4096m
     user: ${UID}:${GID}
-    restart: unless-stopped
     expose:
       - 34400
       - 1900
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/threadfin/config:/home/threadfin/conf
+      - ~/home-server/threadfin/config:/home/threadfin/conf:rw
       - ~/home-server/threadfin/config:/tmp/threadfin:rw
     environment:
       - PGID=${GID}

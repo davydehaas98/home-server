@@ -17,8 +17,8 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/adguardhome/conf:/opt/adguardhome/conf # app configuration
-      - ~/home-server/adguardhome/work:/opt/adguardhome/work # app working directory
+      - ~/home-server/adguardhome/conf:/opt/adguardhome/conf:rw # app configuration
+      - ~/home-server/adguardhome/work:/opt/adguardhome/work:rw # app working directory
     labels:
       - traefik.enable=true
       - traefik.http.routers.adguardhome.entrypoints=websecure

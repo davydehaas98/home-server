@@ -6,10 +6,10 @@ services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.51.0@sha256:771a65c7877817cd9bb4c2d9eecb9fd1ac56f370287617658c51a35061efa71a
     container_name: cadvisor
+    restart: unless-stopped
     cpus: 1
     mem_limit: 512m
     user: ${UID}:${GID}
-    restart: unless-stopped
     devices:
       - /dev/kmsg
     expose:

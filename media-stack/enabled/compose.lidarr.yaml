@@ -6,9 +6,9 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:2.9.6@sha256:f3faffdc7143153f46c37388767975a131f0c57d4c73bdffa7338a1e9c5e7524
     container_name: lidarr
+    restart: unless-stopped
     cpus: 0.1
     mem_limit: 512m
-    restart: unless-stopped
     expose:
       - 8686
     networks:
@@ -21,9 +21,9 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/lidarr/config:/config
-      - /mnt/raid/downloads:/downloads
-      - /mnt/raid/media/music:/music
+      - ~/home-server/lidarr/config:/config:rw
+      - /mnt/raid/downloads:/downloads:rw
+      - /mnt/raid/media/music:/music:rw
     environment:
       - PGID=${GID}
       - PUID=${UID}

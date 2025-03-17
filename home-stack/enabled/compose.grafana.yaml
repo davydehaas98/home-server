@@ -7,9 +7,9 @@ services:
   grafana:
     image: docker.io/grafana/grafana:11.5.2@sha256:8b37a2f028f164ce7b9889e1765b9d6ee23fec80f871d156fbf436d6198d32b7
     container_name: grafana
+    restart: unless-stopped
     cpus: 0.5
     mem_limit: 512m
-    restart: unless-stopped
     # user: ${GID}:${UID}
     expose:
       - 3000
@@ -23,7 +23,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/grafana:/var/lib/grafana
+      - ~/home-server/grafana:/var/lib/grafana:rw
     environment:
       - TZ=${TZ:?error}
       - GF_USERS_ALLOW_SIGN_UP=false

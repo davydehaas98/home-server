@@ -6,9 +6,9 @@ services:
   mosquitto:
     image: docker.io/eclipse-mosquitto:2.0.21@sha256:94f5a3d7deafa59fa3440d227ddad558f59d293c612138de841eec61bfa4d353
     container_name: mosquitto
+    restart: unless-stopped
     cpus: 0.5
     mem_limit: 512m
-    restart: unless-stopped
     ports:
       # MQTT default listener
       - 1883:1883
@@ -17,6 +17,6 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/mosquitto/config:/mosquitto/config
-      - ~/home-server/mosquitto/data:/mosquitto/data
-      - ~/home-server/mosquitto/log:/mosquitto/log
+      - ~/home-server/mosquitto/config:/mosquitto/config:rw
+      - ~/home-server/mosquitto/data:/mosquitto/data:rw
+      - ~/home-server/mosquitto/log:/mosquitto/log:rw

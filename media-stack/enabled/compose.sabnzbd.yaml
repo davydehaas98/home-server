@@ -6,9 +6,9 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:4.4.1@sha256:c59623123310dd1086669f7d223c3de7bf6d3015624aba9fab8c77e4d198dc68
     container_name: sabnzbd
+    restart: unless-stopped
     cpus: 4
     mem_limit: 4096m
-    restart: unless-stopped
     # expose:
     #   # HTTP
     #   - 8080
@@ -26,9 +26,9 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/sabnzbd:/config
-      - /mnt/raid/downloads/usenet/complete:/downloads/usenet/complete
-      - /mnt/raid/downloads/usenet/incomplete:/downloads/usenet/incomplete
+      - ~/home-server/sabnzbd:/config:rw
+      - /mnt/raid/downloads/usenet/complete:/downloads/usenet/complete:rw
+      - /mnt/raid/downloads/usenet/incomplete:/downloads/usenet/incomplete:rw
     environment:
       - PGID=${GID}
       - PUID=${UID}

@@ -2,12 +2,13 @@ services:
   cloudflare-ddns:
     image: docker.io/favonia/cloudflare-ddns:1.15.1@sha256:a4e2089b3531eec8c9328c7a9a586f80e8d67dcd94856e0b596b7896e1de3f62
     container_name: cloudflare-ddns
+    restart: unless-stopped
     cpus: 0.1
     mem_limit: 128m
     user: ${UID}:${GID}
     read_only: true
-    security_opt: [no-new-privileges:true]
-    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     network_mode: host
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:?error}

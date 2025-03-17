@@ -12,15 +12,15 @@ services:
     user: ${GID}:${UID}
     cap_add:
       - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    ports:
+      - 51820:51820/udp
+    networks:
+      - reverse-proxy
     environment:
       - TZ=${TZ}
       - PUID=${UID}
       - PGID=${GID}
     volumes:
-      - ~/home-server/wireguard/config:/config
-    ports:
-      - 51820:51820/udp
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-    networks:
-      - reverse-proxy
+      - ~/home-server/wireguard/config:/config:rw

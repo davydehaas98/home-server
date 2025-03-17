@@ -6,16 +6,16 @@ services:
   uptime-kuma:
     image: docker.io/louislam/uptime-kuma:1.23.16@sha256:431fee3be822b04861cf0e35daf4beef6b7cb37391c5f26c3ad6e12ce280fe18
     container_name: uptime-kuma
+    restart: unless-stopped
     cpus: 1
     mem_limit: 512m
-    restart: unless-stopped
     # user: ${UID}:${GID}
     expose:
       - 3001
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/uptime-kuma:/app/data
+      - ~/home-server/uptime-kuma:/app/data:rw
     labels:
       - traefik.enable=true
       - traefik.http.routers.uptime-kuma.entrypoints=websecure

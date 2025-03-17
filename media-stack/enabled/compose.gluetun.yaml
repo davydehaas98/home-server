@@ -6,23 +6,26 @@ services:
   gluetun:
     image: ghcr.io/qdm12/gluetun:v3.40.0@sha256:2b42bfa046757145a5155acece417b65b4443c8033fb88661a8e9dcf7fda5a00
     container_name: gluetun
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 1024m
     cap_add:
       - NET_ADMIN
     devices:
       - /dev/net/tun:/dev/net/tun
-    # ports:
-    #   - 8888:8888/tcp # HTTP proxy
-    #   - 8388:8388/tcp # Shadowsocks
-    #   - 8388:8388/udp # Shadowsocks
     expose:
-      - 8080 # sabnzbd
-      - 8081 # qbittorrent
+      # SABnzbd
+      - 8080
+      # qBittorrent
+      - 8081
+      # HTTP proxy
       - 8888
+      # Shadowsocks
       - 8388
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/gluetun:/gluetun
+      - ~/home-server/gluetun:/gluetun:rw
     environment:
       - TZ=${TZ}
       # See https://github.com/qdm12/gluetun-wiki/tree/main/setup#setup
@@ -31,7 +34,7 @@ services:
       - VPN_TYPE=openvpn
       - OPENVPN_USER=${VPN_USERNAME}
       - OPENVPN_PASSWORD=${VPN_PASSWORD}
-      # - WIREGUARD_PRIVATE_KEY=wOEI9rqqbDwnN8/Bpp22sVz48T71vJ4fYmFWujulwUU=
+      # - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
       # - WIREGUARD_ADDRESSES=10.64.222.21/32
       # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/servers.md#update-the-vpn-servers-list
       - UPDATER_PERIOD=24h

@@ -6,9 +6,9 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:5.19.3@sha256:06f209efdfb25df8eaa6c275f6106d0a9e6b2c8502bd6dde3f95683c2a66aac1
     container_name: radarr
+    restart: unless-stopped
     cpus: 1
     mem_limit: 4096m
-    restart: unless-stopped
     expose:
       - 7878
     networks:
@@ -21,9 +21,9 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/radarr/config:/config
-      - /mnt/raid/downloads:/downloads
-      - /mnt/raid/media/movies:/movies
+      - ~/home-server/radarr/config:/config:rw
+      - /mnt/raid/downloads:/downloads:rw
+      - /mnt/raid/media/movies:/movies:rw
     environment:
       - PGID=${GID}
       - PUID=${UID}

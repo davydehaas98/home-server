@@ -6,10 +6,13 @@ services:
   jellyfin:
     image: docker.io/jellyfin/jellyfin:10.10.6@sha256:96b09723b22fdde74283274bdc1f63b9b76768afd6045dd80d4a4559fc4bb7f3
     container_name: jellyfin
+    restart: unless-stopped
     cpus: 4
     mem_limit: 8192m
-    restart: unless-stopped
     user: ${UID}:${GID}
+    devices:
+      # Intel/AMD GPU
+      - /dev/dri:/dev/dri
     expose:
       - 8096
     networks:
@@ -21,16 +24,13 @@ services:
       retries: 3
       start_period: 10s
       start_interval: 5s
-    devices:
-      # Intel/AMD GPU
-      - /dev/dri:/dev/dri
     volumes:
-      - ~/home-server/jellyfin/config:/config
-      - ~/home-server/jellyfin/cache:/cache
+      - ~/home-server/jellyfin/config:/config:rw
+      - ~/home-server/jellyfin/cache:/cache:rw
       - /mnt/raid/media/movies:/movies:ro
       - /mnt/raid/media/music:/music:ro
       - /mnt/raid/media/series:/series:ro
-      - /dev/shm:/data/transcode
+      - /dev/shm:/data/transcode:rw
     environment:
       - TZ=${TZ}
       - DOCKER_MODS=lscr.io/linuxserver/mods:jellyfin-opencl-intel

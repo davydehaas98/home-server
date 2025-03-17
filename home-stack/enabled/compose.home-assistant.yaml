@@ -6,9 +6,9 @@ services:
   home-assistent:
     image: docker.io/homeassistant/home-assistant:2025.3.3@sha256:b67d76f5d0bacf55cf6c914be379a0436a1da1f8acb94ee08e3b108d46cf8c58
     container_name: home-assistant
+    restart: unless-stopped
     cpus: 0.1
     mem_limit: 2048m
-    restart: unless-stopped
     # user: ${GID}:${UID}
     privileged: true
     expose:
@@ -24,7 +24,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/home-assistant/config:/config
+      - ~/home-server/home-assistant/config:/config:rw
     environment:
       - TZ=${TZ}
     labels:

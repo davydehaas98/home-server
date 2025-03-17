@@ -10,19 +10,19 @@ services:
     cpus: 4
     mem_limit: 16G
     user: ${UID}:${GID}
-    volumes:
-      - ~/home-server/minecraft-atm9sky/data:/data
     expose:
       - 25565
     ports:
       - 25565:25565
-    environment:  
+    volumes:
+      - ~/home-server/minecraft-atm9sky/data:/data:rw
+    environment:
       - TZ=${TZ}
 
       # JVM Setup Values
       - INIT_MEMORY=2G
       - MAX_MEMORY=16G
-      
+
       # Modpack setup
       - EULA=TRUE
       - VERSION=1.20.1
@@ -69,12 +69,12 @@ services:
       #- SEED=1785852800490497919
       - LEVEL_TYPE=DEFAULT
       - GENERATOR_SETTINGS={"Topography-Preset":"Sky Factory 4"}
-      
+
       # RCON
       - ENABLE_RCON=TRUE
       - RCON_PORT=25575
       - RCON_PASSWORD=minecraft
-  
+
   minecraft-atm9sky-backup:
     image: docker.io/itzg/mc-backup:latest@sha256:c62972a87294f94a98e5d941441da8020cf86af887c5dabe9ab0ee43109a495f
     container_name: minecraft-atm9sky-backup
@@ -84,7 +84,7 @@ services:
     user: ${UID}:${GID}
     volumes:
       - ~/home-server/minecraft-atm9sky/data:/data:ro
-      - ${STORAGE_DIR}/minecraft-atm9sky-backup:/backups
+      - ${STORAGE_DIR}/minecraft-atm9sky-backup:/backups:rw
     environment:
       - TZ=${TZ}
       - BACKUP_METHOD=tar

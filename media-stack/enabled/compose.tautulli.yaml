@@ -6,11 +6,13 @@ services:
   tautulli:
     image: lscr.io/linuxserver/tautulli:2.15.1@sha256:fa8f5736091fafa6d96e576c714caa634c0636463e81bd287fba28da2536a40e
     container_name: tautulli
+    restart: unless-stopped
     cpus: 1
     mem_limit: 1024m
-    restart: unless-stopped
     expose:
       - 8181
+    networks:
+      - reverse-proxy
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://tautulli:8181/status"]
       interval: 30s
@@ -20,8 +22,8 @@ services:
       start_interval: 5s
     volumes:
       - ~/home-server/plex/config:/plex/config:ro
-      - ~/home-server/tautulli/config:/config
-      - ~/home-server/tautulli/logs:/logs
+      - ~/home-server/tautulli/config:/config:rw
+      - ~/home-server/tautulli/logs:/logs:rw
     environment:
       - PGID=${GID}
       - PUID=${UID}
@@ -32,6 +34,4 @@ services:
       - traefik.http.routers.tautulli.rule=Host(`tautulli.${DOMAIN_NAME}`)
       - traefik.http.routers.tautulli.middlewares=chain-no-auth@file
       - traefik.http.services.tautulli.loadbalancer.server.port=8181
-    networks:
-      - reverse-proxy
     

@@ -6,9 +6,9 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:1.32.2@sha256:18e9801e4509e45873c1adb03adf0bf718743ff5147e19b4cdf7626f8bd2f752
     container_name: prowlarr
+    restart: unless-stopped
     cpus: 1
     mem_limit: 1024m
-    restart: unless-stopped
     expose:
       - 9696
     networks:
@@ -21,7 +21,7 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/prowlarr/config:/config
+      - ~/home-server/prowlarr/config:/config:rw
     environment:
       - PGID=${GID}
       - PUID=${UID}

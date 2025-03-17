@@ -6,9 +6,9 @@ services:
   alertmanager:
     image: docker.io/prom/alertmanager:v0.28.1@sha256:27c475db5fb156cab31d5c18a4251ac7ed567746a2483ff264516437a39b15ba
     container_name: alertmanager
+    restart: unless-stopped
     cpus: 1
     mem_limit: 1024m
-    restart: unless-stopped
     user: ${UID}:${GID}
     command:
       - --config.file=/etc/alertmanager/config.yaml
@@ -18,4 +18,4 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/alertmanager/:/etc/alertmanager/
+      - ~/home-server/alertmanager/:/etc/alertmanager/:rw

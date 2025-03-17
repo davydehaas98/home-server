@@ -6,24 +6,28 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:5.0.4@sha256:e96547d93403d8e7bdb5c0005da24511fffff58ebedb2c87e5c360779f69cd1a
     container_name: qbittorrent
-    network_mode: service:gluetun
-    environment:
-      - PUID=${UID}
-      - PGID=${GID}
-      - TZ=Etc/UTC
-      - WEBUI_PORT=8081
-      - TORRENTING_PORT=6881
-    volumes:
-      - ~/home-server/qbittorrent:/config
-      - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete
-      - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 4096m
     # expose:
     #   - 8080
     #   - 6881
     # ports:
     #   - 6881:6881
     #   - 6881:6881/udp
-    restart: unless-stopped
+    network_mode: service:gluetun
+    # networks:
+    #   - reverse-proxy
+    volumes:
+      - ~/home-server/qbittorrent:/config:rw
+      - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete:rw
+      - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete:rw
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8081
+      - TORRENTING_PORT=6881
     labels:
       - traefik.enable=true
       - traefik.http.routers.qbittorrent.entrypoints=websecure
