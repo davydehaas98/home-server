@@ -7,7 +7,7 @@ services:
   # https://iptv-4k.co/shop/
   # https://uw8k.cc/
   threadfin:
-    image: docker.io/fyb3roptik/threadfin:1.2.31
+    image: docker.io/fyb3roptik/threadfin:1.2.31@sha256:78479cea0ec70c72510a98d88b8e34ec3cc695a64cbb92829fd6310d400b2ac6
     container_name: threadfin
     restart: unless-stopped
     cpus: 1
