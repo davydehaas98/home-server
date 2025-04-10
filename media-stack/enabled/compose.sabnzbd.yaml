@@ -4,7 +4,7 @@ networks:
 
 services:
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:4.5.0@sha256:1bfaf7eee1ca9aef83147dcf3416c5d7c5c1b073ca1edf3f5cd57a422be85afb
+    image: lscr.io/linuxserver/sabnzbd:4.5.0@sha256:00cccf686c33762e388d88b56431fba70ca81ca531029411ef6c1c1f66d3f71e
     container_name: sabnzbd
     restart: unless-stopped
     cpus: 4
