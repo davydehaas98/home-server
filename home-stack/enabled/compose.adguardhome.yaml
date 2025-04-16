@@ -8,12 +8,12 @@ services:
     container_name: adguardhome
     restart: unless-stopped
     expose:
-      - 53
+      # - 53
       - 80
       - 3000
-    # ports:
-    #   - 53:53/tcp # plain dns over tcp
-    #   - 53:53/udp # plain dns over udp
+    ports:
+      - 53:53/tcp # plain dns over tcp
+      - 53:53/udp # plain dns over udp
     networks:
       - reverse-proxy
     volumes:
