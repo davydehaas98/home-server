@@ -14,8 +14,9 @@ services:
     ports:
       - 53:53/tcp # plain dns over tcp
       - 53:53/udp # plain dns over udp
-    networks:
-      - reverse-proxy
+    network_mode: host
+    # networks:
+    #   - reverse-proxy
     volumes:
       - ~/home-server/adguardhome/conf:/opt/adguardhome/conf:rw # app configuration
       - ~/home-server/adguardhome/work:/opt/adguardhome/work:rw # app working directory
