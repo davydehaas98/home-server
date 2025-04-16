@@ -4,7 +4,7 @@ networks:
 
 services:
   portainer:
-    image: portainer/portainer-ce:2.28.1-alpine@sha256:a9028adfa43a18b6846dee35c0f0d5ae6a57786d81885d95babe81b2b28133c9
+    image: portainer/portainer-ce:2.29.0-alpine@sha256:53ea76c37c74341556e120f1d641755414398fdebf7fe249d0747dff74125238
     container_name: portainer
     restart: unless-stopped
     cpus: 0.1
