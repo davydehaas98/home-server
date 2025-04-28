@@ -4,7 +4,7 @@ networks:
 
 services:
   lidarr:
-    image: lscr.io/linuxserver/lidarr:2.10.3@sha256:df4309a9325d4a404c0494d67a3d80fec9ba09eb83ae2eb013d98d1cbfcd5751
+    image: lscr.io/linuxserver/lidarr:2.11.2@sha256:d44312a0849e84970a5f13db183eda993861078e5b9d1fdec31a0daa53226a24
     container_name: lidarr
     restart: unless-stopped
     cpus: 0.1
