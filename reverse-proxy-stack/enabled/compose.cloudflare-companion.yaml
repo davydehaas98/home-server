@@ -4,7 +4,7 @@ networks:
 
 services:
   cloudflare-companion:
-    image: ghcr.io/tiredofit/docker-traefik-cloudflare-companion:7.3.3@sha256:20bfbde87b5a06a8935f05f7ae384e10c6694c2e25595065e488a25571a803b3
+    image: ghcr.io/tiredofit/docker-traefik-cloudflare-companion:7.4.0@sha256:9aa01b6d0914e6578ea492d1fefa9e86cb33e06fcba69e6f9bf695b38e174b3b
     container_name: cloudflare-companion
     restart: unless-stopped
     cpus: 0.1
