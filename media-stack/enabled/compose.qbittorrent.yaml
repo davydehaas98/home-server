@@ -4,7 +4,7 @@ networks:
 
 services:
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:5.0.4@sha256:804854c50e27e093425eeb252af15e5b587670afb689c8773e4d8ade8ce456b7
+    image: lscr.io/linuxserver/qbittorrent:5.0.4@sha256:46f4e80af074fa2ffc0214fe0b7d59384748cfb34685892a53b7a3c87407a333
     container_name: qbittorrent
     restart: unless-stopped
     cpus: 4
