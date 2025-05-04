@@ -4,7 +4,7 @@ networks:
 
 services:
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:1.33.3@sha256:af8eaaa96684a4d83c73684a39ef0abcdc3ee2c0e9ba7b4c90b1523d28327b04
+    image: lscr.io/linuxserver/prowlarr:1.35.1@sha256:126ead562b0fb1716e5c07db1df81f96351ae4de07b0101423cbc9317ccf012d
     container_name: prowlarr
     restart: unless-stopped
     cpus: 1
