@@ -19,6 +19,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.homepage.entrypoints=websecure
-      - traefik.http.routers.homepage.rule=Host(`home-assistant.${DOMAIN_NAME}`) || Host(`hass.${DOMAIN_NAME}`)
+      - traefik.http.routers.homepage.rule=Host(`homepage.${DOMAIN_NAME}`) || Host(`home.${DOMAIN_NAME}`)
       - traefik.http.routers.homepage.middlewares=chain-no-auth@file
       - traefik.http.services.homepage.loadbalancer.server.port=3000
