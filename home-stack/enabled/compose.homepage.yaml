@@ -15,7 +15,7 @@ services:
       - ~/home-server/homepage:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
     environment:
-      - HOMEPAGE_ALLOWED_HOSTS=gethomepage.dev # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      - HOMEPAGE_ALLOWED_HOSTS=davydehaas.nl # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
     labels:
       - traefik.enable=true
       - traefik.http.routers.homepage.entrypoints=websecure
