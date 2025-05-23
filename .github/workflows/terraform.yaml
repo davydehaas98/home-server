@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - "_terraform/**"
+  workflow_dispatch:
 
 jobs:
   validate:
