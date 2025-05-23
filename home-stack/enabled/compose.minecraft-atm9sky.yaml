@@ -4,7 +4,7 @@ services:
   # scp -r "./config" root@davydehaas.nl:/server/minecraft-atm9sky/data/config
   # scp -r ".\atm9sky-server-1.1.3.zip" davy@yggdrasil:/opt/appdata/home-server/minecraft-atm9sky/data
   minecraft-atm9sky:
-    image: ghcr.io/itzg/minecraft-server:2025.4.0-java17@sha256:a27daa6e470f7d5f8fd483690ae00c24859f7c5ac4bd12be8e9d82ac4181790d
+    image: ghcr.io/itzg/minecraft-server:2025.4.2-java17@sha256:723e2163dce7aa8cafd987241751517bdd0bad807c300d83eb3f259cd10f35bf
     container_name: minecraft-atm9sky
     restart: unless-stopped
     cpus: 4
