@@ -10,6 +10,8 @@ jobs:
   validate:
     runs-on: ubuntu-24.04
     steps:
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3.0.0
       - name: Validate
         run: |
           terraform validate
