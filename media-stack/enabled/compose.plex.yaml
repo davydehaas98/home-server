@@ -4,7 +4,7 @@ networks:
 
 services:
   plex:
-    image: lscr.io/linuxserver/plex:1.41.7@sha256:fad37d3811bbd089f95886cd14768addf009648a4913a01ea3db0a623e633025
+    image: lscr.io/linuxserver/plex:1.41.7@sha256:6a0ca4a64f3ad389397992841142d9c8c20129dc5e79ea8eeec0509bfcf2eaa0
     container_name: plex
     restart: unless-stopped
     cpus: 8
