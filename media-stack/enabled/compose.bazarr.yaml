@@ -4,7 +4,7 @@ networks:
 
 services:
   bazarr:
-    image: lscr.io/linuxserver/bazarr:1.5.2@sha256:2458b13b6bdb9beee13acd2c70172140e9f9362488914d9f7cd95a473c3742b7
+    image: lscr.io/linuxserver/bazarr:1.5.2@sha256:7fa77912d9cc0573ca4efd9ac542aba4fd51eb6d331c3ad7aac7bc7fca48b929
     container_name: bazarr
     restart: unless-stopped
     cpus: 1
