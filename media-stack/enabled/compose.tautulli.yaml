@@ -4,7 +4,7 @@ networks:
 
 services:
   tautulli:
-    image: lscr.io/linuxserver/tautulli:2.15.2@sha256:a9b699b5cdbc3a79c1d05a250daf1f9f9cba76dc8628d6caeffdbc99b42d8625
+    image: lscr.io/linuxserver/tautulli:2.15.2@sha256:f8fa87017ad9252f6135236b040b236efb0e9042fb570a5c0c982aace0ffd478
     container_name: tautulli
     restart: unless-stopped
     cpus: 1
