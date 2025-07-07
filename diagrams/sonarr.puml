@@ -1,0 +1,24 @@
+@startuml
+participant Sonarr #lightblue
+participant Prowlarr #orange
+participant NZBGeek #white
+participant SABnzbd #yellow
+participant newsdemon.com
+participant Bazarr #purple
+participant Provider
+participant Plex #orange
+
+Sonarr -> Prowlarr: Episode request
+Prowlarr -> NZBGeek: Search indexer
+NZBGeek -> Prowlarr: Return grab
+Prowlarr -> Sonarr: Return grab
+Sonarr -> SABnzbd: Send grab
+SABnzbd -> newsdemon.com: Download request
+newsdemon.com -> SABnzbd: /downloads/usenet/incomplete/
+SABnzbd -> Sonarr: /downloads/usenet/complete/
+Sonarr -> Bazarr: /media/series/**<title>**/**<episode>**
+Bazarr -> Provider: Request subtitles
+Provider -> Bazarr: Subtitles file
+Bazarr -> Sonarr: Subtitle alongside file
+Sonarr -> Plex: /media/series/
+@enduml
