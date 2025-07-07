@@ -4,7 +4,7 @@ networks:
 
 services:
   prometheus:
-    image: docker.io/prom/prometheus:v3.4.0
+    image: docker.io/prom/prometheus:v3.4.2
     container_name: prometheus
     restart: unless-stopped
     cpus: 4
