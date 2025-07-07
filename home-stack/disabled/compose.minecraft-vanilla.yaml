@@ -1,7 +1,7 @@
 services:
   # https://github.com/itzg/docker-minecraft-server
   minecraft-vanilla:
-    image: ghcr.io/itzg/minecraft-server:2024.9.0-java17@sha256:5b8e4eaf16b3604463f808e687c1ab7516a398de8e97bd97ec24a54f331b3b13
+    image: ghcr.io/itzg/minecraft-server:2024.9.0-java17
     container_name: minecraft-vanilla
     restart: unless-stopped
     cpus: 4
@@ -56,7 +56,7 @@ services:
     - 25565:25565
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-vanilla-backup:
-    image: ghcr.io/itzg/mc-backup:latest@sha256:793b0420bb4b80a54330ce648d60e9d0e71ba771f46e78329b9ccee82d051274
+    image: ghcr.io/itzg/mc-backup:latest
     container_name: minecraft-vanilla-backup
     restart: unless-stopped
     cpus: 1

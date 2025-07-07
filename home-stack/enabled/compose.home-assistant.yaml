@@ -4,7 +4,7 @@ networks:
 # HACS: https://hacs.xyz/docs/use/download/download/#to-download-hacs-container
 services:
   home-assistent:
-    image: docker.io/homeassistant/home-assistant:2025.6.3@sha256:e207929bdf5dc95db43c618b877364e99f7ad506ec5440aeef80d5c9c1cae668
+    image: docker.io/homeassistant/home-assistant:2025.6.3
     container_name: home-assistant
     restart: unless-stopped
     cpus: 0.1

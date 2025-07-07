@@ -4,7 +4,7 @@ networks:
 
 services:
   transmission-openvpn:
-    image: docker.io/haugene/transmission-openvpn:5.3.1@sha256:a128b49e29379895c5815e8bea3c1b5eb42ccbef4ab9e5109a72b97d8fd7c0b0
+    image: docker.io/haugene/transmission-openvpn:5.3.1
     container_name: transmission-openvpn
     cpus: 6
     mem_limit: 4096m

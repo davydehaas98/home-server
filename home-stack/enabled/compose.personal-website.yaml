@@ -4,7 +4,7 @@ networks:
 
 services:
   personal-website:
-    image: ghcr.io/davydehaas98/personal-website:1.0.0@sha256:bdbddc80c8d23d0be663d33e60865d34634de6a50ce0bd72b7d5869d17682c6b
+    image: ghcr.io/davydehaas98/personal-website:1.0.0
     container_name: personal-website
     restart: unless-stopped
     cpus: 0.1
@@ -19,4 +19,4 @@ services:
       - traefik.http.routers.personal-website.rule=Host(`${DOMAIN_NAME}`) || Host(`www.${DOMAIN_NAME}`)
       - traefik.http.routers.personal-website.middlewares=chain-no-auth@file
       - traefik.http.services.personal-website.loadbalancer.server.port=80
-  
+

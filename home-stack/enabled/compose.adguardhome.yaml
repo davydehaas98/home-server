@@ -4,7 +4,7 @@ networks:
 
 services:
   adguardhome:
-    image: docker.io/adguard/adguardhome:v0.107.61@sha256:a2085b04bbfc4759e68fa1d13d4e1558aede67c783c55820e036a95a36dd3ebf
+    image: docker.io/adguard/adguardhome:v0.107.61
     container_name: adguardhome
     restart: unless-stopped
     expose:

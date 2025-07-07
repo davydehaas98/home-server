@@ -1,7 +1,7 @@
 name: Deploy reverse-proxy-stack
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
       - 'reverse-proxy-stack/**'
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@4.2.2
 
       - name: Setup SSH
         run: |
@@ -37,7 +37,7 @@ jobs:
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
           cd ${{ env.TARGET_DIR }}
-          
+
           for filename in compose.*.yaml; do
             args="\$args -f \$filename";
           done;

@@ -1,7 +1,7 @@
 services:
   # Docker update notifier
   diun:
-    image: docker.io/crazymax/diun:4.28.0@sha256:28e86edddcfd912e5122327c7df9bff3f313f1b7bcdfaf178c0bca7ffa21e587
+    image: docker.io/crazymax/diun:4.28.0
     container_name: diun
     restart: unless-stopped
     cpus: 1
@@ -14,7 +14,7 @@ services:
       - DIUN_DB_PATH=diun.db
       - DIUN_WATCH_FIRSTCHECKNOTIF=false
       - DIUN_WATCH_WORKERS=10
-      - DIUN_WATCH_SCHEDULE=0 0 0 * * * 
+      - DIUN_WATCH_SCHEDULE=0 0 0 * * *
       - DIUN_PROVIDERS_DOCKER=true
       - DIUN_PROVIDERS_DOCKER_WATCHSTOPPED=false
       - DIUN_NOTIF_SLACK_WEBHOOKURL=${WEBHOOK_DIUN}

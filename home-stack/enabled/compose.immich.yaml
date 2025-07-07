@@ -4,7 +4,7 @@ networks:
 
 services:
   immich-server:
-    image: ghcr.io/immich-app/immich-server:v1.135.3@sha256:df5bbf4e29eff4688063a005708f8b96f13073200b4a7378f7661568459b31e9
+    image: ghcr.io/immich-app/immich-server:v1.135.3
     container_name: immich-server
     cpus: 8
     mem_limit: 8192m
@@ -32,7 +32,7 @@ services:
   immich-machine-learning:
     container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
-    image: ghcr.io/immich-app/immich-machine-learning:v1.135.3@sha256:9f2f61d86af82d04926f9b896c995c502303052905517c5485dd26bf1e42a44e
+    image: ghcr.io/immich-app/immich-machine-learning:v1.135.3
     restart: unless-stopped
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
@@ -48,7 +48,7 @@ services:
 
   immich-redis:
     container_name: immich-redis
-    image: docker.io/redis:8.0.1-alpine@sha256:62b5498c91778f738f0efbf0a6fd5b434011235a3e7b5f2ed4a2c0c63bb1c786
+    image: docker.io/redis:8.0.1-alpine
     restart: unless-stopped
     networks:
       - reverse-proxy
@@ -59,7 +59,7 @@ services:
 
   immich-postgres:
     container_name: immich-postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.3.0@sha256:b89f8ddbb28400d428d3c5e3e860f578cde85ad8e78544a8b687b97937cfc50b
+    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.3.0
     restart: unless-stopped
     networks:
       - reverse-proxy

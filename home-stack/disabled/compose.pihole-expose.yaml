@@ -2,7 +2,7 @@ services:
   # https://github.com/pi-hole/docker-pi-hole/
   # https://docs.pi-hole.net/
   pihole:
-    image: docker.io/pihole/pihole:2024.07.0@sha256:0def896a596e8d45780b6359dbf82fc8c75ef05b97e095452e67a0a4ccc95377
+    image: docker.io/pihole/pihole:2024.07.0
     container_name: pihole
     restart: unless-stopped
     cpus: 1

@@ -4,7 +4,7 @@ networks:
 
 services:
   radarr:
-    image: lscr.io/linuxserver/radarr:5.26.2@sha256:07a474b61394553e047ad43a1a78c1047fc99be0144c509dd91e3877f402ebcb
+    image: lscr.io/linuxserver/radarr:5.26.2
     container_name: radarr
     restart: unless-stopped
     cpus: 1

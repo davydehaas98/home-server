@@ -1,7 +1,7 @@
 services:
   # Open source automation server
   jenkins-server:
-    image: docker.io/jenkins/jenkins:2.462.2-lts-jdk21@sha256:17ecfb064841f12f5700f5a9409bec18488ffacdd8e42657e0a7b39fc7335809
+    image: docker.io/jenkins/jenkins:2.462.2-lts-jdk21
     container_name: jenkins-server
     restart: unless-stopped
     user: ${UID}:${GID}

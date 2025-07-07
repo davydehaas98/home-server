@@ -1,6 +1,6 @@
 services:
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud:29.0.7@sha256:fb99b6df06eee4879c570dd1870ff7851bb52ecc6a022e53df3398a017634304
+    image: lscr.io/linuxserver/nextcloud:29.0.7
     container_name: nextcloud
     restart: unless-stopped
     cpus: 0.1
@@ -32,7 +32,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-postgresql:
-    image: docker.io/postgres:16.4@sha256:026d0ab72b34310b68160ab9299aa1add5544e4dc3243456b94f83cb1c119c2c
+    image: docker.io/postgres:16.4
     container_name: nextcloud-postgresql
     restart: unless-stopped
     cpus: 1
@@ -53,7 +53,7 @@ services:
     networks:
       - reverse-proxy
   nextcloud-redis:
-    image: docker.io/redis:7.4.0@sha256:eadf354977d428e347d93046bb1a5569d701e8deb68f090215534a99dbcb23b9
+    image: docker.io/redis:7.4.0
     container_name: nextcloud-redis
     restart: unless-stopped
     cpus: 0.1

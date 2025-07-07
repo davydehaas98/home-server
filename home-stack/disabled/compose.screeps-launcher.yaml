@@ -1,7 +1,7 @@
 services:
   # https://hub.docker.com/r/screepers/screeps-launcher
   screeps:
-    image: docker.io/screepers/screeps-launcher:v1.16.0@sha256:46ae19649731243aaa932b75d257d3ba82d71c5bd337bdac777860f158fbefba
+    image: docker.io/screepers/screeps-launcher:v1.16.0
     container_name: screeps-launcher
     restart: unless-stopped
     cpus: 4
@@ -15,16 +15,16 @@ services:
     - ~/home-server/screeps-launcher:/screeps
     ports:
     - 21025:21025/tcp
-  
+
   mongo:
-    image: docker.io/mongo:7.0.14@sha256:244afb1488edfc42aaa8ffa6153393bbc075d63516ab0305daa2eaa35241eb52
+    image: docker.io/mongo:7.0.14
     container_name: screeps-mongo
     restart: unless-stopped
     volumes:
     - ~/home-server/screeps-mongo:/data/db
-  
+
   redis:
-    image: docker.io/redis:7.4.0@sha256:eadf354977d428e347d93046bb1a5569d701e8deb68f090215534a99dbcb23b9
+    image: docker.io/redis:7.4.0
     container_name: screeps-redis
     restart: unless-stopped
     volumes:

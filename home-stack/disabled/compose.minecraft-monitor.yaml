@@ -1,13 +1,13 @@
 services:
   influxdb:
-    image: influxdb:2.7.10@sha256:b59864431e6f10a40aeb1040d4e11114c86ec8ec900926ee4d88cee8b89d20e7
+    image: influxdb:2.7.10
     container_name: influxdb
     restart: unless-stopped
     user: ${UID}:${GID}
     ports:
     - 8086:8086
   telegraf:
-    image: telegraf:1.32.0@sha256:e78339949933539597493f4035d7e42c2b0e4779ec4964fc5be5be04b2b583e0
+    image: telegraf:1.32.0
     container_name: telegraf
     restart: unless-stopped
     user: ${UID}:${GID}
@@ -18,7 +18,7 @@ services:
     depends_on:
     - influxdb
   minecraft-monitor:
-    image: ghcr.io/itzg/mc-monitor:0.14.1@sha256:ece95115ffa2457d455cdc4af835ef4be34340b96afa64300aa190a90cfa87b3
+    image: ghcr.io/itzg/mc-monitor:0.14.1
     container_name: minecraft-monitor
     restart: unless-stopped
     command: gather-for-telegraf export-for-prometheus

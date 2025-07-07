@@ -4,7 +4,7 @@ networks:
 
 services:
   tautulli:
-    image: lscr.io/linuxserver/tautulli:2.15.2@sha256:a9b699b5cdbc3a79c1d05a250daf1f9f9cba76dc8628d6caeffdbc99b42d8625
+    image: lscr.io/linuxserver/tautulli:2.15.2
     container_name: tautulli
     restart: unless-stopped
     cpus: 1
@@ -34,4 +34,4 @@ services:
       - traefik.http.routers.tautulli.rule=Host(`tautulli.${DOMAIN_NAME}`)
       - traefik.http.routers.tautulli.middlewares=chain-no-auth@file
       - traefik.http.services.tautulli.loadbalancer.server.port=8181
-    
+
