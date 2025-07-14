@@ -4,7 +4,7 @@ networks:
 
 services:
   mosquitto:
-    image: docker.io/eclipse-mosquitto:2.0.21
+    image: docker.io/eclipse-mosquitto:2.0.22
     container_name: mosquitto
     restart: unless-stopped
     cpus: 0.5
