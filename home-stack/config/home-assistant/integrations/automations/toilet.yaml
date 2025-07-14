@@ -1,0 +1,40 @@
+- id: '1752317083520'
+  alias: Toilet free
+  description: ''
+  triggers:
+  - type: not_occupied
+    device_id: 1067cb993be6f0f2968f34ea42fac81b
+    entity_id: 3defc0991ca50a4850fcad20c1952446
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: 3171401fcd0c5fccfeb8da3c588b3d04
+  mode: single
+
+- id: '1751388526592'
+  alias: Toilet occupied
+  description: ''
+  triggers:
+    - type: occupied
+      device_id: 1067cb993be6f0f2968f34ea42fac81b
+      entity_id: 3defc0991ca50a4850fcad20c1952446
+      domain: binary_sensor
+      trigger: device
+  conditions: []
+  actions:
+    - action: light.turn_on
+      metadata: {}
+      data:
+        brightness_pct: 100
+      target:
+        device_id: 3171401fcd0c5fccfeb8da3c588b3d04
+  mode: single
