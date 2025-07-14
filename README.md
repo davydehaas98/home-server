@@ -2,8 +2,6 @@
 
 My home server configuration set up using compose files.
 
-<!--[Click to Open Interactive Diagram](./diagrams/sonarr.puml)-->
-
 ## Hardware setup
 
 | Component   | Name                             |
