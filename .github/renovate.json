@@ -2,7 +2,7 @@
   "extends": [
     "github>davydehaas98/renovate-config"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "main"
   ],
   "ignorePaths": [
