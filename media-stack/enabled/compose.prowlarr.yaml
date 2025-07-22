@@ -9,10 +9,11 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 1024m
-    expose:
-      - 9696
-    networks:
-      - reverse-proxy
+    # expose:
+    #   - 9696
+    network_mode: service:gluetun
+    # networks:
+    #   - reverse-proxy
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
       interval: 30s
