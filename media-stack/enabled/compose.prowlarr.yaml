@@ -14,13 +14,13 @@ services:
     network_mode: service:gluetun
     # networks:
     #   - reverse-proxy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
+    # healthcheck:
+    #   test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 10s
+    #   start_interval: 5s
     volumes:
       - ~/home-server/prowlarr/config:/config:rw
     environment:
