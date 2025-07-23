@@ -5,7 +5,7 @@ networks:
 services:
   # sudo chown -R 472:472 ~/home-server/grafana
   grafana:
-    image: docker.io/grafana/grafana:12.0.2
+    image: docker.io/grafana/grafana:12.0.3
     container_name: grafana
     restart: unless-stopped
     cpus: 0.5
