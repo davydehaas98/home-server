@@ -4,7 +4,7 @@ networks:
 
 services:
   zigbee2mqtt:
-    image: ghcr.io/koenkk/zigbee2mqtt:2.6.0
+    image: ghcr.io/koenkk/zigbee2mqtt:2.6.1
     container_name: zigbee2mqtt
     restart: unless-stopped
     cpus: 0.5
