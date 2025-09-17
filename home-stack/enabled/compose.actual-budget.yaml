@@ -1,0 +1,26 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  actual-budget:
+    image: ghcr.io/actualbudget/actual:25.9.0
+    container_name: actual-budget
+    restart: unless-stopped
+    cpus: 0.1
+    mem_limit: 128m
+    # user: ${UID}:${GID}
+    expose:
+      - 5006
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/actual-budget/data:/data:rw
+    environment:
+      - TZ=${TZ}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.actual-budget.entrypoints=websecure
+      - traefik.http.routers.actual-budget.rule=Host(`budget.${DOMAIN_NAME}`)
+      - traefik.http.routers.actual-budget.middlewares=chain-no-auth@file
+      - traefik.http.services.actual-budget.loadbalancer.server.port=5006
