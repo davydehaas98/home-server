@@ -51,6 +51,12 @@ http:
         permanent: true
         regex: "https://(.*)/.well-known/(card|cal)dav"
         replacement: "https://${1}/remote.php/dav/"
+    # https://actualbudget.org/docs/troubleshooting/shared-array-buffer/
+    actual-budget:
+      headers:
+        customResponseHeaders:
+          Cross-Origin-Embedder-Policy: require-corp
+          Cross-Origin-Opener-Policy: same-origin
     # --- SECURITY ---
     secure-headers:
       headers:
@@ -66,8 +72,8 @@ http:
           Access-Control-Max-Age: 600
           Cache-Control: no-cache, max-age=0
           Content-Security-Policy: upgrade-insecure-requests
-          Cross-Origin-Embedder-Policy: require-corp
-          Cross-Origin-Opener-Policy: same-origin
+          Cross-Origin-Embedder-Policy: unsafe-none
+          Cross-Origin-Opener-Policy: unsafe-none
           Cross-Origin-Resource-Policy: same-site
           Permissions-Policy: camera=(), geolocation=(), microphone=(), payment=(), usb=(), vr=()
           Referrer-Policy: strict-origin-when-cross-origin

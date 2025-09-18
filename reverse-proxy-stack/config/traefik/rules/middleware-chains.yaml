@@ -39,3 +39,10 @@ http:
           - retry
           - secure-headers
           - nextcloud
+    chain-actual-budget:
+      chain:
+        middlewares:
+          - rate-limit
+          - retry
+          - secure-headers
+          - actual-budget

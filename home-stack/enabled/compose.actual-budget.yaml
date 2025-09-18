@@ -22,5 +22,5 @@ services:
       - traefik.enable=true
       - traefik.http.routers.actual-budget.entrypoints=websecure
       - traefik.http.routers.actual-budget.rule=Host(`actual.${DOMAIN_NAME}`) || Host(`budget.${DOMAIN_NAME}`)
-      - traefik.http.routers.actual-budget.middlewares=chain-no-auth@file
+      - traefik.http.routers.actual-budget.middlewares=chain-actual-budget@file
       - traefik.http.services.actual-budget.loadbalancer.server.port=5006
