@@ -11,38 +11,38 @@ http:
     chain-basic-auth:
       chain:
         middlewares:
+          - basic-auth
           - compress-response
           - rate-limit
           - retry
           - secure-headers
-          - basic-auth
     chain-authelia:
       chain:
         middlewares:
+          - authelia
           - compress
           - rate-limit
           - retry
           - secure-headers
-          - authelia
     chain-oauth:
       chain:
         middlewares:
+          - oauth
           - compress
           - rate-limit
           - retry
           - secure-headers
-          - oauth
     chain-nextcloud:
       chain:
         middlewares:
+          - nextcloud
           - rate-limit
           - retry
           - secure-headers
-          - nextcloud
     chain-actual-budget:
       chain:
         middlewares:
+          - actual-budget
           - rate-limit
           - retry
           - secure-headers
-          - actual-budget
