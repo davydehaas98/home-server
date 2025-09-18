@@ -4,7 +4,7 @@ networks:
 
 services:
   portainer:
-    image: portainer/portainer-ce:2.33.1-alpine
+    image: portainer/portainer-ce:2.34.0-alpine
     container_name: portainer
     restart: unless-stopped
     cpus: 0.1
