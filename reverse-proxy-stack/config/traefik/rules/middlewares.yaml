@@ -1,6 +1,6 @@
 http:
   middlewares:
-    # --- AUTHENTICATION --- 
+    # --- AUTHENTICATION ---
     basic-auth:
       basicAuth:
         realm: Traefik2 Basic Auth
@@ -54,7 +54,7 @@ http:
     # --- SECURITY ---
     secure-headers:
       headers:
-        accessControlAllowOriginList: 
+        accessControlAllowOriginList:
           - https://davydehaas.nl
           - https://*.davydehaas.nl
         customRequestHeaders:
@@ -66,8 +66,8 @@ http:
           Access-Control-Max-Age: 600
           Cache-Control: no-cache, max-age=0
           Content-Security-Policy: upgrade-insecure-requests
-          Cross-Origin-Embedder-Policy: unsafe-none
-          Cross-Origin-Opener-Policy: unsafe-none
+          Cross-Origin-Embedder-Policy: require-corp
+          Cross-Origin-Opener-Policy: same-origin
           Cross-Origin-Resource-Policy: same-site
           Permissions-Policy: camera=(), geolocation=(), microphone=(), payment=(), usb=(), vr=()
           Referrer-Policy: strict-origin-when-cross-origin
