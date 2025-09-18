@@ -1,0 +1,48 @@
+networks:
+  reverse-proxy:
+    external: true
+    
+services:
+  airtrail-db:
+    image: docker.io/postgres:16.0.0-alpine
+    container_name: airtrail-db
+    restart: unless-stopped
+    cpus: 0.1
+    mem_limit: 128m
+    networks:
+      - reverse-proxy
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ~/home-server/airtrail-db:/var/lib/postgresql/data:rw
+    # healthcheck:
+    #   test: ['CMD-SHELL', 'pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE_NAME}']
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 5
+  airtrail:
+    container_name: airtrail
+    image: docker.io/johly/airtrail:3.1.0
+    restart: unless-stopped
+    cpus: 0.1
+    mem_limit: 128m
+    expose:
+      - 3000
+    networks:
+      - reverse-proxy
+    environment:
+      - TZ=${TZ}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.airtrail.entrypoints=websecure
+      - traefik.http.routers.airtrail.rule=Host(`airtrail.${DOMAIN_NAME}`)
+      - traefik.http.routers.airtrail.middlewares=chain-no-auth@file
+      - traefik.http.services.airtrail.loadbalancer.server.port=3000
+    depends_on:
+      airtrail-db:
+        condition: service_healthy
+        restart: true
