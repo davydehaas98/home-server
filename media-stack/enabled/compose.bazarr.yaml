@@ -25,12 +25,12 @@ services:
       - /mnt/raid/media/movies:/movies:rw
       - /mnt/raid/media/series:/series:rw
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
-      - TZ=${TZ}
+      - PGID: ${GID}
+      - PUID: ${UID}
+      - TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.bazarr.entrypoints=websecure
-      - traefik.http.routers.bazarr.rule=Host(`bazarr.${DOMAIN_NAME}`) || Host(`subtitles.${DOMAIN_NAME}`)
-      - traefik.http.routers.bazarr.middlewares=chain-authelia@file
-      - traefik.http.services.bazarr.loadbalancer.server.port=6767
+      - traefik.enable: true
+      - traefik.http.routers.bazarr.entrypoints: websecure
+      - traefik.http.routers.bazarr.rule: Host(`bazarr.${DOMAIN_NAME}`) || Host(`subtitles.${DOMAIN_NAME}`)
+      - traefik.http.routers.bazarr.middlewares: chain-authelia@file
+      - traefik.http.services.bazarr.loadbalancer.server.port: 6767
