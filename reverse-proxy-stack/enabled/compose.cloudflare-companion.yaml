@@ -15,14 +15,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - TZ: ${TZ}
-      - TRAEFIK_VERSION: 2
+      TZ: ${TZ}
+      TRAEFIK_VERSION: 2
       # Same as Traefik
-      - CF_EMAIL: ${CLOUDFLARE_EMAIL:?error}
+      CF_EMAIL: ${CLOUDFLARE_EMAIL:?error}
       # Same as Traefik
-      - CF_TOKEN: ${CLOUDFLARE_API_KEY:?error}
-      - DEFAULT_TTL: 300
-      - TARGET_DOMAIN: ${DOMAIN_NAME}
-      - DOMAIN1: ${DOMAIN_NAME}
-      - DOMAIN1_ZONE_ID: ${CLOUDFLARE_ZONE_ID:?error}
-      - DOMAIN1_PROXIED: true
+      CF_TOKEN: ${CLOUDFLARE_API_KEY:?error}
+      DEFAULT_TTL: 300
+      TARGET_DOMAIN: ${DOMAIN_NAME}
+      DOMAIN1: ${DOMAIN_NAME}
+      DOMAIN1_ZONE_ID: ${CLOUDFLARE_ZONE_ID:?error}
+      DOMAIN1_PROXIED: true
