@@ -45,18 +45,6 @@ http:
       retry:
         attempts: 4
         initialInterval: 100ms
-    # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#
-    nextcloud:
-      redirectRegex:
-        permanent: true
-        regex: "https://(.*)/.well-known/(card|cal)dav"
-        replacement: "https://${1}/remote.php/dav/"
-    # https://actualbudget.org/docs/troubleshooting/shared-array-buffer/
-    actual-budget:
-      headers:
-        customResponseHeaders:
-          Cross-Origin-Embedder-Policy: require-corp
-          Cross-Origin-Opener-Policy: same-origin
     # --- SECURITY ---
     secure-headers:
       headers:
@@ -84,3 +72,16 @@ http:
           X-Robots-Tag: none
           X-XSS-Protection: 1; mode=block
         forceSTSHeader: true
+    # --- CUSTOM SETTINGS ---
+    # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#
+    nextcloud:
+      redirectRegex:
+        permanent: true
+        regex: "https://(.*)/.well-known/(card|cal)dav"
+        replacement: "https://${1}/remote.php/dav/"
+    # https://actualbudget.org/docs/troubleshooting/shared-array-buffer/
+    actual-budget:
+      headers:
+        customResponseHeaders:
+          Cross-Origin-Embedder-Policy: require-corp
+          Cross-Origin-Opener-Policy: same-origin

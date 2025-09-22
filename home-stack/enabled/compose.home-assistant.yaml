@@ -26,10 +26,10 @@ services:
     volumes:
       - ~/home-server/home-assistant/config:/config:rw
     environment:
-      - TZ=${TZ}
+      TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.home-assistant.entrypoints=websecure
-      - traefik.http.routers.home-assistant.rule=Host(`home-assistant.${DOMAIN_NAME}`) || Host(`hass.${DOMAIN_NAME}`)
-      - traefik.http.routers.home-assistant.middlewares=chain-no-auth@file
-      - traefik.http.services.home-assistant.loadbalancer.server.port=8123
+      traefik.enable: true
+      traefik.http.routers.home-assistant.entrypoints: websecure
+      traefik.http.routers.home-assistant.rule: Host(`home-assistant.${DOMAIN_NAME}`) || Host(`hass.${DOMAIN_NAME}`)
+      traefik.http.routers.home-assistant.middlewares: chain-no-auth@file
+      traefik.http.services.home-assistant.loadbalancer.server.port: 8123

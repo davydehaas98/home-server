@@ -15,10 +15,10 @@ services:
       - ~/home-server/homepage:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
     environment:
-      - HOMEPAGE_ALLOWED_HOSTS=home.davydehaas.nl,homepage.davydehaas.nl # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      HOMEPAGE_ALLOWED_HOSTS: home.davydehaas.nl,homepage.davydehaas.nl # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.homepage.entrypoints=websecure
-      - traefik.http.routers.homepage.rule=Host(`homepage.${DOMAIN_NAME}`) || Host(`home.${DOMAIN_NAME}`)
-      - traefik.http.routers.homepage.middlewares=chain-no-auth@file
-      - traefik.http.services.homepage.loadbalancer.server.port=3000
+      traefik.enable: true
+      traefik.http.routers.homepage.entrypoints: websecure
+      traefik.http.routers.homepage.rule: Host(`homepage.${DOMAIN_NAME}`) || Host(`home.${DOMAIN_NAME}`)
+      traefik.http.routers.homepage.middlewares: chain-no-auth@file
+      traefik.http.services.homepage.loadbalancer.server.port: 3000

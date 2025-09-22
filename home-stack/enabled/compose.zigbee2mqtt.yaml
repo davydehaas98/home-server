@@ -19,10 +19,10 @@ services:
       - ~/home-server/zigbee2mqtt/data:/app/data:rw
       - /run/udev:/run/udev:ro
     environment:
-      - TZ=${TZ}
+      TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.zigbee.entrypoints=websecure
-      - traefik.http.routers.zigbee.rule=Host(`zigbee.${DOMAIN_NAME}`)
-      - traefik.http.routers.zigbee.middlewares=chain-authelia@file
-      - traefik.http.services.zigbee.loadbalancer.server.port=8080
+      traefik.enable: true
+      traefik.http.routers.zigbee.entrypoints: websecure
+      traefik.http.routers.zigbee.rule: Host(`zigbee.${DOMAIN_NAME}`) || Host(`z2m.${DOMAIN_NAME}`)
+      traefik.http.routers.zigbee.middlewares: chain-authelia@file
+      traefik.http.services.zigbee.loadbalancer.server.port: 8080

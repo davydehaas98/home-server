@@ -23,8 +23,8 @@ services:
       - /dev/disk/:/dev/disk:ro
       - /etc/machine-id:/etc/machine-id:ro
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.cadvisor.entrypoints=websecure
-      - traefik.http.routers.cadvisor.rule=Host(`cadvisor.${DOMAIN_NAME}`)
-      - traefik.http.routers.cadvisor.middlewares=chain-authelia@file
-      - traefik.http.services.cadvisor.loadbalancer.server.port=8080
+      traefik.enable: true
+      traefik.http.routers.cadvisor.entrypoints: websecure
+      traefik.http.routers.cadvisor.rule: Host(`cadvisor.${DOMAIN_NAME}`)
+      traefik.http.routers.cadvisor.middlewares: chain-authelia@file
+      traefik.http.services.cadvisor.loadbalancer.server.port: 8080

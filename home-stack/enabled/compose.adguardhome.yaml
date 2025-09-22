@@ -20,8 +20,8 @@ services:
       - ~/home-server/adguardhome/conf:/opt/adguardhome/conf:rw # app configuration
       - ~/home-server/adguardhome/work:/opt/adguardhome/work:rw # app working directory
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.adguardhome.entrypoints=websecure
-      - traefik.http.routers.adguardhome.rule=Host(`adguard.${DOMAIN_NAME}`) || Host(`adguardhome.${DOMAIN_NAME}`)
-      - traefik.http.routers.adguardhome.middlewares=chain-no-auth@file
-      - traefik.http.services.adguardhome.loadbalancer.server.port=80
+      traefik.enable: true
+      traefik.http.routers.adguardhome.entrypoints: websecure
+      traefik.http.routers.adguardhome.rule: Host(`adguard.${DOMAIN_NAME}`) || Host(`adguardhome.${DOMAIN_NAME}`)
+      traefik.http.routers.adguardhome.middlewares: chain-no-auth@file
+      traefik.http.services.adguardhome.loadbalancer.server.port: 80

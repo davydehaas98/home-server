@@ -19,62 +19,62 @@ services:
     volumes:
       - ~/home-server/minecraft-atm9sky/data:/data:rw
     environment:
-      - TZ=${TZ}
+      TZ: ${TZ}
 
       # JVM Setup Values
-      - INIT_MEMORY=2G
-      - MAX_MEMORY=16G
+      INIT_MEMORY: 2G
+      MAX_MEMORY: 16G
 
       # Modpack setup
-      - EULA=TRUE
-      - VERSION=1.20.1
-      - TYPE=CURSEFORGE
-      - FORGEVERSION=47.3.0
-      - CF_SERVER_MOD=atm9sky-server-1.1.3.zip
-      - CF_BASE_DIR=/data
+      EULA: TRUE
+      VERSION: 1.20.1
+      TYPE: CURSEFORGE
+      FORGEVERSION: 47.3.0
+      CF_SERVER_MOD: atm9sky-server-1.1.3.zip
+      CF_BASE_DIR: /data
 
       # Server settings
-      - ENABLE_AUTOPAUSE=TRUE
-      - AUTOPAUSE_TIMEOUT_EST=600 # In seconds
-      - MAX_TICK_TIME=-1 # default 60000
-      - SERVER_NAME=atm9sky
-      - SERVER_PORT=25565
-      - MOTD=Davy's "atm9sky" Minecraft server.
-      - OPS=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
-      - WHITELIST=Capta1nCreeper,mcodenl,Lukam0s,Timooo0
-      - OVERRIDE_ICON=TRUE
-      # - ICON=https://davydehaas.nl/assets/images/memoji.png
+      ENABLE_AUTOPAUSE: TRUE
+      AUTOPAUSE_TIMEOUT_EST: 600 # In seconds
+      MAX_TICK_TIME: -1 # default 60000
+      SERVER_NAME: atm9sky
+      SERVER_PORT: 25565
+      MOTD: Davy's "atm9sky" Minecraft server.
+      OPS: Capta1nCreeper,mcodenl,Lukam0s,Timooo0
+      WHITELIST: Capta1nCreeper,mcodenl,Lukam0s,Timooo0
+      OVERRIDE_ICON: TRUE
+      # ICON: https://davydehaas.nl/assets/images/memoji.png
 
       # Gamemode settings
-      - DIFFICULTY=normal
-      - MODE=survival
-      - PVP=TRUE
-      - ALLOW_NETHER=TRUE
-      - ANNOUNCE_PLAYER_ACHIEVEMENTS=TRUE
-      - ENABLE_COMMAND_BLOCK=TRUE
-      - FORCE_GAMEMODE=FALSE
-      - GENERATE_STRUCTURES=TRUE
-      - HARDCORE=FALSE
-      - SNOOPER_ENABLED=FALSE
-      - ONLINE_MODE=TRUE
-      - ALLOW_FLIGHT=TRUE
+      DIFFICULTY: normal
+      MODE: survival
+      PVP: TRUE
+      ALLOW_NETHER: TRUE
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: TRUE
+      ENABLE_COMMAND_BLOCK: TRUE
+      FORCE_GAMEMODE: FALSE
+      GENERATE_STRUCTURES: TRUE
+      HARDCORE: FALSE
+      SNOOPER_ENABLED: FALSE
+      ONLINE_MODE: TRUE
+      ALLOW_FLIGHT: TRUE
 
       # World generation settings
-      - MAX_PLAYERS=20
-      - MAX_WORLD_SIZE=20000
-      - MAX_BUILD_HEIGHT=256
-      - SPAWN_ANIMALS=TRUE
-      - SPAWN_MONSTERS=TRUE
-      - SPAWN_NPCS=TRUE
-      - SPAWN_PROTECTION=16
-      - VIEW_DISTANCE=8
-      #- SEED=1785852800490497919
-      - LEVEL_TYPE=DEFAULT
+      MAX_PLAYERS: 20
+      MAX_WORLD_SIZE: 20000
+      MAX_BUILD_HEIGHT: 256
+      SPAWN_ANIMALS: TRUE
+      SPAWN_MONSTERS: TRUE
+      SPAWN_NPCS: TRUE
+      SPAWN_PROTECTION: 16
+      VIEW_DISTANCE: 8
+      # SEED: 1785852800490497919
+      LEVEL_TYPE: DEFAULT
 
       # RCON
-      - ENABLE_RCON=TRUE
-      - RCON_PORT=25575
-      - RCON_PASSWORD=minecraft
+      ENABLE_RCON: TRUE
+      RCON_PORT: 25575
+      RCON_PASSWORD: minecraft
 
   minecraft-atm9sky-backup:
     image: docker.io/itzg/mc-backup:latest
@@ -87,15 +87,15 @@ services:
       - ~/home-server/minecraft-atm9sky/data:/data:ro
       - ${STORAGE_DIR}/minecraft-atm9sky-backup:/backups:rw
     environment:
-      - TZ=${TZ}
-      - BACKUP_METHOD=tar
-      - BACKUP_INTERVAL=12h
-      - DEST_DIR=/backups
-      - EXCLUDES=*.jar,cache,logs
-      - PAUSE_IF_NO_PLAYERS=true
-      - PRUNE_BACKUPS_DAYS=4
-      - INITIAL_DELAY=2m
-      - TAR_COMPRESS_METHOD=gzip
-      - RCON_HOST=minecraft-atm9sky
-      - RCON_PORT=25575
-      - RCON_PASSWORD=minecraft
+      TZ: ${TZ}
+      BACKUP_METHOD: tar
+      BACKUP_INTERVAL: 12h
+      DEST_DIR: /backups
+      EXCLUDES: "*.jar,cache,logs"
+      PAUSE_IF_NO_PLAYERS: true
+      PRUNE_BACKUPS_DAYS: 4
+      INITIAL_DELAY: 2m
+      TAR_COMPRESS_METHOD: gzip
+      RCON_HOST: minecraft-atm9sky
+      RCON_PORT: 25575
+      RCON_PASSWORD: minecraft

@@ -21,7 +21,7 @@ services:
       - --web.console.templates=/usr/share/prometheus/consoles
       - --web.enable-lifecycle
     environment:
-      - TZ=${TZ}
+      TZ: ${TZ}
     volumes:
       - ~/home-server/prometheus:/etc/prometheus:rw
     # - ~/home-server/prometheus/data:/prometheus
@@ -33,8 +33,8 @@ services:
       start_period: 10s
       start_interval: 5s
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.prometheus.entrypoints=websecure
-      - traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN_NAME}`)
-      - traefik.http.routers.prometheus.middlewares=chain-authelia@file
-      - traefik.http.services.prometheus.loadbalancer.server.port=9090
+      traefik.enable: true
+      traefik.http.routers.prometheus.entrypoints: websecure
+      traefik.http.routers.prometheus.rule: Host(`prometheus.${DOMAIN_NAME}`)
+      traefik.http.routers.prometheus.middlewares: chain-authelia@file
+      traefik.http.services.prometheus.loadbalancer.server.port: 9090

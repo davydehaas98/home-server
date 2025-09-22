@@ -31,11 +31,11 @@ services:
     volumes:
       - ~/home-server/homebridge:/homebridge:rw
     environment:
-      - TZ=${TZ}
-      - ENABLE_AVAHI=1
+      TZ: ${TZ}
+      ENABLE_AVAHI: 1
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.homebridge.entrypoints=websecure
-      - traefik.http.routers.homebridge.rule=Host(`homebridge.${DOMAIN_NAME}`)
-      - traefik.http.routers.homebridge.middlewares=chain-no-auth@file
-      - traefik.http.services.homebridge.loadbalancer.server.port=8581
+      traefik.enable: true
+      traefik.http.routers.homebridge.entrypoints: websecure
+      traefik.http.routers.homebridge.rule: Host(`homebridge.${DOMAIN_NAME}`)
+      traefik.http.routers.homebridge.middlewares: chain-no-auth@file
+      traefik.http.services.homebridge.loadbalancer.server.port: 8581

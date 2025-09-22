@@ -25,11 +25,11 @@ services:
     volumes:
       - ~/home-server/grafana:/var/lib/grafana:rw
     environment:
-      - TZ=${TZ:?error}
-      - GF_USERS_ALLOW_SIGN_UP=false
+      TZ: ${TZ:?error}
+      GF_USERS_ALLOW_SIGN_UP: false
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.grafana.entrypoints=websecure
-      - traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN_NAME}`)
-      - traefik.http.routers.grafana.middlewares=chain-authelia@file
-      - traefik.http.services.grafana.loadbalancer.server.port=3000
+      traefik.enable: true
+      traefik.http.routers.grafana.entrypoints: websecure
+      traefik.http.routers.grafana.rule: Host(`grafana.${DOMAIN_NAME}`)
+      traefik.http.routers.grafana.middlewares: chain-authelia@file
+      traefik.http.services.grafana.loadbalancer.server.port: 3000

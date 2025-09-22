@@ -14,13 +14,13 @@ services:
     networks:
       - reverse-proxy
     environment:
-      - DB_URL=postgres://user:password@airtrail-db:5432/airtrail
+      DB_URL: postgres://user:password@airtrail-db:5432/airtrail
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.airtrail.entrypoints=websecure
-      - traefik.http.routers.airtrail.rule=Host(`airtrail.${DOMAIN_NAME}`)
-      - traefik.http.routers.airtrail.middlewares=chain-no-auth@file
-      - traefik.http.services.airtrail.loadbalancer.server.port=3000
+      traefik.enable: true
+      traefik.http.routers.airtrail.entrypoints: websecure
+      traefik.http.routers.airtrail.rule: Host(`airtrail.${DOMAIN_NAME}`)
+      traefik.http.routers.airtrail.middlewares: chain-no-auth@file
+      traefik.http.services.airtrail.loadbalancer.server.port: 3000
     depends_on:
       airtrail-db:
         condition: service_healthy

@@ -25,10 +25,10 @@ services:
       - ~/home-server/portainer/data:/data:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - TZ=${TZ}
+      TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.portainer.entrypoints=websecure
-      - traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN_NAME}`)
-      - traefik.http.routers.portainer.middlewares=chain-no-auth@file
-      - traefik.http.services.portainer.loadbalancer.server.port=9000
+      traefik.enable: true
+      traefik.http.routers.portainer.entrypoints: websecure
+      traefik.http.routers.portainer.rule: Host(`portainer.${DOMAIN_NAME}`)
+      traefik.http.routers.portainer.middlewares: chain-no-auth@file
+      traefik.http.services.portainer.loadbalancer.server.port: 9000
