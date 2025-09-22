@@ -25,13 +25,13 @@ services:
       - ~/home-server/tautulli/config:/config:rw
       - ~/home-server/tautulli/logs:/logs:rw
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
-      - TZ=${TZ}
+      PGID: ${GID}
+      PUID: ${UID}
+      TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.tautulli.entrypoints=websecure
-      - traefik.http.routers.tautulli.rule=Host(`tautulli.${DOMAIN_NAME}`)
-      - traefik.http.routers.tautulli.middlewares=chain-no-auth@file
-      - traefik.http.services.tautulli.loadbalancer.server.port=8181
+      traefik.enable: true
+      traefik.http.routers.tautulli.entrypoints: websecure
+      traefik.http.routers.tautulli.rule: Host(`tautulli.${DOMAIN_NAME}`)
+      traefik.http.routers.tautulli.middlewares: chain-no-auth@file
+      traefik.http.services.tautulli.loadbalancer.server.port: 8181
 

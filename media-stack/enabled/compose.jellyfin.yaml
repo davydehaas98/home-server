@@ -32,11 +32,11 @@ services:
       - /mnt/raid/media/series:/series:ro
       - /dev/shm:/data/transcode:rw
     environment:
-      - TZ=${TZ}
-      - DOCKER_MODS=lscr.io/linuxserver/mods:jellyfin-opencl-intel
+      TZ: ${TZ}
+      DOCKER_MODS: lscr.io/linuxserver/mods:jellyfin-opencl-intel
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.jellyfin.entrypoints=websecure
-      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.${DOMAIN_NAME}`)
-      - traefik.http.routers.jellyfin.middlewares=chain-no-auth@file
-      - traefik.http.services.jellyfin.loadbalancer.server.port=8096
+      traefik.enable: true
+      traefik.http.routers.jellyfin.entrypoints: websecure
+      traefik.http.routers.jellyfin.rule: Host(`jellyfin.${DOMAIN_NAME}`)
+      traefik.http.routers.jellyfin.middlewares: chain-no-auth@file
+      traefik.http.services.jellyfin.loadbalancer.server.port: 8096

@@ -48,16 +48,16 @@ services:
       - /mnt/raid/media/series:/series:ro
       - /mnt/raid/media/dvr:/dvr:rw
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
-      - TZ=${TZ}
-      - HOSTNAME=Yggdrasil
-      - VERSION=docker
+      PGID: ${GID}
+      PUID: ${UID}
+      TZ: ${TZ}
+      HOSTNAME: Yggdrasil
+      VERSION: docker
       # https://www.plex.tv/claim/
-      # - PLEX_CLAIM=<claim>
+      # PLEX_CLAIM: <claim>
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.plex.entrypoints=websecure
-      - traefik.http.routers.plex.rule=Host(`plex.${DOMAIN_NAME}`)
-      - traefik.http.routers.plex.middlewares=chain-no-auth@file
-      - traefik.http.services.plex.loadbalancer.server.port=32400
+      traefik.enable: true
+      traefik.http.routers.plex.entrypoints: websecure
+      traefik.http.routers.plex.rule: Host(`plex.${DOMAIN_NAME}`)
+      traefik.http.routers.plex.middlewares: chain-no-auth@file
+      traefik.http.services.plex.loadbalancer.server.port: 32400

@@ -32,12 +32,12 @@ services:
       - ~/home-server/busybox:/home/user:rw
       - /mnt/raid/busybox/:/home/user:ro
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
-      - TZ=${TZ}
+      PGID: ${GID}
+      PUID: ${UID}
+      TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.busybox.entrypoints=websecure
-      - traefik.http.routers.busybox.rule=Host(`busybox.${DOMAIN_NAME}`) || Host(`busybox.${DOMAIN_NAME}`)
-      - traefik.http.routers.busybox.middlewares=chain-authelia@file
-      - traefik.http.services.busybox.loadbalancer.server.port=80
+      traefik.enable: true
+      traefik.http.routers.busybox.entrypoints: websecure
+      traefik.http.routers.busybox.rule: Host(`busybox.${DOMAIN_NAME}`) || Host(`busybox.${DOMAIN_NAME}`)
+      traefik.http.routers.busybox.middlewares: chain-authelia@file
+      traefik.http.services.busybox.loadbalancer.server.port: 80

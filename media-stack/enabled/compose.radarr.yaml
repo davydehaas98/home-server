@@ -25,12 +25,12 @@ services:
       - /mnt/raid/downloads:/downloads:rw
       - /mnt/raid/media/movies:/movies:rw
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
-      - TZ=${TZ}
+      PGID: ${GID}
+      PUID: ${UID}
+      TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.radarr.entrypoints=websecure
-      - traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN_NAME}`) || Host(`movies.${DOMAIN_NAME}`)
-      - traefik.http.routers.radarr.middlewares=chain-no-auth@file
-      - traefik.http.services.radarr.loadbalancer.server.port=7878
+      traefik.enable: true
+      traefik.http.routers.radarr.entrypoints: websecure
+      traefik.http.routers.radarr.rule: Host(`radarr.${DOMAIN_NAME}`) || Host(`movies.${DOMAIN_NAME}`)
+      traefik.http.routers.radarr.middlewares: chain-no-auth@file
+      traefik.http.services.radarr.loadbalancer.server.port: 7878

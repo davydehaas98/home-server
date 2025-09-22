@@ -32,14 +32,14 @@ services:
     volumes:
       - ~/home-server/gluetun:/gluetun:rw
     environment:
-      - TZ=${TZ}
+      TZ: ${TZ}
       # See https://github.com/qdm12/gluetun-wiki/tree/main/setup#setup
-      - VPN_SERVICE_PROVIDER=nordvpn
-      - SERVER_COUNTRIES=Switzerland
-      - VPN_TYPE=openvpn
-      - OPENVPN_USER=${VPN_USERNAME}
-      - OPENVPN_PASSWORD=${VPN_PASSWORD}
-      # - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
-      # - WIREGUARD_ADDRESSES=10.64.222.21/32
+      VPN_SERVICE_PROVIDER: nordvpn
+      SERVER_COUNTRIES: Switzerland
+      VPN_TYPE: openvpn
+      OPENVPN_USER: ${VPN_USERNAME}
+      OPENVPN_PASSWORD: ${VPN_PASSWORD}
+      # WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
+      # WIREGUARD_ADDRESSES: 10.64.222.21/32
       # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/servers.md#update-the-vpn-servers-list
-      - UPDATER_PERIOD=24h
+      UPDATER_PERIOD: 24h

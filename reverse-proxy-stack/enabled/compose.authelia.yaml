@@ -19,7 +19,7 @@ services:
     volumes:
       - ~/home-server/authelia:/config:rw
     environment:
-      - TZ=${TZ}
+      TZ: ${TZ}
     healthcheck:
       disable: true
       test: ["CMD", "curl", "--fail", "http://authelia:9091/api/state"]
@@ -29,8 +29,8 @@ services:
       start_period: 10s
       start_interval: 5s
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.authelia.entrypoints=websecure
-      - traefik.http.routers.authelia.rule=Host(`authelia.${DOMAIN_NAME}`)
-      - traefik.http.routers.authelia.middlewares=chain-no-auth@file
-      - traefik.http.services.authelia.loadbalancer.server.port=9091
+      traefik.enable: true
+      traefik.http.routers.authelia.entrypoints: websecure
+      traefik.http.routers.authelia.rule: Host(`authelia.${DOMAIN_NAME}`)
+      traefik.http.routers.authelia.middlewares: chain-no-auth@file
+      traefik.http.services.authelia.loadbalancer.server.port: 9091

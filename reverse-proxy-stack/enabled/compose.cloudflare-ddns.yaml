@@ -11,8 +11,8 @@ services:
       - no-new-privileges:true
     network_mode: host
     environment:
-      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:?error}
-      - DOMAINS=${DOMAIN_NAME:?error}
-      - PROXIED=false
-      # - RRTYPE=A
-      - DELETE_ON_STOP=false
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:?error}
+      DOMAINS: ${DOMAIN_NAME:?error}
+      PROXIED: false
+      # RRTYPE: A
+      DELETE_ON_STOP: false

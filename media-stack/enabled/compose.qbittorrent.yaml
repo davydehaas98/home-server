@@ -7,8 +7,8 @@ services:
     image: lscr.io/linuxserver/qbittorrent:5.1.2
     container_name: qbittorrent
     restart: unless-stopped
-    cpus: 4
-    mem_limit: 4096m
+    cpus: 8
+    mem_limit: 8192m
     # expose:
     #   - 8080
     #   - 6881
@@ -23,14 +23,14 @@ services:
       - /mnt/raid/downloads/torrents/complete:/downloads/torrents/complete:rw
       - /mnt/raid/downloads/torrents/incomplete:/downloads/torrents/incomplete:rw
     environment:
-      - PUID=${UID}
-      - PGID=${GID}
-      - TZ=Etc/UTC
-      - WEBUI_PORT=8081
-      - TORRENTING_PORT=6881
+      PUID: ${UID}
+      PGID: ${GID}
+      TZ: Etc/UTC
+      WEBUI_PORT: 8081
+      TORRENTING_PORT: 6881
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.qbittorrent.entrypoints=websecure
-      - traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.${DOMAIN_NAME}`)
-      - traefik.http.routers.qbittorrent.middlewares=chain-authelia@file
-      - traefik.http.services.qbittorrent.loadbalancer.server.port=8081
+      traefik.enable: true
+      traefik.http.routers.qbittorrent.entrypoints: websecure
+      traefik.http.routers.qbittorrent.rule: Host(`qbittorrent.${DOMAIN_NAME}`)
+      traefik.http.routers.qbittorrent.middlewares: chain-authelia@file
+      traefik.http.services.qbittorrent.loadbalancer.server.port: 8081

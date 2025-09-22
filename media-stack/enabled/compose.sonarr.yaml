@@ -25,12 +25,12 @@ services:
       - /mnt/raid/downloads:/downloads:rw
       - /mnt/raid/media/series:/series:rw
     environment:
-      - PGID=${GID}
-      - PUID=${UID}
-      - TZ=${TZ}
+      PGID: ${GID}
+      PUID: ${UID}
+      TZ: ${TZ}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.sonarr.entrypoints=websecure
-      - traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN_NAME}`) || Host(`series.${DOMAIN_NAME}`)
-      - traefik.http.routers.sonarr.middlewares=chain-no-auth@file
-      - traefik.http.services.sonarr.loadbalancer.server.port=8989
+      traefik.enable: true
+      traefik.http.routers.sonarr.entrypoints: websecure
+      traefik.http.routers.sonarr.rule: Host(`sonarr.${DOMAIN_NAME}`) || Host(`series.${DOMAIN_NAME}`)
+      traefik.http.routers.sonarr.middlewares: chain-no-auth@file
+      traefik.http.services.sonarr.loadbalancer.server.port: 8989
