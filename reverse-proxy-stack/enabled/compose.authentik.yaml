@@ -7,13 +7,14 @@ networks:
 
 services:
   # https://docs.goauthentik.io/install-config/install/docker-compose/
-  authentik-server:    
+  authentik-server:
     image: ghcr.io/goauthentik/server:2025.8.3
+    container_name: authentik-server
     command: server
     depends_on:
-      postgresql:
+      authentik-postgres:
         condition: service_healthy
-      redis:
+      authentik-redis:
         condition: service_healthy
     expose:
       - 9000
@@ -42,11 +43,12 @@ services:
 
   authentik-worker:
     image: ghcr.io/goauthentik/server:2025.8.3
+    container_name: authentik-worker
     command: worker
     depends_on:
-      postgresql:
+      authentik-postgres:
         condition: service_healthy
-      redis:
+      authentik-redis:
         condition: service_healthy
     restart: unless-stopped
     user: root
@@ -69,6 +71,7 @@ services:
 
   authentik-postgres:
     image: docker.io/library/postgres:16.0-alpine
+    container_name: authentik-postgres
     restart: unless-stopped
     networks:
       - reverse-proxy
@@ -91,6 +94,7 @@ services:
   
   authentik-redis:
     image: docker.io/library/redis:8.2.1-alpine
+    container_name: authentik-redis
     command: --save 60 1 --loglevel warning
     restart: unless-stopped
     networks:
