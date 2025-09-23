@@ -44,7 +44,6 @@ My home server configuration set up using compose files.
 | Prowlarr             | Proxy server for search queries.               | [GitHub](https://github.com/Prowlarr/Prowlarr)                   |
 | qBittorrent          | Torrent client.                                | [GitHub](https://github.com/qbittorrent/qBittorrent/)            |
 | Radarr               | Movie collection manager.                      | [GitHub](https://github.com/Radarr/Radarr)                       |
-| Readarr              | Book collection manager.                       | [GitHub](https://github.com/Readarr/Readarr)                     |
 | SABnzbd              | Binary news reader.                            | [GitHub](https://github.com/sabnzbd/sabnzbd)                     |
 | Sonarr               | TV series collection manager.                  | [GitHub](https://github.com/Sonarr/Sonarr)                       |
 | Tautulli             | Monitor server for Plex.                       | [GitHub](https://github.com/Tautulli/Tautulli)                   |
