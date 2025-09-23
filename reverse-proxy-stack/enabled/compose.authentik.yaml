@@ -38,7 +38,7 @@ services:
       traefik.enable: true
       traefik.http.routers.authelia.entrypoints: websecure
       traefik.http.routers.authelia.rule: Host(`authentik.${DOMAIN_NAME}`) || Host(`auth.${DOMAIN_NAME}`)
-      traefik.http.routers.authelia.middlewares: chain-no-auth@file
+      traefik.http.routers.authelia.middlewares: chain-authentik@file
       traefik.http.services.authelia.loadbalancer.server.port: 9000
 
   authentik-worker:

@@ -24,6 +24,14 @@ http:
           - rate-limit
           - retry
           - secure-headers
+    chain-authentik:
+      chain:
+        middlewares:
+          - authentik
+          - compress
+          - rate-limit
+          - retry
+          - secure-headers
     chain-oauth:
       chain:
         middlewares:
