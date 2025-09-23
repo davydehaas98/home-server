@@ -1,0 +1,107 @@
+networks:
+  reverse-proxy:
+    external: true
+
+# echo "PG_PASS=$(openssl rand -base64 36 | tr -d '\n')" >> .env
+# echo "AUTHENTIK_SECRET_KEY=$(openssl rand -base64 60 | tr -d '\n')" >> .env
+
+services:
+  # https://docs.goauthentik.io/install-config/install/docker-compose/
+  authentik-server:    
+    image: ghcr.io/goauthentik/server:2025.8.3
+    command: server
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    expose:
+      - 9000
+      - 9443
+    networks:
+      - reverse-proxy
+    restart: unless-stopped
+    volumes:
+      - ~/home-server/authentik/media:/media
+      - ~/home-server/authentik/custom-templates:/templates
+    env_file:
+      - .env
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: authentik-postgres
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: password
+      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
+    labels:
+      traefik.enable: true
+      traefik.http.routers.authelia.entrypoints: websecure
+      traefik.http.routers.authelia.rule: Host(`authentik.${DOMAIN_NAME}`) || Host(`auth.${DOMAIN_NAME}`)
+      traefik.http.routers.authelia.middlewares: chain-no-auth@file
+      traefik.http.services.authelia.loadbalancer.server.port: 9443
+
+  authentik-worker:
+    image: ghcr.io/goauthentik/server:2025.8.3
+    command: worker
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    user: root
+    networks:
+      - reverse-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/home-server/authentik/media:/media
+      - ~/home-server/authentik/certs:/certs
+      - ~/home-server/authentik/custom-templates:/templates
+    env_file:
+      - .env
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: authentik-postgres
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: password
+      AUTHENTIK_REDIS__HOST: authentik-redis
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
+
+  authentik-postgres:
+    image: docker.io/library/postgres:16.0-alpine
+    restart: unless-stopped
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/authentik/postgres:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: authentik
+      POSTGRES_USER: authentik
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      timeout: 5s
+  
+  authentik-redis:
+    image: docker.io/library/redis:8.2.1-alpine
+    command: --save 60 1 --loglevel warning
+    restart: unless-stopped
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/authentik/redis:/data
+    healthcheck:
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      test:
+        - CMD-SHELL
+        - redis-cli ping | grep PONG
+      timeout: 3s
