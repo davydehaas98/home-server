@@ -4,7 +4,7 @@ networks:
 
 services:
   immich-server:
-    image: ghcr.io/immich-app/immich-server:v1.142.1
+    image: ghcr.io/immich-app/immich-server:v1.143.1
     container_name: immich-server
     cpus: 8
     mem_limit: 8192m
