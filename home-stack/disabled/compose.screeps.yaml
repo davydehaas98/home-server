@@ -16,13 +16,13 @@ services:
     ports:
     - 21025:21025/tcp
   mongo:
-    image: docker.io/mongo:7.0.14
+    image: docker.io/library/mongo:7.0.14
     container_name: screeps-mongo
     restart: unless-stopped
     volumes:
     - ~/home-server/screeps-mongo:/data/db
   redis:
-    image: docker.io/redis:7.4.0
+    image: docker.io/library/redis:7.4.0
     container_name: screeps-redis
     restart: unless-stopped
     volumes:

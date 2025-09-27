@@ -4,7 +4,7 @@ networks:
 
 services:
   busybox:
-    image: docker.io/busybox:1.37.0
+    image: docker.io/library/busybox:1.37.0
     container_name: busybox
     restart: unless-stopped
     cpus: 1

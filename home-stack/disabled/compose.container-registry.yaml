@@ -1,7 +1,7 @@
 services:
   # Docker container registry
   container-registry:
-    image: docker.io/registry:2.8.3
+    image: docker.io/library/registry:2.8.3
     container_name: container-registry
     restart: unless-stopped
     cpus: 1

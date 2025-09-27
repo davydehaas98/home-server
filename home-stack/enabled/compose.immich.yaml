@@ -14,8 +14,12 @@ services:
     networks:
       - reverse-proxy
     depends_on:
-      - immich-postgres
-      - immich-redis
+      immich-postgres:
+        condition: service_healthy
+        restart: true
+      immich-redis:
+        condition: service_healthy
+        restart: true
     volumes:
       - /mnt/raid/home-server/immich/upload:/usr/src/app/upload:rw
       - /etc/localtime:/etc/localtime:ro
@@ -48,7 +52,7 @@ services:
 
   immich-redis:
     container_name: immich-redis
-    image: docker.io/redis:8.2.1-alpine
+    image: docker.io/library/redis:8.2.1-alpine
     restart: unless-stopped
     networks:
       - reverse-proxy

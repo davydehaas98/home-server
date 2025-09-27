@@ -14,8 +14,10 @@ services:
     depends_on:
       authentik-postgres:
         condition: service_healthy
+        restart: true
       authentik-redis:
         condition: service_healthy
+        restart: true
     expose:
       - 9000
       - 9443

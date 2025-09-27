@@ -1,7 +1,7 @@
 services:
   # Open source code quality and security tool
   sonarqube:
-    image: docker.io/sonarqube:10.6.0-community
+    image: docker.io/library/sonarqube:10.6.0-community
     container_name: sonarqube
     restart: unless-stopped
     user: ${UID}:${GID}
@@ -31,7 +31,7 @@ services:
 
   # PostgreSQL database used by SonarQube
   sonarqube-postgresql:
-    image: docker.io/postgres:16.4
+    image: docker.io/library/postgres:16.4
     container_name: sonarqube-postgresql
     restart: unless-stopped
     user: ${UID}:${GID}
