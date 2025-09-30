@@ -29,7 +29,7 @@ services:
       start_period: 10s
       start_interval: 5s
     labels:
-      traefik.enable: true
+      traefik.enable: "true"
       traefik.http.routers.authelia.entrypoints: websecure
       traefik.http.routers.authelia.rule: Host(`authelia.${DOMAIN_NAME}`)
       traefik.http.routers.authelia.middlewares: chain-no-auth@file

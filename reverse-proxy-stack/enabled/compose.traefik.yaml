@@ -41,7 +41,7 @@ services:
       start_period: 10s
       start_interval: 5s
     labels:
-      traefik.enable: true
+      traefik.enable: "true"
       traefik.http.routers.traefik.entrypoints: websecure
       traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN_NAME}`)
       traefik.http.routers.traefik.middlewares: chain-authelia@file
