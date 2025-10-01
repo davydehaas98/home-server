@@ -19,7 +19,7 @@ services:
       traefik.enable: true
       traefik.http.routers.airtrail.entrypoints: websecure
       traefik.http.routers.airtrail.rule: Host(`airtrail.${DOMAIN_NAME}`)
-      traefik.http.routers.airtrail.middlewares: chain-no-auth@file
+      traefik.http.routers.airtrail.middlewares: chain-authentik@file
       traefik.http.services.airtrail.loadbalancer.server.port: 3000
     depends_on:
       airtrail-db:

@@ -32,5 +32,5 @@ services:
       traefik.enable: true
       traefik.http.routers.bazarr.entrypoints: websecure
       traefik.http.routers.bazarr.rule: Host(`bazarr.${DOMAIN_NAME}`) || Host(`subtitles.${DOMAIN_NAME}`)
-      traefik.http.routers.bazarr.middlewares: chain-authelia@file
+      traefik.http.routers.bazarr.middlewares: chain-authentik@file
       traefik.http.services.bazarr.loadbalancer.server.port: 6767

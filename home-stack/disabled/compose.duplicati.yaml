@@ -20,7 +20,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.duplicati.entrypoints=websecure
       - traefik.http.routers.duplicati.rule=Host(`duplicati.${DOMAIN_NAME}`)
-      - traefik.http.routers.duplicati.middlewares=chain-authelia@file
+      - traefik.http.routers.duplicati.middlewares=chain-authentik@file
       - traefik.http.services.duplicati.loadbalancer.server.port=8200
     networks:
       - reverse-proxy

@@ -32,5 +32,5 @@ services:
       traefik.enable: true
       traefik.http.routers.qbittorrent.entrypoints: websecure
       traefik.http.routers.qbittorrent.rule: Host(`qbittorrent.${DOMAIN_NAME}`)
-      traefik.http.routers.qbittorrent.middlewares: chain-authelia@file
+      traefik.http.routers.qbittorrent.middlewares: chain-authentik@file
       traefik.http.services.qbittorrent.loadbalancer.server.port: 8081

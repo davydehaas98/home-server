@@ -37,5 +37,5 @@ services:
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: websecure
       traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${DOMAIN_NAME}`) || Host(`usenet.${DOMAIN_NAME}`)
-      traefik.http.routers.sabnzbd.middlewares: chain-authelia@file
+      traefik.http.routers.sabnzbd.middlewares: chain-authentik@file
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080

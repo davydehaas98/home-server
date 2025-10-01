@@ -26,5 +26,5 @@ services:
       traefik.enable: true
       traefik.http.routers.cadvisor.entrypoints: websecure
       traefik.http.routers.cadvisor.rule: Host(`cadvisor.${DOMAIN_NAME}`)
-      traefik.http.routers.cadvisor.middlewares: chain-authelia@file
+      traefik.http.routers.cadvisor.middlewares: chain-authentik@file
       traefik.http.services.cadvisor.loadbalancer.server.port: 8080

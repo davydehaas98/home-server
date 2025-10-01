@@ -31,5 +31,5 @@ services:
       traefik.enable: true
       traefik.http.routers.grafana.entrypoints: websecure
       traefik.http.routers.grafana.rule: Host(`grafana.${DOMAIN_NAME}`)
-      traefik.http.routers.grafana.middlewares: chain-authelia@file
+      traefik.http.routers.grafana.middlewares: chain-authentik@file
       traefik.http.services.grafana.loadbalancer.server.port: 3000

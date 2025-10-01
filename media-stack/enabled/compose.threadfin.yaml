@@ -29,5 +29,5 @@ services:
       traefik.enable: true
       traefik.http.routers.threadfin.entrypoints: websecure
       traefik.http.routers.threadfin.rule: Host(`threadfin.${DOMAIN_NAME}`) || Host(`dvr.${DOMAIN_NAME}`) || Host(`xteve.${DOMAIN_NAME}`)
-      traefik.http.routers.threadfin.middlewares: chain-authelia@file
+      traefik.http.routers.threadfin.middlewares: chain-authentik@file
       traefik.http.services.threadfin.loadbalancer.server.port: 34400
