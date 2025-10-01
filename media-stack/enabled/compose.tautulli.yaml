@@ -32,6 +32,6 @@ services:
       traefik.enable: true
       traefik.http.routers.tautulli.entrypoints: websecure
       traefik.http.routers.tautulli.rule: Host(`tautulli.${DOMAIN_NAME}`)
-      traefik.http.routers.tautulli.middlewares: chain-no-auth@file
+      traefik.http.routers.tautulli.middlewares: chain-authentik@file
       traefik.http.services.tautulli.loadbalancer.server.port: 8181
 
