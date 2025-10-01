@@ -41,11 +41,11 @@ services:
       start_period: 10s
       start_interval: 5s
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.traefik.entrypoints=websecure
-      - traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN_NAME}`)
-      - traefik.http.routers.traefik.middlewares=chain-authelia@file
-      - traefik.http.routers.traefik.service=api@internal
-      - traefik.http.routers.traefik.tls.domains[0].main=${DOMAIN_NAME}
-      - traefik.http.routers.traefik.tls.domains[0].sans=*.${DOMAIN_NAME}
-      - traefik.http.services.traefik.loadbalancer.server.port=8080
+      traefik.enable: true
+      traefik.http.routers.traefik.entrypoints: websecure
+      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN_NAME}`)
+      traefik.http.routers.traefik.middlewares: chain-authentik@file
+      traefik.http.routers.traefik.service: api@internal
+      traefik.http.routers.traefik.tls.domains[0].main: "${DOMAIN_NAME}"
+      traefik.http.routers.traefik.tls.domains[0].sans: "*.${DOMAIN_NAME}"
+      traefik.http.services.traefik.loadbalancer.server.port: 8080

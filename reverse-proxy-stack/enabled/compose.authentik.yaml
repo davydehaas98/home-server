@@ -37,11 +37,11 @@ services:
       AUTHENTIK_REDIS__HOST: authentik-redis
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.authentik.entrypoints=websecure
-      - traefik.http.routers.authentik.rule=Host(`authentik.${DOMAIN_NAME}`) || Host(`auth.${DOMAIN_NAME}`)
-      - traefik.http.routers.authentik.middlewares=chain-no-auth@file
-      - traefik.http.services.authentik.loadbalancer.server.port=9000
+      traefik.enable: true
+      traefik.http.routers.authentik.entrypoints: websecure
+      traefik.http.routers.authentik.rule: Host(`authentik.${DOMAIN_NAME}`) || Host(`auth.${DOMAIN_NAME}`)
+      traefik.http.routers.authentik.middlewares: chain-no-auth@file
+      traefik.http.services.authentik.loadbalancer.server.port: 9000
 
   authentik-worker:
     image: ghcr.io/goauthentik/server:2025.8.4

@@ -15,6 +15,7 @@ http:
           - Remote-Name
           - Remote-Email
     authentik:
+      # https://github.com/goauthentik/authentik/issues/2366
       forwardAuth:
         address: http://authentik-server:9000/outpost.goauthentik.io/auth/traefik
         trustForwardHeader: true
