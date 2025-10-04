@@ -4,7 +4,7 @@ networks:
 
 services:
   authelia:
-    image: ghcr.io/authelia/authelia:4.39.10
+    image: ghcr.io/authelia/authelia:4.39.11
     container_name: authelia
     restart: unless-stopped
     cpus: 4
