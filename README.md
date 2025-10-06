@@ -54,7 +54,7 @@ My home server configuration set up using compose files.
 
 | Name                 | Description                          | Links                                                                      |
 | -------------------- | ------------------------------------ | -------------------------------------------------------------------------- |
-| Authelia             | IAM SSO companion for reverse proxy. | [GitHub](https://github.com/authelia/authelia)                             |
+| Authentik            | IAM SSO companion for reverse proxy. | [GitHub](https://github.com/goauthentik/authentik)                         |
 | Cloudflare Companion | CNAME DNS updater.                   | [GitHub](https://github.com/tiredofit/docker-traefik-cloudflare-companion) |
 | Cloudflare DDNS      | Dynamic DNS updater.                 | [GitHub](https://github.com/favonia/cloudflare-ddns)                       |
 | Traefik              | Reverse proxy for HTTP requests.     | [GitHub](https://github.com/traefik/traefik)                               |
