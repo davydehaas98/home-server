@@ -4,7 +4,7 @@ networks:
 
 services:
   node-exporter:
-    image: docker.io/prom/node-exporter:v1.9.1
+    image: docker.io/prom/node-exporter:v1.10.2
     container_name: node-exporter
     restart: unless-stopped
     cpus: 0.1
