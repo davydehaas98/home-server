@@ -52,7 +52,7 @@ services:
 
   immich-redis:
     container_name: immich-redis
-    image: docker.io/library/redis:8.2.1-alpine
+    image: docker.io/library/redis:8.2.2-alpine
     restart: unless-stopped
     networks:
       - reverse-proxy
