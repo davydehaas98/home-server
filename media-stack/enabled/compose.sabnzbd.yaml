@@ -14,9 +14,9 @@ services:
     #   - 8080
     #   # HTTPS
     #   - 9090
-    network_mode: service:gluetun
-    # networks:
-    #   - reverse-proxy
+    # network_mode: service:gluetun
+    networks:
+      - reverse-proxy
     healthcheck:
       disable: true
       test: ["CMD", "curl", "--fail", "http://sabnzbd:8080"]
