@@ -5,7 +5,7 @@ networks:
 services:
   airtrail:
     container_name: airtrail
-    image: docker.io/johly/airtrail:v3.2.1
+    image: docker.io/johly/airtrail:v3.3.0
     restart: unless-stopped
     cpus: 1
     mem_limit: 1024m
