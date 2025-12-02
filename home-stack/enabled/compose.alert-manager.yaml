@@ -4,7 +4,7 @@ networks:
 
 services:
   alertmanager:
-    image: docker.io/prom/alertmanager:v0.28.1
+    image: docker.io/prom/alertmanager:v0.29.0
     container_name: alertmanager
     restart: unless-stopped
     cpus: 1
