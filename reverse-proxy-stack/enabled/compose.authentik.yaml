@@ -8,7 +8,7 @@ networks:
 services:
   # https://docs.goauthentik.io/install-config/install/docker-compose/
   authentik-server:
-    image: ghcr.io/goauthentik/server:2025.10.0
+    image: ghcr.io/goauthentik/server:2025.10.2
     container_name: authentik-server
     command: server
     depends_on:
@@ -44,7 +44,7 @@ services:
       traefik.http.services.authentik.loadbalancer.server.port: 9000
 
   authentik-worker:
-    image: ghcr.io/goauthentik/server:2025.10.0
+    image: ghcr.io/goauthentik/server:2025.10.2
     container_name: authentik-worker
     command: worker
     depends_on:
