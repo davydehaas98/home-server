@@ -72,7 +72,7 @@ services:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
 
   authentik-postgres:
-    image: docker.io/library/postgres:17.6-alpine
+    image: docker.io/library/postgres:17.7-alpine
     container_name: authentik-postgres
     restart: unless-stopped
     networks:
