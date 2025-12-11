@@ -38,5 +38,5 @@ services:
       traefik.enable: true
       traefik.http.routers.jellyfin.entrypoints: websecure
       traefik.http.routers.jellyfin.rule: Host(`jellyfin.${DOMAIN_NAME}`)
-      traefik.http.routers.jellyfin.middlewares: chain-authentik@file
+      traefik.http.routers.jellyfin.middlewares: chain-no-auth@file
       traefik.http.services.jellyfin.loadbalancer.server.port: 8096
