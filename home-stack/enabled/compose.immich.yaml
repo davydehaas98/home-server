@@ -4,7 +4,7 @@ networks:
 
 services:
   immich-server:
-    image: ghcr.io/immich-app/immich-server:v2.1.0
+    image: ghcr.io/immich-app/immich-server:v2.4.1
     container_name: immich-server
     cpus: 8
     mem_limit: 8192m
@@ -36,7 +36,7 @@ services:
   immich-machine-learning:
     container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
-    image: ghcr.io/immich-app/immich-machine-learning:v2.1.0
+    image: ghcr.io/immich-app/immich-machine-learning:v2.4.1
     restart: unless-stopped
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
