@@ -1,0 +1,11 @@
+http:
+  routers:
+    cloud-router:
+      rule: Host(`cloud.davydehaas.dev`)
+      service: cloud-service
+
+    services:
+      cloud-service:
+        loadBalancer:
+          servers:
+            - url: http://jotunheim_0
