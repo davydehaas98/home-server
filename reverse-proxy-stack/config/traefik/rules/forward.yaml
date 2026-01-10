@@ -1,11 +1,12 @@
 http:
   routers:
     cloud-router:
-      rule: Host(`cloud.davydehaas.dev`)
+      entryPoint: websecure
       service: cloud-service
+      rule: Host(`cloud.davydehaas.dev`)
 
-    services:
-      cloud-service:
-        loadBalancer:
-          servers:
-            - url: http://jotunheim_0
+  services:
+    cloud-service:
+      loadBalancer:
+        servers:
+          - url: http://jotunheim_0
