@@ -4,7 +4,7 @@ networks:
 
 services:
   wireguard:
-    image: ghcr.io/wg-easy/wg-easy:15.0.0
+    image: ghcr.io/wg-easy/wg-easy:15.2.1
     container_name: wireguard
     restart: unless-stopped
     cpus: 1
