@@ -27,6 +27,7 @@ services:
       - ~/home-server/wireguard/config:/etc/wireguard:rw
       - /lib/modules:/lib/modules:ro
     labels:
+      traefik.enable: true
       traefik.http.routers.wireguard.entrypoints: websecure
       traefik.http.routers.wireguard.rule: Host(`wireguard.${DOMAIN_NAME}`)
       traefik.http.routers.wireguard.middlewares: chain-authentik@file
