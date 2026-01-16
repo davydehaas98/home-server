@@ -21,11 +21,12 @@ services:
       - net.ipv6.conf.default.forwarding=1
     ports:
       - 51820:51820/udp
-      - 51821:51821/udp
+      - 51821:51821/tcp
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/wireguard/config:/config:rw
+      - ~/home-server/wireguard/config:/etc/wireguard:rw
+      - /lib/modules:/lib/modules:ro
     labels:
       traefik.http.routers.wireguard.entrypoints: websecure
       traefik.http.routers.wireguard.rule: Host(`wireguard.${DOMAIN_NAME}`)
