@@ -4,7 +4,7 @@ networks:
 
 services:
   gluetun:
-    image: ghcr.io/qdm12/gluetun:v3.40.0
+    image: ghcr.io/qdm12/gluetun:v3.41.0
     container_name: gluetun
     restart: unless-stopped
     cpus: 1
