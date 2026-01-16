@@ -9,7 +9,6 @@ services:
     restart: unless-stopped
     cpus: 1
     mem_limit: 512m
-    user: ${GID}:${UID}
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
