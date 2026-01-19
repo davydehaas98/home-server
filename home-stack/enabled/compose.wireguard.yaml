@@ -39,6 +39,10 @@ services:
       - /lib/modules:/lib/modules:ro
     environment:
       WG_DEVICE: enp3s0
+      WG_DEFAULT_DNS: 1.1.1.1
+      WG_ALLOWED_IPS: 0.0.0.0/0,::/0
+      WG_HOST: wireguard.davydehaas.nl
+      WG_PORT: 51820
     labels:
       traefik.enable: true
       traefik.http.routers.wireguard.entrypoints: websecure
