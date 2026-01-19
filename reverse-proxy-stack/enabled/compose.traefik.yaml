@@ -15,7 +15,8 @@ services:
       - no-new-privileges:true
     ports:
       - 80:80
-      - 443:443
+      - 443:443/tcp
+      - 443:443/udp
       - 8080:8080
       - 3179:3179/tcp
       - 3179:3179/udp

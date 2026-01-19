@@ -16,9 +16,9 @@ My home server configuration set up using compose files.
 | Case        | Fractal Design Node 304 Black    |
 | OS          | Ubuntu Server 24.10              |
 
-# Stacks
+## Stacks
 
-## home-stack
+### home-stack
 
 | Name                     | Description                                                                         | Links                                                    |
 | ------------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------- |
@@ -32,7 +32,7 @@ My home server configuration set up using compose files.
 | Prometheus Alertmanager  | Alert manager for Prometheus.                                                       | [GitHub](https://github.com/prometheus/alertmanager)     |
 | Prometheus Node exporter | Exports hardware and OS metrics.                                                    | [GitHub](https://github.com/prometheus/node_exporter)    |
 
-## media-stack
+### media-stack
 
 | Name                 | Description                                    | Links                                                            |
 | -------------------- | ---------------------------------------------- | ---------------------------------------------------------------- |
@@ -50,7 +50,7 @@ My home server configuration set up using compose files.
 | Transmission OpenVPN | Torrent client with VPN client.                | [GitHub](https://github.com/haugene/docker-transmission-openvpn) |
 | Threadfin            | xTeve M3U Proxy for Plex DVR and Emby Live TV. | [GitHub](https://github.com/Threadfin/Threadfin)                 |
 
-## reverse-proxy-stack
+### reverse-proxy-stack
 
 | Name                 | Description                          | Links                                                                      |
 | -------------------- | ------------------------------------ | -------------------------------------------------------------------------- |
@@ -59,12 +59,13 @@ My home server configuration set up using compose files.
 | Cloudflare DDNS      | Dynamic DNS updater.                 | [GitHub](https://github.com/favonia/cloudflare-ddns)                       |
 | Traefik              | Reverse proxy for HTTP requests.     | [GitHub](https://github.com/traefik/traefik)                               |
 
-# Environment Variables
+## Environment Variables
 
-```
+```shell
 UID=1400
 GID=1400
 TZ=Etc/UTC
 USER_DIR=/home/homelab/home-server
 DOMAIN_NAME=davydehaas.nl
+DOMAIN_NAME_DEV=davydehaas.dev
 ```
