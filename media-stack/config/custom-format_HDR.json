@@ -1,0 +1,15 @@
+{
+  "name": "HDR",
+  "includeCustomFormatWhenRenaming": true,
+  "specifications": [
+    {
+      "name": "HDR",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "HDR"
+      }
+    }
+  ]
+}
