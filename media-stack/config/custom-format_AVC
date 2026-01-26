@@ -1,0 +1,15 @@
+{
+  "name": "AVC",
+  "includeCustomFormatWhenRenaming": true,
+  "specifications": [
+    {
+      "name": "AVC",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "((X|H)\\.?264)|(AVC)"
+      }
+    }
+  ]
+}
