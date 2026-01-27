@@ -28,7 +28,7 @@ services:
 
   airtrail-postgres:
     image: docker.io/library/postgres:17.7-alpine
-    container_name: airtrail-db
+    container_name: airtrail-postgres
     restart: unless-stopped
     cpus: 1
     mem_limit: 1024m

@@ -9,4 +9,4 @@ http:
     cloud-service:
       loadBalancer:
         servers:
-          - url: http://jotunheim_0
+          - url: http://jotunheim_0:6443
