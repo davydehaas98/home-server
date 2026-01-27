@@ -57,7 +57,7 @@ services:
     expose:
     - 25575
     ports:
-    - 25565:25565
+    - "25565:25565"
 
   minecraft-ftb-backup:
     image: ghcr.io/itzg/mc-backup:latest

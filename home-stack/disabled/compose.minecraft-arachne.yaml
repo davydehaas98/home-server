@@ -57,7 +57,7 @@ services:
     expose:
       - 25575
     ports:
-      - 25567:25565
+      - "25567:25565"
   minecraft-arachne-backup:
     image: ghcr.io/itzg/mc-backup:latest
     container_name: minecraft-arachne-backup

@@ -14,11 +14,11 @@ services:
     - ~/home-server/pihole/dnsmasq.d:/etc/dnsmasq.d
     # - ~/home-server/pihole/pihole.log:/var/log/pihole.log
     ports:
-    - 53:53/tcp
-    - 53:53/udp
-    # - 67:67/udp # act as DHCP server instead of a router
-    - 80:80/tcp
-    - 443:443/tcp
+    - "53:53/tcp"
+    - "53:53/udp"
+    # - "67:67/udp" # act as DHCP server instead of a router
+    - "80:80/tcp"
+    - "443:443/tcp"
     cap_add:
     - NET_ADMIN
     dns:

@@ -15,4 +15,4 @@ services:
     volumes:
     - ~/home-server/minecraft-bedrock/data:/data
     ports:
-    - 19132:19132/udp
+    - "19132:19132/udp"

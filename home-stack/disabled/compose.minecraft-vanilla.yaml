@@ -53,7 +53,7 @@ services:
     expose:
     - 25575
     ports:
-    - 25565:25565
+    - "25565:25565"
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-vanilla-backup:
     image: ghcr.io/itzg/mc-backup:latest

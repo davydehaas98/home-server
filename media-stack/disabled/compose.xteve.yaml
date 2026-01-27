@@ -15,8 +15,8 @@ services:
     user: ${UID}:${GID}
     restart: unless-stopped
     ports:
-      - 34400:34400
-      - 1900:1900
+      - "34400:34400"
+      - "1900:1900"
     networks:
       - reverse-proxy
     volumes:

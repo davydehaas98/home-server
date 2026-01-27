@@ -12,13 +12,13 @@ services:
       - 80
       - 3000
     ports:
-      - 53:53/tcp # plain dns over tcp
-      - 53:53/udp # plain dns over udp
+      - "53:53/tcp"
+      - "53:53/udp"
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/adguardhome/conf:/opt/adguardhome/conf:rw # app configuration
-      - ~/home-server/adguardhome/work:/opt/adguardhome/work:rw # app working directory
+      - ~/home-server/adguardhome/conf:/opt/adguardhome/conf:rw
+      - ~/home-server/adguardhome/work:/opt/adguardhome/work:rw
     labels:
       traefik.enable: true
       traefik.http.routers.adguardhome.entrypoints: websecure

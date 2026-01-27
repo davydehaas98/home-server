@@ -14,8 +14,8 @@ services:
     volumes:
       - ~/home-server/factorio:/factorio
     ports:
-      - 34197:34197/udp
-      #- 27015:27015/tcp # RCON optional
+      - "34197:34197/udp"
+      #- "27015:27015/tcp" # RCON optional
     networks:
       - reverse-proxy
 networks:

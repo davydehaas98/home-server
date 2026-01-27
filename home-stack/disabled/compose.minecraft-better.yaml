@@ -56,7 +56,7 @@ services:
     expose:
       - 25575
     ports:
-      - 25566:25565
+      - "25566:25565"
 
   # https://hub.docker.com/r/itzg/mc-backup
   minecraft-better-backup:

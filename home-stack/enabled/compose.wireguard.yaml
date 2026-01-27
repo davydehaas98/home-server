@@ -27,8 +27,8 @@ services:
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.default.forwarding=1
     ports:
-      - 51820:51820/udp
-      - 51821:51821/tcp
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
     networks:
       reverse-proxy:
       wireguard:

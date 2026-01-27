@@ -12,7 +12,7 @@ services:
       - 443
       - 943
     ports:
-      - 1194:1194/udp
+      - "1194:1194/udp"
     volumes:
       - ~/home-server/openvpn:/openvpn
     labels:

@@ -15,4 +15,4 @@ services:
     expose:
     - 8080 # Web Interface
     ports:
-    - 50000:50000 # Remote Java (JIRA) API
+    - "50000:50000" # Remote Java (JIRA) API

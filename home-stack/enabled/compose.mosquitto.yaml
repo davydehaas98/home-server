@@ -11,9 +11,9 @@ services:
     mem_limit: 512m
     ports:
       # MQTT default listener
-      - 1883:1883
+      - "1883:1883/tcp"
       # MQTT for websockets
-      - 9001:9001
+      - "9001:9001/tcp"
     networks:
       - reverse-proxy
     volumes:

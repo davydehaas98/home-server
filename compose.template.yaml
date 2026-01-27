@@ -17,8 +17,8 @@ services:
     expose:
       - 80
     ports:
-      - 80:80/tcp
-      - 80:80/udp
+      - "80:80/tcp"
+      - "80:80/udp"
     networks:
       - reverse-proxy
     healthcheck:

@@ -8,12 +8,12 @@ services:
     restart: unless-stopped
     ports:
       # Web UI
-      - 8112:8112
+      - "8112:8112"
       # Incoming Connections (Used for seeding)
-      - 53160:53160
-      - 53160:53160/udp
+      - "53160:53160/tcp"
+      - "53160:53160/udp"
       # Daemon remote port (Used for GTK applications)
-      - 58846:58846
+      - "58846:58846"
     networks:
       - reverse-proxy
     environment:

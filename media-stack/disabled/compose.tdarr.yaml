@@ -10,10 +10,10 @@ services:
     mem_limit: 2048m
     restart: unless-stopped
     user: ${UID}:${GID}
-    ports:
-      - 8266:8266
-      - 8265:8265
-      - 8267:8267
+    # ports:
+    #   - "8266:8266"
+    #   - "8265:8265"
+    #   - "8267:8267"
     expose:
       - 8265
     networks:

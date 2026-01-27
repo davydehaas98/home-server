@@ -13,4 +13,4 @@ services:
     - ~/home-server/terraria/plugins:/plugins
     - ~/home-server/terraria/logs:/tshock/logs:ro
     ports:
-    - 7777:7777
+    - "7777:7777"

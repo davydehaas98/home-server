@@ -11,4 +11,4 @@ services:
     volumes:
     - ~/home-server/terraria-vanilla/world:/root/.local/share/Terraria/Worlds
     ports:
-    - 7777:7777
+    - "7777:7777"

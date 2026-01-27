@@ -18,5 +18,5 @@ services:
     - ~/home-server/openttd-server/.openttd:/home/openttd/.openttd
     - ~/home-server/openttd-server:/usr/games
     ports:
-    - 3979:3979/tcp
-    - 3979:3979/udp
+    - "3979:3979/tcp"
+    - "3979:3979/udp"

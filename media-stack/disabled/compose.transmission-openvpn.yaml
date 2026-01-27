@@ -19,8 +19,8 @@ services:
       - 9091
     ports:
       # Torrent Ports
-      - 51413:51413
-      - 51413:51413/udp
+      - "51413:51413/tcp"
+      - "51413:51413/udp"
     networks:
       - reverse-proxy
     logging:

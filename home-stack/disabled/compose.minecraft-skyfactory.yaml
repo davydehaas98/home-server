@@ -75,7 +75,7 @@ services:
     expose:
       - 25575
     ports:
-      - 25568:25565/tcp
+      - "25568:25565/tcp"
     labels:
       - traefik.enable=true
 #       - traefik.tcp.routers.minecraft-skyfactory.rule=HostSNI(`minecraft-skyfactory.${DOMAIN_NAME}`)

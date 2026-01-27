@@ -56,7 +56,7 @@ services:
     expose:
     - 25575
     ports:
-    - 25566:25565
+    - "25566:25565"
   minecraft-arthalos-backup:
     image: ghcr.io/itzg/mc-backup:latest
     container_name: minecraft-arthalos-backup
