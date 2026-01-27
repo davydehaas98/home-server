@@ -14,7 +14,7 @@ services:
     networks:
       - reverse-proxy
     environment:
-      DB_URL: postgres://user:password@airtrail-db:5432/airtrail
+      DB_URL: postgres://user:password@airtrail-postgres:5432/airtrail
     labels:
       traefik.enable: true
       traefik.http.routers.airtrail.entrypoints: websecure
@@ -22,12 +22,12 @@ services:
       traefik.http.routers.airtrail.middlewares: chain-authentik@file
       traefik.http.services.airtrail.loadbalancer.server.port: 3000
     depends_on:
-      airtrail-db:
+      airtrail-postgres:
         condition: service_healthy
         restart: true
 
-  airtrail-db:
-    image: docker.io/library/postgres:18.1-alpine
+  airtrail-postgres:
+    image: docker.io/library/postgres:17.7-alpine
     container_name: airtrail-db
     restart: unless-stopped
     cpus: 1
@@ -41,7 +41,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
-      - ~/home-server/airtrail-db:/var/lib/postgresql/data:rw
+      - ~/home-server/airtrail-postgres:/var/lib/postgresql/data:rw
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U user -d airtrail']
       interval: 5s
