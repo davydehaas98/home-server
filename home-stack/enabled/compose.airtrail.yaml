@@ -41,7 +41,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
-      - ~/home-server/airtrail-postgres:/var/lib/postgresql/18/data:rw
+      - ~/home-server/airtrail-postgres:/var/lib/postgresql:rw
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U user -d airtrail']
       interval: 5s
