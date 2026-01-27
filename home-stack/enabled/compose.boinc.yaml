@@ -11,6 +11,8 @@ services:
     mem_limit: 8192m
     expose:
       - 8080
+    networks:
+      - reverse-proxy
     devices:
     # Hardware acceleration
       - /dev/dri:/dev/dri
