@@ -28,14 +28,14 @@ metrics:
     addServicesLabels: true
     pushInterval: 10s
     http:
-      endpoint: "http://prometheus:4318/v1/metrics"
+      endpoint: http://prometheus:9090/api/v1/otlp/v1/metrics
 tracing:
   addInternals: true
   serviceName: traefik
   sampleRate: 1.0
   otlp:
     http:
-      endpoint: "http://jaeger:4318/v1/traces"
+      endpoint: http://jaeger:4318/v1/traces
 accessLog:
   # filePath: /log/access.log
   format: json
