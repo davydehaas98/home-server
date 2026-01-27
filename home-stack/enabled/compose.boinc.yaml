@@ -1,0 +1,30 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  boinc:
+    image: lscr.io/linuxserver/boinc:8.0.4
+    container_name: boinc
+    restart: unless-stopped
+    cpus: 4
+    mem_limit: 8192m
+    user: ${UID}:${GID}
+    expose:
+      - 8080
+    devices:
+    # Hardware acceleration
+      - /dev/dri:/dev/dri
+    volumes:
+      - ~/home-server/boinc:/config:rw
+    environment:
+      PGID: ${GID}
+      PUID: ${UID}
+      TZ: ${TZ}
+      PASSWORD: # optional
+    labels:
+      traefik.enable: true
+      traefik.http.routers.boinc.entrypoints: websecure
+      traefik.http.routers.boinc.rule: Host(`boinc.${DOMAIN_NAME}`)
+      traefik.http.routers.boinc.middlewares: chain-authentik@file
+      traefik.http.services.boinc.loadbalancer.server.port: 8080
