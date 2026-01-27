@@ -27,7 +27,7 @@ services:
         restart: true
 
   airtrail-postgres:
-    image: docker.io/library/postgres:18.0-alpine
+    image: docker.io/library/postgres:18.1-alpine
     container_name: airtrail-postgres
     restart: unless-stopped
     cpus: 1
