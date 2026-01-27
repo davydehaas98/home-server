@@ -20,21 +20,25 @@ providers:
     # Only works on top level files in the rules folder
     watch: true
 metrics:
-  prometheus:
+  addInternals: true
+  otlp:
+    serviceName: traefik
     addRoutersLabels: true
     addEntryPointsLabels: true
     addServicesLabels: true
-    buckets:
-      - 0.1
-      - 0.3
-      - 1.2
-      - 5.0
+    pushInterval: 10s
+    http:
+      endpoint: "http://prometheus:4318/v1/metrics"
 tracing:
   addInternals: true
-  sampleRate: 0.2
+  serviceName: traefik
+  sampleRate: 1.0
+  otlp:
+    http:
+      endpoint: "http://jaeger:4318/v1/traces"
 accessLog:
-  filePath: /access.log
-  addInternals: true
+  # filePath: /log/access.log
+  format: json
   bufferingSize: 100
   filters:
     statusCodes:
@@ -43,7 +47,8 @@ accessLog:
     retryAttempts: true
     minDuration: "10ms"
 log:
-  filePath: /traefik.log
+  # filePath: /log/traefik.log
+  format: json
   level: DEBUG
 serversTransport:
   insecureSkipVerify: true
