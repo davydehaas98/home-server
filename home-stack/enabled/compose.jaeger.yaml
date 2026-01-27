@@ -1,0 +1,25 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  jaeger:
+    image: cr.jaegertracing.io/jaegertracing/jaeger:2.14.0
+    container_name: jaeger
+    restart: unless-stopped
+    cpus: 1
+    mem_limit: 128m
+    user: ${UID}:${GID}
+    expose:
+      - 6831
+      - 16686
+    networks:
+      - reverse-proxy
+    environment:
+      TZ: ${TZ}
+    labels:
+      traefik.enable: true
+      traefik.http.routers.jaeger.entrypoints: websecure
+      traefik.http.routers.jaeger.rule: Host(`jaeger.${DOMAIN_NAME}`)
+      traefik.http.routers.jaeger.middlewares: chain-authentik@file
+      traefik.http.services.jaeger.loadbalancer.server.port: 16686
