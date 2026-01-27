@@ -9,7 +9,6 @@ services:
     restart: unless-stopped
     cpus: 4
     mem_limit: 8192m
-    user: ${UID}:${GID}
     expose:
       - 8080
     devices:
