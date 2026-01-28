@@ -4,7 +4,7 @@ networks:
 
 services:
   boinc:
-    image: lscr.io/linuxserver/boinc:8.0.4
+    image: lscr.io/linuxserver/boinc:8.2.8
     container_name: boinc
     restart: unless-stopped
     cpus: 4
