@@ -7,7 +7,7 @@ services:
     image: lscr.io/linuxserver/boinc:8.2.8
     container_name: boinc
     restart: unless-stopped
-    cpus: 4
+    cpus: 8
     mem_limit: 8192m
     expose:
       - 8080
