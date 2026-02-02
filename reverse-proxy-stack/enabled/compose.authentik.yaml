@@ -15,9 +15,6 @@ services:
       authentik-postgres:
         condition: service_healthy
         restart: true
-      authentik-redis:
-        condition: service_healthy
-        restart: true
     expose:
       - 9000
       - 9443
@@ -34,7 +31,6 @@ services:
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: password
-      AUTHENTIK_REDIS__HOST: authentik-redis
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
     labels:
       traefik.enable: true
@@ -49,8 +45,6 @@ services:
     command: worker
     depends_on:
       authentik-postgres:
-        condition: service_healthy
-      authentik-redis:
         condition: service_healthy
     restart: unless-stopped
     user: root
@@ -68,7 +62,6 @@ services:
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: password
-      AUTHENTIK_REDIS__HOST: authentik-redis
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
 
   authentik-postgres:
@@ -93,21 +86,3 @@ services:
         - CMD-SHELL
         - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
       timeout: 5s
-
-  authentik-redis:
-    image: docker.io/library/redis:8.4.0-alpine
-    container_name: authentik-redis
-    command: --save 60 1 --loglevel warning
-    restart: unless-stopped
-    networks:
-      - reverse-proxy
-    volumes:
-      - ~/home-server/authentik/redis:/data:rw
-    healthcheck:
-      interval: 30s
-      retries: 5
-      start_period: 20s
-      test:
-        - CMD-SHELL
-        - redis-cli ping | grep PONG
-      timeout: 3s
