@@ -6,9 +6,13 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:6.0.4
     container_name: radarr
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 4096m
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: 1
+          memory: 4096m
     expose:
       - 7878
     networks:
