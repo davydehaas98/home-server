@@ -4,7 +4,7 @@ networks:
 
 services:
   actual-budget:
-    image: ghcr.io/actualbudget/actual:26.1.0
+    image: ghcr.io/actualbudget/actual:26.2.0
     container_name: actual-budget
     restart: unless-stopped
     cpus: 0.1
