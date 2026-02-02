@@ -22,8 +22,8 @@ services:
       - reverse-proxy
     restart: unless-stopped
     volumes:
-      - ~/home-server/authentik/media:/media
-      - ~/home-server/authentik/custom-templates:/templates
+      - ~/home-server/authentik/media:/media:rw
+      - ~/home-server/authentik/custom-templates:/templates:rw
     env_file:
       - .env
     environment:
@@ -51,10 +51,10 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ~/home-server/authentik/media:/media
-      - ~/home-server/authentik/certs:/certs
-      - ~/home-server/authentik/custom-templates:/templates
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - ~/home-server/authentik/media:/media:rw
+      - ~/home-server/authentik/certs:/certs:rw
+      - ~/home-server/authentik/custom-templates:/templates:rw
     env_file:
       - .env
     environment:
