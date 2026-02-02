@@ -11,7 +11,7 @@ services:
         condition: unless-stopped
       resources:
         limits:
-          cpus: 1
+          cpus: "1.0"
           memory: 4096m
     expose:
       - 7878
