@@ -4,7 +4,7 @@ networks:
 
 services:
   cadvisor:
-    image: ghcr.io/google/cadvisor:0.55.1
+    image: ghcr.io/google/cadvisor:0.56.2
     container_name: cadvisor
     deploy:
       resources:
