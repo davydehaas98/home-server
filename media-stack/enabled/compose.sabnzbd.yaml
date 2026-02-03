@@ -6,15 +6,19 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:4.5.5
     container_name: sabnzbd
-    restart: unless-stopped
-    cpus: 4
-    mem_limit: 8192m
-    # expose:
-    #   # HTTP
-    #   - 8080
-    #   # HTTPS
-    #   - 9090
-    # network_mode: service:gluetun
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     healthcheck:

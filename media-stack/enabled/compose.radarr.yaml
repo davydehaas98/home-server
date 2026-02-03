@@ -5,12 +5,20 @@ networks:
 services:
   radarr:
     image: lscr.io/linuxserver/radarr:6.0.4
-    container_name: radarr    
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 4096m
-    expose:
-      - 7878
+    container_name: radarr
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     healthcheck:

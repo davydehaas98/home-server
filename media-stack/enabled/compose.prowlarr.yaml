@@ -6,20 +6,29 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:2.3.0
     container_name: prowlarr
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 1024m
-    expose:
-      - 9696
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
-    # healthcheck:
-    #   test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 10s
-    #   start_interval: 5s
+    healthcheck:
+      disable: true
+      test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
     volumes:
       - ~/home-server/prowlarr/config:/config:rw
     environment:

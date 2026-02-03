@@ -6,11 +6,19 @@ services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:1.5.5
     container_name: bazarr
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 4096m
-    expose:
-      - 6767
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     healthcheck:
