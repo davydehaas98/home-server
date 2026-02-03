@@ -14,9 +14,19 @@ services:
   wireguard:
     image: ghcr.io/wg-easy/wg-easy:15.2.1
     container_name: wireguard
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 512m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     cap_add:
       - NET_ADMIN
       - SYS_MODULE

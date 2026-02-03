@@ -6,16 +6,26 @@ services:
   mosquitto:
     image: docker.io/library/eclipse-mosquitto:2.0.22
     container_name: mosquitto
-    restart: unless-stopped
-    cpus: 0.5
-    mem_limit: 512m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
     ports:
       # MQTT default listener
       - "1883:1883/tcp"
       # MQTT for websockets
       - "9001:9001/tcp"
-    networks:
-      - reverse-proxy
     volumes:
       - ~/home-server/mosquitto/config:/mosquitto/config:rw
       - ~/home-server/mosquitto/data:/mosquitto/data:rw

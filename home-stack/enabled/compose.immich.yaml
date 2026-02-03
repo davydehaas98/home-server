@@ -6,13 +6,6 @@ services:
   immich-server:
     image: ghcr.io/immich-app/immich-server:v2.5.2
     container_name: immich-server
-    cpus: 8
-    mem_limit: 8192m
-    restart: unless-stopped
-    expose:
-      - 2283
-    networks:
-      - reverse-proxy
     depends_on:
       immich-postgres:
         condition: service_healthy
@@ -20,6 +13,21 @@ services:
       immich-redis:
         condition: service_healthy
         restart: true
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 2G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
     volumes:
       - /mnt/raid/home-server/immich/upload:/usr/src/app/upload:rw
       - /etc/localtime:/etc/localtime:ro
@@ -37,7 +45,19 @@ services:
     container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
     image: ghcr.io/immich-app/immich-machine-learning:v2.5.2
-    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 2G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
     #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
@@ -53,7 +73,19 @@ services:
   immich-redis:
     container_name: immich-redis
     image: docker.io/library/redis:8.4.0-alpine
-    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     healthcheck:
@@ -64,24 +96,30 @@ services:
   immich-postgres:
     container_name: immich-postgres
     image: docker.io/tensorchord/pgvecto-rs:pg16-v0.3.0
-    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     command:
       [
         "postgres",
-        "-c",
-        "shared_preload_libraries=vectors.so",
-        "-c",
-        'search_path="$$user", public, vectors',
-        "-c",
-        "logging_collector=on",
-        "-c",
-        "max_wal_size=2GB",
-        "-c",
-        "shared_buffers=512MB",
-        "-c",
-        "wal_compression=on",
+        "-c", "shared_preload_libraries=vectors.so",
+        "-c", 'search_path="$$user", public, vectors',
+        "-c", "logging_collector=on",
+        "-c", "max_wal_size=2GB",
+        "-c", "shared_buffers=512MB",
+        "-c", "wal_compression=on",
       ]
     volumes:
       # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file

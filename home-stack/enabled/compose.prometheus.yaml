@@ -6,12 +6,20 @@ services:
   prometheus:
     image: docker.io/prom/prometheus:v3.9.1
     container_name: prometheus
-    restart: unless-stopped
-    cpus: 4
-    mem_limit: 8192m
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     # user: ${UID}:${GID}
-    expose:
-      - 9090
     networks:
       - reverse-proxy
     command:

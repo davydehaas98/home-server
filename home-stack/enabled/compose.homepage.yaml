@@ -1,19 +1,30 @@
 networks:
   reverse-proxy:
     external: true
+
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:v1.9.0
     container_name: homepage
-    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     user: ${GID}:${UID}
-    expose:
-      - 3000
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/homepage:/app/config # Make sure your local config directory exists
-      - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
+      - ~/home-server/homepage:/app/config:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       HOMEPAGE_ALLOWED_HOSTS: home.davydehaas.nl,homepage.davydehaas.nl # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
     labels:

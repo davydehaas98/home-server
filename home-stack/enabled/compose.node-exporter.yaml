@@ -6,12 +6,20 @@ services:
   node-exporter:
     image: docker.io/prom/node-exporter:v1.10.2
     container_name: node-exporter
-    restart: unless-stopped
-    cpus: 0.1
-    mem_limit: 128m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     user: ${UID}:${GID}
-    expose:
-      - 9100
     networks:
       - reverse-proxy
     command:

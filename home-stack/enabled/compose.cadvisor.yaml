@@ -4,15 +4,23 @@ networks:
 
 services:
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.55.1
+    image: ghcr.io/google/cadvisor:0.55.1
     container_name: cadvisor
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 512m
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     devices:
       - /dev/kmsg
-    expose:
-      - 8080
     networks:
       - reverse-proxy
     volumes:

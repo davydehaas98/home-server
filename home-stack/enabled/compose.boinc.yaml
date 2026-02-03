@@ -6,11 +6,19 @@ services:
   boinc:
     image: lscr.io/linuxserver/boinc:8.2.8
     container_name: boinc
-    restart: unless-stopped
-    cpus: 8
-    mem_limit: 8192m
-    expose:
-      - 8080
+    deploy:
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     devices:

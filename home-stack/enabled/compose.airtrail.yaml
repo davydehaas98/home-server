@@ -6,11 +6,23 @@ services:
   airtrail:
     container_name: airtrail
     image: docker.io/johly/airtrail:v3.5.1
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 1024m
-    expose:
-      - 3000
+    depends_on:
+      airtrail-postgres:
+        condition: service_healthy
+        restart: true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     environment:
@@ -21,19 +33,24 @@ services:
       traefik.http.routers.airtrail.rule: Host(`airtrail.${DOMAIN_NAME}`)
       traefik.http.routers.airtrail.middlewares: chain-authentik@file
       traefik.http.services.airtrail.loadbalancer.server.port: 3000
-    depends_on:
-      airtrail-postgres:
-        condition: service_healthy
-        restart: true
 
   airtrail-postgres:
     image: docker.io/library/postgres:18.1-alpine
     container_name: airtrail-postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     restart: unless-stopped
-    cpus: 1
-    mem_limit: 1024m
-    expose:
-      - 5432
     networks:
       - reverse-proxy
     environment:

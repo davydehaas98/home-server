@@ -6,15 +6,23 @@ services:
   alertmanager:
     image: docker.io/prom/alertmanager:v0.31.0
     container_name: alertmanager
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 1024m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     user: ${UID}:${GID}
     command:
       - --config.file=/etc/alertmanager/config.yaml
       - --storage.path=/alertmanager
-    expose:
-      - 9093
     networks:
       - reverse-proxy
     volumes:

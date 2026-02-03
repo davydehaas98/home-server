@@ -6,13 +6,21 @@ services:
   zigbee2mqtt:
     image: ghcr.io/koenkk/zigbee2mqtt:2.8.0
     container_name: zigbee2mqtt
-    restart: unless-stopped
-    cpus: 0.5
-    mem_limit: 512m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     # devices:
     #   - /dev/ttyUSB0:/dev/ttyUSB0
-    expose:
-      - 8080
     networks:
       - reverse-proxy
     volumes:

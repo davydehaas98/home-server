@@ -7,12 +7,20 @@ services:
   grafana:
     image: docker.io/grafana/grafana:12.3.2
     container_name: grafana
-    restart: unless-stopped
-    cpus: 0.5
-    mem_limit: 512m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     # user: ${GID}:${UID}
-    expose:
-      - 3000
     networks:
       - reverse-proxy
     healthcheck:

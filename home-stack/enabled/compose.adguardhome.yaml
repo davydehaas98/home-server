@@ -6,11 +6,19 @@ services:
   adguardhome:
     image: docker.io/adguard/adguardhome:v0.107.71
     container_name: adguardhome
-    restart: unless-stopped
-    expose:
-      # - 53
-      - 80
-      - 3000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     ports:
       - "53:53/tcp"
       - "53:53/udp"

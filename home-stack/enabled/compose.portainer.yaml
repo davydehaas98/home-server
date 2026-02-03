@@ -7,11 +7,20 @@ services:
     image: portainer/portainer-ce:2.38.0-alpine
     container_name: portainer
     restart: unless-stopped
-    cpus: 0.1
-    mem_limit: 128m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     # user: ${UID}:${GID}
-    expose:
-      - 9000
     networks:
       - reverse-proxy
     healthcheck:
