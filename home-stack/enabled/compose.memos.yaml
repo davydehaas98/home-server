@@ -1,0 +1,31 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  memos:
+    image: ghcr.io/usememos/memos:0.25.3
+    container_name: memos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/memos:/var/opt/memos:rw
+    labels:
+      traefik.enable: true
+      traefik.http.routers.memos.entrypoints: websecure
+      traefik.http.routers.memos.rule: Host(`memos.${DOMAIN_NAME}`)
+      traefik.http.routers.memos.middlewares: chain-authentik@file
+      traefik.http.services.memos.loadbalancer.server.port: 5230
