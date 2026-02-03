@@ -15,12 +15,21 @@ services:
       authentik-postgres:
         condition: service_healthy
         restart: true
-    expose:
-      - 9000
-      - 9443
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
-    restart: unless-stopped
     volumes:
       - ~/home-server/authentik/media:/media:rw
       - ~/home-server/authentik/custom-templates:/templates:rw
@@ -46,7 +55,19 @@ services:
     depends_on:
       authentik-postgres:
         condition: service_healthy
-    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     user: root
     networks:
       - reverse-proxy
@@ -67,17 +88,21 @@ services:
   authentik-postgres:
     image: docker.io/library/postgres:18.1-alpine
     container_name: authentik-postgres
-    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
-    volumes:
-      - ~/home-server/authentik/postgres:/var/lib/postgresql:rw
-    env_file:
-      - .env
-    environment:
-      POSTGRES_DB: authentik
-      POSTGRES_USER: authentik
-      POSTGRES_PASSWORD: password
     healthcheck:
       interval: 30s
       retries: 5
@@ -86,3 +111,11 @@ services:
         - CMD-SHELL
         - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
       timeout: 5s
+    volumes:
+      - ~/home-server/authentik/postgres:/var/lib/postgresql:rw
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: authentik
+      POSTGRES_USER: authentik
+      POSTGRES_PASSWORD: password

@@ -7,9 +7,19 @@ services:
   traefik:
     image: docker.io/library/traefik:v3.6.7
     container_name: traefik
-    restart: unless-stopped
-    cpus: 2
-    mem_limit: 4096m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     # user: ${UID}:${GID}
     security_opt:
       - no-new-privileges:true

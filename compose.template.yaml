@@ -6,16 +6,24 @@ services:
   busybox:
     image: docker.io/library/busybox:1.37.0
     container_name: busybox
-    restart: unless-stopped
-    cpus: 1
-    mem_limit: 1024m
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     user: ${UID}:${GID}
     cap_add:
       - NET_ADMIN
     devices:
       - /dev/dri:/dev/dri
-    expose:
-      - 80
     ports:
       - "80:80/tcp"
       - "80:80/udp"

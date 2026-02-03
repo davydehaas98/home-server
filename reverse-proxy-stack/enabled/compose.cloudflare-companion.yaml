@@ -6,9 +6,19 @@ services:
   cloudflare-companion:
     image: ghcr.io/tiredofit/docker-traefik-cloudflare-companion:7.4.0
     container_name: cloudflare-companion
-    restart: unless-stopped
-    cpus: 0.1
-    mem_limit: 128m
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 256M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
     networks:
       - reverse-proxy
     volumes:
