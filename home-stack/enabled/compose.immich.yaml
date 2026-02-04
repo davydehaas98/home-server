@@ -10,7 +10,7 @@ services:
       immich-postgres:
         condition: service_healthy
         restart: true
-      immich-redis:
+      immich-valkey:
         condition: service_healthy
         restart: true
     deploy:
