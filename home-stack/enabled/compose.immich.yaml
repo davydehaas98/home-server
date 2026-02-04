@@ -33,7 +33,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       DB_HOSTNAME: immich-postgres
-      REDIS_HOSTNAME: immich-redis
+      REDIS_HOSTNAME: immich-valkey
+    healthcheck:
+      disable: false
     labels:
       traefik.enable: true
       traefik.http.routers.immich.entrypoints: websecure
@@ -42,9 +44,9 @@ services:
       traefik.http.services.immich.loadbalancer.server.port: 2283
 
   immich-machine-learning:
-    container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
     image: ghcr.io/immich-app/immich-machine-learning:v2.5.3
+    container_name: immich-machine-learning
     deploy:
       resources:
         limits:
@@ -64,38 +66,15 @@ services:
     networks:
       - reverse-proxy
     healthcheck:
-      disable: true
+      disable: false
     volumes:
       - ~/home-server/immich/machine-learning/model-cache:/cache:rw
     environment:
       NODE_ENV: production
 
-  immich-redis:
-    container_name: immich-redis
-    image: docker.io/library/redis:8.4.0-alpine
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
-    networks:
-      - reverse-proxy
-    healthcheck:
-      test: redis-cli ping || exit 1
-    environment:
-      REDIS_HOSTNAME: immich-redis
-
   immich-postgres:
     container_name: immich-postgres
-    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.3.0
+    image: ghcr.io/tensorchord/vchord-postgres:pg18-v1.0.0
     deploy:
       resources:
         limits:
@@ -109,24 +88,14 @@ services:
         delay: 5s
         max_attempts: 3
         window: 60s
+    shm_size: 128M
     networks:
       - reverse-proxy
-    command:
-      [
-        "postgres",
-        "-c", "shared_preload_libraries=vectors.so",
-        "-c", 'search_path="$$user", public, vectors',
-        "-c", "logging_collector=on",
-        "-c", "max_wal_size=2GB",
-        "-c", "shared_buffers=512MB",
-        "-c", "wal_compression=on",
-      ]
     volumes:
-      # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
-      - ~/home-server/immich/postgres:/var/lib/postgresql/data:rw
+      - ~/home-server/immich-postgres:/var/lib/postgresql:rw
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: immich
+      POSTGRES_USER: immich
       POSTGRES_DB: immich
       POSTGRES_INITDB_ARGS: "--data-checksums"
     healthcheck:
@@ -137,3 +106,26 @@ services:
         - CMD-SHELL
         - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
       timeout: 5s
+
+  immich-valkey:
+    container_name: immich-valkey
+    image: docker.io/valkey/valkey:9.0.0
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
+    environment:
+      REDIS_HOSTNAME: immich-valkey
+    healthcheck:
+      test: redis-cli ping || exit 1
