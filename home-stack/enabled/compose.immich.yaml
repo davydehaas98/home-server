@@ -4,7 +4,7 @@ networks:
 
 services:
   immich-server:
-    image: ghcr.io/immich-app/immich-server:v2.5.2
+    image: ghcr.io/immich-app/immich-server:v2.5.3
     container_name: immich-server
     depends_on:
       immich-postgres:
@@ -44,7 +44,7 @@ services:
   immich-machine-learning:
     container_name: immich-machine-learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
-    image: ghcr.io/immich-app/immich-machine-learning:v2.5.2
+    image: ghcr.io/immich-app/immich-machine-learning:v2.5.3
     deploy:
       resources:
         limits:
