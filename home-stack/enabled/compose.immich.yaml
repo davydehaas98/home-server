@@ -17,7 +17,7 @@ services:
       resources:
         limits:
           cpus: '4.0'
-          memory: 2G
+          memory: 8G
         reservations:
           cpus: '0.1'
           memory: 128M
@@ -36,6 +36,7 @@ services:
       DB_DATABASE_NAME: immich
       DB_USERNAME: immich
       DB_PASSWORD: immich
+      DB_STORAGE_TYPE: HDD
       REDIS_HOSTNAME: immich-valkey
     healthcheck:
       disable: false

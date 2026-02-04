@@ -5,11 +5,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.01'
           memory: 64M
         reservations:
-          cpus: '0.01'
-          memory: 32M
+          cpus: '0.001'
+          memory: 16M
       restart_policy:
         condition: on-failure
         delay: 5s

@@ -9,10 +9,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.01'
           memory: 256M
         reservations:
-          cpus: '0.01'
+          cpus: '0.001'
           memory: 128M
       restart_policy:
         condition: on-failure

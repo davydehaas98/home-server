@@ -13,10 +13,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
-          memory: 512M
-        reservations:
           cpus: '0.01'
+          memory: 256M
+        reservations:
+          cpus: '0.001'
           memory: 128M
       restart_policy:
         condition: on-failure
@@ -60,7 +60,9 @@ services:
     volumes:
       - ~/home-server/airtrail-postgres:/var/lib/postgresql:rw
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U user -d airtrail']
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
       interval: 5s
       timeout: 5s
       retries: 5
