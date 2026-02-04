@@ -40,6 +40,13 @@ http:
           - rate-limit
           - retry
           - secure-headers
+    chain-immich:
+      chain:
+        middlewares:
+          - immich
+          - rate-limit
+          - retry
+          - secure-headers
     chain-nextcloud:
       chain:
         middlewares:

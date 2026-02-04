@@ -91,6 +91,17 @@ http:
           X-XSS-Protection: 1; mode=block
         forceSTSHeader: true
     # --- CUSTOM SETTINGS ---
+    immich:
+      buffering:
+        # Disable limit
+        maxRequestBodyBytes: 0
+        # Disable limit
+        maxResponseBodyBytes: 0
+        # 20 MB
+        memRequestBodyBytes: 20971520
+        # 20 MB
+        memResponseBodyBytes: 20971520
+        retryExpression: "IsNetworkError() && Attempts() < 2"
     # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#
     nextcloud:
       redirectRegex:

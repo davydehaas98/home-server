@@ -81,6 +81,10 @@ entryPoints:
           scheme: https
   websecure:
     address: :443
+    transport:
+      respondingTimeouts:
+        # No timeout
+        readTimeout: 0s
     http:
       tls:
         certResolver: dns-resolver-cloudflare
