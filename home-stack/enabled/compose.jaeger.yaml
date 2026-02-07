@@ -4,7 +4,7 @@ networks:
 
 services:
   jaeger:
-    image: cr.jaegertracing.io/jaegertracing/jaeger:2.14.1
+    image: cr.jaegertracing.io/jaegertracing/jaeger:2.15.0
     container_name: jaeger
     deploy:
       resources:
