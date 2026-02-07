@@ -39,32 +39,32 @@ http:
         authResponseHeaders:
           - X-Forwarded-User
     # --- SETTINGS ---
-    buffering:
+    default-buffering:
       buffering:
         retryExpression: "IsNetworkError() && Attempts() < 2"
         maxRequestBodyBytes: 2000000
         memRequestBodyBytes: 2000000
         maxResponseBodyBytes: 2000000
         memResponseBodyBytes: 2000000
-    circuit-breaker:
+    default-circuit-breaker:
       circuitBreaker:
         expression: "LatencyAtQuantileMS(50.0) > 100"
-    compress:
+    default-compress:
       compress:
         minResponseBodyBytes: 1024
         excludedContentTypes:
           - text/event-stream
-    rate-limit:
+    default-rate-limit:
       rateLimit:
         average: 250
         period: 1m
         burst: 100
-    retry:
+    default-retry:
       retry:
         attempts: 4
         initialInterval: 100ms
     # --- SECURITY ---
-    secure-headers:
+    default-headers:
       headers:
         accessControlAllowOriginList:
           - https://davydehaas.nl
@@ -72,45 +72,91 @@ http:
         customRequestHeaders:
           X-Forwarded-Proto: https
         customResponseHeaders:
+          # CORS
           Access-Control-Allow-Credentials: true
-          Access-Control-Allow-Headers: Origin, Authorization, Content-Type
+          Access-Control-Allow-Headers: Origin, Authorization, Content-Type, Accept
           Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS
           Access-Control-Max-Age: 600
-          Cache-Control: no-cache, max-age=0
+          # Security headers
           Content-Security-Policy: upgrade-insecure-requests
           Cross-Origin-Embedder-Policy: unsafe-none
           Cross-Origin-Opener-Policy: unsafe-none
           Cross-Origin-Resource-Policy: same-site
           Permissions-Policy: camera=(), geolocation=(), microphone=(), payment=(), usb=(), vr=()
-          Referrer-Policy: strict-origin-when-cross-origin
-          Strict-Transport-Security: max-age=31536000; includeSubDomains; preload;
-          Vary: ORIGIN
           X-Content-Type-Options: nosniff
           X-Frame-Options: SAMEORIGIN
           X-Robots-Tag: none
           X-XSS-Protection: 1; mode=block
+          Referrer-Policy: strict-origin-when-cross-origin
+          Strict-Transport-Security: max-age=31536000; includeSubDomains; preload;
+          Vary: ORIGIN
         forceSTSHeader: true
     # --- CUSTOM SETTINGS ---
-    immich:
-      buffering:
-        # Disable limit
-        maxRequestBodyBytes: 0
-        # Disable limit
-        maxResponseBodyBytes: 0
-        # 20 MB
-        memRequestBodyBytes: 20971520
-        # 20 MB
-        memResponseBodyBytes: 20971520
-        retryExpression: "IsNetworkError() && Attempts() < 2"
-    # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#
-    nextcloud:
-      redirectRegex:
-        permanent: true
-        regex: "https://(.*)/.well-known/(card|cal)dav"
-        replacement: "https://${1}/remote.php/dav/"
     # https://actualbudget.org/docs/troubleshooting/shared-array-buffer/
-    actual-budget:
+    actual-budget-headers:
       headers:
         customResponseHeaders:
           Cross-Origin-Embedder-Policy: require-corp
           Cross-Origin-Opener-Policy: same-origin
+    immich-buffering:
+      buffering:
+        # Unlimited upload/download size for media files
+        maxRequestBodyBytes: 0
+        maxResponseBodyBytes: 0
+        # 100/50 MB in memory before buffering to disk
+        memRequestBodyBytes: 100000000
+        memResponseBodyBytes: 50000000
+        retryExpression: "IsNetworkError() && Attempts() < 2"
+    immich-headers:
+      headers:
+        customResponseHeaders:
+          # CORS for web and mobile clients
+          Access-Control-Allow-Origin: "*"
+          Access-Control-Allow-Credentials: false
+          Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, PATCH
+          Access-Control-Allow-Headers: Origin, Authorization, Content-Type
+          Access-Control-Max-Age: "86400"
+          # Security headers
+          Content-Security-Policy: "default-src 'self'; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https:;"
+          Cross-Origin-Embedder-Policy: unsafe-none
+          Cross-Origin-Opener-Policy: same-origin
+          Cross-Origin-Resource-Policy: cross-origin
+          # Caching for media files since they are immutable and can be cached indefinitely
+          Cache-Control: public, max-age=31536000
+          # Additional
+          Permissions-Policy: camera=(), geolocation=(), microphone=()
+    # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#
+    nextcloud-redirect:
+      redirectRegex:
+        permanent: true
+        regex: "https://(.*)/.well-known/(card|cal)dav"
+        replacement: "https://${1}/remote.php/dav/"
+    plex-buffering:
+      buffering:
+        # Unlimited upload/download for video streams
+        maxRequestBodyBytes: 0
+        maxResponseBodyBytes: 0
+        # 200 MB in memory (for smooth video playback)
+        memRequestBodyBytes: 200000000
+        memResponseBodyBytes: 100000000
+        retryExpression: "IsNetworkError() && Attempts() < 2"
+    plex-headers:
+      headers:
+        customResponseHeaders:
+          # CORS for Plex clients (without Accept to avoid preflight)
+          Access-Control-Allow-Origin: "*"
+          Access-Control-Allow-Credentials: false
+          Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD
+          Access-Control-Allow-Headers: Origin, Authorization, Content-Type
+          Access-Control-Max-Age: "86400"
+          # Security headers (relaxed for media streaming)
+          Content-Security-Policy: "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https:;"
+          Cross-Origin-Embedder-Policy: unsafe-none
+          Cross-Origin-Opener-Policy: same-origin
+          Cross-Origin-Resource-Policy: cross-origin
+          # Shorter cache for Plex (can update/transcode)
+          Cache-Control: public, max-age=86400
+          X-Content-Type-Options: nosniff
+          X-Frame-Options: SAMEORIGIN
+          Referrer-Policy: strict-origin-when-cross-origin
+          Permissions-Policy: camera=(), geolocation=(), microphone=()

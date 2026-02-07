@@ -4,60 +4,68 @@ http:
     chain-no-auth:
       chain:
         middlewares:
-          - compress
-          - rate-limit
-          - retry
-          - secure-headers
+          - default-compress
+          - default-rate-limit
+          - default-retry
+          - default-headers
     chain-basic-auth:
       chain:
         middlewares:
           - basic-auth
-          - compress-response
-          - rate-limit
-          - retry
-          - secure-headers
+          - default-compress
+          - default-rate-limit
+          - default-retry
+          - default-headers
     chain-authelia:
       chain:
         middlewares:
           - authelia
-          - compress
-          - rate-limit
-          - retry
-          - secure-headers
+          - default-compress
+          - default-rate-limit
+          - default-retry
+          - default-headers
     chain-authentik:
       chain:
         middlewares:
           - authentik
-          - compress
-          - rate-limit
-          - retry
-          - secure-headers
+          - default-compress
+          - default-rate-limit
+          - default-retry
+          - default-headers
     chain-oauth:
       chain:
         middlewares:
           - oauth
-          - compress
-          - rate-limit
-          - retry
-          - secure-headers
+          - default-compress
+          - default-rate-limit
+          - default-retry
+          - default-headers
     chain-immich:
       chain:
         middlewares:
-          - immich
-          - rate-limit
-          - retry
-          - secure-headers
+          - immich-buffering
+          - immich-headers
+          - default-rate-limit
+          - default-retry
+          - default-headers
+    chain-plex:
+      chain:
+        middlewares:
+          - plex-buffering
+          - plex-headers
+          - default-rate-limit
+          - default-retry
     chain-nextcloud:
       chain:
         middlewares:
-          - nextcloud
-          - rate-limit
-          - retry
-          - secure-headers
+          - nextcloud-redirect
+          - default-rate-limit
+          - default-retry
+          - default-headers
     chain-actual-budget:
       chain:
         middlewares:
-          - actual-budget
-          - rate-limit
-          - retry
-          - secure-headers
+          - actual-budget-headers
+          - default-rate-limit
+          - default-retry
+          - default-headers
