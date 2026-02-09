@@ -4,7 +4,7 @@ networks:
 
 services:
   ollama:
-    image: ghcr.io/ollama/ollama:0.15.0
+    image: docker.io/ollama/ollama:0.15.0
     container_name: ollama
     deploy:
       resources:
@@ -23,8 +23,6 @@ services:
       - reverse-proxy
     volumes:
       - ~/home-server/ollama:/root/.ollama:rw
-    environment:
-      TZ: ${TZ}
     labels:
       traefik.enable: true
       traefik.http.routers.ollama.entrypoints: websecure

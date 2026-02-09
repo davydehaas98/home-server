@@ -1,0 +1,37 @@
+homeassistant:
+  enabled: true
+frontend:
+  enabled: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mosquitto
+  keepalive: 60
+  reject_unauthorized: true
+  version: 5
+serial:
+  port: tcp://192.168.1.30:6638
+  adapter: zstack
+  baudrate: 115200
+adapter: auto
+cache_state: true
+cache_state_persistent: true
+cache_state_send_on_startup: true
+channel: 11
+disable_led: false
+elapsed: false
+last_seen: disable
+legacy_api: true
+legacy_availability_payload: true
+log_debug_namespace_ignore: ''
+log_debug_to_mqtt_frontend: false
+log_file: log.txt
+log_level: info
+log_namespaced_levels: {}
+log_rotation: true
+log_symlink_current: false
+port: tcp://192.168.2.45:6638
+version: 5
+groups:
+  '1':
+    friendly_name: lights
+health: {}
