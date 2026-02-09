@@ -28,9 +28,9 @@ services:
         window: 60s
     command: 
       - serve
-      - --device metal
-      - --model StarCoder-1B
-      - --chat-model Qwen2-1.5B-Instruct
+      - --device=metal
+      - --model=StarCoder-1B
+      - --chat-model=Qwen2-1.5B-Instruct
     networks:
       - reverse-proxy
     volumes:
