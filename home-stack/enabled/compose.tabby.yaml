@@ -9,11 +9,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: 2G
+          cpus: '2.0'
+          memory: 4G
         reservations:
-          cpus: '0.1'
-          memory: 128M
+          cpus: '1.0'
+          memory: 2G
           # devices:
           #   - driver: intel
           #     count: all
@@ -28,7 +28,7 @@ services:
         window: 60s
     command:
       - serve
-      - --device=metal
+      # - --device=metal
       - --model=StarCoder-1B
       - --chat-model=Qwen2-1.5B-Instruct
     networks:
