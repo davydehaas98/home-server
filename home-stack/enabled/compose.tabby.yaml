@@ -9,10 +9,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.01'
-          memory: 256M
+          cpus: '1'
+          memory: 2G
         reservations:
-          cpus: '0.001'
+          cpus: '0.1'
           memory: 128M
           # devices:
           #   - driver: intel
@@ -26,7 +26,7 @@ services:
         delay: 5s
         max_attempts: 3
         window: 60s
-    command: 
+    command:
       - serve
       - --device=metal
       - --model=StarCoder-1B
