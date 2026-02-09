@@ -19,6 +19,13 @@ services:
         delay: 5s
         max_attempts: 3
         window: 60s
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://boinc:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
     networks:
       - reverse-proxy
     devices:

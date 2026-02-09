@@ -19,6 +19,13 @@ services:
         delay: 5s
         max_attempts: 3
         window: 60s
+    healthcheck:
+      test: ["CMD", "mosquitto_sub", "-p", "1883", "-t", "\$SYS/broker/clients/total", "-E", "-u", "healthcheck", "-P", "healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
     networks:
       - reverse-proxy
     ports:
