@@ -14,13 +14,6 @@ services:
         reservations:
           cpus: '1.0'
           memory: 2G
-          # devices:
-          #   - driver: intel
-          #     count: all
-          #     capabilities: [gpu]
-          #   - driver: nvidia
-          #     count: 1
-          #     capabilities: [gpu]
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -28,7 +21,7 @@ services:
         window: 60s
     command:
       - serve
-      # - --device=metal
+      - --device=cuda
       - --model=StarCoder-1B
       - --chat-model=Qwen2-1.5B-Instruct
     networks:
@@ -38,6 +31,6 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.tabby.entrypoints: websecure
-      traefik.http.routers.tabby.rule: Host(`tabby.${DOMAIN_NAME}`) || Host(`ai.${DOMAIN_NAME}`)
+      traefik.http.routers.tabby.rule: Host(`tabby.${DOMAIN_NAME}`)
       traefik.http.routers.tabby.middlewares: chain-no-auth@file
       traefik.http.services.tabby.loadbalancer.server.port: 8080

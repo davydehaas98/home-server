@@ -1,0 +1,33 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  ollama:
+    image: ghcr.io/ollama/ollama:0.15.0
+    container_name: ollama
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/ollama:/root/.ollama:rw
+    environment:
+      TZ: ${TZ}
+    labels:
+      traefik.enable: true
+      traefik.http.routers.ollama.entrypoints: websecure
+      traefik.http.routers.ollama.rule: Host(`ollama.${DOMAIN_NAME}`) || Host(`ai.${DOMAIN_NAME}`)
+      traefik.http.routers.ollama.middlewares: chain-no-auth@file
+      traefik.http.services.ollama.loadbalancer.server.port: 11434
