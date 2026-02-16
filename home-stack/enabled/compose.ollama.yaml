@@ -4,7 +4,7 @@ networks:
 
 services:
   ollama:
-    image: docker.io/ollama/ollama:0.15.6
+    image: docker.io/ollama/ollama:0.16.1
     container_name: ollama
     deploy:
       resources:
