@@ -86,7 +86,7 @@ services:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
 
   authentik-postgres:
-    image: docker.io/library/postgres:18.1-alpine
+    image: docker.io/library/postgres:18.2-alpine
     container_name: authentik-postgres
     deploy:
       resources:
