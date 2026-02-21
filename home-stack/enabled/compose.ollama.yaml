@@ -10,7 +10,7 @@ services:
       resources:
         limits:
           cpus: '2.0'
-          memory: 4G
+          memory: 8G
         reservations:
           cpus: '1.0'
           memory: 2G
@@ -23,9 +23,6 @@ services:
       - reverse-proxy
     volumes:
       - ~/home-server/ollama:/root/.ollama:rw
-    labels:
-      traefik.enable: true
-      traefik.http.routers.ollama.entrypoints: websecure
-      traefik.http.routers.ollama.rule: Host(`ollama.${DOMAIN_NAME}`) || Host(`ai.${DOMAIN_NAME}`)
-      traefik.http.routers.ollama.middlewares: chain-no-auth@file
-      traefik.http.services.ollama.loadbalancer.server.port: 11434
+    environment:
+      OLLAMA_NUM_PARALLEL: 1
+      OLLAMA_NUM_THREADS: 2
