@@ -29,8 +29,8 @@ services:
     command:
       - serve
       - --device=cpu
-      - --model=StarCoder-1B
-      - --chat-model=Qwen2-0.5B-Instruct
+      - --model=Qwen2.5-Coder-0.5B
+      - --chat-model=Qwen3-0.6B
     networks:
       - reverse-proxy
     volumes:
