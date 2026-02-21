@@ -28,9 +28,9 @@ services:
       start_interval: 5s
     command:
       - serve
-      - --device=cuda
+      - --device=cpu
       - --model=StarCoder-1B
-      - --chat-model=Qwen2-1.5B-Instruct
+      - --chat-model=Qwen2-0.5B-Instruct
     networks:
       - reverse-proxy
     volumes:
