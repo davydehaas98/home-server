@@ -10,7 +10,7 @@ services:
       resources:
         limits:
           cpus: '2.0'
-          memory: 8G
+          memory: 16G
         reservations:
           cpus: '1.0'
           memory: 2G
@@ -21,6 +21,8 @@ services:
         window: 60s
     networks:
       - reverse-proxy
+    ports:
+      - "11434:11434/tcp"
     volumes:
       - ~/home-server/ollama:/root/.ollama:rw
     environment:
