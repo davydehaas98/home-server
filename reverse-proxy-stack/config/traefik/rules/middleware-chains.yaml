@@ -6,54 +6,54 @@ http:
       chain:
         middlewares:
           - default-compress
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
 
     chain-basic-auth:
       chain:
         middlewares:
           - basic-auth
           - default-compress
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
 
     chain-authelia:
       chain:
         middlewares:
           - authelia
           - default-compress
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
 
     chain-authentik:
       chain:
         middlewares:
           - authentik
           - default-compress
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
 
     chain-oauth:
       chain:
         middlewares:
           - oauth
           - default-compress
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
 
     chain-immich:
       chain:
         middlewares:
           - immich-buffering
           - immich-headers
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
 
     chain-plex:
       chain:
@@ -66,9 +66,9 @@ http:
       chain:
         middlewares:
           - nextcloud-redirect
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
 
     chain-actual-budget:
       chain:
@@ -76,6 +76,6 @@ http:
           - actual-budget-headers
           - authentik
           - default-compress
+          - default-headers
           - default-rate-limit
           - default-retry
-          - default-headers
