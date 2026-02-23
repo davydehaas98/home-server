@@ -14,7 +14,7 @@ My home server configuration set up using compose files.
 | Storage     | 3x Seagate IronWolf 4TB HDD      |
 | PSU         | Corsair RM750x                   |
 | Case        | Fractal Design Node 304 Black    |
-| OS          | Ubuntu Server 24.10              |
+| OS          | Ubuntu Server 25.10              |
 
 ## Stacks
 
