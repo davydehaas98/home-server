@@ -5,6 +5,7 @@ http:
       basicAuth:
         realm: Traefik2 Basic Auth
         usersFile: /shared/.htpasswd
+
     authelia:
       forwardAuth:
         address: http://authelia:9091/api/verify?rd=https://authelia.davydehaas.nl/
@@ -14,6 +15,7 @@ http:
           - Remote-Groups
           - Remote-Name
           - Remote-Email
+
     authentik:
       # https://github.com/goauthentik/authentik/issues/2366
       forwardAuth:
@@ -32,12 +34,14 @@ http:
           - X-authentik-meta-provider
           - X-authentik-meta-app
           - X-authentik-meta-version
+
     oauth:
       forwardAuth:
         address: http://oauth:4181
         trustForwardHeader: true
         authResponseHeaders:
           - X-Forwarded-User
+
     # --- SETTINGS ---
     default-buffering:
       buffering:
@@ -46,23 +50,28 @@ http:
         memRequestBodyBytes: 2000000
         maxResponseBodyBytes: 2000000
         memResponseBodyBytes: 2000000
+
     default-circuit-breaker:
       circuitBreaker:
         expression: "LatencyAtQuantileMS(50.0) > 100"
+
     default-compress:
       compress:
         minResponseBodyBytes: 1024
         excludedContentTypes:
           - text/event-stream
+
     default-rate-limit:
       rateLimit:
         average: 250
         period: 1m
         burst: 100
+
     default-retry:
       retry:
         attempts: 4
         initialInterval: 100ms
+
     # --- SECURITY ---
     default-headers:
       headers:
@@ -91,6 +100,7 @@ http:
           Strict-Transport-Security: max-age=31536000; includeSubDomains; preload;
           Vary: ORIGIN
         forceSTSHeader: true
+
     # --- CUSTOM SETTINGS ---
     # https://actualbudget.org/docs/troubleshooting/shared-array-buffer/
     actual-budget-headers:
@@ -98,6 +108,7 @@ http:
         customResponseHeaders:
           Cross-Origin-Embedder-Policy: require-corp
           Cross-Origin-Opener-Policy: same-origin
+
     immich-buffering:
       buffering:
         # Unlimited upload/download size for media files
@@ -107,6 +118,7 @@ http:
         memRequestBodyBytes: 100000000
         memResponseBodyBytes: 50000000
         retryExpression: "IsNetworkError() && Attempts() < 2"
+
     immich-headers:
       headers:
         customResponseHeaders:
@@ -125,12 +137,14 @@ http:
           Cache-Control: public, max-age=31536000
           # Additional
           Permissions-Policy: camera=(), geolocation=(), microphone=()
+
     # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#
     nextcloud-redirect:
       redirectRegex:
         permanent: true
         regex: "https://(.*)/.well-known/(card|cal)dav"
         replacement: "https://${1}/remote.php/dav/"
+
     plex-buffering:
       buffering:
         # Unlimited upload/download for video streams
@@ -140,6 +154,7 @@ http:
         memRequestBodyBytes: 200000000
         memResponseBodyBytes: 100000000
         retryExpression: "IsNetworkError() && Attempts() < 2"
+
     plex-headers:
       headers:
         customResponseHeaders:
