@@ -1,4 +1,5 @@
-# nano /reverse-proxy/rules/middleware-chains.yml
+https://doc.traefik.io/traefik/reference/routing-configuration/http/middlewares/overview/
+# nano /traefik/rules/middleware-chains.yml
 http:
   middlewares:
     chain-no-auth:
@@ -8,6 +9,7 @@ http:
           - default-rate-limit
           - default-retry
           - default-headers
+
     chain-basic-auth:
       chain:
         middlewares:
@@ -16,6 +18,7 @@ http:
           - default-rate-limit
           - default-retry
           - default-headers
+
     chain-authelia:
       chain:
         middlewares:
@@ -24,6 +27,7 @@ http:
           - default-rate-limit
           - default-retry
           - default-headers
+
     chain-authentik:
       chain:
         middlewares:
@@ -32,6 +36,7 @@ http:
           - default-rate-limit
           - default-retry
           - default-headers
+
     chain-oauth:
       chain:
         middlewares:
@@ -40,6 +45,7 @@ http:
           - default-rate-limit
           - default-retry
           - default-headers
+
     chain-immich:
       chain:
         middlewares:
@@ -48,12 +54,14 @@ http:
           - default-rate-limit
           - default-retry
           - default-headers
+
     chain-plex:
       chain:
         middlewares:
           - plex-buffering
           - plex-headers
           - default-retry
+
     chain-nextcloud:
       chain:
         middlewares:
@@ -61,10 +69,13 @@ http:
           - default-rate-limit
           - default-retry
           - default-headers
+
     chain-actual-budget:
       chain:
         middlewares:
           - actual-budget-headers
+          - authentik
+          - default-compress
           - default-rate-limit
           - default-retry
           - default-headers
