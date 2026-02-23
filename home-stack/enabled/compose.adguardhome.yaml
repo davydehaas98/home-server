@@ -4,7 +4,7 @@ networks:
 
 services:
   adguardhome:
-    image: docker.io/adguard/adguardhome:v0.107.71
+    image: docker.io/adguard/adguardhome:v0.107.72
     container_name: adguardhome
     deploy:
       resources:
