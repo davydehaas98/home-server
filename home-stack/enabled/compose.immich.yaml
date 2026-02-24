@@ -113,7 +113,7 @@ services:
 
   immich-valkey:
     container_name: immich-valkey
-    image: docker.io/valkey/valkey:9.0.2
+    image: docker.io/valkey/valkey:9.0.3
     deploy:
       resources:
         limits:
