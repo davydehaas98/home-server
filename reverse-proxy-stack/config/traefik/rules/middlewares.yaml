@@ -6,7 +6,7 @@ http:
         realm: Traefik2 Basic Auth
         usersFile: /shared/.htpasswd
 
-    authelia:
+    authelia-forward-auth:
       forwardAuth:
         address: http://authelia:9091/api/verify?rd=https://authelia.davydehaas.nl/
         trustForwardHeader: true
@@ -16,7 +16,7 @@ http:
           - Remote-Name
           - Remote-Email
 
-    authentik:
+    authentik-forward-auth:
       # https://github.com/goauthentik/authentik/issues/2366
       forwardAuth:
         address: http://authentik-server:9000/outpost.goauthentik.io/auth/traefik
@@ -35,7 +35,7 @@ http:
           - X-authentik-meta-app
           - X-authentik-meta-version
 
-    oauth:
+    oauth-forward-auth:
       forwardAuth:
         address: http://oauth:4181
         trustForwardHeader: true
@@ -57,9 +57,11 @@ http:
 
     default-compress:
       compress:
+        encodings:
+          - br
+          - gzip
+          - zstd
         minResponseBodyBytes: 1024
-        excludedContentTypes:
-          - text/event-stream
 
     default-rate-limit:
       rateLimit:
@@ -81,24 +83,25 @@ http:
         customRequestHeaders:
           X-Forwarded-Proto: https
         customResponseHeaders:
-          # CORS
+          # Security headers critical for SSL Labs scoring
+          Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+          X-Content-Type-Options: nosniff
+          X-Frame-Options: DENY
+          X-XSS-Protection: 1; mode=block
+          Referrer-Policy: strict-origin-when-cross-origin
+          Permissions-Policy: camera=(), geolocation=(), microphone=(), payment=(), usb=(), vr=(), accelerometer=(), ambient-light-sensor=(), autoplay=(), encrypted-media=(), fullscreen=(), picture-in-picture=(), xr-spatial-tracking=()
+          # CORS headers
           Access-Control-Allow-Credentials: true
           Access-Control-Allow-Headers: Origin, Authorization, Content-Type, Accept
           Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS
           Access-Control-Max-Age: 600
-          # Security headers
+          Vary: Accept-Encoding, Origin
+          # Content Security Policy
           Content-Security-Policy: upgrade-insecure-requests
           Cross-Origin-Embedder-Policy: unsafe-none
           Cross-Origin-Opener-Policy: unsafe-none
           Cross-Origin-Resource-Policy: same-site
-          Permissions-Policy: camera=(), geolocation=(), microphone=(), payment=(), usb=(), vr=()
-          X-Content-Type-Options: nosniff
-          X-Frame-Options: SAMEORIGIN
           X-Robots-Tag: none
-          X-XSS-Protection: 1; mode=block
-          Referrer-Policy: strict-origin-when-cross-origin
-          Strict-Transport-Security: max-age=31536000; includeSubDomains; preload;
-          Vary: ORIGIN
         forceSTSHeader: true
 
     # --- CUSTOM SETTINGS ---

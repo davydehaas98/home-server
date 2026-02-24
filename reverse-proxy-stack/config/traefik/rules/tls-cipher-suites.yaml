@@ -3,22 +3,29 @@ tls:
   options:
     default:
       minVersion: VersionTLS12
+      maxVersion: VersionTLS13
+      # Enforce strict SNI matching to prevent fallback to default certificate
+      # TODO: Not working
+      sniStrict: false
+      preferServerCipherSuites: true
       cipherSuites:
-        # Recommended ciphers for TLSv1.2
-        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
-        # Recommended ciphers for TLSv1.3
+        # Cipher suites are not configurable with TLS 1.3
+        # See: https://go.dev/doc/go1.12#tls_1_3
+
+        # TLS 1.2 cipher suites
         - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
         - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+
       curvePreferences:
+        - X25519
         - CurveP521
-        - CurveP384      
+        - CurveP384
+
       alpnProtocols:
-        - http/2
-        - http/3
+        - h3
         - h2
-      #SniStrict: true
-    mintls13:
-      minVersion: VersionTLS13
+        - http/1.1
