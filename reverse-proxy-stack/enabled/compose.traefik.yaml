@@ -44,7 +44,6 @@ services:
       CF_API_EMAIL: ${CLOUDFLARE_EMAIL:?error}
       CF_API_KEY: ${CLOUDFLARE_API_KEY:?error}
     healthcheck:
-      disable: true
       test: ["CMD", "traefik", "healthcheck", "--ping"]
       interval: 30s
       timeout: 10s
@@ -59,6 +58,6 @@ services:
       traefik.http.routers.traefik.service: api@internal
       traefik.http.routers.traefik.tls.domains[0].main: "${DOMAIN_NAME}"
       traefik.http.routers.traefik.tls.domains[0].sans: "*.${DOMAIN_NAME}"
-      # traefik.http.routers.traefik.tls.domains[1].main: "${DOMAIN_NAME_1}"
-      # traefik.http.routers.traefik.tls.domains[1].sans: "*.${DOMAIN_NAME_1}"
+      traefik.http.routers.traefik.tls.domains[1].main: "${DOMAIN_NAME_1}"
+      traefik.http.routers.traefik.tls.domains[1].sans: "*.${DOMAIN_NAME_1}"
       traefik.http.services.traefik.loadbalancer.server.port: 8080
