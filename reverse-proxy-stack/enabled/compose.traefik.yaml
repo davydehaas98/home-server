@@ -44,6 +44,7 @@ services:
       CF_API_EMAIL: ${CLOUDFLARE_EMAIL:?error}
       CF_API_KEY: ${CLOUDFLARE_API_KEY:?error}
     healthcheck:
+      disable: true
       test: ["CMD", "traefik", "healthcheck", "--ping"]
       interval: 30s
       timeout: 10s
