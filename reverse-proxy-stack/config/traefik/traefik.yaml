@@ -2,23 +2,30 @@
 api:
   insecure: false
   dashboard: true
+
 global:
   checkNewVersion: true
   sendAnonymousUsage: false
+
 hub:
   tls:
     insecure: true
+
+ping:
+  entryPoint: traefik
+
 providers:
   docker:
     endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: false
-    network: reverse-proxy_default
+    network: reverse-proxy
     watch: true
   file:
     # Load dynamic configuration from one or more .toml or .yml files in a directory.
     directory: /etc/traefik/rules
     # Only works on top level files in the rules folder
     watch: true
+
 metrics:
   addInternals: true
   otlp:
@@ -29,13 +36,15 @@ metrics:
     pushInterval: 10s
     http:
       endpoint: http://prometheus:9090/api/v1/otlp/v1/metrics
+
 tracing:
   addInternals: true
   serviceName: traefik
-  sampleRate: 1.0
+  sampleRate: "1.0"
   otlp:
     http:
       endpoint: http://jaeger:4318/v1/traces
+
 accessLog:
   # filePath: /log/access.log
   format: json
@@ -46,12 +55,15 @@ accessLog:
       - "300-302"
     retryAttempts: true
     minDuration: "10ms"
+
 log:
   # filePath: /log/traefik.log
   format: json
   level: DEBUG
+
 serversTransport:
   insecureSkipVerify: true
+
 certificatesResolvers:
   dns-resolver-cloudflare:
     acme:
@@ -63,6 +75,7 @@ certificatesResolvers:
       # storage: /letsencrypt/acme.staging.json
       dnsChallenge:
         provider: cloudflare
+
 entryPoints:
   traefik:
     address: :8080

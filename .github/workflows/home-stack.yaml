@@ -1,4 +1,5 @@
 name: Deploy home-stack
+
 on:
   push:
     branches:
@@ -6,9 +7,11 @@ on:
     paths:
       - "home-stack/**"
   workflow_dispatch:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
+
 env:
   TARGET_DIR: /home/homelab/compose/home-stack
 

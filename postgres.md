@@ -1,5 +1,10 @@
+# PostgreSQL commands
+
+## Upgrade from 17 to 18 on Docker
+
 https://henrywithu.com/upgrade-postgresql-from-17-to-18-on-docker/
 
+```shell
 docker exec authentik-postgres pg_dumpall -U authentik > backup.sql
 
 docker stop authentik-server authentik-worker
@@ -15,3 +20,4 @@ REMOVE /data from volume
 
 
 docker exec -i authentik-postgres psql -U authentik -d authentik < backup.sql
+```

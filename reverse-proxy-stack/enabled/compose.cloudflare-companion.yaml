@@ -2,6 +2,7 @@ networks:
   reverse-proxy:
     external: true
 
+# https://github.com/tiredofit/docker-traefik-cloudflare-companion
 services:
   cloudflare-companion:
     image: ghcr.io/tiredofit/docker-traefik-cloudflare-companion:7.4.0

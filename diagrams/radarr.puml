@@ -1,26 +1,26 @@
-@startuml Sonarr
+@startuml Radarr
 
-participant Sonarr #lightblue
+participant Radarr #lightblue
 participant Prowlarr #orange
 participant NZBGeek #white
 participant SABnzbd #yellow
-participant newsdemon.com
+participant newsdemon.com #blackø
 participant Bazarr #purple
 participant Provider
 participant Plex #orange
 
-Sonarr -> Prowlarr: Episode request
+Radarr -> Prowlarr: Movie request
 Prowlarr -> NZBGeek: Search indexer
 NZBGeek -> Prowlarr: Return grab
-Prowlarr -> Sonarr: Return grab
-Sonarr -> SABnzbd: Send grab
+Prowlarr -> Radarr: Return grab
+Radarr -> SABnzbd: Send grab
 SABnzbd -> newsdemon.com: Download request
 newsdemon.com -> SABnzbd: /downloads/usenet/incomplete/
-SABnzbd -> Sonarr: /downloads/usenet/complete/
-Sonarr -> Bazarr: /media/series/**<title>**/**<episode>**
+SABnzbd -> Radarr: /downloads/usenet/complete/
+Radarr -> Bazarr: /media/movies/**<title>**
 Bazarr -> Provider: Request subtitles
 Provider -> Bazarr: Subtitles file
-Bazarr -> Sonarr: Subtitle alongside file
-Sonarr -> Plex: /media/series/
+Bazarr -> Radarr: Subtitle alongside file
+Radarr -> Plex: /media/movies/
 
 @enduml

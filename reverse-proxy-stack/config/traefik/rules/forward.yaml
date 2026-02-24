@@ -10,3 +10,5 @@ http:
       loadBalancer:
         servers:
           - url: http://jotunheim_0:6443
+          - url: http://jotunheim_1:6443
+          - url: http://jotunheim_2:6443

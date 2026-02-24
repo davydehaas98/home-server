@@ -1,4 +1,5 @@
 name: Deploy media-stack
+
 on:
   push:
     branches:
@@ -6,9 +7,11 @@ on:
     paths:
       - 'media-stack/**'
   workflow_dispatch:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
+
 env:
   TARGET_DIR: /home/homelab/compose/media-stack
 
