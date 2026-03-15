@@ -47,7 +47,7 @@ services:
       traefik.http.services.nextcloud.loadbalancer.server.port: 80
 
   nextcloud-postgres:
-    image: docker.io/library/postgres:18.2-alpine
+    image: docker.io/library/postgres:18.3-alpine
     container_name: nextcloud-postgres
     deploy:
       resources:
