@@ -1,0 +1,104 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:29.0.7
+    container_name: nextcloud
+    depends_on:
+      nextcloud-postgres:
+        condition: service_healthy
+        restart: true
+      nextcloud-valkey:
+        condition: service_healthy
+        restart: true
+    deploy:
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 16G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/nextcloud/config:/config
+      - ~/home-server/nextcloud/data:/data
+    environment:
+      PGID: ${GID}
+      PUID: ${UID}
+      TZ: ${TZ}
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: nextcloud
+      POSTGRES_DB: nextcloud
+      POSTGRES_HOST: nextcloud-postgres
+    labels:
+      traefik.enable: true
+      traefik.http.routers.nextcloud.entrypoints: websecure
+      traefik.http.routers.nextcloud.rule: Host(`nextcloud.${DOMAIN_NAME}`)
+      traefik.http.routers.nextcloud.middlewares: chain-nextcloud@file
+      traefik.http.services.nextcloud.loadbalancer.server.port: 80
+
+  nextcloud-postgres:
+    image: docker.io/library/postgres:18.2-alpine
+    container_name: nextcloud-postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    restart: unless-stopped
+    networks:
+      - reverse-proxy
+    shm_size: 256M
+    environment:
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: nextcloud
+      POSTGRES_DB: nextcloud
+    volumes:
+      - ~/home-server/nextcloud-postgres:/var/lib/postgresql:rw
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  nextcloud-valkey:
+    container_name: nextcloud-valkey
+    image: docker.io/valkey/valkey:9.0.3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
+    environment:
+      REDIS_HOSTNAME: nextcloud-valkey
+    healthcheck:
+      test: redis-cli ping || exit 1

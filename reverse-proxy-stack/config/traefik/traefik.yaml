@@ -40,7 +40,7 @@ metrics:
 tracing:
   addInternals: true
   serviceName: traefik
-  sampleRate: "1.0"
+  sampleRate: '1.0'
   otlp:
     http:
       endpoint: http://jaeger:4318/v1/traces
@@ -69,10 +69,14 @@ certificatesResolvers:
     acme:
       keyType: EC384
       storage: /letsencrypt/acme.json
-      # LetsEncrypt Staging Server
-      # Uncomment both lines below to test
-      # caServer: https://acme-staging-v02.api.letsencrypt.org/directory
-      # storage: /letsencrypt/acme.staging.json
+      dnsChallenge:
+        provider: cloudflare
+
+  dns-resolver-cloudflare-staging:
+    acme:
+      keyType: EC384
+      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      storage: /letsencrypt/acme.json
       dnsChallenge:
         provider: cloudflare
 
@@ -99,7 +103,6 @@ entryPoints:
         # No timeout
         readTimeout: 0s
     http:
-      # HTTP/3 (QUIC) support for A+ rating
       http3:
       tls:
         certResolver: dns-resolver-cloudflare
