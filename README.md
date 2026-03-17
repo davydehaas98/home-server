@@ -45,6 +45,7 @@ My home server configuration set up using compose files.
 | qBittorrent          | Torrent client.                                | [GitHub](https://github.com/qbittorrent/qBittorrent/)            |
 | Radarr               | Movie collection manager.                      | [GitHub](https://github.com/Radarr/Radarr)                       |
 | SABnzbd              | Binary news reader.                            | [GitHub](https://github.com/sabnzbd/sabnzbd)                     |
+| Seerr                | Media request manager and discovery tool.      | [GitHub](https://github.com/seerr-team/seerr)                    |
 | Sonarr               | TV series collection manager.                  | [GitHub](https://github.com/Sonarr/Sonarr)                       |
 | Tautulli             | Monitor server for Plex.                       | [GitHub](https://github.com/Tautulli/Tautulli)                   |
 | Transmission OpenVPN | Torrent client with VPN client.                | [GitHub](https://github.com/haugene/docker-transmission-openvpn) |

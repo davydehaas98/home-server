@@ -1,0 +1,120 @@
+networks:
+  reverse-proxy:
+    external: true
+
+volumes:
+  tracearr_postgres:
+  tracearr_valkey:
+
+services:
+  tracearr:
+    image: ghcr.io/connorgallopo/tracearr:1.4.0
+    container_name: tracearr
+    depends_on:
+      tracearr-postgres:
+        condition: service_healthy
+        restart: true
+      tracearr-valkey:
+        condition: service_healthy
+        restart: true
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOST: 0.0.0.0
+      DATABASE_URL: postgres://tracearr:tracearr@tracearr-postgres:5432/tracearr
+      REDIS_URL: redis://tracearr-valkey:6379
+      JWT_SECRET: ${JWT_SECRET}
+      COOKIE_SECRET: ${COOKIE_SECRET}
+      LOG_LEVEL: INFO
+    labels:
+      traefik.enable: true
+      traefik.http.routers.tracearr.entrypoints: websecure
+      traefik.http.routers.tracearr.rule: Host(`tracearr.${DOMAIN_NAME}`)
+      traefik.http.routers.tracearr.middlewares: chain-authentik@file
+      traefik.http.services.tracearr.loadbalancer.server.port: 3000
+
+  tracearr-postgres:
+    image: timescale/timescaledb-ha:pg18.1-ts2.25.0
+    container_name: tracearr-postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 512M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    networks:
+      - reverse-proxy
+    shm_size: 512M
+    ulimits:
+      # TimescaleDB chunks require many file descriptors
+      nofile:
+        soft: 65536
+        hard: 65536
+    # Allow unlimited tuple decompression for migrations on compressed hypertables
+    # Increase lock table size for large imports (Tautulli imports with many TimescaleDB chunks)
+    command: [
+      "postgres",
+      "-c", "timescaledb.max_tuples_decompressed_per_dml_transaction=0",
+      "-c", "max_locks_per_transaction=4096",
+      "-c", "timescaledb.telemetry_level=off"
+    ]
+    environment:
+      POSTGRES_USER: tracearr
+      POSTGRES_PASSWORD: tracearr
+      POSTGRES_DB: tracearr
+    volumes:
+      - tracearr_postgres:/home/postgres/pgdata/data:rw
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  tracearr-valkey:
+    container_name: tracearr-valkey
+    image: docker.io/valkey/valkey:9.0.3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    volumes:
+      - tracearr_valkey:/data:rw
+    networks:
+      - reverse-proxy
+    environment:
+      REDIS_HOSTNAME: tracearr-valkey
+    healthcheck:
+      test: redis-cli ping || exit 1
