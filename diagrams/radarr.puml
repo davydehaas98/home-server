@@ -1,14 +1,16 @@
 @startuml Radarr
 
+participant Seerr #purple
 participant Radarr #lightblue
 participant Prowlarr #orange
 participant NZBGeek #white
 participant SABnzbd #yellow
-participant newsdemon.com #blackø
+participant newsdemon.com
 participant Bazarr #purple
 participant Provider
 participant Plex #orange
 
+Seerr -> Radarr: Movie request
 Radarr -> Prowlarr: Movie request
 Prowlarr -> NZBGeek: Search indexer
 NZBGeek -> Prowlarr: Return grab
@@ -22,5 +24,6 @@ Bazarr -> Provider: Request subtitles
 Provider -> Bazarr: Subtitles file
 Bazarr -> Radarr: Subtitle alongside file
 Radarr -> Plex: /media/movies/
+Radarr -> Seerr: Movie status update
 
 @enduml

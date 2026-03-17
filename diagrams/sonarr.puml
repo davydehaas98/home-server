@@ -1,5 +1,6 @@
 @startuml Sonarr
 
+participant Seerr #purple
 participant Sonarr #lightblue
 participant Prowlarr #orange
 participant NZBGeek #white
@@ -9,6 +10,7 @@ participant Bazarr #purple
 participant Provider
 participant Plex #orange
 
+Seerr -> Sonarr: Episode request
 Sonarr -> Prowlarr: Episode request
 Prowlarr -> NZBGeek: Search indexer
 NZBGeek -> Prowlarr: Return grab
@@ -22,5 +24,5 @@ Bazarr -> Provider: Request subtitles
 Provider -> Bazarr: Subtitles file
 Bazarr -> Sonarr: Subtitle alongside file
 Sonarr -> Plex: /media/series/
-
+Sonarr -> Seerr: Episode status update
 @enduml
