@@ -29,7 +29,7 @@ services:
       interval: 15s
       retries: 3
     volumes:
-      - ~/home-server/seerr/config:/app/config:rw
+      - ~/home-server/seerr:/app/config:rw
     environment:
       LOG_LEVEL: DEBUG
       TZ: ${TZ}
