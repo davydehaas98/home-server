@@ -3,12 +3,27 @@ http:
     cloud-router:
       entryPoint: websecure
       service: cloud-service
-      rule: Host(`cloud.davydehaas.dev`)
+      rule: Host(`davydehaas.dev`)
 
   services:
     cloud-service:
       loadBalancer:
         servers:
-          - url: http://jotunheim_0:6443
-          - url: http://jotunheim_1:6443
-          - url: http://jotunheim_2:6443
+          - url: 'http://192.168.1.50:80'
+
+# new TCP router for anything that the k8s cluster should manage itself
+tcp:
+  routers:
+    k8s-tcp:
+      entryPoints:
+        - websecure              # same :443 socket as http above
+      rule: HostSNI(`*.davydehaas.dev`)
+      service: k8s-tcp-service
+      tls:
+        passthrough: true        # ← important!
+
+  services:
+    k8s-tcp-service:
+      loadBalancer:
+        servers:
+          - address: 192.168.1.50:443   # ingress controller / LB IP
