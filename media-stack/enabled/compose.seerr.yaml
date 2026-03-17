@@ -4,7 +4,7 @@ networks:
 
 services:
   seerr:
-    image: ghcr.io/seerr-team/seerr:v3.0.0
+    image: ghcr.io/seerr-team/seerr:v3.0.1
     container_name: seerr
     deploy:
       resources:
