@@ -33,9 +33,9 @@ services:
       TZ: ${TZ}
     volumes:
       - ~/home-server/prometheus:/etc/prometheus:rw
-    # - ~/home-server/prometheus/data:/prometheus
+    # - ~/home-server/prometheus/data:/prometheus:rw
     healthcheck:
-      test: ["CMD", "wget", "--spider", "prometheus:9090"]
+      test: ["CMD", "wget", "--spider", "localhost:9090"]
       interval: 10s
       timeout: 10s
       retries: 3

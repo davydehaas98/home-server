@@ -20,7 +20,7 @@ services:
         max_attempts: 3
         window: 60s
     healthcheck:
-      test: ["CMD", "wget", "--spider", "alertmanager:9093"]
+      test: ["CMD", "wget", "--spider", "localhost:9093"]
       interval: 30s
       timeout: 10s
       retries: 3
