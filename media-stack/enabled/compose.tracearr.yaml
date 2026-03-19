@@ -8,7 +8,7 @@ volumes:
 
 services:
   tracearr:
-    image: ghcr.io/connorgallopo/tracearr:1.4.23
+    image: ghcr.io/connorgallopo/tracearr:1.4.0
     container_name: tracearr
     depends_on:
       tracearr-postgres:
@@ -21,7 +21,7 @@ services:
       resources:
         limits:
           cpus: '1.0'
-          memory: 1G
+          memory: 2G
         reservations:
           cpus: '0.1'
           memory: 512M
@@ -38,7 +38,9 @@ services:
       HOST: 0.0.0.0
       DATABASE_URL: postgres://tracearr:tracearr@tracearr-postgres:5432/tracearr
       REDIS_URL: redis://tracearr-valkey:6379
+      # echo "JWT_SECRET=$(openssl rand -hex 32)" >> .env
       JWT_SECRET: ${JWT_SECRET}
+      # echo "COOKIE_SECRET=$(openssl rand -hex 32)" >> .env
       COOKIE_SECRET: ${COOKIE_SECRET}
       LOG_LEVEL: INFO
     labels:
@@ -54,8 +56,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
-          memory: 512M
+          cpus: '1.0'
+          memory: 2G
         reservations:
           cpus: '0.01'
           memory: 128M
@@ -100,8 +102,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 1G
+          cpus: '0.1'
+          memory: 256M
         reservations:
           cpus: '0.1'
           memory: 128M
