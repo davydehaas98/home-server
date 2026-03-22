@@ -30,8 +30,8 @@ services:
       start_period: 10s
       start_interval: 5s
     volumes:
-      - ~/home-server/code-server/config:/home/coder/.config:rw
-      - ~/home-server/code-server/local:/home/coder/.local:rw
+      - ~/home-server/code-server/.config:/home/coder/.config:rw
+      - ~/home-server/code-server/.local:/home/coder/.local:rw
       - ~/home-server/code-server/project:/home/coder/project:rw
     environment:
      DOCKER_USER: ${UID}
