@@ -33,6 +33,8 @@ services:
       - ~/home-server/code-server/config:/home/coder/.config:rw
       - ~/home-server/code-server/local:/home/coder/.local:rw
       - ~/home-server/code-server/project:/home/coder/project:rw
+    environment:
+     DOCKER_USER: ${UID}
     labels:
       traefik.enable: true
       traefik.http.routers.code-server.entrypoints: websecure
