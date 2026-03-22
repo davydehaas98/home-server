@@ -1,0 +1,41 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  code-server:
+    image: docker.io/codercom/code-server:4.112.0
+    container_name: code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+    user: ${UID}:${GID}
+    networks:
+      - reverse-proxy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://code-server:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+      start_interval: 5s
+    volumes:
+      - ~/home-server/code-server/config:/home/coder/.config:rw
+      - ~/home-server/code-server/local:/home/coder/.local:rw
+      - ~/home-server/code-server/project:/home/coder/project:rw
+    labels:
+      traefik.enable: true
+      traefik.http.routers.code-server.entrypoints: websecure
+      traefik.http.routers.code-server.rule: Host(`code.${DOMAIN_NAME}`)
+      traefik.http.routers.code-server.middlewares: chain-authentik@file
+      traefik.http.services.code-server.loadbalancer.server.port: 8080
