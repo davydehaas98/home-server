@@ -30,8 +30,8 @@ services:
       start_interval: 5s
     volumes:
       - ~/home-server/radarr/config:/config:rw
-      - /mnt/raid/downloads:/downloads:rw
-      - /mnt/raid/media/movies:/movies:rw
+      - /mnt/storage/downloads:/downloads:rw
+      - /mnt/storage/media/movies:/movies:rw
     environment:
       PGID: ${GID}
       PUID: ${UID}
