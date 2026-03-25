@@ -24,7 +24,12 @@ services:
     networks:
       - reverse-proxy
     command:
-      - --path.rootfs=/host
-      - --collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($|/)
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--path.udev.data=/rootfs/run/udev/data'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     volumes:
-      - /:/host:ro,rslave
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
