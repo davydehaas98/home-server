@@ -30,8 +30,8 @@ services:
       start_interval: 5s
     volumes:
       - ~/home-server/lidarr/config:/config:rw
-      - /mnt/raid/downloads:/downloads:rw
-      - /mnt/raid/media/music:/music:rw
+      - /mnt/storage/downloads:/downloads:rw
+      - /mnt/storage/media/music:/music:rw
     environment:
       PGID: ${GID}
       PUID: ${UID}
