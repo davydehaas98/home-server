@@ -30,8 +30,8 @@ services:
       start_interval: 5s
     volumes:
       - ~/home-server/sonarr/config:/config:rw
-      - /mnt/raid/downloads:/downloads:rw
-      - /mnt/raid/media/series:/series:rw
+      - /mnt/storage/downloads:/downloads:rw
+      - /mnt/storage/media/series:/series:rw
     environment:
       PGID: ${GID}
       PUID: ${UID}
