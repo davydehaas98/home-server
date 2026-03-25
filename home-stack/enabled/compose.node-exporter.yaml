@@ -19,7 +19,7 @@ services:
         delay: 5s
         max_attempts: 3
         window: 60s
-    user: ${UID}:${GID}
+    # user: ${UID}:${GID}
     networks:
       - reverse-proxy
     command:
