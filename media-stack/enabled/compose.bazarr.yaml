@@ -30,8 +30,8 @@ services:
       start_interval: 5s
     volumes:
       - ~/home-server/bazarr:/config:rw
-      - /mnt/raid/media/movies:/movies:rw
-      - /mnt/raid/media/series:/series:rw
+      - /mnt/storage/media/movies:/movies:rw
+      - /mnt/storage/media/series:/series:rw
     environment:
       PGID: ${GID}
       PUID: ${UID}
