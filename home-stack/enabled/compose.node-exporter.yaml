@@ -20,15 +20,11 @@ services:
         max_attempts: 3
         window: 60s
     # user: ${UID}:${GID}
+    pid: host
     networks:
       - reverse-proxy
     command:
-      - --path.procfs=/host/proc
-      - --path.sysfs=/host/sys
-      - --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($|/)
+      - --path.rootfs=/host
+      - --collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($|/)
     volumes:
-      - '/:/host:ro,rslave'
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    
+      - /:/host:ro,rslave
