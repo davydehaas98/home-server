@@ -8,7 +8,7 @@ volumes:
 
 services:
   tracearr:
-    image: ghcr.io/connorgallopo/tracearr:1.4.23
+    image: ghcr.io/connorgallopo/tracearr:1.4.24
     container_name: tracearr
     depends_on:
       tracearr-postgres:
