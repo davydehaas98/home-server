@@ -43,9 +43,9 @@ services:
       - ~/home-server/plex/config:/config:rw
       - ~/home-server/plex/data:/data:rw
       - ~/home-server/plex/transcode:/transcode:rw
-      - /mnt/raid/media/movies:/movies:ro
+      - /mnt/storage/media/movies:/movies:ro
       - /mnt/storage/media/music:/music:ro
-      - /mnt/raid/media/series:/series:ro
+      - /mnt/storage/media/series:/series:ro
       - /mnt/storage/media/dvr:/dvr:rw
     environment:
       PGID: ${GID}
