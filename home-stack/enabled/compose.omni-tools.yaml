@@ -1,0 +1,26 @@
+networks:
+  reverse-proxy:
+    external: true
+
+services:
+  omni-tools:
+    image: ghcr.io/iib0011/omni-tools:0.6.0
+    container_name: omni-tools
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: unless-stopped
+    networks:
+      - reverse-proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.it-tools.entrypoints: websecure
+      traefik.http.routers.it-tools.rule: Host(`omni-tools.${DOMAIN_NAME}`)
+      traefik.http.routers.it-tools.middlewares: chain-authentik@file
+      traefik.http.services.it-tools.loadbalancer.server.port: 80
