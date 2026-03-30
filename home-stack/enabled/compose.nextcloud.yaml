@@ -4,7 +4,7 @@ networks:
 
 services:
   nextcloud:
-    image: docker.io/nextcloud/nextcloud:33.0.0
+    image: docker.io/nextcloud:33.0.0
     container_name: nextcloud
     depends_on:
       nextcloud-postgres:
