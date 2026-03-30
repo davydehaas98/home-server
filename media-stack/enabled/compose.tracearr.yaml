@@ -4,6 +4,11 @@ networks:
 
 volumes:
   tracearr_postgres:
+    driver: local
+    driver_opts:
+      type: none
+      device: /mnt/md0/media-server/tracearr-postgres
+      o: bind
   tracearr_valkey:
     driver: local
     driver_opts:
@@ -77,6 +82,7 @@ services:
     # Increase lock table size for large imports (Tautulli imports with many TimescaleDB chunks)
     command: [
       "postgres",
+      "-c", "timescaledb.license=timescale",
       "-c", "timescaledb.max_tuples_decompressed_per_dml_transaction=0",
       "-c", "max_locks_per_transaction=4096",
       "-c", "timescaledb.telemetry_level=off"
