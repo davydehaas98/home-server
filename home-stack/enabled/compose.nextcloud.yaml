@@ -4,7 +4,7 @@ networks:
 
 services:
   nextcloud:
-    image: lscr.io/linuxserver/nextcloud:33.0.0
+    image: docker.io/nextcloud/nextcloud:33.0.0
     container_name: nextcloud
     depends_on:
       nextcloud-postgres:
@@ -26,12 +26,10 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/nextcloud/config:/config
-      - ~/home-server/nextcloud/data:/data
+      - ~/home-server/nextcloud/config:/var/www/html:rw
+      - ~/home-server/nextcloud/custom_apps:/var/www/html/custom_apps:rw
+      - /mnt/md0/home-server/nextcloud/data:/var/www/html/data:rw
     environment:
-      PGID: ${GID}
-      PUID: ${UID}
-      TZ: ${TZ}
       POSTGRES_USER: nextcloud
       POSTGRES_PASSWORD: nextcloud
       POSTGRES_DB: nextcloud
@@ -44,12 +42,12 @@ services:
       traefik.http.services.nextcloud.loadbalancer.server.port: 80
 
   nextcloud-postgres:
-    image: docker.io/library/postgres:18.3-alpine
+    image: docker.io/library/postgres:18.3
     container_name: nextcloud-postgres
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '1'
           memory: 512M
         reservations:
           cpus: '0.01'
