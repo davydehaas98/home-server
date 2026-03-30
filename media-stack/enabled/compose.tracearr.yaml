@@ -2,20 +2,6 @@ networks:
   reverse-proxy:
     external: true
 
-volumes:
-  tracearr_postgres:
-    driver: local
-    driver_opts:
-      type: none
-      device: /mnt/md0/media-server/tracearr-postgres
-      o: bind
-  tracearr_valkey:
-    driver: local
-    driver_opts:
-      type: none
-      device: /mnt/md0/media-server/tracearr-valkey
-      o: bind
-
 services:
   tracearr:
     image: ghcr.io/connorgallopo/tracearr:1.4.24
@@ -92,7 +78,7 @@ services:
       POSTGRES_PASSWORD: tracearr
       POSTGRES_DB: tracearr
     volumes:
-      - tracearr_postgres:/home/postgres/pgdata/data:rw
+      - /mnt/md0/media-server/tracearr-postgres:/home/postgres/pgdata/data:rw
     healthcheck:
       test:
         - CMD-SHELL
@@ -115,7 +101,7 @@ services:
       restart_policy:
         condition: unless-stopped
     volumes:
-      - tracearr_valkey:/data:rw
+      - /mnt/md0/media-server/tracearr-valkey:/data:rw
     networks:
       - reverse-proxy
     environment:
