@@ -15,10 +15,7 @@ services:
           cpus: '1.0'
           memory: 2G
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://tabby:8080/health"]
       interval: 30s

@@ -15,10 +15,7 @@ services:
           cpus: '0.001'
           memory: 16M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--spider", "localhost:9093"]
       interval: 30s

@@ -18,10 +18,7 @@ services:
           cpus: '0.1'
           memory: 256M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://threadfin:34400/web/"]
       interval: 30s

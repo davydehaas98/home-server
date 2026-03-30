@@ -22,10 +22,7 @@ services:
           cpus: '0.1'
           memory: 512M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     networks:
       - reverse-proxy
     volumes:
@@ -58,10 +55,7 @@ services:
           cpus: '0.01'
           memory: 128M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     networks:
       - reverse-proxy
     shm_size: 256M
@@ -91,10 +85,7 @@ services:
           cpus: '0.1'
           memory: 128M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     networks:
       - reverse-proxy
     environment:

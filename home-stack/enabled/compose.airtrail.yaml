@@ -19,10 +19,7 @@ services:
           cpus: '0.001'
           memory: 128M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     networks:
       - reverse-proxy
     environment:
@@ -46,10 +43,7 @@ services:
           cpus: '0.01'
           memory: 128M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     restart: unless-stopped
     networks:
       - reverse-proxy

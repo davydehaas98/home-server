@@ -12,10 +12,7 @@ services:
           cpus: '0.001'
           memory: 16M
       restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 60s
+        condition: unless-stopped
     read_only: true
     security_opt:
       - no-new-privileges:true
