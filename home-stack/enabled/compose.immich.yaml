@@ -30,6 +30,7 @@ services:
       - /mnt/md0/home-server/immich/upload:/usr/src/app/upload:rw
       - /etc/localtime:/etc/localtime:ro
     environment:
+      UPLOAD_LOCATION: /mnt/md0/home-server/immich/upload
       DB_HOSTNAME: immich-postgres
       DB_DATABASE_NAME: immich
       DB_USERNAME: immich
