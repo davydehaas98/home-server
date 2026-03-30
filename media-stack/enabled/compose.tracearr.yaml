@@ -5,6 +5,11 @@ networks:
 volumes:
   tracearr_postgres:
   tracearr_valkey:
+    driver: local
+    driver_opts:
+      type: none
+      device: /mnt/md0/home-server/tracearr-valkey
+      o: bind
 
 services:
   tracearr:
