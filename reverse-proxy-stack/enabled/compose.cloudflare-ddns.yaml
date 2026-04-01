@@ -1,7 +1,7 @@
 # https://github.com/favonia/cloudflare-ddns
 services:
   cloudflare-ddns:
-    image: docker.io/favonia/cloudflare-ddns:1.16.0
+    image: docker.io/favonia/cloudflare-ddns:1.16.1
     container_name: cloudflare-ddns
     deploy:
       resources:
