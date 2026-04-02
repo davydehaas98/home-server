@@ -4,7 +4,7 @@ networks:
 
 services:
   tracearr:
-    image: ghcr.io/connorgallopo/tracearr:1.4.25
+    image: ghcr.io/connorgallopo/tracearr:1.4.27
     container_name: tracearr
     depends_on:
       tracearr-postgres:
