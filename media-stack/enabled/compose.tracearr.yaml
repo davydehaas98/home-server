@@ -73,6 +73,7 @@ services:
       "-c", "max_locks_per_transaction=4096",
       "-c", "timescaledb.telemetry_level=off"
     ]
+    user: ${UID}:${GID}
     environment:
       POSTGRES_USER: tracearr
       POSTGRES_PASSWORD: tracearr
@@ -104,6 +105,7 @@ services:
       - /mnt/md0/media-server/tracearr-valkey:/data:rw
     networks:
       - reverse-proxy
+    user: ${UID}:${GID}
     environment:
       REDIS_HOSTNAME: tracearr-valkey
     healthcheck:
