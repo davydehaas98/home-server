@@ -4,7 +4,7 @@ networks:
 
 services:
   zigbee2mqtt:
-    image: ghcr.io/koenkk/zigbee2mqtt:2.9.1
+    image: ghcr.io/koenkk/zigbee2mqtt:2.9.2
     container_name: zigbee2mqtt
     deploy:
       resources:
