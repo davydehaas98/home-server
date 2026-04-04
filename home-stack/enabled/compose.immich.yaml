@@ -89,7 +89,7 @@ services:
     networks:
       - reverse-proxy
     volumes:
-      - ~/home-server/immich-postgres:/var/lib/postgresql:rw
+      - /mnt/md0/home-server/immich-postgres:/var/lib/postgresql:rw
     environment:
       POSTGRES_PASSWORD: immich
       POSTGRES_USER: immich
