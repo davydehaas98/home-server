@@ -74,6 +74,7 @@ services:
   immich-postgres:
     container_name: immich-postgres
     image: ghcr.io/tensorchord/vchord-postgres:pg18-v1.0.0
+    user: ${UID}:${GID}
     deploy:
       resources:
         limits:
@@ -106,6 +107,7 @@ services:
   immich-valkey:
     container_name: immich-valkey
     image: docker.io/valkey/valkey:9.0.3
+    user: ${UID}:${GID}
     deploy:
       resources:
         limits:

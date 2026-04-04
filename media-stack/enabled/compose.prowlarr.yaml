@@ -16,6 +16,7 @@ services:
           memory: 512M
       restart_policy:
         condition: unless-stopped
+    user: ${UID}:${GID}
     networks:
       - reverse-proxy
     healthcheck:
