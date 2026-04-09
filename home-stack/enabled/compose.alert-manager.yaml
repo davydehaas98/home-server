@@ -4,7 +4,7 @@ networks:
 
 services:
   alertmanager:
-    image: docker.io/prom/alertmanager:v0.31.1
+    image: docker.io/prom/alertmanager:v0.32.0
     container_name: alertmanager
     deploy:
       resources:
