@@ -4,7 +4,7 @@ networks:
 
 services:
   jellyfin:
-    image: docker.io/jellyfin/jellyfin:10.11.7
+    image: docker.io/jellyfin/jellyfin:10.11.8
     container_name: jellyfin
     deploy:
       resources:
