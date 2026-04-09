@@ -4,7 +4,7 @@ networks:
 
 services:
   code-server:
-    image: docker.io/codercom/code-server:4.114.0
+    image: docker.io/codercom/code-server:4.114.1
     container_name: code-server
     deploy:
       resources:
