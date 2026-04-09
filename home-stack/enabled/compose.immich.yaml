@@ -50,6 +50,17 @@ services:
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
     image: ghcr.io/immich-app/immich-machine-learning:v2.6.3
     container_name: immich-machine-learning
+    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
+    #   file: hwaccel.ml.yml
+    #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/immich/machine-learning/model-cache:/cache:rw
+    environment:
+      NODE_ENV: production
+    healthcheck:
+      disable: false
     deploy:
       resources:
         limits:
@@ -60,32 +71,11 @@ services:
           memory: 128M
       restart_policy:
         condition: unless-stopped
-    # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
-    #   file: hwaccel.ml.yml
-    #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
-    networks:
-      - reverse-proxy
-    healthcheck:
-      disable: false
-    volumes:
-      - ~/home-server/immich/machine-learning/model-cache:/cache:rw
-    environment:
-      NODE_ENV: production
 
   immich-postgres:
     container_name: immich-postgres
     image: ghcr.io/tensorchord/vchord-postgres:pg18-v1.0.0
     user: ${UID}:${GID}
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     shm_size: 128M
     networks:
       - reverse-proxy
@@ -104,11 +94,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 20s
-
-  immich-valkey:
-    container_name: immich-valkey
-    image: docker.io/valkey/valkey:9.0.3
-    user: ${UID}:${GID}
     deploy:
       resources:
         limits:
@@ -119,9 +104,23 @@ services:
           memory: 128M
       restart_policy:
         condition: unless-stopped
+
+  immich-valkey:
+    container_name: immich-valkey
+    image: docker.io/valkey/valkey:9.0.3
     networks:
       - reverse-proxy
     environment:
       REDIS_HOSTNAME: immich-valkey
     healthcheck:
       test: redis-cli ping || exit 1
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+      restart_policy:
+        condition: unless-stopped
