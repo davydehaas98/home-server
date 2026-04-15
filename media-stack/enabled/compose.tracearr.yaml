@@ -6,23 +6,6 @@ services:
   tracearr:
     image: ghcr.io/connorgallopo/tracearr:1.4.27
     container_name: tracearr
-    depends_on:
-      tracearr-postgres:
-        condition: service_healthy
-        restart: true
-      tracearr-valkey:
-        condition: service_healthy
-        restart: true
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
-        reservations:
-          cpus: '0.1'
-          memory: 512M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -43,20 +26,30 @@ services:
       traefik.http.routers.tracearr.rule: Host(`tracearr.${DOMAIN_NAME}`)
       traefik.http.routers.tracearr.middlewares: chain-authentik@file
       traefik.http.services.tracearr.loadbalancer.server.port: 3000
+    depends_on:
+      tracearr-postgres:
+        condition: service_healthy
+        restart: true
+      tracearr-valkey:
+        condition: service_healthy
+        restart: true
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
 
   tracearr-postgres:
     image: timescale/timescaledb-ha:pg18.1-ts2.25.0
     container_name: tracearr-postgres
-    deploy:
-      resources:
-        limits:
-          cpus: '4.0'
-          memory: 2G
-        reservations:
-          cpus: '0.01'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
+    user: ${UID}:${GID}
     networks:
       - reverse-proxy
     shm_size: 512M
@@ -74,7 +67,6 @@ services:
       "-c", "max_locks_per_transaction=4096",
       "-c", "timescaledb.telemetry_level=off"
     ]
-    user: ${UID}:${GID}
     environment:
       POSTGRES_USER: tracearr
       POSTGRES_PASSWORD: tracearr
@@ -88,15 +80,25 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 2G
+        reservations:
+          cpus: '0.01'
+          memory: 128M
 
   tracearr-valkey:
     container_name: tracearr-valkey
     image: docker.io/valkey/valkey:9.0.3
+    user: ${UID}:${GID}
     volumes:
       - /mnt/md0/media-server/tracearr-valkey:/data:rw
     networks:
       - reverse-proxy
-    user: ${UID}:${GID}
     environment:
       REDIS_HOSTNAME: tracearr-valkey
     healthcheck:

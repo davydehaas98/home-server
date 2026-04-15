@@ -30,7 +30,7 @@ services:
       retries: 3
     deploy:
       restart_policy:
-        condition: unless-stopped\
+        condition: unless-stopped
       resources:
         limits:
           cpus: '1.0'
