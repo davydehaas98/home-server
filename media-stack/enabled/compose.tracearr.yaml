@@ -92,16 +92,6 @@ services:
   tracearr-valkey:
     container_name: tracearr-valkey
     image: docker.io/valkey/valkey:9.0.3
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 256M
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     volumes:
       - /mnt/md0/media-server/tracearr-valkey:/data:rw
     networks:
@@ -111,3 +101,13 @@ services:
       REDIS_HOSTNAME: tracearr-valkey
     healthcheck:
       test: redis-cli ping || exit 1
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M

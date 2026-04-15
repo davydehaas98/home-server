@@ -6,16 +6,6 @@ services:
   jaeger:
     image: cr.jaegertracing.io/jaegertracing/jaeger:2.16.0
     container_name: jaeger
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -27,3 +17,15 @@ services:
       traefik.http.routers.jaeger.rule: Host(`jaeger.${DOMAIN_NAME}`)
       traefik.http.routers.jaeger.middlewares: chain-authentik@file
       traefik.http.services.jaeger.loadbalancer.server.port: 16686
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M

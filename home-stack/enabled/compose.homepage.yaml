@@ -6,16 +6,6 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:v1.12.3
     container_name: homepage
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 256M
-        reservations:
-          cpus: '0.01'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     user: ${GID}:${UID}
     networks:
       - reverse-proxy
@@ -30,3 +20,15 @@ services:
       traefik.http.routers.homepage.rule: Host(`homepage.${DOMAIN_NAME}`) || Host(`home.${DOMAIN_NAME}`)
       traefik.http.routers.homepage.middlewares: chain-authentik@file
       traefik.http.services.homepage.loadbalancer.server.port: 3000
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 256M
+        reservations:
+          cpus: '0.01'
+          memory: 128M

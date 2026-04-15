@@ -6,23 +6,6 @@ services:
   uptime-kuma:
     image: docker.io/louislam/uptime-kuma:2.2.1
     container_name: uptime-kuma
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://uptime-kuma:3001"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     # user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -34,3 +17,18 @@ services:
       traefik.http.routers.uptime-kuma.rule: Host(`uptime.${DOMAIN_NAME}`) || Host(`kuma.${DOMAIN_NAME}`)
       traefik.http.routers.uptime-kuma.middlewares: chain-authentik@file
       traefik.http.services.uptime-kuma.loadbalancer.server.port: 3001
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://uptime-kuma:3001"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M

@@ -28,6 +28,5 @@ services:
       timeout: 10s
       retries: 3
       start_period: 120s
-      start_interval: 5s
     networks:
       - reverse-proxy

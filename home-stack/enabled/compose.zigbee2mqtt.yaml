@@ -6,16 +6,6 @@ services:
   zigbee2mqtt:
     image: ghcr.io/koenkk/zigbee2mqtt:2.9.2
     container_name: zigbee2mqtt
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     # devices:
     #   - /dev/ttyUSB0:/dev/ttyUSB0
     networks:
@@ -31,3 +21,15 @@ services:
       traefik.http.routers.zigbee.rule: Host(`zigbee.${DOMAIN_NAME}`) || Host(`z2m.${DOMAIN_NAME}`)
       traefik.http.routers.zigbee.middlewares: chain-authentik@file
       traefik.http.services.zigbee.loadbalancer.server.port: 8080
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M

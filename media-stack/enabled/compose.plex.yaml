@@ -6,16 +6,6 @@ services:
   plex:
     image: lscr.io/linuxserver/plex:1.43.1
     container_name: plex
-    deploy:
-      resources:
-        limits:
-          cpus: '8.0'
-          memory: 16G
-        reservations:
-          cpus: '0.1'
-          memory: 512M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     devices:
       - /dev/dri:/dev/dri
@@ -30,13 +20,6 @@ services:
       - "32414:32414/udp"
     networks:
       - reverse-proxy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://plex:32400/identity"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     volumes:
       - ~/home-server/plex/config:/config:rw
       - ~/home-server/plex/data:/data:rw
@@ -59,3 +42,18 @@ services:
       traefik.http.routers.plex.rule: Host(`plex.${DOMAIN_NAME}`)
       traefik.http.routers.plex.middlewares: chain-plex@file
       traefik.http.services.plex.loadbalancer.server.port: 32400
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://plex:32400/identity"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 16G
+        reservations:
+          cpus: '0.1'
+          memory: 512M

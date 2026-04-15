@@ -9,23 +9,6 @@ services:
   threadfin:
     image: docker.io/fyb3roptik/threadfin:1.3.0
     container_name: threadfin
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
-        reservations:
-          cpus: '0.1'
-          memory: 256M
-      restart_policy:
-        condition: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://threadfin:34400/web/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -42,3 +25,18 @@ services:
       traefik.http.routers.threadfin.rule: Host(`threadfin.${DOMAIN_NAME}`) || Host(`dvr.${DOMAIN_NAME}`) || Host(`xteve.${DOMAIN_NAME}`)
       traefik.http.routers.threadfin.middlewares: chain-authentik@file
       traefik.http.services.threadfin.loadbalancer.server.port: 34400
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://threadfin:34400/web/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.1'
+          memory: 256M

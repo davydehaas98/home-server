@@ -6,16 +6,6 @@ services:
   actual-budget:
     image: ghcr.io/actualbudget/actual:26.3.0
     container_name: actual-budget
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 256M
-        reservations:
-          cpus: '0.001'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     volumes:
@@ -28,3 +18,15 @@ services:
       traefik.http.routers.actual-budget.rule: Host(`actual.${DOMAIN_NAME}`) || Host(`budget.${DOMAIN_NAME}`)
       traefik.http.routers.actual-budget.middlewares: chain-actual-budget@file
       traefik.http.services.actual-budget.loadbalancer.server.port: 5006
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M

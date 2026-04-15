@@ -7,26 +7,9 @@ services:
   home-assistent:
     image: docker.io/homeassistant/home-assistant:2026.4.2
     container_name: home-assistant
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 512M
-      restart_policy:
-        condition: unless-stopped
     privileged: true
     networks:
       - reverse-proxy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://home-assistant:8123"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     volumes:
       - ~/home-server/home-assistant/config:/config:rw
     environment:
@@ -37,3 +20,18 @@ services:
       traefik.http.routers.home-assistant.rule: Host(`home-assistant.${DOMAIN_NAME}`) || Host(`hass.${DOMAIN_NAME}`)
       traefik.http.routers.home-assistant.middlewares: chain-no-auth@file
       traefik.http.services.home-assistant.loadbalancer.server.port: 8123
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://home-assistant:8123"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M

@@ -6,16 +6,6 @@ services:
   ollama:
     image: docker.io/ollama/ollama:0.19.0
     container_name: ollama
-    deploy:
-      resources:
-        limits:
-          cpus: '4.0'
-          memory: 16G
-        reservations:
-          cpus: '1.0'
-          memory: 2G
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     ports:
@@ -25,3 +15,15 @@ services:
     environment:
       OLLAMA_NUM_PARALLEL: 1
       OLLAMA_NUM_THREADS: 2
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 16G
+        reservations:
+          cpus: '0.1'
+          memory: 1G

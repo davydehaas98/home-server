@@ -14,16 +14,6 @@ services:
   wireguard:
     image: ghcr.io/wg-easy/wg-easy:15.2.2
     container_name: wireguard
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -56,3 +46,15 @@ services:
       traefik.http.routers.wireguard.rule: Host(`wireguard.${DOMAIN_NAME}`)
       traefik.http.routers.wireguard.middlewares: chain-authentik@file
       traefik.http.services.wireguard.loadbalancer.server.port: 51821
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M

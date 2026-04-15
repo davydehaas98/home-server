@@ -6,16 +6,6 @@ services:
   cadvisor:
     image: ghcr.io/google/cadvisor:0.56.2
     container_name: cadvisor
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 512M
-      restart_policy:
-        condition: unless-stopped
     devices:
       - /dev/kmsg
     networks:
@@ -33,3 +23,15 @@ services:
       traefik.http.routers.cadvisor.rule: Host(`cadvisor.${DOMAIN_NAME}`)
       traefik.http.routers.cadvisor.middlewares: chain-authentik@file
       traefik.http.services.cadvisor.loadbalancer.server.port: 8080
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M

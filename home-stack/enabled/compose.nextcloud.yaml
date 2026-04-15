@@ -45,16 +45,6 @@ services:
   nextcloud-postgres:
     image: docker.io/library/postgres:18.3
     container_name: nextcloud-postgres
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 512M
-        reservations:
-          cpus: '0.01'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -72,20 +62,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
-  nextcloud-valkey:
-    container_name: nextcloud-valkey
-    image: docker.io/valkey/valkey:9.0.3
     deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 128M
       restart_policy:
         condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+
+  nextcloud-valkey:
+    image: docker.io/valkey/valkey:9.0.3
+    container_name: nextcloud-valkey
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -93,3 +83,13 @@ services:
       REDIS_HOSTNAME: nextcloud-valkey
     healthcheck:
       test: redis-cli ping || exit 1
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M

@@ -6,29 +6,12 @@ services:
   jellyfin:
     image: docker.io/jellyfin/jellyfin:10.11.8
     container_name: jellyfin
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 4G
-        reservations:
-          cpus: '0.1'
-          memory: 256M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     devices:
       # Intel/AMD GPU
       - /dev/dri:/dev/dri
     networks:
       - reverse-proxy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://jellyfin:8096/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     volumes:
       - ~/home-server/jellyfin/config:/config:rw
       - ~/home-server/jellyfin/cache:/cache:rw
@@ -45,3 +28,18 @@ services:
       traefik.http.routers.jellyfin.rule: Host(`jellyfin.${DOMAIN_NAME}`)
       traefik.http.routers.jellyfin.middlewares: chain-no-auth@file
       traefik.http.services.jellyfin.loadbalancer.server.port: 8096
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://jellyfin:8096/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 256M

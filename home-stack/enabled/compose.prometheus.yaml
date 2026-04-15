@@ -6,16 +6,6 @@ services:
   prometheus:
     image: docker.io/prom/prometheus:v3.11.0
     container_name: prometheus
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 4G
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     # user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -31,16 +21,24 @@ services:
     volumes:
       - ~/home-server/prometheus:/etc/prometheus:rw
     # - ~/home-server/prometheus/data:/prometheus:rw
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "localhost:9090"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     labels:
       traefik.enable: true
       traefik.http.routers.prometheus.entrypoints: websecure
       traefik.http.routers.prometheus.rule: Host(`prometheus.${DOMAIN_NAME}`)
       traefik.http.routers.prometheus.middlewares: chain-authentik@file
       traefik.http.services.prometheus.loadbalancer.server.port: 9090
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "localhost:9090"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 128M

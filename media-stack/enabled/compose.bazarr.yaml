@@ -6,25 +6,8 @@ services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:1.5.6
     container_name: bazarr
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 256M
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://bazarr:6767/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     volumes:
       - ~/home-server/bazarr:/config:rw
       - /mnt/storage/media/movies:/movies:rw
@@ -39,3 +22,18 @@ services:
       traefik.http.routers.bazarr.rule: Host(`bazarr.${DOMAIN_NAME}`) || Host(`subtitles.${DOMAIN_NAME}`)
       traefik.http.routers.bazarr.middlewares: chain-authentik@file
       traefik.http.services.bazarr.loadbalancer.server.port: 6767
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://bazarr:6767/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 256M

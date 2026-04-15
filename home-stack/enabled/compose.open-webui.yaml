@@ -6,16 +6,6 @@ services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:v0.8.12
     container_name: open-webui
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
-        reservations:
-          cpus: '1.0'
-          memory: 1G
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     volumes:
@@ -29,3 +19,15 @@ services:
       traefik.http.routers.open-webui.rule: Host(`open-webui.${DOMAIN_NAME}`) || Host(`ai.${DOMAIN_NAME}`)
       traefik.http.routers.open-webui.middlewares: chain-no-auth@file
       traefik.http.services.open-webui.loadbalancer.server.port: 8080
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 1G

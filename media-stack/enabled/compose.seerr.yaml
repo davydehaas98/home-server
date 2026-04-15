@@ -6,25 +6,9 @@ services:
   seerr:
     image: ghcr.io/seerr-team/seerr:v3.1.1
     container_name: seerr
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-        reservations:
-          cpus: '0.01'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "seerr:5055/api/v1/status"]
-      start_period: 20s
-      timeout: 3s
-      interval: 15s
-      retries: 3
     volumes:
       - ~/home-server/seerr:/app/config:rw
     environment:
@@ -36,3 +20,19 @@ services:
       traefik.http.routers.seerr.rule: Host(`seerr.${DOMAIN_NAME}`) || Host(`request.${DOMAIN_NAME}`)
       traefik.http.routers.seerr.middlewares: chain-authentik@file
       traefik.http.services.seerr.loadbalancer.server.port: 5055
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "seerr:5055/api/v1/status"]
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.01'
+          memory: 128M

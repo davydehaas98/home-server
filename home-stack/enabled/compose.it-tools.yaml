@@ -6,16 +6,6 @@ services:
   it-tools:
     image: ghcr.io/corentinth/it-tools:2024.5.13-a0bc346
     container_name: it-tools
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     labels:
@@ -24,3 +14,15 @@ services:
       traefik.http.routers.it-tools.rule: Host(`it-tools.${DOMAIN_NAME}`)
       traefik.http.routers.it-tools.middlewares: chain-authentik@file
       traefik.http.services.it-tools.loadbalancer.server.port: 80
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 128M

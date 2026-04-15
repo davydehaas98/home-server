@@ -6,16 +6,6 @@ services:
   node-exporter:
     image: quay.io/prometheus/node-exporter:v1.11.1
     container_name: node-exporter
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 128M
-        reservations:
-          cpus: '0.01'
-          memory: 16M
-      restart_policy:
-        condition: unless-stopped
     pid: host
     networks:
       - reverse-proxy
@@ -29,3 +19,15 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1'
+          memory: 128M
+        reservations:
+          cpus: '0.01'
+          memory: 16M

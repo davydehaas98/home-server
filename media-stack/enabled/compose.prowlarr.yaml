@@ -6,27 +6,9 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:2.3.5
     container_name: prowlarr
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.1'
-          memory: 512M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
-    healthcheck:
-      disable: true
-      test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     volumes:
       - ~/home-server/prowlarr/config:/config:rw
     environment:
@@ -39,3 +21,19 @@ services:
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.${DOMAIN_NAME}`)
       traefik.http.routers.prowlarr.middlewares: chain-authentik@file
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
+    healthcheck:
+      disable: true
+      test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 512M

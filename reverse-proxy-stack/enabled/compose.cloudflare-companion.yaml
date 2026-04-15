@@ -7,16 +7,6 @@ services:
   cloudflare-companion:
     image: ghcr.io/tiredofit/docker-traefik-cloudflare-companion:7.4.0
     container_name: cloudflare-companion
-    deploy:
-      resources:
-        limits:
-          cpus: '0.01'
-          memory: 256M
-        reservations:
-          cpus: '0.001'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     volumes:
@@ -33,3 +23,15 @@ services:
       DOMAIN1: ${DOMAIN_NAME}
       DOMAIN1_ZONE_ID: ${CLOUDFLARE_ZONE_ID:?error}
       DOMAIN1_PROXIED: true
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.01'
+          memory: 256M
+        reservations:
+          cpus: '0.001'
+          memory: 128M

@@ -6,26 +6,9 @@ services:
   lidarr:
     image: lscr.io/linuxserver/lidarr:3.1.0
     container_name: lidarr
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 256M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://lidarr:8686/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     volumes:
       - ~/home-server/lidarr/config:/config:rw
       - /mnt/storage/downloads:/downloads:rw
@@ -40,3 +23,18 @@ services:
       traefik.http.routers.lidarr.rule: Host(`lidarr.${DOMAIN_NAME}`) || Host(`music.${DOMAIN_NAME}`)
       traefik.http.routers.lidarr.middlewares: chain-authentik@file
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://lidarr:8686/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 256M

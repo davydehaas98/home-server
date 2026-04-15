@@ -6,16 +6,6 @@ services:
   adguardhome:
     image: docker.io/adguard/adguardhome:v0.107.73
     container_name: adguardhome
-    deploy:
-      resources:
-        limits:
-          cpus: '0.01'
-          memory: 256M
-        reservations:
-          cpus: '0.001'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     ports:
       - "53:53/tcp"
       - "53:53/udp"
@@ -30,3 +20,15 @@ services:
       traefik.http.routers.adguardhome.rule: Host(`adguard.${DOMAIN_NAME}`) || Host(`adguardhome.${DOMAIN_NAME}`)
       traefik.http.routers.adguardhome.middlewares: chain-no-auth@file
       traefik.http.services.adguardhome.loadbalancer.server.port: 80
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+        reservations:
+          cpus: '0.01'
+          memory: 128M

@@ -6,16 +6,6 @@ services:
   boinc:
     image: lscr.io/linuxserver/boinc:8.2.8
     container_name: boinc
-    deploy:
-      resources:
-        limits:
-          cpus: '8.0'
-          memory: 4G
-        reservations:
-          cpus: '0.1'
-          memory: 1G
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     devices:
@@ -27,10 +17,23 @@ services:
       PGID: ${GID}
       PUID: ${UID}
       TZ: ${TZ}
-      PASSWORD: # optional
+      # optional
+      PASSWORD:
     labels:
       traefik.enable: true
       traefik.http.routers.boinc.entrypoints: websecure
       traefik.http.routers.boinc.rule: Host(`boinc.${DOMAIN_NAME}`)
       traefik.http.routers.boinc.middlewares: chain-authentik@file
       traefik.http.services.boinc.loadbalancer.server.port: 8080
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 1G

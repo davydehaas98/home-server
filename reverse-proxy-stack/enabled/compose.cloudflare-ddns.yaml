@@ -3,16 +3,6 @@ services:
   cloudflare-ddns:
     image: docker.io/favonia/cloudflare-ddns:1.16.2
     container_name: cloudflare-ddns
-    deploy:
-      resources:
-        limits:
-          cpus: '0.01'
-          memory: 64M
-        reservations:
-          cpus: '0.001'
-          memory: 16M
-      restart_policy:
-        condition: unless-stopped
     read_only: true
     security_opt:
       - no-new-privileges:true
@@ -23,3 +13,15 @@ services:
       PROXIED: false
       # RRTYPE: A
       DELETE_ON_STOP: false
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.01'
+          memory: 64M
+        reservations:
+          cpus: '0.001'
+          memory: 16M

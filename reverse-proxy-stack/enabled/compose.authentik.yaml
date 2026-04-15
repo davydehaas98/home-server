@@ -15,16 +15,6 @@ services:
       authentik-postgres:
         condition: service_healthy
         restart: true
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
-        reservations:
-          cpus: '0.5'
-          memory: 1G
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     volumes:
@@ -44,14 +34,12 @@ services:
       traefik.http.routers.authentik.rule: Host(`authentik.${DOMAIN_NAME}`) || Host(`auth.${DOMAIN_NAME}`)
       traefik.http.routers.authentik.middlewares: chain-no-auth@file
       traefik.http.services.authentik.loadbalancer.server.port: 9000
-
-  authentik-worker:
-    image: ghcr.io/goauthentik/server:2026.2.1
-    container_name: authentik-worker
-    command: worker
-    depends_on:
-      authentik-postgres:
-        condition: service_healthy
+    healthcheck:
+      disable: true
+      test: ["CMD", "curl", "--fail", "http://authentik-server:9000/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     deploy:
       resources:
         limits:
@@ -62,6 +50,15 @@ services:
           memory: 1G
       restart_policy:
         condition: unless-stopped
+
+  authentik-worker:
+    image: ghcr.io/goauthentik/server:2026.2.1
+    container_name: authentik-worker
+    command: worker
+    depends_on:
+      authentik-postgres:
+        condition: service_healthy
+        restart: true
     user: root
     networks:
       - reverse-proxy
@@ -78,30 +75,24 @@ services:
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: password
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
 
   authentik-postgres:
     image: docker.io/library/postgres:18.3-alpine
     container_name: authentik-postgres
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 1G
-        reservations:
-          cpus: '0.25'
-          memory: 512M
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
-    healthcheck:
-      interval: 30s
-      retries: 5
-      start_period: 20s
-      test:
-        - CMD-SHELL
-        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
-      timeout: 5s
     volumes:
       - ~/home-server/authentik/postgres:/var/lib/postgresql:rw
     env_file:
@@ -110,3 +101,21 @@ services:
       POSTGRES_DB: authentik
       POSTGRES_USER: authentik
       POSTGRES_PASSWORD: password
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 512M

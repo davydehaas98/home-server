@@ -6,16 +6,6 @@ services:
   mosquitto:
     image: docker.io/library/eclipse-mosquitto:2.0.22
     container_name: mosquitto
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-      restart_policy:
-        condition: unless-stopped
     networks:
       - reverse-proxy
     ports:
@@ -27,3 +17,15 @@ services:
       - ~/home-server/mosquitto/config:/mosquitto/config:rw
       - ~/home-server/mosquitto/data:/mosquitto/data:rw
       - ~/home-server/mosquitto/log:/mosquitto/log:rw
+    healthcheck:
+      disable: true
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M

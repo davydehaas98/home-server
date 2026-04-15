@@ -21,8 +21,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 10s
-      start_interval: 5s
     user: ${UID}:${GID}
     command:
       - --config.file=/etc/alertmanager/config.yaml

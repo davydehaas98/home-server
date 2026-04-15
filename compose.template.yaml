@@ -6,16 +6,6 @@ services:
   busybox:
     image: docker.io/library/busybox:1.37.0
     container_name: busybox
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 256M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     cap_add:
       - NET_ADMIN
@@ -26,13 +16,6 @@ services:
       - "80:80/udp"
     networks:
       - reverse-proxy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://busybox:80/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-      start_interval: 5s
     volumes:
       - ~/home-server/busybox:/home/user:rw
       - /mnt/raid/busybox/:/home/user:ro
@@ -46,3 +29,18 @@ services:
       traefik.http.routers.busybox.rule: Host(`busy.${DOMAIN_NAME}`) || Host(`box.${DOMAIN_NAME}`)
       traefik.http.routers.busybox.middlewares: chain-authentik@file
       traefik.http.services.busybox.loadbalancer.server.port: 80
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://busybox:80/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 256M
