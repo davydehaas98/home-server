@@ -4,7 +4,7 @@ networks:
 
 services:
   adguardhome:
-    image: docker.io/adguard/adguardhome:v0.107.73
+    image: docker.io/adguard/adguardhome:v0.107.74
     container_name: adguardhome
     ports:
       - "53:53/tcp"
