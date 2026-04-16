@@ -36,11 +36,13 @@ services:
       traefik.http.services.authentik.loadbalancer.server.port: 9000
     healthcheck:
       disable: true
-      test: ["CMD", "curl", "--fail", "http://authentik-server:9000/healthz"]
+      test: ["CMD", "curl", "--fail", "localhost:9000"]
       interval: 30s
       timeout: 10s
       retries: 3
     deploy:
+      restart_policy:
+        condition: unless-stopped
       resources:
         limits:
           cpus: '2.0'
@@ -48,8 +50,6 @@ services:
         reservations:
           cpus: '0.5'
           memory: 1G
-      restart_policy:
-        condition: unless-stopped
 
   authentik-worker:
     image: ghcr.io/goauthentik/server:2026.2.1
@@ -76,7 +76,7 @@ services:
       AUTHENTIK_POSTGRESQL__PASSWORD: password
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
     healthcheck:
-      disable: true
+      test: ["CMD", "ak healthcheck"]
     deploy:
       restart_policy:
         condition: unless-stopped
