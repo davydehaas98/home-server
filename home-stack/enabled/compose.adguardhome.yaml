@@ -21,7 +21,7 @@ services:
       traefik.http.routers.adguardhome.middlewares: chain-no-auth@file
       traefik.http.services.adguardhome.loadbalancer.server.port: 80
     healthcheck:
-      disable: true
+      test: ["CMD", "wget", "--spider", "localhost:80"]
     deploy:
       restart_policy:
         condition: unless-stopped

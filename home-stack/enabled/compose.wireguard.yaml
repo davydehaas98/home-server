@@ -47,7 +47,7 @@ services:
       traefik.http.routers.wireguard.middlewares: chain-authentik@file
       traefik.http.services.wireguard.loadbalancer.server.port: 51821
     healthcheck:
-      disable: true
+      test: ["CMD", "wg", "show", "all"]
     deploy:
       restart_policy:
         condition: unless-stopped

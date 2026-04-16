@@ -21,7 +21,7 @@ services:
       traefik.http.routers.portainer.middlewares: chain-no-auth@file
       traefik.http.services.portainer.loadbalancer.server.port: 9000
     healthcheck:
-      test: ["CMD", "wget", "--spider", "portainer:9000"]
+      test: ["CMD", "wget", "--spider", "localhost:9000"]
       interval: 30s
       timeout: 10s
       retries: 3
