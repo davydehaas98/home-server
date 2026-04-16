@@ -56,7 +56,7 @@ services:
     volumes:
       - ~/home-server/nextcloud-postgres:/var/lib/postgresql:rw
     healthcheck:
-      test: ["CMD", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5

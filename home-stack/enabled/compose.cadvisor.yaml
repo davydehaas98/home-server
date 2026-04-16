@@ -24,7 +24,7 @@ services:
       traefik.http.routers.cadvisor.middlewares: chain-authentik@file
       traefik.http.services.cadvisor.loadbalancer.server.port: 8080
     healthcheck:
-      disable: true
+      test: ["CMD", "wget", "--spider", "http://localhost:8080/metrics"]
     deploy:
       restart_policy:
         condition: unless-stopped

@@ -102,7 +102,7 @@ services:
       POSTGRES_USER: authentik
       POSTGRES_PASSWORD: password
     healthcheck:
-      test: ["CMD", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 30s
       timeout: 5s
       retries: 5
