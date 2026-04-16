@@ -87,9 +87,7 @@ services:
       POSTGRES_DB: immich
       POSTGRES_INITDB_ARGS: "--data-checksums"
     healthcheck:
-      test:
-        - CMD-SHELL
-        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      test: ["CMD", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 30s
       timeout: 5s
       retries: 5
@@ -113,7 +111,7 @@ services:
     environment:
       REDIS_HOSTNAME: immich-valkey
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: ["CMD", "redis-cli", "ping"]
     deploy:
       restart_policy:
         condition: unless-stopped

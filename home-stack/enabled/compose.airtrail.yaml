@@ -46,9 +46,7 @@ services:
     volumes:
       - ~/home-server/airtrail-postgres:/var/lib/postgresql:rw
     healthcheck:
-      test:
-        - CMD-SHELL
-        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      test: ["CMD", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5

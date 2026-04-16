@@ -74,9 +74,7 @@ services:
     volumes:
       - /mnt/md0/media-server/tracearr-postgres:/home/postgres/pgdata/data:rw
     healthcheck:
-      test:
-        - CMD-SHELL
-        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      test: ["CMD", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -102,7 +100,7 @@ services:
     environment:
       REDIS_HOSTNAME: tracearr-valkey
     healthcheck:
-      test: redis-cli ping || exit 1
+      test: ["CMD", "redis-cli", "ping"]
     deploy:
       restart_policy:
         condition: unless-stopped
