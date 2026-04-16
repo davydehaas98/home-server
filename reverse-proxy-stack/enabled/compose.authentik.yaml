@@ -76,7 +76,7 @@ services:
       AUTHENTIK_POSTGRESQL__PASSWORD: password
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
     healthcheck:
-      test: ["CMD", "ak healthcheck"]
+      test: ["CMD", "ak", "healthcheck"]
     deploy:
       restart_policy:
         condition: unless-stopped
