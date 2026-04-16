@@ -4,7 +4,7 @@ networks:
 
 services:
   code-server:
-    image: docker.io/codercom/code-server:4.115.0
+    image: docker.io/codercom/code-server:4.116.0
     container_name: code-server
     user: ${UID}:${GID}
     networks:
