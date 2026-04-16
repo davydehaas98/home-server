@@ -24,10 +24,7 @@ services:
       traefik.http.routers.sabnzbd.middlewares: chain-authentik@file
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://sabnzbd:8080"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "curl", "--fail", "localhost:8080"]
     deploy:
       restart_policy:
         condition: unless-stopped

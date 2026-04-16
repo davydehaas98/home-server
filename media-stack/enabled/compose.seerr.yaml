@@ -22,10 +22,6 @@ services:
       traefik.http.services.seerr.loadbalancer.server.port: 5055
     healthcheck:
       test: ["CMD", "wget", "--spider", "localhost:5055/api/v1/status"]
-      start_period: 20s
-      timeout: 3s
-      interval: 15s
-      retries: 3
     deploy:
       restart_policy:
         condition: unless-stopped

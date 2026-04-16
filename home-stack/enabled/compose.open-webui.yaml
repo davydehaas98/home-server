@@ -20,7 +20,7 @@ services:
       traefik.http.routers.open-webui.middlewares: chain-no-auth@file
       traefik.http.services.open-webui.loadbalancer.server.port: 8080
     healthcheck:
-      disable: true
+      test: ["CMD", "curl", "--fail", "localhost:8080/health"]
     deploy:
       restart_policy:
         condition: unless-stopped

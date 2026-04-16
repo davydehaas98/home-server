@@ -24,10 +24,7 @@ services:
       traefik.http.routers.lidarr.middlewares: chain-authentik@file
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://lidarr:8686/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "curl", "--fail", "localhost:8686/ping"]
     deploy:
       restart_policy:
         condition: unless-stopped

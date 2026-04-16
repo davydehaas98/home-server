@@ -22,11 +22,7 @@ services:
       traefik.http.routers.prowlarr.middlewares: chain-authentik@file
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
     healthcheck:
-      disable: true
-      test: ["CMD", "curl", "--fail", "http://prowlarr:9696/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "curl", "--fail", "localhost:9696/ping"]
     deploy:
       restart_policy:
         condition: unless-stopped

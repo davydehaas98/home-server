@@ -13,16 +13,6 @@ services:
       nextcloud-valkey:
         condition: service_healthy
         restart: true
-    deploy:
-      resources:
-        limits:
-          cpus: '8.0'
-          memory: 16G
-        reservations:
-          cpus: '0.1'
-          memory: 512M
-      restart_policy:
-        condition: unless-stopped
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
@@ -41,6 +31,18 @@ services:
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${DOMAIN_NAME}`)
       traefik.http.routers.nextcloud.middlewares: chain-nextcloud@file
       traefik.http.services.nextcloud.loadbalancer.server.port: 80
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "localhost:80/status.php"]
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 16G
+        reservations:
+          cpus: '0.1'
+          memory: 512M
 
   nextcloud-postgres:
     image: docker.io/library/postgres:18.3

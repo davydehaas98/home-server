@@ -24,10 +24,7 @@ services:
       traefik.http.routers.radarr.middlewares: chain-no-auth@file
       traefik.http.services.radarr.loadbalancer.server.port: 7878
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://radarr:7878/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "curl", "--fail", "localhost:7878/ping"]
     deploy:
       restart_policy:
         condition: unless-stopped

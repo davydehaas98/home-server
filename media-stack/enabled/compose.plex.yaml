@@ -43,10 +43,7 @@ services:
       traefik.http.routers.plex.middlewares: chain-plex@file
       traefik.http.services.plex.loadbalancer.server.port: 32400
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://plex:32400/identity"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "curl", "--fail", "localhost:32400/identity"]
     deploy:
       restart_policy:
         condition: unless-stopped

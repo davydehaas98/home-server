@@ -24,10 +24,7 @@ services:
       traefik.http.routers.bazarr.middlewares: chain-authentik@file
       traefik.http.services.bazarr.loadbalancer.server.port: 6767
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://bazarr:6767/ping"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "curl", "--fail", "localhost:6767/ping"]
     deploy:
       restart_policy:
         condition: unless-stopped
