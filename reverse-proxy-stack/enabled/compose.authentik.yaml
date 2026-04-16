@@ -35,11 +35,7 @@ services:
       traefik.http.routers.authentik.middlewares: chain-no-auth@file
       traefik.http.services.authentik.loadbalancer.server.port: 9000
     healthcheck:
-      disable: true
-      test: ["CMD", "curl", "--fail", "localhost:9000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD", "ak", "healthcheck"]
     deploy:
       restart_policy:
         condition: unless-stopped

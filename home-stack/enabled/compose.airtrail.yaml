@@ -17,7 +17,7 @@ services:
       traefik.http.routers.airtrail.middlewares: chain-authentik@file
       traefik.http.services.airtrail.loadbalancer.server.port: 3000
     healthcheck:
-      test: ["CMD", "curl", "--fail", "localhost:3000/api/health"]
+      disable: true
     depends_on:
       airtrail-postgres:
         condition: service_healthy

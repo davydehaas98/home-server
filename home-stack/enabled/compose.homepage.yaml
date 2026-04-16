@@ -21,6 +21,7 @@ services:
       traefik.http.routers.homepage.middlewares: chain-authentik@file
       traefik.http.services.homepage.loadbalancer.server.port: 3000
     healthcheck:
+      disable: true
       test: ["CMD", "curl", "--fail", "localhost:3000"]
     deploy:
       restart_policy:
