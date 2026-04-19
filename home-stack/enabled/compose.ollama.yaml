@@ -27,3 +27,7 @@ services:
         reservations:
           cpus: '0.1'
           memory: 1G
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
