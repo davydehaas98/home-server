@@ -4,7 +4,7 @@ networks:
 
 services:
   ollama:
-    image: docker.io/ollama/ollama:0.20.7
+    image: docker.io/ollama/ollama:0.21.0
     container_name: ollama
     networks:
       - reverse-proxy
