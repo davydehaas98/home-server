@@ -4,18 +4,18 @@ My home server configuration set up using compose files.
 
 ## Hardware setup
 
-| Component   | Name                                   |
-| ----------- | -------------------------------------- |
-| CPU         | Intel i5 10600K (6 cores, AMD64)       |
-| CPU Cooler  | be quiet! Dark Rock Slim               |
-| RAM         | 2x 16GB DDR4 @ 3.200MT/s               |
-| Motherboard | ASRock Z490M-ITX/ac                    |
-| Storage     | Samsung 970 Evo Plus 500 GB SSD        |
-| Storage     | 3x Seagate IronWolf 4TB HDD            |
-| Storage     | Seagate Exos 16 TB HDD (ST16000NM002C) | 
-| PSU         | Corsair RM750x                         |
-| Case        | Fractal Design Node 304 Black          |
-| OS          | Ubuntu Server 25.10                    |
+| Component   | Name                                      |
+| ----------- | ----------------------------------------- |
+| CPU         | Intel i5 10600K (6 cores, AMD64)          |
+| CPU Cooler  | be quiet! Dark Rock Slim                  |
+| RAM         | 2x 16GB DDR4 @ 3.200MT/s                  |
+| Motherboard | ASRock Z490M-ITX/ac                       |
+| Storage     | 1x Samsung 970 Evo Plus 500 GB SSD        |
+| Storage     | 3x Seagate IronWolf 4TB HDD               |
+| Storage     | 1x Seagate Exos 16 TB HDD (ST16000NM002C) | 
+| PSU         | Corsair RM750x                            |
+| Case        | Fractal Design Node 304 Black             |
+| OS          | Ubuntu Server 25.10                       |
 
 ## Stacks
 
