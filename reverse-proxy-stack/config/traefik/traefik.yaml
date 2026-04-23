@@ -100,8 +100,8 @@ entryPoints:
     address: :443
     transport:
       respondingTimeouts:
-        # No timeout
-        readTimeout: 0s
+        readTimeout: 600s
+        idleTimeout: 600s
     http:
       http3:
       tls:

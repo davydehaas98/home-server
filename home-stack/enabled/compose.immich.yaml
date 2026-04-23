@@ -34,7 +34,6 @@ services:
         restart: true
     healthcheck:
       disable: false
-    user: ${UID}:${GID}
     deploy:
       restart_policy:
         condition: unless-stopped
@@ -50,6 +49,7 @@ services:
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
     image: ghcr.io/immich-app/immich-machine-learning:v2.7.5
     container_name: immich-machine-learning
+    user: ${UID}:${GID}
     # extends: # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
     #   file: hwaccel.ml.yml
     #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
@@ -66,7 +66,7 @@ services:
         condition: unless-stopped
       resources:
         limits:
-          cpus: '4.0'
+          cpus: '2.0'
           memory: 2G
         reservations:
           cpus: '0.1'
@@ -106,6 +106,9 @@ services:
   immich-valkey:
     image: docker.io/valkey/valkey:9.0.3
     container_name: immich-valkey
+    user: ${UID}:${GID}
+    volumes:
+      - /mnt/md0/home-server/immich-valkey:/data:rw
     networks:
       - reverse-proxy
     environment:
