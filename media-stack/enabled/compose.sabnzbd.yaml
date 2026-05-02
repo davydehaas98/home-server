@@ -4,7 +4,7 @@ networks:
 
 services:
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:5.0.0
+    image: lscr.io/linuxserver/sabnzbd:5.0.1
     container_name: sabnzbd
     user: ${UID}:${GID}
     networks:
