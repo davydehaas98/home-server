@@ -4,7 +4,7 @@ networks:
 
 services:
   memos:
-    image: ghcr.io/usememos/memos:0.27.1
+    image: ghcr.io/usememos/memos:0.28.0
     container_name: memos
     networks:
       - reverse-proxy
