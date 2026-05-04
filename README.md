@@ -15,7 +15,7 @@ My home server configuration set up using compose files.
 | Storage     | 1x Seagate Exos 16 TB HDD (ST16000NM002C) | 
 | PSU         | Corsair RM750x                            |
 | Case        | Fractal Design Node 304 Black             |
-| OS          | Ubuntu Server 25.10                       |
+| OS          | Ubuntu Server 26.04                       |
 
 ## Stacks
 
