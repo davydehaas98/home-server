@@ -26,10 +26,10 @@ services:
       homepage.group: Media
       homepage.name: Sonarr
       homepage.icon: sonarr.png
-      homepage.href: sonarr.${DOMAIN_NAME}
+      homepage.href: https://sonarr.${DOMAIN_NAME}
       homepage.description: Series management
       homepage.widget.type: sonarr
-      homepage.widget.url: sonarr.davydehaas.nl
+      homepage.widget.url: https://sonarr.${DOMAIN_NAME}
       homepage.widget.key: ${SONARR_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://sonarr:8989/ping"]
