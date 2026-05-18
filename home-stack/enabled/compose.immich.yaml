@@ -111,6 +111,8 @@ services:
       - /mnt/md0/home-server/immich-valkey:/data:rw
     networks:
       - reverse-proxy
+    sysctls:
+      vm.overcommit_memory: 1
     environment:
       REDIS_HOSTNAME: immich-valkey
     healthcheck:
