@@ -8,7 +8,7 @@ networks:
 services:
   # https://docs.goauthentik.io/install-config/install/docker-compose/
   authentik-server:
-    image: ghcr.io/goauthentik/server:2026.2.2
+    image: ghcr.io/goauthentik/server:2026.2.3
     container_name: authentik-server
     command: server
     depends_on:
@@ -48,7 +48,7 @@ services:
           memory: 1G
 
   authentik-worker:
-    image: ghcr.io/goauthentik/server:2026.2.2
+    image: ghcr.io/goauthentik/server:2026.2.3
     container_name: authentik-worker
     command: worker
     depends_on:
@@ -85,7 +85,7 @@ services:
           memory: 1G
 
   authentik-postgres:
-    image: docker.io/library/postgres:18.3-alpine
+    image: docker.io/library/postgres:18.4-alpine
     container_name: authentik-postgres
     networks:
       - reverse-proxy
