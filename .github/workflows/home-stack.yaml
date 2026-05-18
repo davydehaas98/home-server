@@ -31,7 +31,7 @@ jobs:
 
       - name: Copy 'compose.*.yaml' files
         run: |
-          rsync --verbose --delete \
+          rsync --verbose --delete --archive \
             --exclude '*.env' \
             ./home-stack/compose.*.yaml \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
