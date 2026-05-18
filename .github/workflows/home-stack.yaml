@@ -40,10 +40,11 @@ jobs:
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
           cd ${{ env.TARGET_DIR }}
 
-          args=()
           for filename in compose.*.yaml; do
-            args+=(-f "$filename")
-          done
+            args="\$args -f \$filename";
+          done;
 
-          docker compose "${args[@]}" up -d --remove-orphans
+          docker compose \$args up -d --remove-orphans
+
+          docker image prune -f
           ENDSSH

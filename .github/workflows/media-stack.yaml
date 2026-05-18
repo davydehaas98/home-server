@@ -18,7 +18,6 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
@@ -41,7 +40,11 @@ jobs:
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
           cd ${{ env.TARGET_DIR }}
 
-          docker compose $(printf ' -f %s' compose.*.yaml) up -d --remove-orphans
+          for filename in compose.*.yaml; do
+            args="\$args -f \$filename";
+          done;
 
+          docker compose \$args up -d --remove-orphans
+          
           docker image prune -f
           ENDSSH
