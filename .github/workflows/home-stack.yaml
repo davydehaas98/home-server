@@ -31,8 +31,9 @@ jobs:
 
       - name: Copy 'compose.*.yaml' files
         run: |
-          rsync --archive --verbose --delete --exclude '*.env' \
-            --recursive ./home-stack/enabled/ \
+          rsync --archive --verbose --delete --files-only \
+            --exclude '*.env' \
+            ./home-stack/ \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
 
       - name: Start containers
@@ -45,7 +46,11 @@ jobs:
             args+=(-f \$filename);
           done;
 
-          echo \${args[@]}
+          echo "Running docker compose up"
+          echo "docker compose \${args[@]} up -d --remove-orphans"
 
           docker compose \${args[@]} up -d --remove-orphans
+
+          echo "Pruning unused images.."
+          docker image prune -a -f
           ENDSSH
