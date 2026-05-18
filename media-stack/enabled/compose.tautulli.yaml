@@ -23,6 +23,14 @@ services:
       traefik.http.routers.tautulli.rule: Host(`tautulli.${DOMAIN_NAME}`)
       traefik.http.routers.tautulli.middlewares: chain-authentik@file
       traefik.http.services.tautulli.loadbalancer.server.port: 8181
+      homepage.group: Media
+      homepage.name: Tautulli
+      homepage.icon: tautulli.png
+      homepage.href: https://tautulli.${DOMAIN_NAME}
+      homepage.description: Plex monitoring
+      homepage.widget.type: tautulli
+      homepage.widget.url: https://tautulli.${DOMAIN_NAME}
+      homepage.widget.key: ${TAUTULLI_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://tautulli:8181/status"]
       interval: 30s

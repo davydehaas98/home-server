@@ -25,6 +25,11 @@ services:
       traefik.http.routers.threadfin.rule: Host(`threadfin.${DOMAIN_NAME}`) || Host(`dvr.${DOMAIN_NAME}`) || Host(`xteve.${DOMAIN_NAME}`)
       traefik.http.routers.threadfin.middlewares: chain-authentik@file
       traefik.http.services.threadfin.loadbalancer.server.port: 34400
+      homepage.group: Media
+      homepage.name: Threadfin
+      homepage.icon: threadfin.png
+      homepage.href: https://threadfin.${DOMAIN_NAME}
+      homepage.description: IPTV M3U proxy
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://threadfin:34400/web/"]
       interval: 30s

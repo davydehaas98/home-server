@@ -21,6 +21,14 @@ services:
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.${DOMAIN_NAME}`)
       traefik.http.routers.prowlarr.middlewares: chain-authentik@file
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
+      homepage.group: Media
+      homepage.name: Prowlarr
+      homepage.icon: prowlarr.png
+      homepage.href: https://prowlarr.${DOMAIN_NAME}
+      homepage.description: Indexer proxy
+      homepage.widget.type: prowlarr
+      homepage.widget.url: https://prowlarr.${DOMAIN_NAME}
+      homepage.widget.key: ${PROWLARR_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:9696/ping"]
     deploy:

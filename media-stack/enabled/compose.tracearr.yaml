@@ -26,6 +26,11 @@ services:
       traefik.http.routers.tracearr.rule: Host(`tracearr.${DOMAIN_NAME}`)
       traefik.http.routers.tracearr.middlewares: chain-authentik@file
       traefik.http.services.tracearr.loadbalancer.server.port: 3000
+      homepage.group: Media
+      homepage.name: Tracearr
+      homepage.icon: tracearr.png
+      homepage.href: https://tracearr.${DOMAIN_NAME}
+      homepage.description: Torrent tracker manager
     depends_on:
       tracearr-postgres:
         condition: service_healthy

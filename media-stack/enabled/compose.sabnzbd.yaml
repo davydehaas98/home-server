@@ -23,6 +23,14 @@ services:
       traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${DOMAIN_NAME}`) || Host(`usenet.${DOMAIN_NAME}`)
       traefik.http.routers.sabnzbd.middlewares: chain-authentik@file
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
+      homepage.group: Media
+      homepage.name: SABnzbd
+      homepage.icon: sabnzbd.png
+      homepage.href: https://sabnzbd.${DOMAIN_NAME}
+      homepage.description: Usenet downloader
+      homepage.widget.type: sabnzbd
+      homepage.widget.url: https://sabnzbd.${DOMAIN_NAME}
+      homepage.widget.key: ${SABNZBD_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:8080"]
     deploy:

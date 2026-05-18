@@ -20,6 +20,14 @@ services:
       traefik.http.routers.seerr.rule: Host(`seerr.${DOMAIN_NAME}`) || Host(`request.${DOMAIN_NAME}`)
       traefik.http.routers.seerr.middlewares: chain-authentik@file
       traefik.http.services.seerr.loadbalancer.server.port: 5055
+      homepage.group: Media
+      homepage.name: Seerr
+      homepage.icon: seerr.png
+      homepage.href: https://seerr.${DOMAIN_NAME}
+      homepage.description: Media request manager
+      homepage.widget.type: seerr
+      homepage.widget.url: https://seerr.${DOMAIN_NAME}
+      homepage.widget.key: ${SEERR_API_KEY}
     healthcheck:
       test: ["CMD", "wget", "--spider", "localhost:5055/api/v1/status"]
     deploy:
