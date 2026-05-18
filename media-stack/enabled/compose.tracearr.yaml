@@ -98,7 +98,7 @@ services:
     networks:
       - reverse-proxy
     sysctls:
-      vm.overcommit_memory: 1
+      - vm.overcommit_memory=1
     environment:
       REDIS_HOSTNAME: tracearr-valkey
     healthcheck:
