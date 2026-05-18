@@ -41,7 +41,7 @@ home-server/
 ```
 
 - Configuration files go in `/config/` within each stack
-- Disabled services in `disabled/` folder, enabled in `enabled/`
+- Disabled services in `disabled/` folder
 - Infrastructure code in `_terraform/`
 
 ## Technologies & Preferences
@@ -98,7 +98,7 @@ home-server/
 ## Adding New Services
 
 1. Create `compose.<service>.yaml` in appropriate stack
-2. Add to `enabled/` or `disabled/` folder
+2. Add to `/` or `disabled/` folder
 3. Configure health checks
 4. Set resource limits
 5. Add Traefik labels if externally accessible

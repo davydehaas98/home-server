@@ -18,6 +18,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
@@ -31,20 +32,26 @@ jobs:
 
       - name: Copy 'compose.*.yaml' files
         run: |
-          rsync --archive --verbose --delete --exclude '*.env' \
-            --recursive ./media-stack/enabled/ \
+          rsync --verbose --delete --archive \
+            --exclude '*.env' \
+            ./media-stack/compose.*.yaml \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
 
       - name: Start containers
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
-          cd ${{ env.TARGET_DIR }}
+            cd ${{ env.TARGET_DIR }}
 
-          for filename in compose.*.yaml; do
-            args="\$args -f \$filename";
-          done;
+            args=()
+            for filename in compose.*.yaml; do
+              args+=(-f \$filename);
+            done;
 
-          docker compose \$args up -d --remove-orphans
+            echo "Running docker compose up.."
+            echo "docker compose \${args[@]} up -d --remove-orphans"
 
-          docker image prune -a -f
+            docker compose \${args[@]} up -d --remove-orphans
+
+            echo "Pruning unused images.."
+            docker image prune -a -f
           ENDSSH
