@@ -28,6 +28,21 @@ services:
       traefik.http.routers.jellyfin.rule: Host(`jellyfin.${DOMAIN_NAME}`)
       traefik.http.routers.jellyfin.middlewares: chain-no-auth@file
       traefik.http.services.jellyfin.loadbalancer.server.port: 8096
+      homepage.group: Media
+      homepage.name: Jellyfin
+      homepage.icon: jellyfin.png
+      homepage.href: jellyfin.${DOMAIN_NAME}
+      homepage.description: Media server
+      homepage.widget.type: jellyfin
+      homepage.widget.url: https://jellyfin.${DOMAIN_NAME}
+      homepage.widget.key: ${JELLYFIN_API_KEY}
+      homepage.widget.version: 2
+      homepage.widget.enableBlocks: true
+      homepage.widget.enableNowPlaying: true
+      homepage.widget.enableUser: true
+      homepage.widget.enableMediaControl: false
+      homepage.widget.showEpisodeNumber: true
+      homepage.widget.expandOneStreamToTwoRows: false
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:8096/health"]
     deploy:

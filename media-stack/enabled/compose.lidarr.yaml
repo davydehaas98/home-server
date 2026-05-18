@@ -23,6 +23,14 @@ services:
       traefik.http.routers.lidarr.rule: Host(`lidarr.${DOMAIN_NAME}`) || Host(`music.${DOMAIN_NAME}`)
       traefik.http.routers.lidarr.middlewares: chain-authentik@file
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
+      homepage.group: Media
+      homepage.name: Lidarr
+      homepage.icon: lidarr.png
+      homepage.href: lidarr.${DOMAIN_NAME}
+      homepage.description: Music management
+      homepage.widget.type: lidarr
+      homepage.widget.url: https://lidarr.${DOMAIN_NAME}
+      homepage.widget.key: ${LIDARR_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:8686/ping"]
     deploy:

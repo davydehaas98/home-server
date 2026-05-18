@@ -26,8 +26,10 @@ services:
       homepage.group: Media
       homepage.name: Radarr
       homepage.icon: radarr.png
+      homepage.href: radarr.${DOMAIN_NAME}
       homepage.description: Movie management
       homepage.widget.type: radarr
+      homepage.widget.url: https://radarr.${DOMAIN_NAME}
       homepage.widget.key: ${RADARR_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:7878/ping"]

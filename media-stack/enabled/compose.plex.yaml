@@ -42,6 +42,14 @@ services:
       traefik.http.routers.plex.rule: Host(`plex.${DOMAIN_NAME}`)
       traefik.http.routers.plex.middlewares: chain-plex@file
       traefik.http.services.plex.loadbalancer.server.port: 32400
+      homepage.group: Media
+      homepage.name: Plex
+      homepage.icon: plex.png
+      homepage.href: plex.${DOMAIN_NAME}
+      homepage.description: Media server
+      homepage.widget.type: plex
+      homepage.widget.url: https://plex.${DOMAIN_NAME}
+      homepage.widget.key: ${PLEX_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:32400/identity"]
     deploy:

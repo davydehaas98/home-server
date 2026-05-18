@@ -23,6 +23,14 @@ services:
       traefik.http.routers.bazarr.rule: Host(`bazarr.${DOMAIN_NAME}`) || Host(`subtitles.${DOMAIN_NAME}`)
       traefik.http.routers.bazarr.middlewares: chain-authentik@file
       traefik.http.services.bazarr.loadbalancer.server.port: 6767
+      homepage.group: Media
+      homepage.name: Bazarr
+      homepage.icon: bazarr.png
+      homepage.href: bazarr.${DOMAIN_NAME}
+      homepage.description: Subtitle management
+      homepage.widget.type: bazarr
+      homepage.widget.url: https://bazarr.${DOMAIN_NAME}
+      homepage.widget.key: ${BAZARR_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:6767/ping"]
     deploy:
