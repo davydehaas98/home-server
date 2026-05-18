@@ -23,6 +23,12 @@ services:
       traefik.http.routers.sonarr.rule: Host(`sonarr.${DOMAIN_NAME}`) || Host(`series.${DOMAIN_NAME}`)
       traefik.http.routers.sonarr.middlewares: chain-no-auth@file
       traefik.http.services.sonarr.loadbalancer.server.port: 8989
+      homepage.group: Media
+      homepage.name: Sonarr
+      homepage.icon: sonarr.png
+      homepage.description: Series management
+      homepage.widget.type: sonarr
+      homepage.widget.key: ${SONARR_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://sonarr:8989/ping"]
       interval: 30s

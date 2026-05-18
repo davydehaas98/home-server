@@ -23,6 +23,12 @@ services:
       traefik.http.routers.radarr.rule: Host(`radarr.${DOMAIN_NAME}`) || Host(`movies.${DOMAIN_NAME}`)
       traefik.http.routers.radarr.middlewares: chain-no-auth@file
       traefik.http.services.radarr.loadbalancer.server.port: 7878
+      homepage.group: Media
+      homepage.name: Radarr
+      homepage.icon: radarr.png
+      homepage.description: Movie management
+      homepage.widget.type: radarr
+      homepage.widget.key: ${RADARR_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:7878/ping"]
     deploy:
