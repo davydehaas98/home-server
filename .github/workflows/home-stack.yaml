@@ -38,10 +38,15 @@ jobs:
       - name: Start containers
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
-            cd ${{ env.TARGET_DIR }}
+          cd ${{ env.TARGET_DIR }}
 
-            docker compose $(printf ' -f %s' compose.*.yaml) up -d --remove-orphans
+          args=()
+          for filename in compose.*.yaml; do
+            args += (-f \$filename);
+          done;
 
-            docker image prune -a -f
+          echo \${args[@]}
+          echo \$args
 
+          docker compose \$args up -d --remove-orphans
           ENDSSH
