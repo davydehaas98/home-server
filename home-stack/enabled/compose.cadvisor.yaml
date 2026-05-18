@@ -4,7 +4,7 @@ networks:
 
 services:
   cadvisor:
-    image: ghcr.io/google/cadvisor:0.56.2
+    image: ghcr.io/google/cadvisor:v0.57.0
     container_name: cadvisor
     devices:
       - /dev/kmsg
