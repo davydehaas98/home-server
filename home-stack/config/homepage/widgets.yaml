@@ -1,0 +1,22 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/info-widgets/
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+    cputemp: true
+    uptime: true
+    units: metric
+    network: true
+
+- search:
+    provider: duckduckgo
+    target: _blank
+
+- openmeteo:
+    label: Eindhoven
+    latitude: 51.44
+    longitude: 5.48
+    units: metric

@@ -26,7 +26,7 @@ services:
       homepage.group: Media
       homepage.name: Lidarr
       homepage.icon: lidarr.png
-      homepage.href: lidarr.${DOMAIN_NAME}
+      homepage.href: https://lidarr.${DOMAIN_NAME}
       homepage.description: Music management
       homepage.widget.type: lidarr
       homepage.widget.url: https://lidarr.${DOMAIN_NAME}

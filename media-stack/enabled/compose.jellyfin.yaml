@@ -31,7 +31,7 @@ services:
       homepage.group: Media
       homepage.name: Jellyfin
       homepage.icon: jellyfin.png
-      homepage.href: jellyfin.${DOMAIN_NAME}
+      homepage.href: https://jellyfin.${DOMAIN_NAME}
       homepage.description: Media server
       homepage.widget.type: jellyfin
       homepage.widget.url: https://jellyfin.${DOMAIN_NAME}

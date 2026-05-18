@@ -45,7 +45,7 @@ services:
       homepage.group: Media
       homepage.name: Plex
       homepage.icon: plex.png
-      homepage.href: plex.${DOMAIN_NAME}
+      homepage.href: https://plex.${DOMAIN_NAME}
       homepage.description: Media server
       homepage.widget.type: plex
       homepage.widget.url: https://plex.${DOMAIN_NAME}

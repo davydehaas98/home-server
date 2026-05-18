@@ -26,7 +26,7 @@ services:
       homepage.group: Media
       homepage.name: Bazarr
       homepage.icon: bazarr.png
-      homepage.href: bazarr.${DOMAIN_NAME}
+      homepage.href: https://bazarr.${DOMAIN_NAME}
       homepage.description: Subtitle management
       homepage.widget.type: bazarr
       homepage.widget.url: https://bazarr.${DOMAIN_NAME}
