@@ -46,7 +46,6 @@ jobs:
           done;
 
           echo \${args[@]}
-          echo \$args
 
-          docker compose \$args up -d --remove-orphans
+          docker compose \${args[@]} up -d --remove-orphans
           ENDSSH
