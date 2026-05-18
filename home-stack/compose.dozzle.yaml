@@ -17,10 +17,7 @@ services:
       traefik.http.routers.dozzle.middlewares: chain-authentik@file
       traefik.http.services.dozzle.loadbalancer.server.port: 8080
     healthcheck:
-      test: ["CMD", "wget", "--spider", "localhost:8080"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      disable: true
     deploy:
       restart_policy:
         condition: unless-stopped
