@@ -42,7 +42,7 @@ jobs:
 
           args=()
           for filename in compose.*.yaml; do
-            args += (-f \$filename);
+            args+=(-f \$filename);
           done;
 
           echo \${args[@]}
