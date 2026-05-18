@@ -118,8 +118,8 @@ http:
         maxRequestBodyBytes: 0
         maxResponseBodyBytes: 0
         # 100/50 MB in memory before buffering to disk
-        memRequestBodyBytes: 100000000
-        memResponseBodyBytes: 50000000
+        memRequestBodyBytes: 1000000000
+        memResponseBodyBytes: 1000000000
         retryExpression: "IsNetworkError() && Attempts() < 2"
 
     immich-headers:

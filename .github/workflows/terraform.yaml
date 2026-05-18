@@ -19,3 +19,11 @@ jobs:
       - name: Validate
         run: |
           terraform validate
+
+      - name: Format
+        run: |
+          terraform fmt -check
+
+      - name: Plan
+        run: |
+          terraform plan -out=tfplan

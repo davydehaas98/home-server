@@ -97,8 +97,6 @@ services:
       - /mnt/md0/media-server/tracearr-valkey:/data:rw
     networks:
       - reverse-proxy
-    sysctls:
-      - vm.overcommit_memory=1
     environment:
       REDIS_HOSTNAME: tracearr-valkey
     healthcheck:
