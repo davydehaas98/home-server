@@ -145,6 +145,25 @@ labels:
   traefik.http.services.<service>.loadbalancer.server.port: 8080
 ```
 
+### Homepage Configuration
+```yaml
+labels:
+  homepage.group: Group Name
+  homepage.name: Display Name
+  homepage.icon: service-icon
+  homepage.href: https://service.${DOMAIN_NAME}
+  homepage.description: Brief service description
+  homepage.widget.type: service-name
+  homepage.widget.url: http://service:port
+```
+- `group`: Organize services into categories on the homepage
+- `name`: Display name shown on the homepage dashboard
+- `icon`: Icon identifier from https://walkxcode.github.io/dashboard-icons/
+- `href`: External URL to access the service
+- `description`: Short description of what the service does
+- `widget.type`: Optional widget type for live status/info display
+- `widget.url`: Internal URL for the widget to query service status
+
 ## General Guidelines
 
 - Keep configurations DRY (Don't Repeat Yourself)

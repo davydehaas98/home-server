@@ -4,7 +4,7 @@ networks:
 
 services:
   dozzle:
-    image: docker.io/amir20/dozzle:10.0.0
+    image: docker.io/amir20/dozzle:v10.0.0
     container_name: dozzle
     user: ${GID}:${UID}
     networks:
