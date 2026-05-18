@@ -96,7 +96,7 @@ services:
 
   tracearr-valkey:
     container_name: tracearr-valkey
-    image: docker.io/valkey/valkey:9.0.3
+    image: docker.io/valkey/valkey:9.0.4
     user: ${UID}:${GID}
     volumes:
       - /mnt/md0/media-server/tracearr-valkey:/data:rw
