@@ -85,7 +85,7 @@ services:
           memory: 1G
 
   authentik-postgres:
-    image: docker.io/library/postgres:18.3-alpine
+    image: docker.io/library/postgres:18.4-alpine
     container_name: authentik-postgres
     networks:
       - reverse-proxy

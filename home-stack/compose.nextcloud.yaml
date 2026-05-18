@@ -45,7 +45,7 @@ services:
           memory: 512M
 
   nextcloud-postgres:
-    image: docker.io/library/postgres:18.3
+    image: docker.io/library/postgres:18.4
     container_name: nextcloud-postgres
     user: ${UID}:${GID}
     networks:
