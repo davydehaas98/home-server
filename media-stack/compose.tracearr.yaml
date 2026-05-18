@@ -4,7 +4,7 @@ networks:
 
 services:
   tracearr:
-    image: ghcr.io/connorgallopo/tracearr:1.4.27
+    image: ghcr.io/connorgallopo/tracearr:1.4.28
     container_name: tracearr
     user: ${UID}:${GID}
     networks:
