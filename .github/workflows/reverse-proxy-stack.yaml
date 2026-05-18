@@ -45,4 +45,6 @@ jobs:
           done;
 
           docker compose \$args up -d --remove-orphans
+
+          docker image prune -f
           ENDSSH
