@@ -34,7 +34,7 @@ services:
           memory: 128M
 
   airtrail-postgres:
-    image: docker.io/library/postgres:18.3-alpine
+    image: docker.io/library/postgres:18.4-alpine
     container_name: airtrail-postgres
     restart: unless-stopped
     networks:
