@@ -12,6 +12,7 @@ services:
     volumes:
       - ~/home-server/code-server/.config:/home/coder/.config:rw
       - ~/home-server/code-server/.local:/home/coder/.local:rw
+      - ~/home-server/code-server/.ssh:/home/coder/.ssh:rw
       - ~/home-server/code-server/project:/home/coder/project:rw
     environment:
       DOCKER_USER: ${UID}
@@ -31,8 +32,8 @@ services:
         condition: unless-stopped
       resources:
         limits:
-          cpus: '0.5'
-          memory: 1G
+          cpus: '1'
+          memory: 2G
         reservations:
           cpus: '0.1'
           memory: 512M
