@@ -104,7 +104,7 @@ services:
           memory: 128M
 
   immich-valkey:
-    image: docker.io/valkey/valkey:9.0.4
+    image: docker.io/valkey/valkey:9.1.0
     container_name: immich-valkey
     user: ${UID}:${GID}
     volumes:
