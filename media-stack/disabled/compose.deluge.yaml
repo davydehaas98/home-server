@@ -1,7 +1,7 @@
 services:
   # Torrent client without VPN
   deluge:
-    image: lscr.io/linuxserver/deluge:2.1.1
+    image: ghcr.io/linuxserver/deluge:2.1.1
     container_name: deluge
     cpus: 1
     mem_limit: 1024m

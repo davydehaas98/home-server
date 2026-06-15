@@ -1,6 +1,6 @@
 services:
   duplicati:
-    image: lscr.io/linuxserver/duplicati:2.0.8
+    image: ghcr.io/linuxserver/duplicati:2.0.8
     container_name: duplicati
     restart: unless-stopped
     cpus: 0.1

@@ -5,7 +5,7 @@ networks:
 services:
   # Media stream service
   emby:
-    image: lscr.io/linuxserver/emby:4.7.11
+    image: ghcr.io/linuxserver/emby:4.7.11
     container_name: emby
     cpus: 4
     mem_limit: 8G

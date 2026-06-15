@@ -1,6 +1,6 @@
 services:
   heimdall:
-    image: lscr.io/linuxserver/heimdall:2.6.1
+    image: ghcr.io/linuxserver/heimdall:2.6.1
     container_name: heimdall
     restart: unless-stopped
     user: ${UID}:${GID}

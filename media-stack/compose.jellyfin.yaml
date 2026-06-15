@@ -21,7 +21,7 @@ services:
       - /dev/shm:/data/transcode:rw
     environment:
       TZ: ${TZ}
-      DOCKER_MODS: lscr.io/linuxserver/mods:jellyfin-opencl-intel
+      DOCKER_MODS: ghcr.io/linuxserver/mods:jellyfin-opencl-intel
     labels:
       traefik.enable: true
       traefik.http.routers.jellyfin.entrypoints: websecure

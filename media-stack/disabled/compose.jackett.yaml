@@ -5,7 +5,7 @@ networks:
 services:
   # Proxy Server for Sonarr and Radarr search queries
   jackett:
-    image: lscr.io/linuxserver/jackett:0.20.3870
+    image: ghcr.io/linuxserver/jackett:0.20.3870
     container_name: jackett
     cpus: 1
     mem_limit: 1G
