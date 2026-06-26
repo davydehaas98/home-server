@@ -4,7 +4,7 @@ networks:
 
 services:
   sonarr:
-    image: ghcr.io/linuxserver/sonarr:4.0.17
+    image: ghcr.io/linuxserver/sonarr:4.0.19
     container_name: sonarr
     user: ${UID}:${GID}
     networks:
