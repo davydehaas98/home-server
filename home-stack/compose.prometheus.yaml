@@ -4,7 +4,7 @@ networks:
 
 services:
   prometheus:
-    image: docker.io/prom/prometheus:v3.12.0
+    image: docker.io/prom/prometheus:v3.13.0
     container_name: prometheus
     # user: ${UID}:${GID}
     networks:
