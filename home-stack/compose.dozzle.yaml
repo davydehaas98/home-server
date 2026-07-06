@@ -4,7 +4,7 @@ networks:
 
 services:
   dozzle:
-    image: docker.io/amir20/dozzle:v10.6.5
+    image: docker.io/amir20/dozzle:v10.6.7
     container_name: dozzle
     networks:
       - reverse-proxy
