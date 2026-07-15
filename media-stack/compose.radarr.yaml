@@ -4,7 +4,7 @@ networks:
 
 services:
   radarr:
-    image: ghcr.io/linuxserver/radarr:6.2.1
+    image: ghcr.io/linuxserver/radarr:6.3.0
     container_name: radarr
     user: ${UID}:${GID}
     networks:
