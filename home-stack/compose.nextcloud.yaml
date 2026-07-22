@@ -74,7 +74,7 @@ services:
           memory: 128M
 
   nextcloud-valkey:
-    image: docker.io/valkey/valkey:9.1.0
+    image: docker.io/valkey/valkey:9.1.1
     container_name: nextcloud-valkey
     user: ${UID}:${GID}
     networks:
