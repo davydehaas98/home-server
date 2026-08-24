@@ -17,7 +17,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.seerr.entrypoints: websecure
-      traefik.http.routers.seerr.rule: Host(`seerr.${DOMAIN_NAME}`) || Host(`request.${DOMAIN_NAME}`)
+      traefik.http.routers.seerr.rule: Host(`seerr.${DOMAIN_NAME}`) || Host(`request.${DOMAIN_NAME}`)|| Host(`requests.${DOMAIN_NAME}`)
       traefik.http.routers.seerr.middlewares: chain-no-auth@file
       traefik.http.services.seerr.loadbalancer.server.port: 5055
       homepage.group: Media
