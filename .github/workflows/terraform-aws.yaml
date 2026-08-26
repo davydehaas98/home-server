@@ -1,0 +1,45 @@
+name: Terraform AWS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "_terraform/aws/**"
+  workflow_dispatch:
+
+jobs:
+  terraform-aws:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: _terraform/aws
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-central-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.10"
+
+      - name: Init
+        run: terraform init
+
+      - name: Validate
+        run: terraform validate
+
+      - name: Plan
+        run: terraform plan
+
+      - name: Apply
+        run: terraform apply -auto-approve
