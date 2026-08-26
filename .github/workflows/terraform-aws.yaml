@@ -19,18 +19,16 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.0
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6.0.0
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: eu-central-1
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "~> 1.10"
+        uses: hashicorp/setup-terraform@v4.0.0
 
       - name: Init
         run: terraform init
