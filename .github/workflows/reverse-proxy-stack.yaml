@@ -33,7 +33,6 @@ jobs:
       - name: Copy 'compose.*.yaml' files
         run: |
           rsync --verbose --delete --archive \
-            --include='compose.*.yaml' \
             --exclude '*.env' \
             ./reverse-proxy-stack/compose.*.yaml \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
