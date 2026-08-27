@@ -34,7 +34,8 @@ jobs:
         run: |
           rsync --verbose --delete --archive \
             --include='/compose.*.yaml' \
-            --exclude '*.env' \
+            --include='/.env' \
+            --exclude='/*' \
             ./reverse-proxy-stack/ \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}/
 
