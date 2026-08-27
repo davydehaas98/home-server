@@ -33,8 +33,9 @@ jobs:
       - name: Copy 'compose.*.yaml' files
         run: |
           rsync --verbose --delete --archive \
-            --exclude '*.env' \
-            ./home-stack/compose.*.yaml \
+            --include='/compose.*.yaml' \
+            --exclude='/*' \
+            ./home-stack/ \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
 
       - name: Start containers

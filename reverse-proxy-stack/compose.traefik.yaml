@@ -36,9 +36,9 @@ services:
       traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN_NAME}`)
       traefik.http.routers.traefik.middlewares: chain-authentik@file
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.tls.domains[0].main: "${DOMAIN_NAME}"
+      traefik.http.routers.traefik.tls.domains[0].main: "${DOMAIN_NAME:?error}"
       traefik.http.routers.traefik.tls.domains[0].sans: "*.${DOMAIN_NAME}"
-      traefik.http.routers.traefik.tls.domains[1].main: "${DOMAIN_NAME_1}"
+      traefik.http.routers.traefik.tls.domains[1].main: "${DOMAIN_NAME_1:?error}"
       traefik.http.routers.traefik.tls.domains[1].sans: "*.${DOMAIN_NAME_1}"
       traefik.http.services.traefik.loadbalancer.server.port: 8080
     healthcheck:
