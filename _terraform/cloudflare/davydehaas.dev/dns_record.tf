@@ -10,13 +10,38 @@ resource "cloudflare_dns_record" "www" {
   proxied = true
 }
 
+resource "cloudflare_dns_record" "cloud" {
+  provider = cloudflare.dev
+
+  name    = "cloud"
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = var.zone_id
+
+  content = "davydehaas.dev"
+  proxied = true
+}
+
+resource "cloudflare_dns_record" "wireguard" {
+  provider = cloudflare.dev
+
+  name    = "wireguard"
+  ttl     = 1
+  type    = "CNAME"
+  zone_id = var.zone_id
+
+  content = "davydehaas.dev"
+  proxied = false
+}
+
 resource "cloudflare_dns_record" "factorio" {
   provider = cloudflare.dev
 
-  name    = "_factorio._tcp.factorio"
-  ttl     = 1
-  type    = "SRV"
-  zone_id = var.zone_id
+  name     = "_factorio._tcp.factorio"
+  ttl      = 1
+  type     = "SRV"
+  zone_id  = var.zone_id
+  priority = 0
 
   comment = "Factorio server"
   data = {
@@ -30,10 +55,11 @@ resource "cloudflare_dns_record" "factorio" {
 resource "cloudflare_dns_record" "minecraft" {
   provider = cloudflare.dev
 
-  name    = "_minecraft._tcp.minecraft"
-  ttl     = 1
-  type    = "SRV"
-  zone_id = var.zone_id
+  name     = "_minecraft._tcp.minecraft"
+  ttl      = 1
+  type     = "SRV"
+  zone_id  = var.zone_id
+  priority = 0
 
   comment = "Minecraft Vanilla server"
   data = {
@@ -56,6 +82,7 @@ resource "cloudflare_dns_record" "spf1" {
   type    = "TXT"
   zone_id = var.zone_id
 
+  comment = "SPF record to prevent email spoofing"
   content = "\"v=spf1 -all\""
 }
 
@@ -69,6 +96,7 @@ resource "cloudflare_dns_record" "dmarc" {
   type    = "TXT"
   zone_id = var.zone_id
 
+  comment = "DMARC record to prevent email spoofing"
   content = "\"v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;\""
 }
 
@@ -82,5 +110,6 @@ resource "cloudflare_dns_record" "dkim1" {
   type    = "TXT"
   zone_id = var.zone_id
 
+  comment = "DKIM record to prevent email spoofing"
   content = "\"v=DKIM1; p=\""
 }
