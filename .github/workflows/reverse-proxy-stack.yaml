@@ -34,7 +34,7 @@ jobs:
         run: |
           rsync --verbose --delete --archive \
             --exclude '*.env' \
-            ./reverse-proxy-stack/compose.*.yaml \
+            ./reverse-proxy-stack \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
 
       - name: Start containers
