@@ -1048,8 +1048,50 @@ resource "cloudflare_dns_record" "minecraft_skyfactory_srv" {
   }
 }
 
+# Prevent email spoofing
+
+# Sender Policy Framework (SPF)
+# https://en.wikipedia.org/wiki/Sender_Policy_Framework
+resource "cloudflare_dns_record" "spf1" {
+  provider = cloudflare.nl
+
+  name    = "davydehaas.nl"
+  ttl     = 1
+  type    = "TXT"
+  zone_id = var.zone_id
+
+  comment = "SPF record to allow Cloudflare Email Routing"
+  content = "\"v=spf1 include:_spf.mx.cloudflare.email ~all\""
+}
+
+# Domain-based Message Authentication, Reporting and Conformance (DMARC)
+# https://en.wikipedia.org/wiki/DMARC
+resource "cloudflare_dns_record" "dmarc" {
+  provider = cloudflare.nl
+
+  name    = "_dmarc"
+  ttl     = 1
+  type    = "TXT"
+  zone_id = var.zone_id
+
+  comment = "DMARC record to prevent email spoofing"
+  content = "\"v=DMARC1; p=reject; adkim=r; aspf=r;\""
+}
+
 # DomainKeys Identified Mail (DKIM)
 # https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail
+resource "cloudflare_dns_record" "dkim1" {
+  provider = cloudflare.nl
+
+  name    = "*._domainkey"
+  ttl     = 1
+  type    = "TXT"
+  zone_id = var.zone_id
+
+  comment = "DKIM record to prevent email spoofing"
+  content = "\"v=DKIM1; p=\""
+}
+
 resource "cloudflare_dns_record" "dkim_cf2024" {
   provider = cloudflare.nl
 
@@ -1058,6 +1100,5 @@ resource "cloudflare_dns_record" "dkim_cf2024" {
   type    = "TXT"
   zone_id = var.zone_id
 
-  comment = "DKIM record"
   content = "\"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k\" \"m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB\""
 }
