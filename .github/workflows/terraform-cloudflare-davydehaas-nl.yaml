@@ -1,0 +1,45 @@
+name: Terraform Cloudflare davydehaas.nl
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "_terraform/cloudflare/davydehaas.nl/**"
+  workflow_dispatch:
+
+jobs:
+  terraform-cloudflare-davydehaas-nl:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: _terraform/cloudflare/davydehaas.nl
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6.2.3
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-central-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4.0.0
+        with:
+          terraform_version: "~> 1.15"
+
+      - name: Init
+        run: terraform init
+
+      - name: Validate
+        run: terraform validate
+
+      - name: Plan
+        run: terraform plan -out=tfplan
+
+      - name: Apply
+        run: terraform apply tfplan
