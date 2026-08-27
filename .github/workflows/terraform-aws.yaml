@@ -10,7 +10,7 @@ on:
 
 jobs:
   terraform-aws:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: _terraform/aws
@@ -29,6 +29,8 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v4.0.0
+        with:
+          terraform_version: "~> 1.15"
 
       - name: Init
         run: terraform init
