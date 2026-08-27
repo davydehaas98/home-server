@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.10"
+  required_version = "~> 1.15"
 
   backend "s3" {
     bucket         = "davydehaas-terraform-state"
