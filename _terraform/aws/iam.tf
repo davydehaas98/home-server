@@ -38,7 +38,8 @@ resource "aws_iam_role_policy" "github_actions_terraform" {
           "s3:ListBucket",
           "s3:GetBucketLocation",
           "s3:GetBucketPolicy",
-          "s3:GetBucketAcl"
+          "s3:GetBucketAcl",
+          "s3:GetBucketCORS"
         ]
         Resource = "arn:aws:s3:::davydehaas-terraform-state"
       },
