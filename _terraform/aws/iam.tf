@@ -36,10 +36,11 @@ resource "aws_iam_role_policy" "github_actions_terraform" {
         Effect = "Allow"
         Action = [
           "s3:ListBucket",
+          "s3:GetBucketAcl",
+          "s3:GetBucketCORS",
           "s3:GetBucketLocation",
           "s3:GetBucketPolicy",
-          "s3:GetBucketAcl",
-          "s3:GetBucketCORS"
+          "s3:GetBucketWebsite"
         ]
         Resource = "arn:aws:s3:::davydehaas-terraform-state"
       },
