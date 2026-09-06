@@ -34,7 +34,11 @@ resource "aws_iam_role_policy" "github_actions_terraform" {
     Statement = [
       {
         Effect = "Allow"
-        Action = ["s3:ListBucket"]
+        Action = [
+          "s3:ListBucket",
+          "s3:GetBucketLocation",
+          "s3:GetBucketPolicy"
+        ]
         Resource = "arn:aws:s3:::davydehaas-terraform-state"
       },
       {
@@ -62,18 +66,30 @@ resource "aws_iam_role_policy" "github_actions_terraform" {
           "iam:GetOpenIDConnectProvider",
           "iam:UpdateOpenIDConnectProviderThumbprint",
           "iam:DeleteOpenIDConnectProvider",
+
           "iam:GetRole",
           "iam:UpdateAssumeRolePolicy",
           "iam:DeleteRole",
           "iam:PutRolePolicy",
           "iam:GetRolePolicy",
           "iam:DeleteRolePolicy",
+          "iam:ListRolePolicies",
+          "iam:ListTagsForResource",
           "iam:DetachRolePolicy"
         ]
         Resource = [
           aws_iam_openid_connect_provider.github.arn,
           aws_iam_role.github_actions_terraform.arn
         ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:CreateOpenIDConnectProvider",
+          "iam:CreateRole",
+          "iam:ListOpenIDConnectProviders"
+        ]
+        Resource = "*"
       }
     ]
   })
