@@ -25,28 +25,56 @@ resource "aws_iam_role" "github_actions_terraform" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "github_actions_terraform" {
-  role       = aws_iam_role.github_actions_terraform.name
-  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
+resource "aws_iam_role_policy" "github_actions_terraform" {
+  name = "terraform-state-and-budgets"
+  role = aws_iam_role.github_actions_terraform.name
 
-resource "aws_iam_user" "davy" {
-  name = "Davy"
-}
-
-resource "aws_iam_group" "administrators" {
-  name = "Administrators"
-}
-
-resource "aws_iam_group_membership" "administrators_membership" {
-    name = "administrators_membership"
-    users = [
-        aws_iam_user.davy.name
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = ["s3:ListBucket"]
+        Resource = "arn:aws:s3:::davydehaas-terraform-state"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:DeleteObject"
+        ]
+        Resource = "arn:aws:s3:::davydehaas-terraform-state/*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "budgets:CreateBudget",
+          "budgets:ModifyBudget",
+          "budgets:DescribeBudget",
+          "budgets:ViewBudget"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:GetOpenIDConnectProvider",
+          "iam:UpdateOpenIDConnectProviderThumbprint",
+          "iam:DeleteOpenIDConnectProvider",
+          "iam:GetRole",
+          "iam:UpdateAssumeRolePolicy",
+          "iam:DeleteRole",
+          "iam:PutRolePolicy",
+          "iam:GetRolePolicy",
+          "iam:DeleteRolePolicy",
+          "iam:DetachRolePolicy"
+        ]
+        Resource = [
+          aws_iam_openid_connect_provider.github.arn,
+          aws_iam_role.github_actions_terraform.arn
+        ]
+      }
     ]
-    group = aws_iam_group.administrators.name
-}
-
-resource "aws_iam_group_policy_attachment" "administrators" {
-  group       = aws_iam_group.administrators.name
-  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+  })
 }

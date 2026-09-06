@@ -51,22 +51,13 @@ Initialize:
 terraform init
 ```
 
-Import any resources that already exist in AWS to avoid conflicts:
-
-```sh
-terraform import aws_iam_user.davy Davy
-terraform import aws_iam_group.administrators Administrators
-terraform import aws_iam_group_membership.administrators_membership Administrators
-terraform import "aws_iam_group_policy_attachment.administrators" "Administrators/arn:aws:iam::aws:policy/AdministratorAccess"
-```
-
 Apply:
 
 ```sh
 terraform apply
 ```
 
-This creates the S3 bucket, OIDC provider, and role, and lets Terraform adopt the IAM resources.
+This creates the S3 bucket, OIDC provider and role.
 
 ### 4. Migrate state to S3
 
