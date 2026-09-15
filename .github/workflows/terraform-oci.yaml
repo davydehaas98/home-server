@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - "_terraform/oci/**"
-      - ".github/workflows/terraform-oci.yaml"
   workflow_dispatch:
     inputs:
       apply:
