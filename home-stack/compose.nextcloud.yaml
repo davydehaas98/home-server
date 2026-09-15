@@ -4,7 +4,7 @@ networks:
 
 services:
   nextcloud:
-    image: docker.io/nextcloud:34.0.1
+    image: docker.io/nextcloud:34.0.4
     container_name: nextcloud
     depends_on:
       nextcloud-postgres:
@@ -74,7 +74,7 @@ services:
           memory: 128M
 
   nextcloud-valkey:
-    image: docker.io/valkey/valkey:9.1.1
+    image: docker.io/valkey/valkey:9.1.2
     container_name: nextcloud-valkey
     user: ${UID}:${GID}
     networks:
