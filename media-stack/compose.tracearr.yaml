@@ -21,7 +21,7 @@ services:
       COOKIE_SECRET: ${COOKIE_SECRET}
       LOG_LEVEL: INFO
     volumes:
-      - ~/media-server/tracearr/backup:/data/backup:rw
+      - ~/home-server/tracearr/backup:/data/backup:rw
     labels:
       traefik.enable: true
       traefik.http.routers.tracearr.entrypoints: websecure
