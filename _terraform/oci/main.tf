@@ -1,5 +1,13 @@
 terraform {
-  required_version = "~> 1.10"
+  required_version = "~> 1.15"
+
+  backend "s3" {
+    bucket       = "davydehaas-terraform-state"
+    key          = "oci/terraform.tfstate"
+    region       = "eu-central-1"
+    use_lockfile = true
+    encrypt      = true
+  }
 
   required_providers {
     oci = {
