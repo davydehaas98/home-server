@@ -1,5 +1,5 @@
 data "oci_identity_availability_domains" "ads" {
-  compartment_id = var.tenancy
+  compartment_id = var.tenancy_ocid
 }
 
 output "name-of-first-availability-domain" {
@@ -28,6 +28,6 @@ output "name-of-first-availability-domain" {
 #     # }
 #     # metadata = {
 #     #     ssh_authorized_keys = file("<ssh-public-key-path>")
-#     # } 
+#     # }
 #     # preserve_boot_volume = false
 # }
