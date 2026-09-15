@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       apply:
-        description: "Apply the Terraform plan"
+        description: "terraform apply"
         required: false
         type: boolean
         default: false
