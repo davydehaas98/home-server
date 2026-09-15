@@ -7,14 +7,14 @@ variable "fingerprint" {
   type = string
 }
 
-variable "key_file" {
+variable "private_key" {
   type = string
 }
 
-variable "tenancy" {
+variable "tenancy_ocid" {
   type = string
 }
 
-variable "user" {
+variable "user_ocid" {
   type = string
 }

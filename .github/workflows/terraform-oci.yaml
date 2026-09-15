@@ -6,11 +6,19 @@ on:
       - main
     paths:
       - "_terraform/oci/**"
+      - ".github/workflows/terraform-oci.yaml"
   workflow_dispatch:
+    inputs:
+      apply:
+        description: "Apply the Terraform plan"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   terraform-oci:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: _terraform/oci
@@ -40,6 +48,17 @@ jobs:
 
       - name: Plan
         run: terraform plan -out=tfplan
+        env:
+          TF_VAR_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
+          TF_VAR_user_ocid: ${{ secrets.OCI_USER_OCID }}
+          TF_VAR_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
+          TF_VAR_private_key: ${{ secrets.OCI_PRIVATE_KEY }}
 
       - name: Apply
-        run: terraform apply tfplan
+        if: github.event_name == 'workflow_dispatch' && inputs.apply == true
+        run: terraform apply -auto-approve tfplan
+        env:
+          TF_VAR_tenancy_ocid: ${{ secrets.OCI_TENANCY_OCID }}
+          TF_VAR_user_ocid: ${{ secrets.OCI_USER_OCID }}
+          TF_VAR_fingerprint: ${{ secrets.OCI_FINGERPRINT }}
+          TF_VAR_private_key: ${{ secrets.OCI_PRIVATE_KEY }}

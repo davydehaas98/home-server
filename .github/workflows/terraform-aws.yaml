@@ -7,10 +7,17 @@ on:
     paths:
       - "_terraform/aws/**"
   workflow_dispatch:
+    inputs:
+      apply:
+        description: "Apply the Terraform plan"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   terraform-aws:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: _terraform/aws
@@ -42,4 +49,5 @@ jobs:
         run: terraform plan -out=tfplan
 
       - name: Apply
-        run: terraform apply tfplan
+        if: github.event_name == 'workflow_dispatch' && inputs.apply == true
+        run: terraform apply -auto-approve tfplan

@@ -7,10 +7,17 @@ on:
     paths:
       - "_terraform/cloudflare/davydehaas.nl/**"
   workflow_dispatch:
+    inputs:
+      apply:
+        description: "Apply the Terraform plan"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   terraform-cloudflare-davydehaas-nl:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: _terraform/cloudflare/davydehaas.nl
@@ -46,7 +53,8 @@ jobs:
           TF_VAR_ipv6_address: ${{ secrets.SERVER_IPV6_ADDRESS }}
 
       - name: Apply
-        run: terraform apply tfplan
+        if: github.event_name == 'workflow_dispatch' && inputs.apply == true
+        run: terraform apply -auto-approve tfplan
         env:
           TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           TF_VAR_ipv4_address: ${{ secrets.SERVER_IPV4_ADDRESS }}
