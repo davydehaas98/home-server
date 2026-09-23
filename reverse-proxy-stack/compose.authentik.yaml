@@ -10,11 +10,6 @@ services:
   authentik-server:
     image: ghcr.io/goauthentik/server:2026.8.2
     container_name: authentik-server
-    command: server
-    depends_on:
-      authentik-postgres:
-        condition: service_healthy
-        restart: true
     networks:
       - reverse-proxy
     volumes:
@@ -28,12 +23,17 @@ services:
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: password
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
+    command: server
     labels:
       traefik.enable: true
       traefik.http.routers.authentik.entrypoints: websecure
       traefik.http.routers.authentik.rule: Host(`authentik.${DOMAIN_NAME}`) || Host(`auth.${DOMAIN_NAME}`)
       traefik.http.routers.authentik.middlewares: chain-no-auth@file
       traefik.http.services.authentik.loadbalancer.server.port: 9000
+    depends_on:
+      authentik-postgres:
+        condition: service_healthy
+        restart: true
     healthcheck:
       test: ["CMD", "ak", "healthcheck"]
     deploy:
@@ -50,11 +50,6 @@ services:
   authentik-worker:
     image: ghcr.io/goauthentik/server:2026.8.2
     container_name: authentik-worker
-    command: worker
-    depends_on:
-      authentik-postgres:
-        condition: service_healthy
-        restart: true
     user: root
     networks:
       - reverse-proxy
@@ -71,6 +66,11 @@ services:
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: password
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
+    command: worker
+    depends_on:
+      authentik-postgres:
+        condition: service_healthy
+        restart: true
     healthcheck:
       test: ["CMD", "ak", "healthcheck"]
     deploy:

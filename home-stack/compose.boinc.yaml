@@ -6,11 +6,11 @@ services:
   boinc:
     image: ghcr.io/linuxserver/boinc:8.2.8
     container_name: boinc
-    networks:
-      - reverse-proxy
     devices:
     # Hardware acceleration
       - /dev/dri:/dev/dri
+    networks:
+      - reverse-proxy
     volumes:
       - ~/home-server/boinc:/config:rw
     environment:

@@ -9,6 +9,8 @@ services:
     user: ${UID}:${GID}
     networks:
       - reverse-proxy
+    volumes:
+      - ~/home-server/tracearr/backup:/data/backup:rw
     environment:
       NODE_ENV: production
       PORT: 3000
@@ -20,8 +22,6 @@ services:
       # echo "COOKIE_SECRET=$(openssl rand -hex 32)" >> .env
       COOKIE_SECRET: ${COOKIE_SECRET}
       LOG_LEVEL: INFO
-    volumes:
-      - ~/home-server/tracearr/backup:/data/backup:rw
     labels:
       traefik.enable: true
       traefik.http.routers.tracearr.entrypoints: websecure
@@ -57,14 +57,20 @@ services:
     image: timescale/timescaledb-ha:pg18.1-ts2.25.0
     container_name: tracearr-postgres
     user: ${UID}:${GID}
-    networks:
-      - reverse-proxy
-    shm_size: 512M
     ulimits:
       # TimescaleDB chunks require many file descriptors
       nofile:
         soft: 65536
         hard: 65536
+    shm_size: 512M
+    networks:
+      - reverse-proxy
+    volumes:
+      - /mnt/md0/media-server/tracearr-postgres:/home/postgres/pgdata/data:rw
+    environment:
+      POSTGRES_USER: tracearr
+      POSTGRES_PASSWORD: tracearr
+      POSTGRES_DB: tracearr
     # Allow unlimited tuple decompression for migrations on compressed hypertables
     # Increase lock table size for large imports (Tautulli imports with many TimescaleDB chunks)
     command: [
@@ -74,12 +80,6 @@ services:
       "-c", "max_locks_per_transaction=4096",
       "-c", "timescaledb.telemetry_level=off"
     ]
-    environment:
-      POSTGRES_USER: tracearr
-      POSTGRES_PASSWORD: tracearr
-      POSTGRES_DB: tracearr
-    volumes:
-      - /mnt/md0/media-server/tracearr-postgres:/home/postgres/pgdata/data:rw
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 10s
@@ -97,13 +97,13 @@ services:
           memory: 128M
 
   tracearr-valkey:
-    container_name: tracearr-valkey
     image: docker.io/valkey/valkey:9.1.2
+    container_name: tracearr-valkey
     user: ${UID}:${GID}
-    volumes:
-      - /mnt/md0/media-server/tracearr-valkey:/data:rw
     networks:
       - reverse-proxy
+    volumes:
+      - /mnt/md0/media-server/tracearr-valkey:/data:rw
     environment:
       REDIS_HOSTNAME: tracearr-valkey
     healthcheck:

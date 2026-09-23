@@ -10,10 +10,10 @@ services:
       - reverse-proxy
     labels:
       traefik.enable: true
-      traefik.http.routers.it-tools.entrypoints: websecure
-      traefik.http.routers.it-tools.rule: Host(`omni-tools.${DOMAIN_NAME}`)
-      traefik.http.routers.it-tools.middlewares: chain-authentik@file
-      traefik.http.services.it-tools.loadbalancer.server.port: 80
+      traefik.http.routers.omni-tools.entrypoints: websecure
+      traefik.http.routers.omni-tools.rule: Host(`omni-tools.${DOMAIN_NAME}`)
+      traefik.http.routers.omni-tools.middlewares: chain-authentik@file
+      traefik.http.services.omni-tools.loadbalancer.server.port: 80
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:80/healthz"]
     deploy:

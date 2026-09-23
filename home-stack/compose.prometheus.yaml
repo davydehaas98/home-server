@@ -9,6 +9,11 @@ services:
     # user: ${UID}:${GID}
     networks:
       - reverse-proxy
+    volumes:
+      - ~/home-server/prometheus:/etc/prometheus:rw
+    # - ~/home-server/prometheus/data:/prometheus:rw
+    environment:
+      TZ: ${TZ}
     command:
       - --config.file=/etc/prometheus/prometheus.yaml
       - --storage.tsdb.path=/prometheus
@@ -16,11 +21,6 @@ services:
       - --web.console.templates=/usr/share/prometheus/consoles
       - --web.enable-lifecycle
       - --web.enable-otlp-receiver
-    environment:
-      TZ: ${TZ}
-    volumes:
-      - ~/home-server/prometheus:/etc/prometheus:rw
-    # - ~/home-server/prometheus/data:/prometheus:rw
     labels:
       traefik.enable: true
       traefik.http.routers.prometheus.entrypoints: websecure

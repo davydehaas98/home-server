@@ -6,13 +6,13 @@ services:
   mosquitto:
     image: docker.io/library/eclipse-mosquitto:2.0.22
     container_name: mosquitto
-    networks:
-      - reverse-proxy
     ports:
       # MQTT default listener
       - "1883:1883/tcp"
       # MQTT for websockets
       - "9001:9001/tcp"
+    networks:
+      - reverse-proxy
     volumes:
       - ~/home-server/mosquitto/config:/mosquitto/config:rw
       - ~/home-server/mosquitto/data:/mosquitto/data:rw

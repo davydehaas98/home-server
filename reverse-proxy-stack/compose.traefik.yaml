@@ -19,9 +19,6 @@ services:
       - "3179:3179/udp"
     networks:
       - reverse-proxy
-    command:
-      - --certificatesResolver.dns-resolver-cloudflare.acme.email=${CLOUDFLARE_EMAIL}
-      - --providers.docker.defaultrule=Host(`{{ index .Labels "com.docker.compose.service" }}.${DOMAIN_NAME}`)
     volumes:
       - ~/home-server/traefik/letsencrypt:/letsencrypt:rw
       - ~/home-server/traefik:/etc/traefik:ro
@@ -30,6 +27,9 @@ services:
       TZ: ${TZ}
       CF_API_EMAIL: ${CLOUDFLARE_EMAIL:?error}
       CF_API_KEY: ${CLOUDFLARE_API_KEY:?error}
+    command:
+      - --certificatesResolver.dns-resolver-cloudflare.acme.email=${CLOUDFLARE_EMAIL}
+      - --providers.docker.defaultrule=Host(`{{ index .Labels "com.docker.compose.service" }}.${DOMAIN_NAME}`)
     labels:
       traefik.enable: true
       traefik.http.routers.traefik.entrypoints: websecure

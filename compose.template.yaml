@@ -6,29 +6,54 @@ services:
   busybox:
     image: docker.io/library/busybox:1.38.0
     container_name: busybox
+
+    privileged: true
+    pid: host
     user: ${UID}:${GID}
     cap_add:
       - NET_ADMIN
+    security_opt:
+      - no-new-privileges:true
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+    shm_size: 512M
     devices:
       - /dev/dri:/dev/dri
+    sysctls:
+      - net.ipv4.ip_forward=1
+
     ports:
       - "80:80/tcp"
       - "80:80/udp"
     networks:
       - reverse-proxy
+
     volumes:
       - ~/home-server/busybox:/home/user:rw
-      - /mnt/raid/busybox/:/home/user:ro
+      - /mnt/storage/busybox/:/home/user:ro
+
+    env_file:
+      - .env
     environment:
       PGID: ${GID}
       PUID: ${UID}
       TZ: ${TZ}
+    command: ["busybox", "httpd", "-f"]
+
     labels:
       traefik.enable: true
       traefik.http.routers.busybox.entrypoints: websecure
       traefik.http.routers.busybox.rule: Host(`busy.${DOMAIN_NAME}`) || Host(`box.${DOMAIN_NAME}`)
       traefik.http.routers.busybox.middlewares: chain-authentik@file
       traefik.http.services.busybox.loadbalancer.server.port: 80
+
+    depends_on:
+      other-service:
+        condition: service_healthy
+
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://busybox:80/ping"]
       interval: 30s

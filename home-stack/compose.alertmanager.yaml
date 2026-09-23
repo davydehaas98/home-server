@@ -6,6 +6,19 @@ services:
   alertmanager:
     image: docker.io/prom/alertmanager:v0.34.0
     container_name: alertmanager
+    user: ${UID}:${GID}
+    networks:
+      - reverse-proxy
+    volumes:
+      - ~/home-server/alertmanager/:/etc/alertmanager/:rw
+    command:
+      - --config.file=/etc/alertmanager/config.yaml
+      - --storage.path=/alertmanager
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "localhost:9093"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     deploy:
       resources:
         limits:
@@ -16,16 +29,3 @@ services:
           memory: 16M
       restart_policy:
         condition: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "localhost:9093"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    user: ${UID}:${GID}
-    command:
-      - --config.file=/etc/alertmanager/config.yaml
-      - --storage.path=/alertmanager
-    networks:
-      - reverse-proxy
-    volumes:
-      - ~/home-server/alertmanager/:/etc/alertmanager/:rw

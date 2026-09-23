@@ -17,10 +17,10 @@ services:
       TZ: ${TZ}
     labels:
       traefik.enable: true
-      traefik.http.routers.zigbee.entrypoints: websecure
-      traefik.http.routers.zigbee.rule: Host(`zigbee.${DOMAIN_NAME}`) || Host(`z2m.${DOMAIN_NAME}`)
-      traefik.http.routers.zigbee.middlewares: chain-authentik@file
-      traefik.http.services.zigbee.loadbalancer.server.port: 8080
+      traefik.http.routers.zigbee2mqtt.entrypoints: websecure
+      traefik.http.routers.zigbee2mqtt.rule: Host(`zigbee.${DOMAIN_NAME}`) || Host(`z2m.${DOMAIN_NAME}`)
+      traefik.http.routers.zigbee2mqtt.middlewares: chain-authentik@file
+      traefik.http.services.zigbee2mqtt.loadbalancer.server.port: 8080
     healthcheck:
       disable: true
     deploy:

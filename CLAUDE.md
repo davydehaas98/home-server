@@ -32,16 +32,17 @@ To add a new service: drop a new `compose.<service>.yaml` into the right stack f
 
 `compose.template.yaml` documents the shape every service should follow. Key points:
 
+- Field order: `image, container_name, privileged, pid, user, cap_add, security_opt, ulimits, shm_size, devices, sysctls, ports, networks, volumes, env_file, environment, command, labels, depends_on, healthcheck, deploy` — omit fields that don't apply, but keep the rest in this relative order. Restart policy always lives under `deploy.restart_policy`, never as a top-level `restart:` key
 - `container_name` matches the compose filename's service key
 - `user: ${UID}:${GID}`, with `PUID`/`PGID`/`TZ` passed via `environment:` — these come from the server's real environment/`.env`, not from GitHub Actions secrets
 - Traefik service discovery via labels, not host port bindings: `traefik.enable`, a `Host(...)` router rule using `${DOMAIN_NAME}`, and `chain-authentik@file` as the middleware for anything that needs SSO
 - A `healthcheck:` block (typically `curl --fail` against the service)
 - `deploy.restart_policy` and `deploy.resources.limits`/`reservations` (CPU/memory)
-- Volumes follow `~/home-server/<app>/config:...` (host-relative) or `/mnt/raid/...` (bulk storage) patterns
+- Volumes follow `~/home-server/<app>/config:...` (host-relative) or `/mnt/storage/...` (bulk media storage) patterns
 
 ## Terraform (`_terraform/`)
 
-Independent stacks, each with its own S3 backend state (bucket `davydehaas-terraform-state`, keyed by stack path) and its own GitHub Actions workflow that runs `init` → `validate` → `plan` → `apply` on push to `main` (path-filtered per stack):
+Independent stacks, each with its own S3 backend state (bucket `davydehaas-terraform-state`, keyed by stack path) and its own GitHub Actions workflow (path-filtered per stack) that runs `init` → `validate` → `plan` on every push to `main`, and additionally `apply -auto-approve` on that saved plan when the workflow is triggered manually (`workflow_dispatch`) with the `apply` input set to `true` — a plain push to `main` never applies:
 
 - `aws/` — budget alerting
 - `cloudflare/davydehaas.dev/`, `cloudflare/davydehaas.nl/` — DNS records for the two domains

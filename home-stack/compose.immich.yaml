@@ -107,10 +107,10 @@ services:
     image: docker.io/valkey/valkey:9.1.2
     container_name: immich-valkey
     user: ${UID}:${GID}
-    volumes:
-      - /mnt/md0/home-server/immich-valkey:/data:rw
     networks:
       - reverse-proxy
+    volumes:
+      - /mnt/md0/home-server/immich-valkey:/data:rw
     environment:
       REDIS_HOSTNAME: immich-valkey
     healthcheck:
