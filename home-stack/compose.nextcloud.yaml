@@ -4,7 +4,7 @@ networks:
 
 services:
   nextcloud:
-    image: docker.io/nextcloud:34.0.4
+    image: docker.io/nextcloud:35.0.1
     container_name: nextcloud
     user: ${UID}:${GID}
     networks:
