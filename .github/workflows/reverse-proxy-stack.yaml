@@ -38,6 +38,12 @@ jobs:
             ./reverse-proxy-stack/ \
             homelab@${{ secrets.SSH_HOST }}:${{ env.TARGET_DIR }}
 
+      - name: Copy Traefik dynamic rules
+        run: |
+          rsync --verbose --delete --archive \
+            ./reverse-proxy-stack/config/traefik/rules/ \
+            homelab@${{ secrets.SSH_HOST }}:/home/homelab/home-server/traefik/rules/
+
       - name: Start containers
         run: |
           ssh homelab@${{ secrets.SSH_HOST }} /bin/bash << ENDSSH
