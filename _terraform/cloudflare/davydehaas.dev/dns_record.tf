@@ -10,18 +10,6 @@ resource "cloudflare_dns_record" "www" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "cloud" {
-  provider = cloudflare.dev
-
-  name    = "cloud"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.dev"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "wireguard" {
   provider = cloudflare.dev
 
@@ -112,4 +100,19 @@ resource "cloudflare_dns_record" "dkim1" {
 
   comment = "DKIM record to prevent email spoofing"
   content = "\"v=DKIM1; p=\""
+}
+
+# Everything under *.davydehaas.dev is passed through (TLS passthrough) by Traefik to the Kubernetes cluster.
+# This must not be proxied: Cloudflare would terminate TLS.
+resource "cloudflare_dns_record" "wildcard" {
+  provider = cloudflare.dev
+
+  name    = "*"
+  ttl     = 1
+  type    = "A"
+  zone_id = var.zone_id
+
+  comment = "Wildcard to home server, TLS passthrough to Kubernetes"
+  content = var.ipv4_address
+  proxied = false
 }
