@@ -7,7 +7,10 @@ resource "aws_iam_openid_connect_provider" "github" {
 locals {
   github_oidc_sub_condition = {
     StringLike = {
-      "token.actions.githubusercontent.com:sub" = "repo:davydehaas98/home-server:*"
+      "token.actions.githubusercontent.com:sub" : [
+        "repo:davydehaas98/home-server:ref:refs/heads/main",
+        "repo:davydehaas98/homelab:ref:refs/heads/main"
+      ]
     }
     StringEquals = {
       "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
