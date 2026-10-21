@@ -9,7 +9,18 @@ tcp:
       tls:
         passthrough: true
 
+    # MQTT (no TLS) to the cluster's mosquitto, so clients keep using this host's port 1883
+    mqtt:
+      entryPoints:
+        - mqtt
+      rule: HostSNI(`*`)
+      service: mqtt-service
+
   services:
+    mqtt-service:
+      loadBalancer:
+        servers:
+          - address: 192.168.1.57:1883   # mosquitto LB IP (Cilium LB-IPAM)
     k8s-tcp-service:
       loadBalancer:
         servers:

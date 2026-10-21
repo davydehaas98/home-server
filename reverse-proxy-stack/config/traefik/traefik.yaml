@@ -89,6 +89,9 @@ entryPoints:
    address: :3179/udp
    udp:
       timeout: 10s
+  # MQTT for the meter gateways and other LAN clients, forwarded to the cluster's broker (rules/forward.yaml)
+  mqtt:
+    address: :1883/tcp
   web:
     address: :80
     http:

@@ -17,6 +17,7 @@ services:
       - "8080:8080/tcp"
       - "3179:3179/tcp"
       - "3179:3179/udp"
+      - "1883:1883/tcp"
     networks:
       - reverse-proxy
     volumes:
