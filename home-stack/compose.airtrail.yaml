@@ -4,7 +4,7 @@ networks:
 
 services:
   airtrail:
-    image: docker.io/johly/airtrail:v3.12.0
+    image: docker.io/johly/airtrail:v3.13.0
     container_name: airtrail
     networks:
       - reverse-proxy
