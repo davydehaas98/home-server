@@ -46,18 +46,6 @@ resource "cloudflare_dns_record" "ai" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "airtrail" {
-  provider = cloudflare.nl
-
-  name    = "airtrail"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "auth" {
   provider = cloudflare.nl
 
@@ -86,18 +74,6 @@ resource "cloudflare_dns_record" "authentik" {
   provider = cloudflare.nl
 
   name    = "authentik"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "bazarr" {
-  provider = cloudflare.nl
-
-  name    = "bazarr"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -178,18 +154,6 @@ resource "cloudflare_dns_record" "code" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "dozzle" {
-  provider = cloudflare.nl
-
-  name    = "dozzle"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "duplicati" {
   provider = cloudflare.nl
 
@@ -238,94 +202,10 @@ resource "cloudflare_dns_record" "grafana" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "hass" {
-  provider = cloudflare.nl
-
-  name    = "hass"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "hassio" {
-  provider = cloudflare.nl
-
-  name    = "hassio"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "home" {
-  provider = cloudflare.nl
-
-  name    = "home"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "home_assistant" {
-  provider = cloudflare.nl
-
-  name    = "home-assistant"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "homebridge" {
   provider = cloudflare.nl
 
   name    = "homebridge"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "homepage" {
-  provider = cloudflare.nl
-
-  name    = "homepage"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "immich" {
-  provider = cloudflare.nl
-
-  name    = "immich"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = false
-}
-
-resource "cloudflare_dns_record" "it_tools" {
-  provider = cloudflare.nl
-
-  name    = "it-tools"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -350,42 +230,6 @@ resource "cloudflare_dns_record" "jaeger" {
   provider = cloudflare.nl
 
   name    = "jaeger"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "jellyfin" {
-  provider = cloudflare.nl
-
-  name    = "jellyfin"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "kuma" {
-  provider = cloudflare.nl
-
-  name    = "kuma"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "lidarr" {
-  provider = cloudflare.nl
-
-  name    = "lidarr"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -430,54 +274,6 @@ resource "cloudflare_dns_record" "minecraft_skyfactory" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "mosquitto" {
-  provider = cloudflare.nl
-
-  name    = "mosquitto"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "movies" {
-  provider = cloudflare.nl
-
-  name    = "movies"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "music" {
-  provider = cloudflare.nl
-
-  name    = "music"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "nextcloud" {
-  provider = cloudflare.nl
-
-  name    = "nextcloud"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "oauth" {
   provider = cloudflare.nl
 
@@ -494,18 +290,6 @@ resource "cloudflare_dns_record" "ollama" {
   provider = cloudflare.nl
 
   name    = "ollama"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "omni_tools" {
-  provider = cloudflare.nl
-
-  name    = "omni-tools"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -586,18 +370,6 @@ resource "cloudflare_dns_record" "prometheus" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "prowlarr" {
-  provider = cloudflare.nl
-
-  name    = "prowlarr"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "qbittorrent" {
   provider = cloudflare.nl
 
@@ -610,94 +382,10 @@ resource "cloudflare_dns_record" "qbittorrent" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "radarr" {
-  provider = cloudflare.nl
-
-  name    = "radarr"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "readarr" {
   provider = cloudflare.nl
 
   name    = "readarr"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "request" {
-  provider = cloudflare.nl
-
-  name    = "request"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "requests" {
-  provider = cloudflare.nl
-
-  name    = "requests"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "sabnzbd" {
-  provider = cloudflare.nl
-
-  name    = "sabnzbd"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "seerr" {
-  provider = cloudflare.nl
-
-  name    = "seerr"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "series" {
-  provider = cloudflare.nl
-
-  name    = "series"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "sonarr" {
-  provider = cloudflare.nl
-
-  name    = "sonarr"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -730,34 +418,10 @@ resource "cloudflare_dns_record" "status" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "subtitles" {
-  provider = cloudflare.nl
-
-  name    = "subtitles"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "tabby" {
   provider = cloudflare.nl
 
   name    = "tabby"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "tautulli" {
-  provider = cloudflare.nl
-
-  name    = "tautulli"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -778,34 +442,10 @@ resource "cloudflare_dns_record" "tdarr" {
   proxied = true
 }
 
-resource "cloudflare_dns_record" "threadfin" {
-  provider = cloudflare.nl
-
-  name    = "threadfin"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
 resource "cloudflare_dns_record" "torrent" {
   provider = cloudflare.nl
 
   name    = "torrent"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "tracearr" {
-  provider = cloudflare.nl
-
-  name    = "tracearr"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -842,42 +482,6 @@ resource "cloudflare_dns_record" "transmission" {
   provider = cloudflare.nl
 
   name    = "transmission"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "uptime" {
-  provider = cloudflare.nl
-
-  name    = "uptime"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "uptime_kuma" {
-  provider = cloudflare.nl
-
-  name    = "uptime-kuma"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "usenet" {
-  provider = cloudflare.nl
-
-  name    = "usenet"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id
@@ -926,30 +530,6 @@ resource "cloudflare_dns_record" "xteve" {
   provider = cloudflare.nl
 
   name    = "xteve"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "z2m" {
-  provider = cloudflare.nl
-
-  name    = "z2m"
-  ttl     = 1
-  type    = "CNAME"
-  zone_id = var.zone_id
-
-  content = "davydehaas.nl"
-  proxied = true
-}
-
-resource "cloudflare_dns_record" "zigbee" {
-  provider = cloudflare.nl
-
-  name    = "zigbee"
   ttl     = 1
   type    = "CNAME"
   zone_id = var.zone_id

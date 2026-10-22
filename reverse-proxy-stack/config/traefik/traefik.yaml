@@ -72,14 +72,6 @@ certificatesResolvers:
       dnsChallenge:
         provider: cloudflare
 
-  dns-resolver-cloudflare-staging:
-    acme:
-      keyType: EC384
-      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
-      storage: /letsencrypt/acme.json
-      dnsChallenge:
-        provider: cloudflare
-
 entryPoints:
   traefik:
     address: :8080
