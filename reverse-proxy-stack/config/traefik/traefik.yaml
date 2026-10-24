@@ -26,17 +26,6 @@ providers:
     # Only works on top level files in the rules folder
     watch: true
 
-metrics:
-  addInternals: true
-  otlp:
-    serviceName: traefik
-    addRoutersLabels: true
-    addEntryPointsLabels: true
-    addServicesLabels: true
-    pushInterval: 10s
-    http:
-      endpoint: http://prometheus:9090/api/v1/otlp/v1/metrics
-
 tracing:
   addInternals: true
   serviceName: traefik

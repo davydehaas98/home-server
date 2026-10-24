@@ -1,14 +1,7 @@
-# new TCP router for anything that the k8s cluster should manage itself
+# TCP routers to the Kubernetes cluster. HTTPS for davydehaas.dev no longer passes through here: the router forwards 80
+# and 443 to the cluster's Envoy gateway, which passes davydehaas.nl through to this Traefik.
 tcp:
   routers:
-    k8s-tcp:
-      entryPoints:
-        - websecure
-      rule: HostSNI(`davydehaas.dev`) || HostSNI(`*.davydehaas.dev`)
-      service: k8s-tcp-service
-      tls:
-        passthrough: true
-
     # MQTT (no TLS) to the cluster's mosquitto, so clients keep using this host's port 1883
     mqtt:
       entryPoints:
@@ -21,7 +14,3 @@ tcp:
       loadBalancer:
         servers:
           - address: 192.168.1.57:1883   # mosquitto LB IP (Cilium LB-IPAM)
-    k8s-tcp-service:
-      loadBalancer:
-        servers:
-          - address: 192.168.1.56:443   # Envoy gateway LB IP (Cilium LB-IPAM)
