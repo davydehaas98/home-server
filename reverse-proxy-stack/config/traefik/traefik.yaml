@@ -26,14 +26,6 @@ providers:
     # Only works on top level files in the rules folder
     watch: true
 
-tracing:
-  addInternals: true
-  serviceName: traefik
-  sampleRate: '1.0'
-  otlp:
-    http:
-      endpoint: http://jaeger:4318/v1/traces
-
 accessLog:
   # filePath: /log/access.log
   format: json
